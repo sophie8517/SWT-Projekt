@@ -16,9 +16,9 @@ __Teilnehmer:__
 //Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
 
 - Andre Schmidt (Kunde)
-- Yu-Ju Chen (Nina)
+- Yu-Ju Chen
 - Song Bai
-- Yutian
+- Yutian Lei
 - Mirek Kral
 - Sophie Schulze
 
@@ -84,9 +84,9 @@ __Teilnehmer:__
 //Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
 
 - Andre Schmidt (Kunde)
-- Yu-Ju Chen (Nina)
+- Yu-Ju Chen
 - Song Bai
-- Yutian
+- Yutian Lei
 - Mirek Kral
 - Sophie Schulze
 
