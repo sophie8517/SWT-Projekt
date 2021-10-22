@@ -100,7 +100,8 @@ In Folgenden werden die im Anwendungsfalldiagramm gezeigten Anwendungsfälle im 
 |Name                   |Registrierung          
 |Beschreibung           |Damit sich ein potenzieller Kunde aktiv an der Zahlenlotterie, bzw. Fußballtoto teilnehmen kann, muss ihm ermöglicht werden sich zu registrieren. Diese Funktion bildet die Grundlage neuer Funktionalitäten z.B. Passwort ändern, Ein-/Ausloggen, Geldüberweisen, etc..
 |Akteur                 |unregistrierter Benutzer
-|Auslöser               |Registration: Unregistrierter Benutzer möchte den Zutritt zur Teilnahme an den jeweiligen Angebote der Lotterie.
+|Auslöser               |
+_Registration:_ Unregistrierter Benutzer möchte den Zutritt zur Teilnahme an den jeweiligen Angebote der Lotterie.
 |Vorbedingung           |Der Benutzer wurde nicht bereits registriert.
 |Grundlegende Schritte a|
 _Resgistration:_ 
