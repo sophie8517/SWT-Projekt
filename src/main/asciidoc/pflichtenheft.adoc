@@ -71,7 +71,7 @@ Weitere relevante Spalten können bei Bedarf ergänzt werden.
 |Name                         |Beschreibung
 |Kunde                        |...
 |registrierter Benutzer       |
-|unregistrierter Benutzer     |Der unregistrierter Benutzer ist als die Person angesehen, die beispielsweise das Web-Portal der Lotterie zum ersten Mal besucht, d.h. Ausländer, bzw. neue potenzielle Kunden. 
+|unregistrierter Benutzer     |Der unregistrierte Benutzer ist als die Person angesehen, die beispielsweise das Web-Portal der Lotterie zum ersten Mal besucht, d.h. Ausländer, bzw. neue potenzielle Kunden. 
 
 Er kann sich das Katalog der Fußballspiele anschauen, evtl. Spielregeln der Zahlenloterie durchlesen, und sich registrieren, was schließlich seine Rolle als unregistrierter Benutzer beendet.
 |Administrator                |Dieser ist im meisten der Zeit nur ein gewisser Zuschauer der ganzen Struktur. Er schaut sich die generierte Statistik. Er kann im Laufe des Betriebes mit neunen Funktionalitäten kommen, die ein neues Service für die Kunden darstellen.
