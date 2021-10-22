@@ -93,10 +93,9 @@ Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem ein
 
 In Folgenden werden die im Anwendungsfalldiagramm gezeigten Anwendungsfälle im Detail beschrieben.
 
-[options="header"]
-[cols="1,4"]
+[cols="1h, 3"]
+[[UC05]]
 |===
-|
 |ID                     |**<<UC05>>**
 |Name                   |Registrierung          
 |Beschreibung           |Damit sich ein potenzieller Kunde aktiv an der Zahlenlotterie, bzw. Fußballtoto teilnehmen kann, muss ihm ermöglicht werden sich zu registrieren. Diese Funktion bildet die Grundlage neuer Funktionalitäten z.B. Passwort ändern, Ein-/Ausloggen, Geldüberweisen, etc..
