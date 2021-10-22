@@ -34,7 +34,7 @@ Das Kontextdiagramm zeigt das geplante Software-System in seiner Umgebung. Zur U
 === 8. Top-Level-Architektur
 Dokumentieren Sie ihre Top-Level-Architektur mit Hilfe eines Komponentendiagramm.
 
-== 8. Anwendungsfälle
+=== 8. Anwendungsfälle
 
 === Akteure
 
