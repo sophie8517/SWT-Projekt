@@ -9,7 +9,7 @@
 |0.1     | In Arbeit   | 10.10.2021          | Autor       | Initiale Version
 |===
 
-== Inhaltsverzeichnis
+== 1. Inhaltsverzeichnis
 Dieses Dokument benötigt ein Inhaltsverzeichnis. Es existieren mehrere Einbindungsmöglichkeiten.
 
 == Zusammenfassung
