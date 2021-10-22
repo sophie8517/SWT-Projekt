@@ -8,6 +8,7 @@
 |Version | Status      | Bearbeitungsdatum   | Autoren(en) |  Vermerk
 |0.1     | In Arbeit   | 10.10.2021          | Autor       | Initiale Version
 |0.2     | In Arbeit   | 22.10.2021          | Mirek Král  | Ergänzung des Pflichtenhesftes
+|0.3     | In Arbeit   | 22.10.2021          | Sophie Schulze  | Ergänzung: Beschreibung der Use Cases
 |===
 
 == 1. Inhaltsverzeichnis
@@ -94,6 +95,26 @@ Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem ein
 In Folgenden werden die im Anwendungsfalldiagramm gezeigten Anwendungsfälle im Detail beschrieben.
 
 [cols="1h, 3"]
+[[UC01]]
+|===
+|ID                         |**<<UC01>>**
+|Name                       |Fußballspiele anschauen          
+|Beschreibung               |Der Nutzer kann den Fußballwettenkatalog aufrufen, um zu sehen auf welche Fußballspiele man wetten kann.
+|Akteur                     |alle Nutzer der Website
+|Auslöser                   |(später: Durch Klicken auf den Menüpunkt Fußballkatalog)
+|Vorbedingung               |keine 
+|Grundlegende Schritte     a|
+_Fußballspiele anschauen:_ 
+
+  1. Nutzer klickt auf Menüpunkt Fußballkatalog.
+  2. Nutzer sieht Liste mit kommenden Fußballspielen
+ 
+|Extensions                 |-
+|Funktionale Anforderungen  |tba
+|===
+
+
+[cols="1h, 3"]
 [[UC02]]
 |===
 |ID                         |**<<UC02>>**
@@ -127,6 +148,31 @@ _Resgistration:_
 |Extensions                 |-
 |Funktionale Anforderungen  |-
 |===
+
+
+[cols="1h, 3"]
+[[UC09]]
+|===
+|ID                         |**<<UC09>>**
+|Name                       |Gewinngruppe erstellen          
+|Beschreibung               |Ein angemeldeter/registrierter Nutzer kann eine Gewinngemeinschaft erstellen. Das System generiert für die Gruppe ein Passwort,
+das der Ersteller an neue Mitglieder weitergeben kann.
+|Akteur                     |registrierter Nutzer
+|Auslöser                   |tba
+|Vorbedingung               |Der Nutzer ist bereits im System registriert, hat also einen Benutzernamen sowie ein Passwort und muss sich vor dem Erstellen der Gruppe anmelden.
+|Grundlegende Schritte     a|
+_Gewinngemeinschaft erstellen:_ 
+
+  1. Nutzer meldet sich an.
+  2. Nutzer klickt auf Gewinngemeinschaft erstellen.
+  3. System generiert Passwort (hinsichtlich der Kriterien).
+  4. System teilt dem Nutzer das Gruppenpasswort mit.
+  5. System schickt Bestätigung für Erstellung der Gruppe.
+ 
+|Extensions                 |-
+|Funktionale Anforderungen  |tba
+|===
+
 
 == Funktionale Anforderungen
 
