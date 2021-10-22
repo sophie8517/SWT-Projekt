@@ -96,18 +96,22 @@ In Folgenden werden die im Anwendungsfalldiagramm gezeigten Anwendungsfälle im 
 [cols="1h, 3"]
 [[UC05]]
 |===
-|ID                     |**<<UC05>>**
-|Name                   |Registrierung          
-|Beschreibung           |Damit sich ein potenzieller Kunde aktiv an der Zahlenlotterie, bzw. Fußballtoto teilnehmen kann, muss ihm ermöglicht werden sich zu registrieren. Diese Funktion bildet die Grundlage neuer Funktionalitäten z.B. Passwort ändern, Ein-/Ausloggen, Geldüberweisen, etc..
-|Akteur                 |unregistrierter Benutzer
-|Auslöser               |
+|ID                         |**<<UC05>>**
+|Name                       |Registrierung          
+|Beschreibung               |Damit sich ein potenzieller Kunde aktiv an der Zahlenlotterie, bzw. Fußballtoto teilnehmen kann, muss ihm ermöglicht werden sich zu registrieren. Diese Funktion bildet die Grundlage neuer Funktionalitäten z.B. Passwort ändern, Ein-/Ausloggen, Geldüberweisen, etc..
+|Akteur                     |unregistrierter Benutzer
+|Auslöser                   |
 _Registration:_ Unregistrierter Benutzer möchte den Zutritt zur Teilnahme an den jeweiligen Angebote der Lotterie.
-|Vorbedingung           |Der Benutzer wurde nicht bereits registriert.
-|Grundlegende Schritte a|
+|Vorbedingung               |Der Benutzer wurde nicht bereits registriert.
+|Grundlegende Schritte     a|
 _Resgistration:_ 
 
   1. Eingabe eines bereits nicht besetzten Benutzernamens.
   2. Eingabe eines Passwortes (Mit Hinsicht auf die Kriterien)
+ 
+|Extensions                 |-
+|Funktionale Anforderungen  |-
+|===
 
 == Funktionale Anforderungen
 
