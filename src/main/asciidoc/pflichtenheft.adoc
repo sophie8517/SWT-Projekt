@@ -71,9 +71,9 @@ Weitere relevante Spalten können bei Bedarf ergänzt werden.
 |Name                         |Beschreibung
 |Kunde                        |...
 |registrierter Benutzer       |...
-|unregistrierter Benutzer     | Der unregistrierter Benutzer ist als die Person angesehen, die beispielsweise das Web-Portal der Lotterie zum ersten Mal besucht, d.h. Ausländer,bzw. neue potenzielle Kunden. 
+|unregistrierter Benutzer     | Der unregistrierter Benutzer ist als die Person angesehen, die beispielsweise das Web-Portal der Lotterie zum ersten Mal besucht, d.h. Ausländer, bzw. neue potenzielle Kunden. 
 
-Er kann sich das Katalog der Fußballspiele anschauen, evntl. Spielregeln der Zahlenloterie durchlesen, und sich registrieren, was schließlich seine Rolle als unregistrierter Benutzer beendet.
+Er kann sich das Katalog der Fußballspiele anschauen, evtl. Spielregeln der Zahlenloterie durchlesen, und sich registrieren, was schließlich seine Rolle als unregistrierter Benutzer beendet.
 |Administrator                |
 |Lotterie (System)            |Diese ist eine virtuelle Rolle, die für das allgemeine Betrieb der ganzen Struktur sorgt. Sie speichert alle registrierte Benutzer, generiert Passwörter für Gewinnsgemeinschaftsgruppen, grundet und erweitert die Statistik der Vurluste und Ginne. 
 Bemerkung: Sie bekommt einen offiziellen Name später in der Entwicklung.
