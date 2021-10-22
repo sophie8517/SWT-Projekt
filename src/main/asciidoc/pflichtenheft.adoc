@@ -102,8 +102,7 @@ In Folgenden werden die im Anwendungsfalldiagramm gezeigten Anwendungsfälle im 
 |Akteur                     |registrierter Benutzer
 |Auslöser                   |-
 |Vorbedingung               |Der Benutzer muss sich registrieren und eingeloggt werden, um Lotoscheine ausfüllen zu können. 
-|Grundlegende Schritte     a|-
- 
+|Grundlegende Schritte      |-
 |Extensions                 |-
 |Funktionale Anforderungen  |-
 |===
