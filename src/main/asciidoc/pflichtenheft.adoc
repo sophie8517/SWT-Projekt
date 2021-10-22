@@ -84,6 +84,8 @@ Bemerkung: Sie bekommt einen offiziellen Name später in der Entwicklung.
 
 === 7.2 Use-Case Beschreibungen
 
+In Folgenden werden die im Anwendungsfalldiagramm gezeigten Anwendungsfälle im Detail beschrieben.
+
 [options="header"]
 [cols="1,4"]
 |===
