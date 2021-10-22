@@ -9,6 +9,7 @@
 |0.1     | In Arbeit   | 10.10.2021          | Autor       | Initiale Version
 |0.2     | In Arbeit   | 22.10.2021          | Mirek Král  | Ergänzung des Pflichtenhesftes
 |0.3     | In Arbeit   | 22.10.2021          | Sophie Schulze  | Ergänzung: Beschreibung der Use Cases
+|0.4     | In Arbeit   | 22.10.2021          | Song Bai    | Ergänzung der Beschreibung
 |===
 
 == 1. Inhaltsverzeichnis
@@ -129,6 +130,28 @@ _Fußballspiele anschauen:_
 |===
 
 
+
+[cols="1h, 3"]
+[[UC04]]
+|===
+|ID                         |**<<UC04>>**
+|Name                       |Passwort ändern          
+|Beschreibung               |Der Benutzer soll sein eigenes Passwort ändern können.
+|Akteur                     |registrierter Benutzer
+|Auslöser                   |-
+|Vorbedingung               |Der Benutzer muss sich registrieren und eingeloggt werden. 
+|Grundlegende Schritte     a|
+
+* Nutzer klikt auf Einstellungen "change Password".
+* Nutzer geben altes Passwort, neues Passwort ab, und wiederholt sich nochmal neues Passwort um alle zu bestätigen.
+** Falls die Eingabe korrekt war: Nutzer wird zur Startseite weitergeleitet.
+** Sonst: Eine Fehlermeldung wird angezeigt.
+
+|Extensions                 |-
+|Funktionale Anforderungen  |-
+|===
+
+
 [cols="1h, 3"]
 [[UC05]]
 |===
@@ -171,6 +194,26 @@ _Gewinngemeinschaft erstellen:_
  
 |Extensions                 |-
 |Funktionale Anforderungen  |tba
+|===
+
+
+
+[cols="1h, 3"]
+[[UC12]]
+|===
+|ID                         |**<<UC12>>**
+|Name                       |Statistik anschauen          
+|Beschreibung               |Der Admin soll Statistik über die abgegebenen Wetten anschauen können
+|Akteur                     |Administrator
+|Auslöser                   |-
+|Vorbedingung               |- 
+|Grundlegende Schritte     a|
+
+* Admin drückt auf "bet management" in der Navigationsliste.
+* Die Liste aller Wetten wird angezeigt.
+
+|Extensions                 |-
+|Funktionale Anforderungen  |-
 |===
 
 
