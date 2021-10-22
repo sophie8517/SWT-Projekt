@@ -94,6 +94,22 @@ Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem ein
 In Folgenden werden die im Anwendungsfalldiagramm gezeigten Anwendungsfälle im Detail beschrieben.
 
 [cols="1h, 3"]
+[[UC02]]
+|===
+|ID                         |**<<UC02>>**
+|Name                       |Lottoschein ausfüllen          
+|Beschreibung               |-
+|Akteur                     |registrierter Benutzer
+|Auslöser                   |-
+|Vorbedingung               |Der Benutzer muss sich registrieren und eingeloggt werden, um Lotoscheine ausfüllen zu können. 
+|Grundlegende Schritte     a|-
+ 
+|Extensions                 |-
+|Funktionale Anforderungen  |-
+|===
+
+
+[cols="1h, 3"]
 [[UC05]]
 |===
 |ID                         |**<<UC05>>**
