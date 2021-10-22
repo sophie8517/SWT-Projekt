@@ -96,6 +96,7 @@ In Folgenden werden die im Anwendungsfalldiagramm gezeigten Anwendungsfälle im 
 [options="header"]
 [cols="1,4"]
 |===
+|
 |ID                     |**<<UC05>>**
 |Name                   |Registrierung          
 |Beschreibung           |Damit sich ein potenzieller Kunde aktiv an der Zahlenlotterie, bzw. Fußballtoto teilnehmen kann, muss ihm ermöglicht werden sich zu registrieren. Diese Funktion bildet die Grundlage neuer Funktionalitäten z.B. Passwort ändern, Ein-/Ausloggen, Geldüberweisen, etc..
