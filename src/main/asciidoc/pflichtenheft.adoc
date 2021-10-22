@@ -82,35 +82,23 @@ Er kann sich das Katalog der Fußballspiele anschauen, evtl. Spielregeln der Zah
 Bemerkung: Sie bekommt einen offiziellen Name später in der Entwicklung.
 |===
 
-=== 7.2 Use-Case Beschreibungen
+=== 7.2 Überblick Anwendungsfalldiagramm
+Anwendungsfall-Diagramm, das alle Anwendungsfälle und alle Akteure darstellt
+
+=== 7.3 Anwendungsfallbeschreibungen
+Dieser Unterabschnitt beschreibt die Anwendungsfälle. In dieser Beschreibung müssen noch nicht alle Sonderfälle und Varianten berücksichtigt werden. Schwerpunkt ist es, die wichtigsten Anwendungsfälle des Systems zu finden. Wichtig sind solche Anwendungsfälle, die für den Auftraggeber, den Nutzer den größten Nutzen bringen.
+Für komplexere Anwendungsfälle ein UML-Sequenzdiagramm ergänzen.
+Einfache Anwendungsfälle mit einem Absatz beschreiben.
+Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem einzigen zusammengefasst werden.
 
 In Folgenden werden die im Anwendungsfalldiagramm gezeigten Anwendungsfälle im Detail beschrieben.
 
 [options="header"]
 [cols="1,4"]
 |===
-|Name                         |Beschreibung
-|Kunde                        |...
-|registrierter Benutzer       |Dem registrierten Benutzer werden die eigentlichen Funktionalitäten der Internet-Lotterie eröffnet.
+|ID                         |...
+|Name
 
-Registrierter Benutzer hat die Möglichkeit sich entweder an der Fußballtoto oder der Zahlenlotterie teilzunehmen. Dafür muss er sine virtuelle Portemonnaie mit Geld aufladen. Zusätzlich kann er sein Passwort ändern.
-|unregistrierter Benutzer     |Der unregistrierte Benutzer ist als die Person angesehen, die beispielsweise das Web-Portal der Lotterie zum ersten Mal besucht, d.h. Ausländer, bzw. neue potenzielle Kunden. 
-
-Er kann sich das Katalog der Fußballspiele anschauen, evtl. Spielregeln der Zahlenloterie durchlesen. Weiterhin kann er sich registrieren, was schließlich seine Rolle als unregistrierter Benutzer beendet.
-|Administrator                |Dieser ist im meisten der Zeit nur ein gewisser Zuschauer der ganzen Struktur. Er schaut sich die generierte Statistik. Er kann im Laufe des Betriebes mit neunen Funktionalitäten kommen, die ein neues Service für die Kunden darstellen.
-|Lotterie (System)            |Diese ist eine virtuelle Rolle, die für das allgemeine Betrieb der ganzen Struktur sorgt. Sie speichert alle registrierte Benutzer, generiert Passwörter für Gewinnsgemeinschaftsgruppen, grundet und erweitert die Statistik der Vurluste und Gewinne. 
-
-Bemerkung: Sie bekommt einen offiziellen Name später in der Entwicklung.
-|===
-
-=== Überblick Anwendungsfalldiagramm
-Anwendungsfall-Diagramm, das alle Anwendungsfälle und alle Akteure darstellt
-
-=== Anwendungsfallbeschreibungen
-Dieser Unterabschnitt beschreibt die Anwendungsfälle. In dieser Beschreibung müssen noch nicht alle Sonderfälle und Varianten berücksichtigt werden. Schwerpunkt ist es, die wichtigsten Anwendungsfälle des Systems zu finden. Wichtig sind solche Anwendungsfälle, die für den Auftraggeber, den Nutzer den größten Nutzen bringen.
-Für komplexere Anwendungsfälle ein UML-Sequenzdiagramm ergänzen.
-Einfache Anwendungsfälle mit einem Absatz beschreiben.
-Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem einzigen zusammengefasst werden.
 
 == Funktionale Anforderungen
 
