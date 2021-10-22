@@ -91,7 +91,7 @@ In Folgenden werden die im Anwendungsfalldiagramm gezeigten Anwendungsfälle im 
 |===
 |Name                         |Beschreibung
 |Kunde                        |...
-|registrierter Benutzer       |Dem registrierten Benutzer wirden die eigentlichen Funktionalitäten der Internet-Lotterie eröffnet.
+|registrierter Benutzer       |Dem registrierten Benutzer werden die eigentlichen Funktionalitäten der Internet-Lotterie eröffnet.
 
 Registrierter Benutzer hat die Möglichkeit sich entweder an der Fußballtoto oder der Zahlenlotterie teilzunehmen. Dafür muss er sine virtuelle Portemonnaie mit Geld aufladen. Zusätzlich kann er sein Passwort ändern.
 |unregistrierter Benutzer     |Der unregistrierte Benutzer ist als die Person angesehen, die beispielsweise das Web-Portal der Lotterie zum ersten Mal besucht, d.h. Ausländer, bzw. neue potenzielle Kunden. 
