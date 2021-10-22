@@ -77,7 +77,26 @@ Registrierter Benutzer hat die Möglichkeit sich entweder an der Fußballtoto od
 
 Er kann sich das Katalog der Fußballspiele anschauen, evtl. Spielregeln der Zahlenloterie durchlesen. Weiterhin kann er sich registrieren, was schließlich seine Rolle als unregistrierter Benutzer beendet.
 |Administrator                |Dieser ist im meisten der Zeit nur ein gewisser Zuschauer der ganzen Struktur. Er schaut sich die generierte Statistik. Er kann im Laufe des Betriebes mit neunen Funktionalitäten kommen, die ein neues Service für die Kunden darstellen.
-|Lotterie (System)            |Diese ist eine virtuelle Rolle, die für das allgemeine Betrieb der ganzen Struktur sorgt. Sie speichert alle registrierte Benutzer, generiert Passwörter für Gewinnsgemeinschaftsgruppen, grundet und erweitert die Statistik der Vurluste und Ginne. 
+|Lotterie (System)            |Diese ist eine virtuelle Rolle, die für das allgemeine Betrieb der ganzen Struktur sorgt. Sie speichert alle registrierte Benutzer, generiert Passwörter für Gewinnsgemeinschaftsgruppen, grundet und erweitert die Statistik der Vurluste und Gewinne. 
+
+Bemerkung: Sie bekommt einen offiziellen Name später in der Entwicklung.
+|===
+
+=== 7.2 Use-Case Beschreibungen
+
+[options="header"]
+[cols="1,4"]
+|===
+|Name                         |Beschreibung
+|Kunde                        |...
+|registrierter Benutzer       |Dem registrierten Benutzer wirden die eigentlichen Funktionalitäten der Internet-Lotterie eröffnet.
+
+Registrierter Benutzer hat die Möglichkeit sich entweder an der Fußballtoto oder der Zahlenlotterie teilzunehmen. Dafür muss er sine virtuelle Portemonnaie mit Geld aufladen. Zusätzlich kann er sein Passwort ändern.
+|unregistrierter Benutzer     |Der unregistrierte Benutzer ist als die Person angesehen, die beispielsweise das Web-Portal der Lotterie zum ersten Mal besucht, d.h. Ausländer, bzw. neue potenzielle Kunden. 
+
+Er kann sich das Katalog der Fußballspiele anschauen, evtl. Spielregeln der Zahlenloterie durchlesen. Weiterhin kann er sich registrieren, was schließlich seine Rolle als unregistrierter Benutzer beendet.
+|Administrator                |Dieser ist im meisten der Zeit nur ein gewisser Zuschauer der ganzen Struktur. Er schaut sich die generierte Statistik. Er kann im Laufe des Betriebes mit neunen Funktionalitäten kommen, die ein neues Service für die Kunden darstellen.
+|Lotterie (System)            |Diese ist eine virtuelle Rolle, die für das allgemeine Betrieb der ganzen Struktur sorgt. Sie speichert alle registrierte Benutzer, generiert Passwörter für Gewinnsgemeinschaftsgruppen, grundet und erweitert die Statistik der Vurluste und Gewinne. 
 
 Bemerkung: Sie bekommt einen offiziellen Name später in der Entwicklung.
 |===
