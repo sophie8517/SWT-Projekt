@@ -53,6 +53,8 @@ _Inhalt_
 == 2. Zusammenfassung
 Eine kurze Beschreibung des Dokuments. Wenige Absätze.
 
+Im Folgenden befindet sich das Pflichtenheft zur Aufgabe Lotterie der Gruppe swt21w09. Das Heft beinhaltet die fundamentalste Eingeschaften des angestrebten Systems.
+
 == 3. Aufgabenstellung und Zielsetzung
 Text aus Aufgabenstellung kopieren und ggfs. präzisieren.
 Insbesondere ergänzen, welche Ziele mit dem Abschluss des Projektes erreicht werden sollen.
@@ -299,7 +301,8 @@ Anforderungen die das Programm leisten können soll, aber für den korrekten Bet
 _Kann-Kriterien_ 
 
   1. Mehrsprachige Web-Seite.
-  2. Passwortänderung.
+  2. Passwortänderung
+  3. Kontaktdaten
 
 == 9. Nicht-Funktionale Anforderungen
 
