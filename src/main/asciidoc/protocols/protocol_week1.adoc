@@ -1,0 +1,31 @@
+= Protokoll Gruppe 09
+
+
+Treffen am 15.10.2021
+
+Ort:      BBB
+Beginn:   13:00 Uhr +
+Ende:     14:00 Uhr
+
+__Schriftführer:__ Sophie Schulze
+
+*Nächstes Treffen:* +
+18.10.2021, 14:50 Uhr, Discord
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Andre Schmidt (Kunde)
+- Yu-Ju Chen
+- Song Bai
+- Yutian Lei
+- Mirek Kral
+- Sophie Schulze
+
+== Bemerkungen
+
+Organisatorisches:
+
+- Einführung in das Projekt
+- Festlegen von neuer Meeting-Zeit
+- Verteilung der Aufgaben Schriftführer und Scrum Master
