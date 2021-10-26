@@ -12,6 +12,7 @@
 |0.4     | In Arbeit   | 22.10.2021          | Song Bai    | Ergänzung der Beschreibung
 |0.5     | In Arbeit   | 25.10.2021          | Alle Gruppenmitglieder | Ergänzung des Pflichtenhesftes
 |0.6     | In Arbeit   | 26.10.2021          | Yu-Ju Chen | Ergänzung: Use Cases-Beschreibung
+|0.7     | In Arbeit   | 26.10.2021          | Sophie Schulze | Ergänzung: Zusammenfassung, Beschreibung UC02, Korrektur Rechtschreibung
 |===
 
 == 1. Inhaltsverzeichnis
