@@ -12,7 +12,11 @@
 |0.4     | In Arbeit   | 22.10.2021          | Song Bai    | Ergänzung der Beschreibung
 |0.5     | In Arbeit   | 25.10.2021          | Alle Gruppenmitglieder | Ergänzung des Pflichtenhesftes
 |0.6     | In Arbeit   | 26.10.2021          | Yu-Ju Chen | Ergänzung: Use Cases-Beschreibung
-|0.7     | In Arbeit   | 26.10.2021          | Sophie Schulze | Ergänzung: Zusammenfassung, Beschreibung UC02, Korrektur Rechtschreibung
+|0.7     | In Arbeit   | 26.10.2021          | Sophie Schulze a| 
+- Zusammenfassung
+- Beschreibung UC02
+- Korrektur Rechtschreibung
+- Beginn Klassen und Enumerationen
 |===
 
 == 1. Inhaltsverzeichnis
@@ -380,11 +384,11 @@ Dokumentieren Sie in einer Tabelle die Qualitätsziele, welche das System erreic
 === 9.2 Konkrete Nicht-Funktionale Anforderungen
 
 [options="header"]
-[cols="1, 1, 1, 1, 4"]
+[cols="1, 1, 1, 1"]
 |===
 |ID     |Version  |Name           |Beschreibung
 |[NF01] |v0.1     |Wartbarkeit    |Gut getestete Software, um möglichst viele Fehler abzudecken.
-|[NF02] |v0.1     |               |
+|===
 
 
 Beschreiben Sie Nicht-Funktionale Anforderungen, welche dazu dienen, die zuvor definierten Qualitätsziele zu erreichen.
@@ -419,8 +423,22 @@ Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Kl
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="header"]
 |===
-|Klasse/Enumeration |Beschreibung |
-|…                  |…            |
+|Klasse/Enumeration |Beschreibung
+
+|Lotterie                  
+|repräsentiert das Lotteriesystem
+
+| Benutzer                
+| repräsentiert eine Person, die die Website benutzt bzw. besucht           
+
+|registrierter Benutzer                  
+|eine Person, die bereits im System registriert und authentifiziert ist; hat einen Benutzernamen und ein Passwort
+
+|Kunde                  
+|ein registrierter Nutzer, der für ein Produkt der Lotterie bezahlt
+
+|Admin                  
+|registrierter Nutzer, der durch seine Anmeldedaten vom System als Administrator erkannt wird
 |===
 
 == 12. Akzeptanztestfälle
