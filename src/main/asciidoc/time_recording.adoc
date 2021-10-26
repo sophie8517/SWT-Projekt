@@ -7,7 +7,7 @@ Die individuell erfasste Zeit beinhaltet auch das Lesen von Dokumentationen, Bes
 [option="headers"]
 |===
 |Woche |Mirek Kral |Yuju Chen |Song Bai |Yutian Lei |Sophie Schulze |Dev6 |Meeting
-|1  |…   |…    |…    |…    |360    |…    |60    
+|1  |…   |120    |…    |…    |360    |…    |60    
 |2  |…   |…    |…    |…    |510    |…    |52    
 |3  |…   |…    |…    |…    |…    |…    |…    
 |4  |…   |…    |…    |…    |…    |…    |…    
