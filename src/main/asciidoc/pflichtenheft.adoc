@@ -54,7 +54,10 @@ _Inhalt_
 == 2. Zusammenfassung
 Eine kurze Beschreibung des Dokuments. Wenige Absätze.
 
-Im Folgenden befindet sich das Pflichtenheft zur Aufgabe Lotterie der Gruppe swt21w09. Das Heft beinhaltet die fundamentalste Eingeschaften des angestrebten Systems.
+Im Folgenden befindet sich das Pflichtenheft zur Aufgabe Lotterie der Gruppe swt21w09. Das Heft beinhaltet die fundamentalste Eingeschaften des angestrebten Systems und bildet somit die Grundlage des Projekts. Weiterhin wird in diesem Dokument spezifiziert welche Anforderungen, die Software am Ende des Entwicklungsprozesses zu erüllen hat.
+
+Außerdem ist das Pflichtenheft als Vertrag zwischen dem Kunden und dem Entwicklerteam anzusehen und es stellt vor wie das Problem bzw. der Auftrag des Kunden gelöst werden soll.
+
 
 == 3. Aufgabenstellung und Zielsetzung
 Text aus Aufgabenstellung kopieren und ggfs. präzisieren.
@@ -84,7 +87,7 @@ Die Lotteriebetreiber wären daran interessiert, ihre Fußballtoto-Daten direkt 
 In welchem Kontext soll das System später genutzt werden? Welche Rahmenbedingungen gelten?
 Zusätzlich kurze Einleitung für fachfremde Personen
 
-Das System soll die Struktur der Lotterie digitalisieren. Die Kuden durfen online wetten, Tippscheine ausfüllen und sich über Spielregeln informieren ohne an die Filiale vorbei zu kommen. Nebenbei soll das System die Welt der Lotterie auch internationalen Kunden eröffnen. Vorteil ist, dass die Online-Lotterie 24/7 geöffnet ist.
+Das System soll die Struktur der Lotterie digitalisieren. Die Kuden dürfen online wetten, Tippscheine ausfüllen und sich über Spielregeln informieren ohne an eine Filiale gebunden zu sein. Nebenbei soll das System die Welt der Lotterie auch internationalen Kunden eröffnen. Ein großer Vorteil besteht darin, dass die Online-Lotterie 24/7 geöffnet ist.
 
 Das System soll von folgenden Web-Browsers unterstütz werden
 
@@ -99,20 +102,20 @@ Welche realen und juristischen Personen(-gruppen) haben Einfluss auf die Anforde
 [options="header", cols="5h, ^1, ^1, ^1"]
 |===
 |Name            | Priorität (1..5) | Beschreibung                                                                             | Ziele
-|André Schnidt   | 5                | Der Auftraggeber unseren Projektes                                                      a| 
+|André Schnidt   | 5                | Der Auftraggeber unseres Projektes                                                      a| 
 • Kundenbereich erweitern
 • Digitalisierung
 • Geld sparen
-• Effizienz der Struktur
+• Effizienz der Struktur (Einsparung bei Mitarbeiter, Material etc.)
 |Kunden          | 5                | Sie stellen die grösste Interessengruppe dar und sorgen für das Einkommen der Lotterie. a| 
 • Geld gweinnen
 • intuitive Handhabung
-• gute Kunden-Service
+• guter Kunden-Service
 |Administrator   | 3                | Er behält den Überblick über den Gewinn und die Verluste der Lotterie.                  a|
 • Überblick über Finanzen haben
 |Entwickler      | 3                | Sie sind für die Entwicklung/Programmierung und Wartung der Website zuständig.          a| 
-• leicht verstehbarer / aufgerämter Code
-• keiner ,,Bananaware"
+• leicht verstehbarer / aufgeräumter Code
+• keine ,,Bananaware"
 • leicht erweiterbarer Code
 |===
 
@@ -140,15 +143,15 @@ Weitere relevante Spalten können bei Bedarf ergänzt werden.
 [cols="1,4"]
 |===
 |Name                         |Beschreibung
-|Kunde                        |Der Kunde kann alles machen, was der registrierter Benutzer. Der Unterschied ist, er kann hauptsächlich bezahlen.
-|registrierter Benutzer       |Dem registrierten Benutzer wirden die eigentlichen Funktionalitäten der Internet-Lotterie eröffnet.
+|Kunde                        |Der Kunde kann alles machen, was der registrierter Benutzer kann. Der entscheidende Unterschied ist, er kann bezahlen.
+|registrierter Benutzer       |Dem registrierten Benutzer werden die eigentlichen Funktionalitäten der Internet-Lotterie eröffnet.
 
-Registrierter Benutzer hat die Möglichkeit sich entweder an der Fußballtoto oder der Zahlenlotterie teilzunehmen. Dafür muss er sine virtuelle Portemonnaie mit Geld aufladen. Zusätzlich kann er sein Passwort ändern.
-|unregistrierter Benutzer     |Der unregistrierte Benutzer ist als die Person angesehen, die beispielsweise das Web-Portal der Lotterie zum ersten Mal besucht, d.h. Ausländer, bzw. neue potenzielle Kunden. 
+Ein registrierter Benutzer hat die Möglichkeit entweder am Fußballtoto oder an der Zahlenlotterie teilzunehmen. Dafür muss er sein virtuelles Portemonnaie mit Geld aufladen. Zusätzlich kann er sein Passwort ändern.
+|unregistrierter Benutzer     |Der unregistrierte Benutzer ist als die Person angesehen, die beispielsweise das Web-Portal der Lotterie zum ersten Mal besucht, d.h. "Ausländer", bzw. neue potenzielle Kunden. 
 
-Er kann sich das Katalog der Fußballspiele anschauen, evtl. Spielregeln der Zahlenloterie durchlesen. Weiterhin kann er sich registrieren, was schließlich seine Rolle als unregistrierter Benutzer beendet.
-|Administrator                |Dieser ist im meisten der Zeit nur ein gewisser Zuschauer der ganzen Struktur. Er schaut sich die generierte Statistik. Er kann im Laufe des Betriebes mit neunen Funktionalitäten kommen, die ein neues Service für die Kunden darstellen.
-|Lotterie (System)            |Diese ist eine virtuelle Rolle, die für das allgemeine Betrieb der ganzen Struktur sorgt. Sie speichert alle registrierte Benutzer, generiert Passwörter für Gewinnsgemeinschaftsgruppen, grundet und erweitert die Statistik der Vurluste und Gewinne. 
+Er kann sich den Katalog der Fußballspiele anschauen sowie evtl. sich über die Spielregeln der Zahlenlotterie informieren. Weiterhin kann er sich registrieren, was schließlich seine Rolle als unregistrierter Benutzer beendet.
+|Administrator                |Dieser ist die meiste Zeit nur ein gewisser Zuschauer der ganzen Struktur. Er schaut sich die generierte Statistik an. Er kann im Laufe des Betriebes mit neunen Funktionalitäten kommen, die ein neues Service für die Kunden darstellen.
+|Lotterie (System)            |Diese ist eine virtuelle Rolle, die für den allgemeine Betrieb der ganzen Struktur sorgt. Sie speichert alle registrierte Benutzer, generiert Passwörter für Gewinnsgemeinschaftsgruppen, gründet und erweitert die Statistik der Verluste und Gewinne. 
 
 Bemerkung: Sie bekommt einen offiziellen Name später in der Entwicklung.
 |===
@@ -189,7 +192,7 @@ _Fußballspiele anschauen:_
 |===
 |ID                         |**<<UC02>>**
 |Name                       |Lottoschein ausfüllen          
-|Beschreibung               |-
+|Beschreibung               |Ein registrierter Nutzer füllt einen Lottoschein aus, indem er 6 aus 49 Zahlen auswählt. 
 |Akteur                     |registrierter Benutzer
 |Auslöser                   |-
 |Vorbedingung               |Der Benutzer muss sich registrieren und eingeloggt werden, um Lotoscheine ausfüllen zu können. 
@@ -338,6 +341,7 @@ _Gewinngemeinschaft erstellen:_
 
 == 8. Funktionale Anforderungen
 
+
 === 8.1 Muss-Kriterien
 _Muss-Kriterien_ 
 
@@ -378,7 +382,7 @@ Dokumentieren Sie in einer Tabelle die Qualitätsziele, welche das System erreic
 [cols="1, 1, 1, 1, 4"]
 |===
 |ID     |Version  |Name           |Beschreibung
-|[NF01] |v0.1     |Wartbarkeit    |Gut getesteter Software, um möglichst viele Fehler abzudecken.
+|[NF01] |v0.1     |Wartbarkeit    |Gut getestete Software, um möglichst viele Fehler abzudecken.
 |[NF02] |v0.1     |               |
 
 
