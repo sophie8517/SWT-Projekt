@@ -18,6 +18,7 @@
 - Korrektur Rechtschreibung
 - Beginn Klassen und Enumerationen
 |0.8     | In Arbeit   | 27.10.2021          | Sophie Schulze | Use Cases 13,14,15
+|0.9     | In Arbeit   | 27.10.2021          | Yu-Ju Chen | Ergänzung: Use Cases-Beschreibung
 |===
 
 == 1. Inhaltsverzeichnis
@@ -300,6 +301,48 @@ _Ausloggen:_
   2.  Benutzer ist nicht authentifiziert und die Startseite wird angezeigt 
 |Extensions                 |-
 |Funktionale Anforderungen  |-
+|===
+
+
+[cols="1h, 3"]
+[[UC07]]
+|===
+|ID                         |**<<UC07>>**
+|Name                       |Geld überweisen
+|Beschreibung               |Der registiered Benutzer kann seine Guthaben mit einem bestimmten Betrag aufladen.
+|Akteur                     |Kunde
+|Auslöser                   |-
+|Vorbedingung               |Der Nutzer ist bereits im System eingeloggt.
+|Grundlegende Schritte     a|
+_Geld　überweisen:_ 
+
+  1. Nutzer meldet sich an.
+  2. Nutzer klickt auf Guthaben aufladen.
+  3. System lädtet Guthaben auf. 
+ 
+|Extensions                 |-
+|Funktionale Anforderungen a|-
+|===
+
+
+[cols="1h, 3"]
+[[UC08]]
+|===
+|ID                         |**<<UC08>>**
+|Name                       |Gewinn und Verlust auszahlen
+|Beschreibung               |Das System wertet die abgegebenede Wetten und Tippscheinen aus und zahlt entsprechend des Ergibnisses ein Gewinn bzw. Verlust aus oder nicht.
+|Akteur                     |Lotterie
+|Auslöser                   |-
+|Vorbedingung               |Lotterie kennt das Ergibnis des Spieles oder der Ziehungs.
+|Grundlegende Schritte     a|
+_Gewinn und Verlust auszahlen:_ 
+
+  1. Das Ergibnis von Zahlenlotterie und Fußballspiel ist bekannt.
+  2. Lotterie guckt in die Statistik ob Kunde Geld gewonnen oder verloren. 
+  3. System zahlt ein Gewinn oder Verlust aus. 
+ 
+|Extensions                 |-
+|Funktionale Anforderungen a|-
 |===
 
 
