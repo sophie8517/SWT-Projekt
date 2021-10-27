@@ -11,14 +11,13 @@
 |0.3     | In Arbeit   | 22.10.2021          | Sophie Schulze  | Ergänzung: Beschreibung der Use Cases
 |0.4     | In Arbeit   | 22.10.2021          | Song Bai    | Ergänzung der Beschreibung
 |0.5     | In Arbeit   | 25.10.2021          | Alle Gruppenmitglieder | Ergänzung des Pflichtenhesftes
-|0.6     | In Arbeit   | 26.10.2021          | Yu-Ju Chen | Ergänzung: Use Cases-Beschreibung 
+|0.6     | In Arbeit   | 26.10.2021          | Yu-Ju Chen | Ergänzung: Use Cases-Beschreibung
 |0.7     | In Arbeit   | 26.10.2021          | Sophie Schulze a| 
-|0.9     | In Arbeit   | 27.10.2021          | Yu-Ju Chen | Ergänzung: Use Cases-Beschreibung
-
 - Zusammenfassung
 - Beschreibung UC02
 - Korrektur Rechtschreibung
 - Beginn Klassen und Enumerationen
+|0.8     | In Arbeit   | 27.10.2021          | Sophie Schulze | Use Cases 13,14,15
 |===
 
 == 1. Inhaltsverzeichnis
@@ -106,10 +105,12 @@ Das System soll von folgenden Web-Browsers unterstütz werden
 == 5. Interessensgruppen (Stakeholders)
 Welche realen und juristischen Personen(-gruppen) haben Einfluss auf die Anforderungen im Projekt?
 
+Prorität:1 (niedrig) zu 5 (hoch)
+
 [options="header", cols="5h, ^1, ^1, ^1"]
 |===
 |Name            | Priorität (1..5) | Beschreibung                                                                             | Ziele
-|André Schnidt   | 5                | Der Auftraggeber unseres Projektes                                                      a| 
+|André Schmidt   | 5                | Der Auftraggeber unseres Projektes                                                      a| 
 • Kundenbereich erweitern
 • Digitalisierung
 • Geld sparen
@@ -302,49 +303,6 @@ _Ausloggen:_
 |===
 
 
-
-[cols="1h, 3"]
-[[UC07]]
-|===
-|ID                         |**<<UC07>>**
-|Name                       |Geld überweisen
-|Beschreibung               |Der registiered Benutzer kann seine Guthaben mit einem bestimmten Betrag aufladen.
-|Akteur                     |Kunde
-|Auslöser                   |-
-|Vorbedingung               |Der Nutzer ist bereits im System eingeloggt.
-|Grundlegende Schritte     a|
-_Geld　überweisen:_ 
-
-  1. Nutzer meldet sich an.
-  2. Nutzer klickt auf Guthaben aufladen.
-  3. System lädtet Guthaben auf. 
- 
-|Extensions                 |-
-|Funktionale Anforderungen a|-
-|===
-
-
-[cols="1h, 3"]
-[[UC08]]
-|===
-|ID                         |**<<UC08>>**
-|Name                       |Gewinn und Verlust auszahlen
-|Beschreibung               |Das System wertet die abgegebenede Wetten und Tippscheinen aus und zahlt entsprechend des Ergibnisses ein Gewinn bzw. Verlust aus oder nicht.
-|Akteur                     |Lotterie
-|Auslöser                   |-
-|Vorbedingung               |Lotterie kennt das Ergibnis des Spieles oder der Ziehungs.
-|Grundlegende Schritte     a|
-_Gewinn und Verlust auszahlen:_ 
-
-  1. Das Ergibnis von Zahlenlotterie und Fußballspiel ist bekannt.
-  2. Lotterie guckt in die Statistik ob Kunde Geld gewonnen oder verloren. 
-  3. System zahlt ein Gewinn oder Verlust aus. 
- 
-|Extensions                 |-
-|Funktionale Anforderungen a|-
-|===
-
-
 [cols="1h, 3"]
 [[UC09]]
 |===
@@ -384,6 +342,70 @@ _Gewinngemeinschaft erstellen:_
 * Admin drückt auf "bet management" in der Navigationsliste.
 * Die Liste aller Wetten wird angezeigt.
 
+|Extensions                 |-
+|Funktionale Anforderungen  |-
+|===
+
+
+
+[cols="1h, 3"]
+[[UC013]]
+|===
+|ID                         |**<<UC013>>**
+|Name                       |Item anschauen        
+|Beschreibung               |
+|Akteur                     |registrierter Benutzer
+|Auslöser                   |Klick auf "Warenkorb" in Menüleiste
+|Vorbedingung               |Nutzer ist registriert im System und angemeldet. 
+|Grundlegende Schritte     a|
+
+  1. registrierter Nutzer klickt auf "Warenkorb" in Menüleiste
+  2. registrierter Nutzer sieht Items im Warenkorb
+
+|Extensions                 |-
+|Funktionale Anforderungen  |-
+|===
+
+[cols="1h, 3"]
+[[UC014]]
+|===
+|ID                         |**<<UC014>>**
+|Name                       |Item hinzufügen        
+|Beschreibung               |ein registrierter Nutzer kann ein Item zu seinem Warenkorb hinzufügen
+|Akteur                     |registrierter Nutzer
+|Auslöser                   |ein registrierter Nutzer hat eine Wette auf ein Item abgeschlossen (Tippschein ausgefüllt oder Fußballwette), und möchte dieses zum Warenkorb hinzufügen
+|Vorbedingung              a|
+- Nutzer ist registriert und angemeldet
+- Nutzer hat Wette abgeschlossen
+|Grundlegende Schritte     a|
+
+  1. Nutzer klickt auf "zu Warenkorb hinzufügen"
+  2. Item ist zu Warenkorb hinzugefügt
+
+|Extensions                 |-
+|Funktionale Anforderungen  |-
+|===
+
+
+
+[cols="1h, 3"]
+[[UC015]]
+|===
+|ID                         |**<<UC015>>**
+|Name                       |Item kaufen        
+|Beschreibung               |Kunde kauft die Ware/n in seinem Warenkorb
+|Akteur                     |Kunde
+|Auslöser                   |Klick auf "Kaufen"
+|Vorbedingung              a|
+- Nutzer ist registriert und angemeldet
+- Nutzer hat auf Menüpunkt Warenkorb geklickt
+- Nutzer hat Item(s) zum Warenkorb hinzugefügt
+- Nutzer hat ausreichend Guthaben auf seinem Konto
+|Grundlegende Schritte     a|
+
+  1. Nutzer klickt auf "Kaufen"
+  2. System erstellt Order zum Kauf
+  3. Kaufbetrag wird vom Guthaben des Nutzers abgezogen
 |Extensions                 |-
 |Funktionale Anforderungen  |-
 |===
