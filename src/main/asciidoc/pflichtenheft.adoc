@@ -196,6 +196,45 @@ _Gewinngemeinschaft erstellen:_
 |Funktionale Anforderungen  |tba
 |===
 
+[cols="1h, 3"]
+[[UC10]]
+|===
+|ID 						|**<<UC10>>**
+|Name                       |Einkommen anschauen          
+|Beschreibung               |Der Admin soll Einkommen von Kunden anschauen können
+|Akteur                     |Administrator
+|Auslöser                   |-
+|Vorbedingung               |- 
+|Grundlegende Schritte     a|
+
+* Admin drückt auf "Liste der Kunden" in der Navigationsliste.
+* Die Liste aller Kunden wird angezeigt.
+* Admin drückt auf Name der Kunde.
+* Das Einkommen der Kunde wird angezeigt.
+
+|Extensions                 |-
+|Funktionale Anforderungen  |-
+|===
+
+[cols="1h, 3"]
+[[UC11]]
+|===
+|ID 						|**<<UC10>>**
+|Name                       |Verluste anschauen          
+|Beschreibung               |Der Admin soll Verluste von Kunden anschauen können
+|Akteur                     |Administrator
+|Auslöser                   |-
+|Vorbedingung               |- 
+|Grundlegende Schritte     a|
+
+* Admin drückt auf "Liste der Kunden" in der Navigationsliste.
+* Die Liste aller Kunden wird angezeigt.
+* Admin drückt auf Name der Kunde.
+* Das Verluste der Kunde wird angezeigt.
+
+|Extensions                 |-
+|Funktionale Anforderungen  |-
+|===
 
 
 [cols="1h, 3"]
