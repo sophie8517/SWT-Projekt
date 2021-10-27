@@ -30,27 +30,27 @@ _Inhalt_
   5. Interessensgruppen (Stakeholders)
   6. Systemgrenze und Top-Level-Architektur
   
-  6.1.Kontextdiagramm
+  6.1. Kontextdiagramm
   6.2. Top-Level-Architektur
   6.3. Anwendungsfälle
   
   7. Use-Case
   
   7.1  Akteure
-  7.2 Überblick Anwendungsfalldiagramm
-  7.3 Anwendungsfallbeschreibungen
+  7.2  Überblick Anwendungsfalldiagramm
+  7.3  Anwendungsfallbeschreibungen
   
   8. Funktionale Anforderungen
   9. Nicht-Funktionale Anforderungen
   
-  9.1 Qualitätsziele
-  9.2 Konkrete Nicht-Funktionale Anforderungen
+  9.1  Qualitätsziele
+  9.2  Konkrete Nicht-Funktionale Anforderungen
   
   10. GUI Prototyp
   11. Datenmodell
   
-  11.1 Überblick: Klassendiagramm
-  11.2 Klassen und Enumerationen
+  11.1  Überblick: Klassendiagramm
+  11.2  Klassen und Enumerationen
   
   12. Akzeptanztestfälle
   13. Glossar
