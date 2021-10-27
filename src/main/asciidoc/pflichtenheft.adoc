@@ -136,13 +136,15 @@ Das Interessengruppen sind ausschließlich Erwachsene, d.h. Personen ab 18 Jahre
 === 6.1. Kontextdiagramm
 Das Kontextdiagramm zeigt das geplante Software-System in seiner Umgebung. Zur Umgebung gehören alle Nutzergruppen des Systems und Nachbarsysteme. Die Grafik kann auch informell gehalten sein. Überlegen Sie sich dann geeignete Symbole. Die Grafik kann beispielsweise mit Visio erstellt werden. Wenn nötig, erläutern Sie diese Grafik.
 
+[[context_diagram]]
+image:diagramm/kontext.png[context diagram]
+
 === 6.2. Top-Level-Architektur
 [[TLA]]
 image:diagramm/top_level.png[top-level architecture]
 
 Top-Level-Ansicht für Lotteriesystem
 
-=== 6.3. Anwendungsfälle
 
 == 7. Use-Cases
 
@@ -169,10 +171,11 @@ Er kann sich den Katalog der Fußballspiele anschauen sowie evtl. sich über die
 Bemerkung: Sie bekommt einen offiziellen Name später in der Entwicklung.
 |===
 
-=== 7.2 Überblick Anwendungsfalldiagramm
-Anwendungsfall-Diagramm, das alle Anwendungsfälle und alle Akteure darstellt
+=== 7.2 Überblick Use-Case-Diagramm
+[[use_case_diagram]]
+image::./diagramm/use_case.png[Use Case diagram, 100%, 100%, pdfwidth=100%, title= "Use case diagram of lottery system", align=center]
 
-=== 7.3 Anwendungsfallbeschreibungen
+=== 7.3 Use-Case-Beschreibungen
 Dieser Unterabschnitt beschreibt die Anwendungsfälle. In dieser Beschreibung müssen noch nicht alle Sonderfälle und Varianten berücksichtigt werden. Schwerpunkt ist es, die wichtigsten Anwendungsfälle des Systems zu finden. Wichtig sind solche Anwendungsfälle, die für den Auftraggeber, den Nutzer den größten Nutzen bringen.
 Für komplexere Anwendungsfälle ein UML-Sequenzdiagramm ergänzen.
 Einfache Anwendungsfälle mit einem Absatz beschreiben.
@@ -198,6 +201,9 @@ _Fußballspiele anschauen:_
 |Extensions                 |-
 |Funktionale Anforderungen  |tba
 |===
+
+[[sequence_diagram_watch_football]]
+image::./diagramm/UC01.png[Sequence diagram: Watch Football, 50%, 50%, pdfwidth=50%, title= "Sequence diagram: watch football", align=center]
 
 
 [cols="1h, 3"]
@@ -261,6 +267,9 @@ _Wetten:_
 |Funktionale Anforderungen  |-
 |===
 
+[[sequence_diagram_change_password]]
+image::./diagramm/UC04.png[Sequence diagram: Change Password, 50%, 50%, pdfwidth=50%, title= "Sequence diagram: change password", align=center]
+
 
 [cols="1h, 3"]
 [[UC05]]
@@ -273,7 +282,7 @@ _Wetten:_
 _Registration:_ Unregistrierter Benutzer möchte den Zutritt zur Teilnahme an den jeweiligen Angebote der Lotterie.
 |Vorbedingung               |Der Benutzer wurde nicht bereits registriert.
 |Grundlegende Schritte     a|
-_Resgistration:_ 
+_Registration:_ 
 
   1. Eingabe eines bereits nicht besetzten Benutzernamens.
   2. Eingabe eines Passwortes (Mit Hinsicht auf die Kriterien)
@@ -281,6 +290,9 @@ _Resgistration:_
 |Extensions                 |-
 |Funktionale Anforderungen  |-
 |===
+
+[[sequence_diagram_registration]]
+image::./diagramm/UC05.png[Sequence diagram: Registration, 50%, 50%, pdfwidth=50%, title= "Sequence diagram: registration", align=center]
 
 
 [cols="1h, 3"]
@@ -334,6 +346,9 @@ _Geld　überweisen:_
 |Funktionale Anforderungen a|-
 |===
 
+[[sequence_diagram_transfer]]
+image::./diagramm/UC07.png[Sequence diagram: Transfer, 50%, 50%, pdfwidth=50%, title= "Sequence diagram: transfer", align=center]
+
 
 [cols="1h, 3"]
 [[UC08]]
@@ -354,6 +369,9 @@ _Gewinn und Verlust auszahlen:_
 |Extensions                 |-
 |Funktionale Anforderungen a|-
 |===
+
+[[sequence_diagram_win_or_lose]]
+image::./diagramm/UC08.png[Sequence diagram: Win Or Lose, 50%, 50%, pdfwidth=50%, title= "Sequence diagram: win or lose", align=center]
 
 
 [cols="1h, 3"]
@@ -378,6 +396,9 @@ _Gewinngemeinschaft erstellen:_
 |Extensions                 |-
 |Funktionale Anforderungen  |tba
 |===
+
+[[sequence_diagram_make_group]]
+image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%, title= "Sequence diagram: make group", align=center]
 
 
 
@@ -535,6 +556,10 @@ Für jeden Dialog:
 == 11. Datenmodell
 
 === 11.1 Überblick: Klassendiagramm
+
+[[AKD]]
+image::./diagramm/domain_model.png[Class diagram]
+
 UML-Analyseklassendiagramm
 
 === 11.2 Klassen und Enumerationen
