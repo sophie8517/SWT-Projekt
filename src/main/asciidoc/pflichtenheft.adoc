@@ -19,6 +19,7 @@
 - Beginn Klassen und Enumerationen
 |0.8     | In Arbeit   | 27.10.2021          | Sophie Schulze | Use Cases 13,14,15
 |0.9     | In Arbeit   | 27.10.2021          | Yu-Ju Chen | Ergänzung: Use Cases-Beschreibung
+|0.10    | In Arbeit   | 27.10.2021          | Mirek Král, Song Bai |Bilder hochladen und UC Ergänzung
 |===
 
 == 1. Inhaltsverzeichnis
@@ -222,7 +223,10 @@ _Fußballspiele anschauen:_
 |Beschreibung               |Die Kunden entscheiden sich zuerst dafür, eine Wette auf das Gewinnerteam zu platzieren, und sie können auch den Spielstand zusätzlich addieren und dann schließlich mit den Quoten multiplizieren, um den Gewinnbetrag zu erhalten.
 |Akteur                     |Kunden
 |Auslöser                   |Zugriff auf Menüpunkt Fußballkatalog, der fürs Fußballtoto verantwortlich ist.
-|Vorbedingung               |- 
+|Vorbedingung              a|
+• Einloggen unter Gruppe oder einzeln
+• Katalog anschauen
+• Spiel wählen
 |Grundlegende Schritte     a|
 _Wetten:_ 
 
@@ -314,7 +318,7 @@ _Ausloggen:_
 |Name                       |Geld überweisen
 |Beschreibung               |Der registiered Benutzer kann seine Guthaben mit einem bestimmten Betrag aufladen.
 |Akteur                     |Kunde
-|Auslöser                   |-
+|Auslöser                   |Kunde möchte an der Lotterie finanziell teilnehmen.
 |Vorbedingung               |Der Nutzer ist bereits im System eingeloggt.
 |Grundlegende Schritte     a|
 _Geld　überweisen:_ 
@@ -335,7 +339,7 @@ _Geld　überweisen:_
 |Name                       |Gewinn und Verlust auszahlen
 |Beschreibung               |Das System wertet die abgegebenede Wetten und Tippscheinen aus und zahlt entsprechend des Ergibnisses ein Gewinn bzw. Verlust aus oder nicht.
 |Akteur                     |Lotterie
-|Auslöser                   |-
+|Auslöser                   |Kunde hat verloren oder gewonnen.
 |Vorbedingung               |Lotterie kennt das Ergibnis des Spieles oder der Ziehungs.
 |Grundlegende Schritte     a|
 _Gewinn und Verlust auszahlen:_ 
@@ -357,7 +361,7 @@ _Gewinn und Verlust auszahlen:_
 |Beschreibung               |Ein angemeldeter/registrierter Nutzer kann eine Gewinngemeinschaft erstellen. Das System generiert für die Gruppe ein Passwort,
 das der Ersteller an neue Mitglieder weitergeben kann.
 |Akteur                     |registrierter Nutzer
-|Auslöser                   |tba
+|Auslöser                   |-
 |Vorbedingung               |Der Nutzer ist bereits im System registriert, hat also einen Benutzernamen sowie ein Passwort und muss sich vor dem Erstellen der Gruppe anmelden.
 |Grundlegende Schritte     a|
 _Gewinngemeinschaft erstellen:_ 
@@ -372,45 +376,6 @@ _Gewinngemeinschaft erstellen:_
 |Funktionale Anforderungen  |tba
 |===
 
-[cols="1h, 3"]
-[[UC10]]
-|===
-|ID 						|**<<UC10>>**
-|Name                       |Einkommen anschauen          
-|Beschreibung               |Der Admin soll Einkommen von Kunden anschauen können
-|Akteur                     |Administrator
-|Auslöser                   |-
-|Vorbedingung               |- 
-|Grundlegende Schritte     a|
-
-* Admin drückt auf "Liste der Kunden" in der Navigationsliste.
-* Die Liste aller Kunden wird angezeigt.
-* Admin drückt auf Name der Kunde.
-* Das Einkommen der Kunde wird angezeigt.
-
-|Extensions                 |-
-|Funktionale Anforderungen  |-
-|===
-
-[cols="1h, 3"]
-[[UC11]]
-|===
-|ID 						|**<<UC10>>**
-|Name                       |Verluste anschauen          
-|Beschreibung               |Der Admin soll Verluste von Kunden anschauen können
-|Akteur                     |Administrator
-|Auslöser                   |-
-|Vorbedingung               |- 
-|Grundlegende Schritte     a|
-
-* Admin drückt auf "Liste der Kunden" in der Navigationsliste.
-* Die Liste aller Kunden wird angezeigt.
-* Admin drückt auf Name der Kunde.
-* Das Verluste der Kunde wird angezeigt.
-
-|Extensions                 |-
-|Funktionale Anforderungen  |-
-|===
 
 
 [cols="1h, 3"]
@@ -418,9 +383,9 @@ _Gewinngemeinschaft erstellen:_
 |===
 |ID                         |**<<UC12>>**
 |Name                       |Statistik anschauen          
-|Beschreibung               |Der Admin soll Statistik über die abgegebenen Wetten anschauen können
+|Beschreibung               |Der Admin möchte Übersicht über auskommenden und einkommenden Geld anschauen.
 |Akteur                     |Administrator
-|Auslöser                   |-
+|Auslöser                   |Admin gibt den Befehl die Übersicht zu sehen.
 |Vorbedingung               |- 
 |Grundlegende Schritte     a|
 
@@ -438,7 +403,7 @@ _Gewinngemeinschaft erstellen:_
 |===
 |ID                         |**<<UC013>>**
 |Name                       |Item anschauen        
-|Beschreibung               |
+|Beschreibung               |-
 |Akteur                     |registrierter Benutzer
 |Auslöser                   |Klick auf "Warenkorb" in Menüleiste
 |Vorbedingung               |Nutzer ist registriert im System und angemeldet. 
