@@ -10,13 +10,61 @@
 |0.2     | In Arbeit   | 22.10.2021          | Mirek Král  | Ergänzung des Pflichtenhesftes
 |0.3     | In Arbeit   | 22.10.2021          | Sophie Schulze  | Ergänzung: Beschreibung der Use Cases
 |0.4     | In Arbeit   | 22.10.2021          | Song Bai    | Ergänzung der Beschreibung
+|0.5     | In Arbeit   | 25.10.2021          | Alle Gruppenmitglieder | Ergänzung des Pflichtenhesftes
+|0.6     | In Arbeit   | 26.10.2021          | Yu-Ju Chen | Ergänzung: Use Cases-Beschreibung
+|0.7     | In Arbeit   | 26.10.2021          | Sophie Schulze a| 
+- Zusammenfassung
+- Beschreibung UC02
+- Korrektur Rechtschreibung
+- Beginn Klassen und Enumerationen
+|0.8     | In Arbeit   | 27.10.2021          | Sophie Schulze | Use Cases 13,14,15
+|0.9     | In Arbeit   | 27.10.2021          | Yu-Ju Chen | Ergänzung: Use Cases-Beschreibung
 |===
 
 == 1. Inhaltsverzeichnis
 Dieses Dokument benötigt ein Inhaltsverzeichnis. Es existieren mehrere Einbindungsmöglichkeiten.
+_Inhalt_
+ 
+  1. Inhaltsverzeichnis
+  2. Zusammenfassung
+  3. Aufgabenstellung
+  4. Produktnutzung
+  5. Interessensgruppen (Stakeholders)
+  6. Systemgrenze und Top-Level-Architektur
+  
+  6.1. Kontextdiagramm
+  6.2. Top-Level-Architektur
+  6.3. Anwendungsfälle
+  
+  7. Use-Case
+  
+  7.1  Akteure
+  7.2  Überblick Anwendungsfalldiagramm
+  7.3  Anwendungsfallbeschreibungen
+  
+  8. Funktionale Anforderungen
+  9. Nicht-Funktionale Anforderungen
+  
+  9.1  Qualitätsziele
+  9.2  Konkrete Nicht-Funktionale Anforderungen
+  
+  10. GUI Prototyp
+  11. Datenmodell
+  
+  11.1  Überblick: Klassendiagramm
+  11.2  Klassen und Enumerationen
+  
+  12. Akzeptanztestfälle
+  13. Glossar
+  14. Offene Punkte
 
 == 2. Zusammenfassung
 Eine kurze Beschreibung des Dokuments. Wenige Absätze.
+
+Im Folgenden befindet sich das Pflichtenheft zur Aufgabe Lotterie der Gruppe swt21w09. Das Heft beinhaltet die fundamentalste Eingeschaften des angestrebten Systems und bildet somit die Grundlage des Projekts. Weiterhin wird in diesem Dokument spezifiziert welche Anforderungen, die Software am Ende des Entwicklungsprozesses zu erüllen hat.
+
+Außerdem ist das Pflichtenheft als Vertrag zwischen dem Kunden und dem Entwicklerteam anzusehen und es stellt vor wie das Problem bzw. der Auftrag des Kunden gelöst werden soll.
+
 
 == 3. Aufgabenstellung und Zielsetzung
 Text aus Aufgabenstellung kopieren und ggfs. präzisieren.
@@ -46,8 +94,41 @@ Die Lotteriebetreiber wären daran interessiert, ihre Fußballtoto-Daten direkt 
 In welchem Kontext soll das System später genutzt werden? Welche Rahmenbedingungen gelten?
 Zusätzlich kurze Einleitung für fachfremde Personen
 
+Das System soll die Struktur der Lotterie digitalisieren. Die Kuden dürfen online wetten, Tippscheine ausfüllen und sich über Spielregeln informieren ohne an eine Filiale gebunden zu sein. Nebenbei soll das System die Welt der Lotterie auch internationalen Kunden eröffnen. Ein großer Vorteil besteht darin, dass die Online-Lotterie 24/7 geöffnet ist.
+
+Das System soll von folgenden Web-Browsers unterstütz werden
+
+• Mozila Firefox v93.0+
+• Google Chrome 94.0+
+• Microsoft Edge 95.0+
+• Safari v15.0+
+
 == 5. Interessensgruppen (Stakeholders)
 Welche realen und juristischen Personen(-gruppen) haben Einfluss auf die Anforderungen im Projekt?
+
+Prorität:1 (niedrig) zu 5 (hoch)
+
+[options="header", cols="5h, ^1, ^1, ^1"]
+|===
+|Name            | Priorität (1..5) | Beschreibung                                                                             | Ziele
+|André Schmidt   | 5                | Der Auftraggeber unseres Projektes                                                      a| 
+• Kundenbereich erweitern
+• Digitalisierung
+• Geld sparen
+• Effizienz der Struktur (Einsparung bei Mitarbeiter, Material etc.)
+|Kunden          | 5                | Sie stellen die grösste Interessengruppe dar und sorgen für das Einkommen der Lotterie. a| 
+• Geld gweinnen
+• intuitive Handhabung
+• guter Kunden-Service
+|Administrator   | 3                | Er behält den Überblick über den Gewinn und die Verluste der Lotterie.                  a|
+• Überblick über Finanzen haben
+|Entwickler      | 3                | Sie sind für die Entwicklung/Programmierung und Wartung der Website zuständig.          a| 
+• leicht verstehbarer / aufgeräumter Code
+• keine ,,Bananaware"
+• leicht erweiterbarer Code
+|===
+
+Das Interessengruppen sind ausschließlich Erwachsene, d.h. Personen ab 18 Jahre alt.
 
 == 6. Systemgrenze und Top-Level-Architektur
 
@@ -55,7 +136,10 @@ Welche realen und juristischen Personen(-gruppen) haben Einfluss auf die Anforde
 Das Kontextdiagramm zeigt das geplante Software-System in seiner Umgebung. Zur Umgebung gehören alle Nutzergruppen des Systems und Nachbarsysteme. Die Grafik kann auch informell gehalten sein. Überlegen Sie sich dann geeignete Symbole. Die Grafik kann beispielsweise mit Visio erstellt werden. Wenn nötig, erläutern Sie diese Grafik.
 
 === 6.2. Top-Level-Architektur
-Dokumentieren Sie ihre Top-Level-Architektur mit Hilfe eines Komponentendiagramm.
+[[TLA]]
+image:diagramm/top_level.png[top-level architecture]
+
+Top-Level-Ansicht für Lotteriesystem
 
 === 6.3. Anwendungsfälle
 
@@ -71,15 +155,15 @@ Weitere relevante Spalten können bei Bedarf ergänzt werden.
 [cols="1,4"]
 |===
 |Name                         |Beschreibung
-|Kunde                        |...
-|registrierter Benutzer       |Dem registrierten Benutzer wirden die eigentlichen Funktionalitäten der Internet-Lotterie eröffnet.
+|Kunde                        |Der Kunde kann alles machen, was der registrierter Benutzer kann. Der entscheidende Unterschied ist, er kann bezahlen.
+|registrierter Benutzer       |Dem registrierten Benutzer werden die eigentlichen Funktionalitäten der Internet-Lotterie eröffnet.
 
-Registrierter Benutzer hat die Möglichkeit sich entweder an der Fußballtoto oder der Zahlenlotterie teilzunehmen. Dafür muss er sine virtuelle Portemonnaie mit Geld aufladen. Zusätzlich kann er sein Passwort ändern.
-|unregistrierter Benutzer     |Der unregistrierte Benutzer ist als die Person angesehen, die beispielsweise das Web-Portal der Lotterie zum ersten Mal besucht, d.h. Ausländer, bzw. neue potenzielle Kunden. 
+Ein registrierter Benutzer hat die Möglichkeit entweder am Fußballtoto oder an der Zahlenlotterie teilzunehmen. Dafür muss er sein virtuelles Portemonnaie mit Geld aufladen. Zusätzlich kann er sein Passwort ändern.
+|unregistrierter Benutzer     |Der unregistrierte Benutzer ist als die Person angesehen, die beispielsweise das Web-Portal der Lotterie zum ersten Mal besucht, d.h. "Ausländer", bzw. neue potenzielle Kunden. 
 
-Er kann sich das Katalog der Fußballspiele anschauen, evtl. Spielregeln der Zahlenloterie durchlesen. Weiterhin kann er sich registrieren, was schließlich seine Rolle als unregistrierter Benutzer beendet.
-|Administrator                |Dieser ist im meisten der Zeit nur ein gewisser Zuschauer der ganzen Struktur. Er schaut sich die generierte Statistik. Er kann im Laufe des Betriebes mit neunen Funktionalitäten kommen, die ein neues Service für die Kunden darstellen.
-|Lotterie (System)            |Diese ist eine virtuelle Rolle, die für das allgemeine Betrieb der ganzen Struktur sorgt. Sie speichert alle registrierte Benutzer, generiert Passwörter für Gewinnsgemeinschaftsgruppen, grundet und erweitert die Statistik der Vurluste und Gewinne. 
+Er kann sich den Katalog der Fußballspiele anschauen sowie evtl. sich über die Spielregeln der Zahlenlotterie informieren. Weiterhin kann er sich registrieren, was schließlich seine Rolle als unregistrierter Benutzer beendet.
+|Administrator                |Dieser ist die meiste Zeit nur ein gewisser Zuschauer der ganzen Struktur. Er schaut sich die generierte Statistik an. Er kann im Laufe des Betriebes mit neunen Funktionalitäten kommen, die ein neues Service für die Kunden darstellen.
+|Lotterie (System)            |Diese ist eine virtuelle Rolle, die für den allgemeine Betrieb der ganzen Struktur sorgt. Sie speichert alle registrierte Benutzer, generiert Passwörter für Gewinnsgemeinschaftsgruppen, gründet und erweitert die Statistik der Verluste und Gewinne. 
 
 Bemerkung: Sie bekommt einen offiziellen Name später in der Entwicklung.
 |===
@@ -120,7 +204,7 @@ _Fußballspiele anschauen:_
 |===
 |ID                         |**<<UC02>>**
 |Name                       |Lottoschein ausfüllen          
-|Beschreibung               |-
+|Beschreibung               |Ein registrierter Nutzer füllt einen Lottoschein aus, indem er 6 aus 49 Zahlen auswählt. 
 |Akteur                     |registrierter Benutzer
 |Auslöser                   |-
 |Vorbedingung               |Der Benutzer muss sich registrieren und eingeloggt werden, um Lotoscheine ausfüllen zu können. 
@@ -129,6 +213,25 @@ _Fußballspiele anschauen:_
 |Funktionale Anforderungen  |-
 |===
 
+
+[cols="1h, 3"]
+[[UC03]]
+|===
+|ID                         |**<<UC03>>**
+|Name                       |Fußballwetten        
+|Beschreibung               |Die Kunden entscheiden sich zuerst dafür, eine Wette auf das Gewinnerteam zu platzieren, und sie können auch den Spielstand zusätzlich addieren und dann schließlich mit den Quoten multiplizieren, um den Gewinnbetrag zu erhalten.
+|Akteur                     |Kunden
+|Auslöser                   |Zugriff auf Menüpunkt Fußballkatalog, der fürs Fußballtoto verantwortlich ist.
+|Vorbedingung               |- 
+|Grundlegende Schritte     a|
+_Wetten:_ 
+
+  1. Kunden wählen das Geweinnerteam oder unentscheiden
+  2. Kunden entscheiden sich, ob sie die Spielstand hochheben
+  3. Multipliziert mit der Gewinnwahrscheinlichkeit ergibt sich der erwartete Gewinnbetrag
+|Extensions                 |-
+|Funktionale Anforderungen  |-
+|===
 
 
 [cols="1h, 3"]
@@ -170,6 +273,79 @@ _Resgistration:_
  
 |Extensions                 |-
 |Funktionale Anforderungen  |-
+|===
+
+
+[cols="1h, 3"]
+[[UC06]]
+|===
+|ID                         |**<<UC06>>**
+|Name                       |Ein-/Ausloggen          
+|Beschreibung               |Ein Benutzer muss sich beim System anmelden(authentifizieren) können, um auf weitere Funktionen zuzugreifen. 
+ Dieser Vorgang soll durch Ausloggen rückgängig gemacht werden können.
+|Akteur                     |Benutzer
+|Auslöser                  a|
+
+ Einloggen: Benutzer möchte auf weitere Funktionen zugreifen, indem er sich einloggt.
+ Ausloggen: Benutzer möchte die Website verlassen.
+|Vorbedingung              a|
+ Einloggen: Benutzer ist noch nicht authentifiziert
+ Ausloggen: Benutzer ist authentifiziert
+|Grundlegende Schritte     a|
+_Einloggen:_
+
+  1.  Benutzer greift in der Startseite auf “log in” zu
+  2.  Benutzer gibt seine Zugangsdaten ein
+  3.  Benutzer klickt auf “log in”
+  
+_Ausloggen:_
+
+  1.  Benutzer klickt auf “log out”
+  2.  Benutzer ist nicht authentifiziert und die Startseite wird angezeigt 
+|Extensions                 |-
+|Funktionale Anforderungen  |-
+|===
+
+
+[cols="1h, 3"]
+[[UC07]]
+|===
+|ID                         |**<<UC07>>**
+|Name                       |Geld überweisen
+|Beschreibung               |Der registiered Benutzer kann seine Guthaben mit einem bestimmten Betrag aufladen.
+|Akteur                     |Kunde
+|Auslöser                   |-
+|Vorbedingung               |Der Nutzer ist bereits im System eingeloggt.
+|Grundlegende Schritte     a|
+_Geld　überweisen:_ 
+
+  1. Nutzer meldet sich an.
+  2. Nutzer klickt auf Guthaben aufladen.
+  3. System lädtet Guthaben auf. 
+ 
+|Extensions                 |-
+|Funktionale Anforderungen a|-
+|===
+
+
+[cols="1h, 3"]
+[[UC08]]
+|===
+|ID                         |**<<UC08>>**
+|Name                       |Gewinn und Verlust auszahlen
+|Beschreibung               |Das System wertet die abgegebenede Wetten und Tippscheinen aus und zahlt entsprechend des Ergibnisses ein Gewinn bzw. Verlust aus oder nicht.
+|Akteur                     |Lotterie
+|Auslöser                   |-
+|Vorbedingung               |Lotterie kennt das Ergibnis des Spieles oder der Ziehungs.
+|Grundlegende Schritte     a|
+_Gewinn und Verlust auszahlen:_ 
+
+  1. Das Ergibnis von Zahlenlotterie und Fußballspiel ist bekannt.
+  2. Lotterie guckt in die Statistik ob Kunde Geld gewonnen oder verloren. 
+  3. System zahlt ein Gewinn oder Verlust aus. 
+ 
+|Extensions                 |-
+|Funktionale Anforderungen a|-
 |===
 
 
@@ -256,36 +432,131 @@ _Gewinngemeinschaft erstellen:_
 |===
 
 
-== Funktionale Anforderungen
 
-=== Muss-Kriterien
-Was das zu erstellende Programm auf alle Fälle leisten muss.
+[cols="1h, 3"]
+[[UC013]]
+|===
+|ID                         |**<<UC013>>**
+|Name                       |Item anschauen        
+|Beschreibung               |
+|Akteur                     |registrierter Benutzer
+|Auslöser                   |Klick auf "Warenkorb" in Menüleiste
+|Vorbedingung               |Nutzer ist registriert im System und angemeldet. 
+|Grundlegende Schritte     a|
 
-=== Kann-Kriterien
+  1. registrierter Nutzer klickt auf "Warenkorb" in Menüleiste
+  2. registrierter Nutzer sieht Items im Warenkorb
+
+|Extensions                 |-
+|Funktionale Anforderungen  |-
+|===
+
+[cols="1h, 3"]
+[[UC014]]
+|===
+|ID                         |**<<UC014>>**
+|Name                       |Item hinzufügen        
+|Beschreibung               |ein registrierter Nutzer kann ein Item zu seinem Warenkorb hinzufügen
+|Akteur                     |registrierter Nutzer
+|Auslöser                   |ein registrierter Nutzer hat eine Wette auf ein Item abgeschlossen (Tippschein ausgefüllt oder Fußballwette), und möchte dieses zum Warenkorb hinzufügen
+|Vorbedingung              a|
+- Nutzer ist registriert und angemeldet
+- Nutzer hat Wette abgeschlossen
+|Grundlegende Schritte     a|
+
+  1. Nutzer klickt auf "zu Warenkorb hinzufügen"
+  2. Item ist zu Warenkorb hinzugefügt
+
+|Extensions                 |-
+|Funktionale Anforderungen  |-
+|===
+
+
+
+[cols="1h, 3"]
+[[UC015]]
+|===
+|ID                         |**<<UC015>>**
+|Name                       |Item kaufen        
+|Beschreibung               |Kunde kauft die Ware/n in seinem Warenkorb
+|Akteur                     |Kunde
+|Auslöser                   |Klick auf "Kaufen"
+|Vorbedingung              a|
+- Nutzer ist registriert und angemeldet
+- Nutzer hat auf Menüpunkt Warenkorb geklickt
+- Nutzer hat Item(s) zum Warenkorb hinzugefügt
+- Nutzer hat ausreichend Guthaben auf seinem Konto
+|Grundlegende Schritte     a|
+
+  1. Nutzer klickt auf "Kaufen"
+  2. System erstellt Order zum Kauf
+  3. Kaufbetrag wird vom Guthaben des Nutzers abgezogen
+|Extensions                 |-
+|Funktionale Anforderungen  |-
+|===
+
+
+== 8. Funktionale Anforderungen
+
+
+=== 8.1 Muss-Kriterien
+_Muss-Kriterien_ 
+
+  1. Statistik erstellen
+  2. Bei Fußballtoto eine Wette abgeben und eine Liste mit kommenden Spiele anschauen.
+  3. Bei Zahlenloterie Lottoschein ausfüllen.
+  4. Registration für Kunden.
+
+=== 8.2 Kann-Kriterien
 Anforderungen die das Programm leisten können soll, aber für den korrekten Betrieb entbehrlich sind.
 
-== Nicht-Funktionale Anforderungen
+_Kann-Kriterien_ 
 
-=== Qualitätsziele
+  1. Mehrsprachige Web-Seite.
+  2. Passwortänderung
+  3. Kontaktdaten
+
+== 9. Nicht-Funktionale Anforderungen
+
+
+=== 9.1 Qualitätsziele
+
+1 = Nicht wichtig
+2 = Sehr wichtig
+[options="header", cols="3h, ^1, ^1, ^1, ^1, ^1"]
+|===
+|Qualitätsanforderung | 1 | 2 | 3 | 4 | 5
+|Wartbarkeit          |   |   |   | x | 
+|Anwendbarkeit        |   |   | x |   | 
+|Sicherheit           |   |   | x |   | 
+|===
 
 Dokumentieren Sie in einer Tabelle die Qualitätsziele, welche das System erreichen soll, sowie deren Priorität.
 
-=== Konkrete Nicht-Funktionale Anforderungen
+=== 9.2 Konkrete Nicht-Funktionale Anforderungen
+
+[options="header"]
+[cols="1, 1, 1, 1"]
+|===
+|ID     |Version  |Name           |Beschreibung
+|[NF01] |v0.1     |Wartbarkeit    |Gut getestete Software, um möglichst viele Fehler abzudecken.
+|===
+
 
 Beschreiben Sie Nicht-Funktionale Anforderungen, welche dazu dienen, die zuvor definierten Qualitätsziele zu erreichen.
 Achten Sie darauf, dass deren Erfüllung (mindestens theoretisch) messbar sein muss.
 
-== GUI Prototyp
+== 10. GUI Prototyp
 
 In diesem Kapitel soll ein Entwurf der Navigationsmöglichkeiten und Dialoge des Systems erstellt werden.
 Idealerweise entsteht auch ein grafischer Prototyp, welcher dem Kunden zeigt, wie sein System visuell umgesetzt werden soll.
 Konkrete Absprachen - beispielsweise ob der grafische Prototyp oder die Dialoglandkarte höhere Priorität hat - sind mit dem Kunden zu treffen.
 
-=== Überblick: Dialoglandkarte
+=== 10.1 Überblick: Dialoglandkarte
 Erstellen Sie ein Übersichtsdiagramm, das das Zusammenspiel Ihrer Masken zur Laufzeit darstellt. Also mit welchen Aktionen zwischen den Masken navigiert wird.
 //Die nachfolgende Abbildung zeigt eine an die Pinnwand gezeichnete Dialoglandkarte. Ihre Karte sollte zusätzlich die Buttons/Funktionen darstellen, mit deren Hilfe Sie zwischen den Masken navigieren.
 
-=== Dialogbeschreibung
+=== 10.2 Dialogbeschreibung
 Für jeden Dialog:
 
 1. Kurze textuelle Dialogbeschreibung eingefügt: Was soll der jeweilige Dialog? Was kann man damit tun? Überblick?
@@ -293,29 +564,43 @@ Für jeden Dialog:
 3. Maskenelemente (Ein/Ausgabefelder, Aktionen wie Buttons, Listen, …)
 4. Evtl. Maskendetails, spezielle Widgets
 
-== Datenmodell
+== 11. Datenmodell
 
-=== Überblick: Klassendiagramm
+=== 11.1 Überblick: Klassendiagramm
 UML-Analyseklassendiagramm
 
-=== Klassen und Enumerationen
+=== 11.2 Klassen und Enumerationen
 Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Klassen/Enumerationen dar. Jede Klasse und Enumeration wird in Form eines Glossars textuell beschrieben. Zusätzlich werden eventuellen Konsistenz- und Formatierungsregeln aufgeführt.
 
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="header"]
 |===
-|Klasse/Enumeration |Beschreibung |
-|…                  |…            |
+|Klasse/Enumeration |Beschreibung
+
+|Lotterie                  
+|repräsentiert das Lotteriesystem
+
+| Benutzer                
+| repräsentiert eine Person, die die Website benutzt bzw. besucht           
+
+|registrierter Benutzer                  
+|eine Person, die bereits im System registriert und authentifiziert ist; hat einen Benutzernamen und ein Passwort
+
+|Kunde                  
+|ein registrierter Nutzer, der für ein Produkt der Lotterie bezahlt
+
+|Admin                  
+|registrierter Nutzer, der durch seine Anmeldedaten vom System als Administrator erkannt wird
 |===
 
-== Akzeptanztestfälle
+== 12. Akzeptanztestfälle
 Mithilfe von Akzeptanztests wird geprüft, ob die Software die funktionalen Erwartungen und Anforderungen im Gebrauch erfüllt. Diese sollen und können aus den Anwendungsfallbeschreibungen und den UML-Sequenzdiagrammen abgeleitet werden. D.h., pro (komplexen) Anwendungsfall gibt es typischerweise mindestens ein Sequenzdiagramm (welches ein Szenarium beschreibt). Für jedes Szenarium sollte es einen Akzeptanztestfall geben. Listen Sie alle Akzeptanztestfälle in tabellarischer Form auf.
 Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumenten (z.B. im Test-Plan) referenzieren zu können.
 
-== Glossar
+== 13. Glossar
 Sämtliche Begriffe, die innerhalb des Projektes verwendet werden und deren gemeinsames Verständnis aller beteiligten Stakeholder essentiell ist, sollten hier aufgeführt werden.
 Insbesondere Begriffe der zu implementierenden Domäne wurden bereits beschrieben, jedoch gibt es meist mehr Begriffe, die einer Beschreibung bedürfen. +
 Beispiel: Was bedeutet "Kunde"? Ein Nutzer des Systems? Der Kunde des Projektes (Auftraggeber)?
 
-== Offene Punkte
+== 14. Offene Punkte
 Offene Punkte werden entweder direkt in der Spezifikation notiert. Wenn das Pflichtenheft zum finalen Review vorgelegt wird, sollte es keine offenen Punkte mehr geben.
