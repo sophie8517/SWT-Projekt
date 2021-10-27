@@ -209,7 +209,10 @@ _Fußballspiele anschauen:_
 |Akteur                     |registrierter Benutzer
 |Auslöser                   |-
 |Vorbedingung               |Der Benutzer muss sich registrieren und eingeloggt werden, um Lotoscheine ausfüllen zu können. 
-|Grundlegende Schritte      |-
+|Grundlegende Schritte     a|
+• Einloggen unter Gruppe oder einzeln
+• Katalog anschauen
+• 6 Zahlen aus 49 Zahlen wählen
 |Extensions                 |-
 |Funktionale Anforderungen  |-
 |===
