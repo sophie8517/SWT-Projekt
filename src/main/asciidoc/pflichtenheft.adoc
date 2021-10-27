@@ -104,10 +104,12 @@ Das System soll von folgenden Web-Browsers unterstütz werden
 == 5. Interessensgruppen (Stakeholders)
 Welche realen und juristischen Personen(-gruppen) haben Einfluss auf die Anforderungen im Projekt?
 
+Prorität:1 (niedrig) zu 5 (hoch)
+
 [options="header", cols="5h, ^1, ^1, ^1"]
 |===
 |Name            | Priorität (1..5) | Beschreibung                                                                             | Ziele
-|André Schnidt   | 5                | Der Auftraggeber unseres Projektes                                                      a| 
+|André Schmidt   | 5                | Der Auftraggeber unseres Projektes                                                      a| 
 • Kundenbereich erweitern
 • Digitalisierung
 • Geld sparen
@@ -339,6 +341,70 @@ _Gewinngemeinschaft erstellen:_
 * Admin drückt auf "bet management" in der Navigationsliste.
 * Die Liste aller Wetten wird angezeigt.
 
+|Extensions                 |-
+|Funktionale Anforderungen  |-
+|===
+
+
+
+[cols="1h, 3"]
+[[UC013]]
+|===
+|ID                         |**<<UC013>>**
+|Name                       |Item anschauen        
+|Beschreibung               |
+|Akteur                     |registrierter Benutzer
+|Auslöser                   |Klick auf "Warenkorb" in Menüleiste
+|Vorbedingung               |Nutzer ist registriert im System und angemeldet. 
+|Grundlegende Schritte     a|
+
+  1. registrierter Nutzer klickt auf "Warenkorb" in Menüleiste
+  2. registrierter Nutzer sieht Items im Warenkorb
+
+|Extensions                 |-
+|Funktionale Anforderungen  |-
+|===
+
+[cols="1h, 3"]
+[[UC014]]
+|===
+|ID                         |**<<UC014>>**
+|Name                       |Item hinzufügen        
+|Beschreibung               |ein registrierter Nutzer kann ein Item zu seinem Warenkorb hinzufügen
+|Akteur                     |registrierter Nutzer
+|Auslöser                   |ein registrierter Nutzer hat eine Wette auf ein Item abgeschlossen (Tippschein ausgefüllt oder Fußballwette), und möchte dieses zum Warenkorb hinzufügen
+|Vorbedingung              a|
+- Nutzer ist registriert und angemeldet
+- Nutzer hat Wette abgeschlossen
+|Grundlegende Schritte     a|
+
+  1. Nutzer klickt auf "zu Warenkorb hinzufügen"
+  2. Item ist zu Warenkorb hinzugefügt
+
+|Extensions                 |-
+|Funktionale Anforderungen  |-
+|===
+
+
+
+[cols="1h, 3"]
+[[UC015]]
+|===
+|ID                         |**<<UC015>>**
+|Name                       |Item kaufen        
+|Beschreibung               |Kunde kauft die Ware/n in seinem Warenkorb
+|Akteur                     |Kunde
+|Auslöser                   |Klick auf "Kaufen"
+|Vorbedingung              a|
+- Nutzer ist registriert und angemeldet
+- Nutzer hat auf Menüpunkt Warenkorb geklickt
+- Nutzer hat Item(s) zum Warenkorb hinzugefügt
+- Nutzer hat ausreichend Guthaben auf seinem Konto
+|Grundlegende Schritte     a|
+
+  1. Nutzer klickt auf "Kaufen"
+  2. System erstellt Order zum Kauf
+  3. Kaufbetrag wird vom Guthaben des Nutzers abgezogen
 |Extensions                 |-
 |Funktionale Anforderungen  |-
 |===
