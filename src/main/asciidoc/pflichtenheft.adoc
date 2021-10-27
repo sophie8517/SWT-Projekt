@@ -214,7 +214,7 @@ _Fußballspiele anschauen:_
 |Name                       |Fußballwetten        
 |Beschreibung               |Die Kunden entscheiden sich zuerst dafür, eine Wette auf das Gewinnerteam zu platzieren, und sie können auch den Spielstand zusätzlich addieren und dann schließlich mit den Quoten multiplizieren, um den Gewinnbetrag zu erhalten.
 |Akteur                     |Kunden
-|Auslöser                   |Zugriff auf das Button, das für das Fußballtoto verantwortlich ist.
+|Auslöser                   |Zugriff auf Menüpunkt Fußballkatalog, der fürs Fußballtoto verantwortlich ist.
 |Vorbedingung               |- 
 |Grundlegende Schritte     a|
 _Wetten:_ 
