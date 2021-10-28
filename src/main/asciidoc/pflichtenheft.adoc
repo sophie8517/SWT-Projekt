@@ -20,6 +20,9 @@
 |0.8     | In Arbeit   | 27.10.2021          | Sophie Schulze | Use Cases 13,14,15
 |0.9     | In Arbeit   | 27.10.2021          | Yu-Ju Chen | Ergänzung: Use Cases-Beschreibung
 |0.10    | In Arbeit   | 27.10.2021          | Mirek Král, Song Bai |Bilder hochladen und UC Ergänzung
+|0.11    | In Arbeit   | 28.10.2021          | Sophie Schulze a| 
+- Muss- und Kann Kriterien
+- Akzeptanztestfälle hinzugefügt
 |===
 
 == 1. Inhaltsverzeichnis
@@ -362,7 +365,7 @@ image::./diagramm/UC07.png[Sequence diagram: Transfer, 50%, 50%, pdfwidth=50%, t
 |Grundlegende Schritte     a|
 _Gewinn und Verlust auszahlen:_ 
 
-  1. Das Ergibnis von Zahlenlotterie und Fußballspiel ist bekannt.
+  1. Das Ergebnis von der Zahlenlotterie und dem Fußballspiel ist bekannt.
   2. Lotterie guckt in die Statistik ob Kunde Geld gewonnen oder verloren. 
   3. System zahlt ein Gewinn oder Verlust aus. 
  
@@ -426,8 +429,8 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
 [[UC013]]
 |===
 |ID                         |**<<UC013>>**
-|Name                       |Item anschauen        
-|Beschreibung               |-
+|Name                       |Items anschauen        
+|Beschreibung               |ein registrierter Benutzer kann die Waren im Warenkorb ansehen.
 |Akteur                     |registrierter Benutzer
 |Auslöser                   |Klick auf "Warenkorb" in Menüleiste
 |Vorbedingung               |Nutzer ist registriert im System und angemeldet. 
@@ -478,7 +481,7 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
 |Grundlegende Schritte     a|
 
   1. Nutzer klickt auf "Kaufen"
-  2. System erstellt Order zum Kauf
+  2. Warenkorb wird geleert
   3. Kaufbetrag wird vom Guthaben des Nutzers abgezogen
 |Extensions                 |-
 |Funktionale Anforderungen  |-
@@ -496,14 +499,80 @@ _Muss-Kriterien_
   3. Bei Zahlenloterie Lottoschein ausfüllen.
   4. Registration für Kunden.
 
+[options="header", cols="2h, 3, 12"]
+|===
+|ID
+|Name
+|Beschreibung
+
+|FA01
+|Registrierung
+|Ein Nutzer muss die Möglchkeit haben sich zu registrieren, indem er auf den Menüpunkt "Registrieren" klickt.
+Von dem Nutzer wird eine Eingabe erwartet:
+  - Benutzernamen
+  - Passwort
+Das System muss überprüfen, ob der Benutzername bereits vergeben ist, wenn das der Fall ist muss ein anderer Benutzername eingegeben werden.
+
+|FA02
+|Lottoschein ausfüllen
+|Ein registrierter Nutzer kann einen Lottoschein ausfüllen, indem er aus einer Liste von 49 Zahlen, 6 Zahlen ankreuzt.
+
+|FA03
+|Fußballwette abgeben
+|Ein registrierter Nutzer wettet auf ein Fußballspiel, indem er auf Sieg, Niederlage oder Unentschieden tippt.
+
+|FA04
+|Fußballkatalog ansehen
+|Allen Besuchern wird ermöglicht eine Liste mit anstehenden Fußballspielen zusehen, mit folgenden Informationen:
+ - Spieltag
+ - Heimmannschaft
+ - Gastmannschaft
+
+|FA05
+|Warenkorb ansehen
+|Jedem registrierten Nutzer wird im Menü "Warenkorb" angezeigt, in den er durch Anklicken dessen Inhalte ansehen kann. 
+
+|FA06
+|Item hinzufügen
+|Wenn ein registrierter Benutzer einen Tippschein bzw. eine Fußballwette abgeben möchte, wird ihm die Option "zu Warenkorb hinzufügen" angezeigt, durch Anklicken wird dann das Item in den Warenkorb gelegt.
+
+|FA07
+|Item kaufen
+|Im Warenkorb ist unter den enthaltenen Items ein Button "Kaufen", welcher den Kauf der Waren ermöglicht.
+
+|FA08
+|Geld überweisen
+|Unter dem Menüpunkt "Konto" kann ein angemeldeter Benutzer seine Kontodetails einsehen. Dort gibt es ein Eingabefeld für den Überweisungsbetrag und daneben ein Button mit "überweisen" (o.ä.). Durch Klicken des Buttons wird vom System der gewünschte Betrag auf das Kontoguthaben gutgeschrieben.
+|===
+
 === 8.2 Kann-Kriterien
 Anforderungen die das Programm leisten können soll, aber für den korrekten Betrieb entbehrlich sind.
 
 _Kann-Kriterien_ 
 
-  1. Mehrsprachige Web-Seite.
+  1. (Mehrsprachige Web-Seite.) -> zu viel Aufwand ?
   2. Passwortänderung
   3. Kontaktdaten
+  
+  
+  [options="header", cols="2h, 3, 12"]
+|===
+|ID
+|Name
+|Beschreibung
+
+|FA09
+|Passwort ändern
+|Unter dem Menüpukt "Konto" kann ein angemeldeter Benutzer die Option "Passwort ändern" sehen, welches ihm ermöglicht sein Passwort zu ändern.
+
+|FA10
+|Gewinngemeinschaft erstellen
+|Auf der Kontoseite eines angemeldeten Nutzers gibt es den Button "Gewinngemeinschaft erstellen". Die Anfrage wird zum Lotteriesystem weitergeleitet, welches für die Gruppe ein Passwort generiert und dem Ersteller der Gruppe mitteilt.
+
+|FA11
+|abgegebene Wetten anschauen
+|Dem Administrator wird der Menüpunkt "Statistik" angezeigt, dort kann er einsehen welche Wetten von welchem Kunden abgegeben wurden.
+|===
 
 == 9. Nicht-Funktionale Anforderungen
 
@@ -589,6 +658,217 @@ Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Kl
 == 12. Akzeptanztestfälle
 Mithilfe von Akzeptanztests wird geprüft, ob die Software die funktionalen Erwartungen und Anforderungen im Gebrauch erfüllt. Diese sollen und können aus den Anwendungsfallbeschreibungen und den UML-Sequenzdiagrammen abgeleitet werden. D.h., pro (komplexen) Anwendungsfall gibt es typischerweise mindestens ein Sequenzdiagramm (welches ein Szenarium beschreibt). Für jedes Szenarium sollte es einen Akzeptanztestfall geben. Listen Sie alle Akzeptanztestfälle in tabellarischer Form auf.
 Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumenten (z.B. im Test-Plan) referenzieren zu können.
+
+[cols="1h, 4"]
+|===
+|ID             |<<AT01>>
+|Use Case       |<<UC01>>
+|Vorbedingung  a|Der Katalog enthält Fußballspiele.
+|Aktion        a|Ein unregistrierter Nutzer klickt auf "Katalog".
+|Ergebnis       |Dem Nutzer werden die eingetragenen Fußballspiele angezeigt.
+|===
+
+[cols="1h, 4"]
+|===
+|ID             |<<AT02>>
+|Use Case       |<<UC01>>
+|Vorbedingung  a|Der Katalog enthält Fußballspiele.
+|Aktion        a|Ein registrierter Nutzer klickt auf "Katalog".
+|Ergebnis       |Dem registrierten Nutzer werden die eingetragenen Fußballspiele angezeigt.
+|===
+
+[cols="1h, 4"]
+|===
+|ID             |<<AT03>>
+|Use Case       |<<UC02>>
+|Vorbedingung  a|Der Nutzer ist registriert und angemeldet.
+|Aktion        a|Der Nutzer hat "Zahlenlotterie" ausgewählt.
+|Ergebnis       |Dem Nutzer wird die Zahlen 1 bis 49 angezeigt, von denen er 6 auswählen kann.
+|===
+
+[cols="1h, 4"]
+|===
+|ID             |<<AT04>>
+|Use Case       |<<UC03>>
+|Vorbedingung  a|Der Katalog enthält Fußballspiele.
+|Aktion        a|Ein unregistrierter Nutzer klickt auf "Katalog".
+|Ergebnis       |Dem Nutzer werden die eingetragenen Fußballspiele angezeigt, aber nicht die Option eine Wette abzugeben.
+|===
+
+[cols="1h, 4"]
+|===
+|ID             |<<AT05>>
+|Use Case       |<<UC03>>
+|Vorbedingung  a|Der Katalog enthält Fußballspiele, Nutzer ist registriert
+|Aktion        a|Der Nutzer klickt auf "Katalog".
+|Ergebnis       |Dem Nutzer werden die eingetragenen Fußballspiele angezeigt und auch die Option eine Wette abzugeben.
+|===
+
+[cols="1h, 4"]
+|===
+|ID             |<<AT06>>
+|Use Case       |<<UC04>>
+|Vorbedingung  a|Der Nutzer ist registriert.
+|Aktion        a|Der Nutzer klickt auf "Passwort ändern".
+|Ergebnis       |Der Nutzer muss sein altes und ein neues Passwort eingeben. Es wird eine Bestätigung angezeigt.
+|===
+
+[cols="1h, 4"]
+|===
+|ID             |<<AT07>>
+|Use Case       |<<UC05>>
+|Vorbedingung  a|Der Nutzer ist nicht registriert.
+|Aktion        a|Es wird ein bereits vergebener Benutzername eingegeben.
+|Ergebnis       |Der Nutzer wird aufgefordert einen anderen Benutzernamen einzugeben.
+|===
+
+[cols="1h, 4"]
+|===
+|ID             |<<AT08>>
+|Use Case       |<<UC06>>
+|Vorbedingung  a|Der Nutzer ist nicht registriert.
+|Aktion        a|Es wird ein noch nicht vergebener Benutzername  und ein form-korrektes Passwort eingegeben.
+|Ergebnis       |Der Nutzer wird im System registriert und kann sich jetzt anmelden.
+|===
+
+[cols="1h, 4"]
+|===
+|ID             |<<AT09>>
+|Use Case       |<<UC05>>
+|Vorbedingung  a|Der Nutzer ist nicht registriert.
+|Aktion        a|Es wird ein noch nicht vergebener Benutzername und ein form-widersprüchliches Passwort eingegeben.
+|Ergebnis       |Der Nutzer wird aufgefordert ein Passwort, das den Kriterien entspricht, einzugeben.
+|===
+
+[cols="1h, 4"]
+|===
+|ID             |<<AT10>>
+|Use Case       |<<UC06>>
+|Vorbedingung  a|Der Nutzer ist registriert.
+|Aktion        a|Es wird der richtige Benutzername und das richtige Passwort eingegeben.
+|Ergebnis       |Der Nutzer ist angemeldet und hat Zugriff auf seinen Warenkorb und kann wetten.
+|===
+
+[cols="1h, 4"]
+|===
+|ID             |<<AT11>>
+|Use Case       |<<UC06>>
+|Vorbedingung  a|Der Nutzer ist registriert.
+|Aktion        a|Es werden falsche Benutzerdaten eingegeben.
+|Ergebnis       |Es wird angezeigt, dass die eingegebenen Daten nicht gültig sind.
+|===
+
+[cols="1h, 4"]
+|===
+|ID             |<<AT12>>
+|Use Case       |<<UC05>>
+|Vorbedingung  a|Der Nutzer ist angemeldet.
+|Aktion        a|Der Nutzer loggt sich aus.
+|Ergebnis       |Der Nutzer verliert Zugriff auf die Funktionalitäten, die nur angemeldeten Nutzern zur Verfügung stehen,z.B. zu wetten.
+|===
+
+[cols="1h, 4"]
+|===
+|ID             |<<AT13>>
+|Use Case       |<<UC07>>
+|Vorbedingung  a|Der Nutzer ist angemeldet.
+|Aktion        a|Es wird ein Betrag, der größer 0 ist, eingegeben..
+|Ergebnis       |Das Guthaben erhöht sich um den eingegebenen Betrag.
+|===
+
+[cols="1h, 4"]
+|===
+|ID             |<<AT14>>
+|Use Case       |<<UC07>>
+|Vorbedingung  a|Der Nutzer ist angemeldet.
+|Aktion        a|Es wird ein negativer Betrag eingegeben.
+|Ergebnis       |Es wird angezeigt, dass der Betrag größer als 0 sein muss. Das Guthaben des Kontos bleibt gleich.
+|===
+
+[cols="1h, 4"]
+|===
+|ID             |<<AT15>>
+|Use Case       |<<UC08>>
+|Vorbedingung  a|Der Nutzer hat eine Fußballwette abgegeben.
+|Aktion        a|Das Ergebnis des Fußballspiels stimmt mit der Wette des Nutzers überein.
+|Ergebnis       |Das Guthaben des Nutzers wird erhöht.
+|===
+
+[cols="1h, 4"]
+|===
+|ID             |<<AT16>>
+|Use Case       |<<UC09>>
+|Vorbedingung  a|Der Nutzer ist angemeldet.
+|Aktion        a|Der Nutzer klickt auf "Gewinngemeinschaft erstellen".
+|Ergebnis       |Das System generiert ein Passwort für die Gruppe. Dem Nutzer wird das Passwort angezeigt.
+|===
+
+[cols="1h, 4"]
+|===
+|ID             |<<AT17>>
+|Use Case       |<<UC10>>
+|Vorbedingung  a|Der Nutzer ist als Administrator angemeldet.
+|Aktion        a|Es wird "Statistik" angeklickt.
+|Ergebnis       |Dem Administrator wird das Einkommen der Lotterie angezeigt.
+|===
+
+[cols="1h, 4"]
+|===
+|ID             |<<AT18>>
+|Use Case       |<<UC11>>
+|Vorbedingung  a|Der Nutzer ist als Administrator angemeldet.
+|Aktion        a|Es wird "Statistik" angeklickt.
+|Ergebnis       |Dem Administrator werden die Verluste der Lotterie angezeigt.
+|===
+
+[cols="1h, 4"]
+|===
+|ID             |<<AT19>>
+|Use Case       |<<UC12>>
+|Vorbedingung  a|Der Nutzer ist als Administrator angemeldet.
+|Aktion        a|Es wird "Statistik" angeklickt.
+|Ergebnis       |Dem Administrator werden Einkommen, Verluste und von Nutzern abgegebene Wetten angezeigt.
+|===
+
+[cols="1h, 4"]
+|===
+|ID             |<<AT20>>
+|Use Case       |<<UC13>>
+|Vorbedingung  a|Der Nutzer ist angemeldet.
+|Aktion        a|Es wird "Warenkorb" angeklickt.
+|Ergebnis       |Dem Nutzer wird der Warenkorbinhalt angezeigt.
+|===
+
+[cols="1h, 4"]
+|===
+|ID             |<<AT21>>
+|Use Case       |<<UC14>>
+|Vorbedingung  a|Der Nutzer ist angemeldet und hat einen Lottoschein  korrekt ausgefüllt (bzw. Fußballwette).
+|Aktion        a|Es wird "zu Warenkorb hinzufügen" angeklickt.
+|Ergebnis       |Das Item ist jetzt im Warenkorb zu sehen.
+|===
+
+[cols="1h, 4"]
+|===
+|ID             |<<AT22>>
+|Use Case       |<<UC14>>
+|Vorbedingung  a|Der Nutzer ist angemeldet und hat einen Lottoschein  nicht korrekt ausgefüllt (bzw. Fußballwette).
+|Aktion        a|Es wird "zu Warenkorb hinzufügen" angeklickt.
+|Ergebnis       |Es erscheint eine Fehlermeldung, das Item wird nicht zum Warenkorb hinzugeügt.
+|===
+
+[cols="1h, 4"]
+|===
+|ID             |<<AT23>>
+|Use Case       |<<UC15>>
+|Vorbedingung  a|Der Nutzer ist angemeldet und hat mindestens ein Item im Warenkorb.
+|Aktion        a|Es wird "Kaufen" angeklickt.
+|Ergebnis      a|
+- der Warenkorb ist leer
+- der Kaufbetrag ist vom Guthaben des Nutzers abgezogen
+|===
+
+
 
 == 13. Glossar
 Sämtliche Begriffe, die innerhalb des Projektes verwendet werden und deren gemeinsames Verständnis aller beteiligten Stakeholder essentiell ist, sollten hier aufgeführt werden.
