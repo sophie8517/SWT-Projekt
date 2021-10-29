@@ -957,5 +957,12 @@ Sämtliche Begriffe, die innerhalb des Projektes verwendet werden und deren geme
 Insbesondere Begriffe der zu implementierenden Domäne wurden bereits beschrieben, jedoch gibt es meist mehr Begriffe, die einer Beschreibung bedürfen. +
 Beispiel: Was bedeutet "Kunde"? Ein Nutzer des Systems? Der Kunde des Projektes (Auftraggeber)?
 
+Warenkorb ist ein Übersicht aller Tippscheine und Wetten, für die der Kunde bezahlt hat. Im Warenkorb befinden sich Wetten bzw. Tippscheine, die noch nicht ausgewertet wurden, diese sind als Bestellungen angesehen. Obwohl der Kunde für die bereits bezahlt hat, kann er sie noch stornieren und der Betrag wird ihm in voller Höhe zurückbezahlt. Als nächstes gibt es da wiederrum Wetten bzw. Tippscheine, die bereits ausgewertet wurden, diese sind als Rechnung angesehen. Kunde kann sich sein Verlust oder Gewinn anschauen.
+
+Die Grenze zwischen registriertem Benutzer und dem Kunden liegt an dem Moment der eigentlichen Bezahlung für eine Wette / ein Tippschein.
+
 == 14. Offene Punkte
 Offene Punkte werden entweder direkt in der Spezifikation notiert. Wenn das Pflichtenheft zum finalen Review vorgelegt wird, sollte es keine offenen Punkte mehr geben.
+
+Unterscheidung wie das System erkennt, ob eine Person für sich selbst spielt oder für eine Gewinngemeinschaft. Eine Möglichkeit wäre beim Anmelden das gleiche Benutzername zu verwenden, aber anderes Passwort.
+
