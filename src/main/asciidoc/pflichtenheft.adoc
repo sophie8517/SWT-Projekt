@@ -548,13 +548,6 @@ Das System muss überprüfen, ob der Benutzername bereits vergeben ist, wenn das
 === 8.2 Kann-Kriterien
 Anforderungen die das Programm leisten können soll, aber für den korrekten Betrieb entbehrlich sind.
 
-_Kann-Kriterien_ 
-
-  1. (Mehrsprachige Web-Seite.) -> zu viel Aufwand ?
-  2. Passwortänderung
-  3. Kontaktdaten
-  
-  
 [options="header", cols="2h, 3, 12"]
 |===
 |ID
@@ -572,6 +565,10 @@ _Kann-Kriterien_
 |FA11
 |abgegebene Wetten anschauen
 |Dem Administrator wird der Menüpunkt "Statistik" angezeigt, dort kann er einsehen welche Wetten von welchem Kunden abgegeben wurden.
+
+|FA12
+|Konto löschen
+|Unter "Mein Profil" kann ein angemeldeter Nutzer die Option sein Konto zu löschen, d.h. die Benutzerdaten sind beim Anmelden nicht mehr gültig.
 |===
 
 == 9. Nicht-Funktionale Anforderungen
