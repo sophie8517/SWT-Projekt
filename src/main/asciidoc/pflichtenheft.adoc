@@ -403,7 +403,43 @@ _Gewinngemeinschaft erstellen:_
 [[sequence_diagram_make_group]]
 image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%, title= "Sequence diagram: make group", align=center]
 
+[cols="1h, 3"]
+[[UC10]]
+|===
+|ID                         |**<<UC10>>**
+|Name                       |Einkommen anschauen          
+|Beschreibung               |Der Admin möchtet die Einkommen des Kunden anschauen.
+|Akteur                     |Administrator
+|Auslöser                   |Admin hat das Recht auf Einsicht in des Einkommen des Kunden.
+|Vorbedingung               |- 
+|Grundlegende Schritte     a|
 
+* Admin drückt auf "Statistik" in der Navigationsliste.
+* Die Liste aller Kunden wird angezeigt.
+* Die Einkommen und Verluste aller registrirten Kunden werden angezeigt.
+
+|Extensions                 |-
+|Funktionale Anforderungen  |-
+|===
+
+[cols="1h, 3"]
+[[UC10]]
+|===
+|ID                         |**<<UC11>>**
+|Name                       |Verluste anschauen          
+|Beschreibung               |Der Admin möchtet die Verluste des Kunden anschauen.
+|Akteur                     |Administrator
+|Auslöser                   |Admin hat das Recht auf Einsicht in der Verluste des Kunden.
+|Vorbedingung               |- 
+|Grundlegende Schritte     a|
+
+* Admin drückt auf "Statistik" in der Navigationsliste.
+* Die Liste aller Kunden wird angezeigt.
+* Die Einkommen und Verluste aller registrirten Kunden werden angezeigt.
+
+|Extensions                 |-
+|Funktionale Anforderungen  |-
+|===
 
 [cols="1h, 3"]
 [[UC12]]
