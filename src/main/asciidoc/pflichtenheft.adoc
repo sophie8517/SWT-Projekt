@@ -212,9 +212,9 @@ image::./diagramm/UC01.png[Sequence diagram: Watch Football, 50%, 50%, pdfwidth=
 
 [cols="1h, 3"]
 [[UC02]]
-
-[cols="1h, 3"]
 [[FA02]]
+[[FA09]]
+
 |===
 |ID                         |**<<UC02>>**
 |Name                       |Lottoschein ausfüllen          
@@ -233,6 +233,9 @@ image::./diagramm/UC01.png[Sequence diagram: Watch Football, 50%, 50%, pdfwidth=
 
 [cols="1h, 3"]
 [[UC03]]
+[[FA03]]
+[[FA04]]
+[[FA09]]
 |===
 |ID                         |**<<UC03>>**
 |Name                       |Fußballwetten        
@@ -256,6 +259,8 @@ _Wetten:_
 
 [cols="1h, 3"]
 [[UC04]]
+[[FA09]]
+[[FA10]]
 |===
 |ID                         |**<<UC04>>**
 |Name                       |Passwort ändern          
@@ -271,7 +276,7 @@ _Wetten:_
 ** Sonst: Eine Fehlermeldung wird angezeigt.
 
 |Extensions                 |-
-|Funktionale Anforderungen  |**<<FA10>>**, **<<FA09>>**
+|Funktionale Anforderungen  |**<<FA09>>**, **<<FA10>>**
 |===
 
 [[sequence_diagram_change_password]]
@@ -280,6 +285,7 @@ image::./diagramm/UC04.png[Sequence diagram: Change Password, 50%, 50%, pdfwidth
 
 [cols="1h, 3"]
 [[UC05]]
+[[FA01]]
 |===
 |ID                         |**<<UC05>>**
 |Name                       |Registrierung          
@@ -304,6 +310,7 @@ image::./diagramm/UC05.png[Sequence diagram: Registration, 50%, 50%, pdfwidth=50
 
 [cols="1h, 3"]
 [[UC06]]
+[[FA09]]
 |===
 |ID                         |**<<UC06>>**
 |Name                       |Ein-/Ausloggen          
@@ -335,6 +342,8 @@ _Ausloggen:_
 
 [cols="1h, 3"]
 [[UC07]]
+[[FA08]]
+[[FA09]]
 |===
 |ID                         |**<<UC07>>**
 |Name                       |Geld überweisen
@@ -383,6 +392,8 @@ image::./diagramm/UC08.png[Sequence diagram: Win Or Lose, 50%, 50%, pdfwidth=50%
 
 [cols="1h, 3"]
 [[UC09]]
+[[FA09]]
+[[FA11]]
 |===
 |ID                         |**<<UC09>>**
 |Name                       |Gewinngruppe erstellen          
@@ -401,7 +412,7 @@ _Gewinngemeinschaft erstellen:_
   5. System schickt Bestätigung für Erstellung der Gruppe.
  
 |Extensions                 |-
-|Funktionale Anforderungen  |**<<FA11>>**,**<<FA09>>**
+|Funktionale Anforderungen  |**<<FA09>>**,**<<FA11>>**
 |===
 
 [[sequence_diagram_make_group]]
@@ -447,6 +458,7 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
 
 [cols="1h, 3"]
 [[UC12]]
+[[FA12]]
 |===
 |ID                         |**<<UC12>>**
 |Name                       |Statistik anschauen          
@@ -467,6 +479,8 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
 
 [cols="1h, 3"]
 [[UC013]]
+[[FA05]]
+[[FA09]]
 |===
 |ID                         |**<<UC013>>**
 |Name                       |Items anschauen        
@@ -485,6 +499,8 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
 
 [cols="1h, 3"]
 [[UC014]]
+[[FA06]]
+[[FA09]]
 |===
 |ID                         |**<<UC014>>**
 |Name                       |Item hinzufügen        
@@ -507,6 +523,8 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
 
 [cols="1h, 3"]
 [[UC015]]
+[[FA07]]
+[[FA09]]
 |===
 |ID                         |**<<UC015>>**
 |Name                       |Item kaufen        
