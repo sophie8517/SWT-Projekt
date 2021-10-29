@@ -202,7 +202,7 @@ _Fußballspiele anschauen:_
   2. Nutzer sieht Liste mit kommenden Fußballspielen
  
 |Extensions                 |-
-|Funktionale Anforderungen  |tba
+|Funktionale Anforderungen  |**<<FA04>>**
 |===
 
 [[sequence_diagram_watch_football]]
@@ -223,7 +223,7 @@ image::./diagramm/UC01.png[Sequence diagram: Watch Football, 50%, 50%, pdfwidth=
 • Katalog anschauen
 • 6 Zahlen aus 49 Zahlen wählen
 |Extensions                 |-
-|Funktionale Anforderungen  |-
+|Funktionale Anforderungen  |**<<FA02>>**
 |===
 
 
@@ -246,7 +246,7 @@ _Wetten:_
   2. Kunden entscheiden sich, ob sie die Spielstand hochheben
   3. Multipliziert mit der Gewinnwahrscheinlichkeit ergibt sich der erwartete Gewinnbetrag
 |Extensions                 |-
-|Funktionale Anforderungen  |-
+|Funktionale Anforderungen  |**<<FA03>>**,**<<FA04>>**
 |===
 
 
@@ -267,7 +267,7 @@ _Wetten:_
 ** Sonst: Eine Fehlermeldung wird angezeigt.
 
 |Extensions                 |-
-|Funktionale Anforderungen  |-
+|Funktionale Anforderungen  |**<<FA09>>**
 |===
 
 [[sequence_diagram_change_password]]
@@ -291,7 +291,7 @@ _Registration:_
   2. Eingabe eines Passwortes (Mit Hinsicht auf die Kriterien)
  
 |Extensions                 |-
-|Funktionale Anforderungen  |-
+|Funktionale Anforderungen  |**<<FA01>>**
 |===
 
 [[sequence_diagram_registration]]
@@ -346,7 +346,7 @@ _Geld　überweisen:_
   3. System lädtet Guthaben auf. 
  
 |Extensions                 |-
-|Funktionale Anforderungen a|-
+|Funktionale Anforderungen a|**<<FA08>>**
 |===
 
 [[sequence_diagram_transfer]]
@@ -397,7 +397,7 @@ _Gewinngemeinschaft erstellen:_
   5. System schickt Bestätigung für Erstellung der Gruppe.
  
 |Extensions                 |-
-|Funktionale Anforderungen  |tba
+|Funktionale Anforderungen  |**<<FA10>>**
 |===
 
 [[sequence_diagram_make_group]]
@@ -456,7 +456,7 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
 * Die Liste aller Wetten wird angezeigt.
 
 |Extensions                 |-
-|Funktionale Anforderungen  |-
+|Funktionale Anforderungen  |**<<FA11>>**
 |===
 
 
@@ -476,7 +476,7 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
   2. registrierter Nutzer sieht Items im Warenkorb
 
 |Extensions                 |-
-|Funktionale Anforderungen  |-
+|Funktionale Anforderungen  |**<<FA05>>**
 |===
 
 [cols="1h, 3"]
@@ -496,7 +496,7 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
   2. Item ist zu Warenkorb hinzugefügt
 
 |Extensions                 |-
-|Funktionale Anforderungen  |-
+|Funktionale Anforderungen  |**<<FA06>>**
 |===
 
 
@@ -520,7 +520,7 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
   2. Warenkorb wird geleert
   3. Kaufbetrag wird vom Guthaben des Nutzers abgezogen
 |Extensions                 |-
-|Funktionale Anforderungen  |-
+|Funktionale Anforderungen  |**<<FA07>>**
 |===
 
 
