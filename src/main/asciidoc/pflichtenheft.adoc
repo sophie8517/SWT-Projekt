@@ -23,6 +23,8 @@
 |0.11    | In Arbeit   | 28.10.2021          | Sophie Schulze a| 
 - Muss- und Kann Kriterien
 - Akzeptanztestfälle hinzugefügt
+|0.12     | In Arbeit   | 29.10.2021          | Yu-Ju Chen | Use Cases-Beschreibung: Functionale Anforderung ginzugefügt und link geaddt
+
 |===
 
 == 1. Inhaltsverzeichnis
