@@ -541,7 +541,7 @@ _Muss-Kriterien_
 |Name
 |Beschreibung
 
-|FA01
+|**<<FA01>>**
 |Registrierung
 |Ein Nutzer muss die Möglchkeit haben sich zu registrieren, indem er auf den Menüpunkt "Registrieren" klickt.
 Von dem Nutzer wird eine Eingabe erwartet:
@@ -549,34 +549,34 @@ Von dem Nutzer wird eine Eingabe erwartet:
   - Passwort
 Das System muss überprüfen, ob der Benutzername bereits vergeben ist, wenn das der Fall ist muss ein anderer Benutzername eingegeben werden.
 
-|FA02
+|**<<FA02>>**
 |Lottoschein ausfüllen
 |Ein registrierter Nutzer kann einen Lottoschein ausfüllen, indem er aus einer Liste von 49 Zahlen, 6 Zahlen ankreuzt.
 
-|FA03
+|**<<FA03>>**
 |Fußballwette abgeben
 |Ein registrierter Nutzer wettet auf ein Fußballspiel, indem er auf Sieg, Niederlage oder Unentschieden tippt.
 
-|FA04
+|**<<FA04>>**
 |Fußballkatalog ansehen
 |Allen Besuchern wird ermöglicht eine Liste mit anstehenden Fußballspielen zusehen, mit folgenden Informationen:
  - Spieltag
  - Heimmannschaft
  - Gastmannschaft
 
-|FA05
+|**<<FA05>>**
 |Warenkorb ansehen
 |Jedem registrierten Nutzer wird im Menü "Warenkorb" angezeigt, in den er durch Anklicken dessen Inhalte ansehen kann. 
 
-|FA06
+|**<<FA06>>**
 |Item hinzufügen
 |Wenn ein registrierter Benutzer einen Tippschein bzw. eine Fußballwette abgeben möchte, wird ihm die Option "zu Warenkorb hinzufügen" angezeigt, durch Anklicken wird dann das Item in den Warenkorb gelegt.
 
-|FA07
+|**<<FA07>>**
 |Item kaufen
 |Im Warenkorb ist unter den enthaltenen Items ein Button "Kaufen", welcher den Kauf der Waren ermöglicht.
 
-|FA08
+|**<<FA08>>**
 |Geld überweisen
 |Unter dem Menüpunkt "Konto" kann ein angemeldeter Benutzer seine Kontodetails einsehen. Dort gibt es ein Eingabefeld für den Überweisungsbetrag und daneben ein Button mit "überweisen" (o.ä.). Durch Klicken des Buttons wird vom System der gewünschte Betrag auf das Kontoguthaben gutgeschrieben.
 |===
