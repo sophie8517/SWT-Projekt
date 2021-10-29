@@ -555,7 +555,7 @@ _Kann-Kriterien_
   3. Kontaktdaten
   
   
-  [options="header", cols="2h, 3, 12"]
+[options="header", cols="2h, 3, 12"]
 |===
 |ID
 |Name
@@ -653,6 +653,47 @@ Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Kl
 
 |Admin                  
 |registrierter Nutzer, der durch seine Anmeldedaten vom System als Administrator erkannt wird
+
+|Statistik
+|gitb Auskkunft über Einkommen und Verluste der Lotterie sowie über die abgegebenen Wetten der Nutzer
+
+|Katalog
+a|
+- enthält Items der Zahlenlotterie und Fußballlotterie
+
+|Item
+a|
+- stehen im Katalog
+- ist ein Tippschein (Zahlenlotterie) oder Fußballspiel (Fußballtoto)
+- kann eindeutig identifiziert werden (ID)
+- darauf wird 1 oder mehrere Wetten abgegeben von einem Nutzer
+
+|Tippschein
+a|
+- Item für die Zahlenlotterie
+- besteht aus 49 Zahlen
+
+|Foootball
+a|
+- repräsentiert ein Fußballspiel
+- hat Heim- und Gastmannschaft
+- min_preis beschreibt den Mindesteinsatz für die Wette
+
+|Wette
+a|
+- wird auf ein Item abgegeben
+- für Tippschein: gemeint sind die 6 aus 49 ausgwählten Zahlen
+- für Football: Wette auf Sieg einer Mannschaft bzw. Unentschieden
+- gehört zu einem registrierten Nutzer, der die Wette abgegeben hat
+
+|Warenkorb
+|enthält Items, die ein Nutzer kaufen möchte
+
+|Bestellung
+|
+
+|Status
+|
 |===
 
 == 12. Akzeptanztestfälle
