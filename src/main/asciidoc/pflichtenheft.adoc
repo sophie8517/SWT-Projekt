@@ -188,6 +188,7 @@ In Folgenden werden die im Anwendungsfalldiagramm gezeigten Anwendungsfälle im 
 
 [cols="1h, 3"]
 [[UC01]]
+[[FA04]]
 |===
 |ID                         |**<<UC01>>**
 |Name                       |Fußballspiele anschauen          
