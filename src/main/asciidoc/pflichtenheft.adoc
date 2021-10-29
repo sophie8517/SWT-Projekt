@@ -223,7 +223,7 @@ image::./diagramm/UC01.png[Sequence diagram: Watch Football, 50%, 50%, pdfwidth=
 • Katalog anschauen
 • 6 Zahlen aus 49 Zahlen wählen
 |Extensions                 |-
-|Funktionale Anforderungen  |**<<FA02>>**
+|Funktionale Anforderungen  |**<<FA02>>**, **<<FA09>>**
 |===
 
 
@@ -246,7 +246,7 @@ _Wetten:_
   2. Kunden entscheiden sich, ob sie die Spielstand hochheben
   3. Multipliziert mit der Gewinnwahrscheinlichkeit ergibt sich der erwartete Gewinnbetrag
 |Extensions                 |-
-|Funktionale Anforderungen  |**<<FA03>>**,**<<FA04>>**
+|Funktionale Anforderungen  |**<<FA03>>**,**<<FA04>>**, **<<FA09>>**
 |===
 
 
@@ -267,7 +267,7 @@ _Wetten:_
 ** Sonst: Eine Fehlermeldung wird angezeigt.
 
 |Extensions                 |-
-|Funktionale Anforderungen  |**<<FA09>>**
+|Funktionale Anforderungen  |**<<FA10>>**, **<<FA09>>**
 |===
 
 [[sequence_diagram_change_password]]
@@ -325,7 +325,7 @@ _Ausloggen:_
   1.  Benutzer klickt auf “log out”
   2.  Benutzer ist nicht authentifiziert und die Startseite wird angezeigt 
 |Extensions                 |-
-|Funktionale Anforderungen  |-
+|Funktionale Anforderungen  |**<<FA09>>**
 |===
 
 
@@ -346,7 +346,7 @@ _Geld　überweisen:_
   3. System lädtet Guthaben auf. 
  
 |Extensions                 |-
-|Funktionale Anforderungen a|**<<FA08>>**
+|Funktionale Anforderungen a|**<<FA08>>**,**<<FA09>>**
 |===
 
 [[sequence_diagram_transfer]]
@@ -397,7 +397,7 @@ _Gewinngemeinschaft erstellen:_
   5. System schickt Bestätigung für Erstellung der Gruppe.
  
 |Extensions                 |-
-|Funktionale Anforderungen  |**<<FA10>>**
+|Funktionale Anforderungen  |**<<FA11>>**,**<<FA09>>**
 |===
 
 [[sequence_diagram_make_group]]
@@ -456,7 +456,7 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
 * Die Liste aller Wetten wird angezeigt.
 
 |Extensions                 |-
-|Funktionale Anforderungen  |**<<FA11>>**
+|Funktionale Anforderungen  |**<<FA12>>**
 |===
 
 
@@ -476,7 +476,7 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
   2. registrierter Nutzer sieht Items im Warenkorb
 
 |Extensions                 |-
-|Funktionale Anforderungen  |**<<FA05>>**
+|Funktionale Anforderungen  |**<<FA05>>**,**<<FA09>>**
 |===
 
 [cols="1h, 3"]
@@ -496,7 +496,7 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
   2. Item ist zu Warenkorb hinzugefügt
 
 |Extensions                 |-
-|Funktionale Anforderungen  |**<<FA06>>**
+|Funktionale Anforderungen  |**<<FA06>>**,**<<FA09>>**
 |===
 
 
@@ -520,7 +520,7 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
   2. Warenkorb wird geleert
   3. Kaufbetrag wird vom Guthaben des Nutzers abgezogen
 |Extensions                 |-
-|Funktionale Anforderungen  |**<<FA07>>**
+|Funktionale Anforderungen  |**<<FA07>>**,**<<FA09>>**
 |===
 
 
@@ -579,6 +579,14 @@ Das System muss überprüfen, ob der Benutzername bereits vergeben ist, wenn das
 |**<<FA08>>**
 |Geld überweisen
 |Unter dem Menüpunkt "Konto" kann ein angemeldeter Benutzer seine Kontodetails einsehen. Dort gibt es ein Eingabefeld für den Überweisungsbetrag und daneben ein Button mit "überweisen" (o.ä.). Durch Klicken des Buttons wird vom System der gewünschte Betrag auf das Kontoguthaben gutgeschrieben.
+
+|**<<FA09>>**
+|Authentifizierung
+|Das System muss in öffentlich zugängliche Teile und in Teile, die für den Zugriff eine Authentifizierung erfordern, getrennt werden können. Wenn ein Benutzer im System vorhanden ist (registrierter Benutzer), kann er sich durch Angabe der folgenden Informationen authentifizieren:
+
+Nutzername
+
+Passwort
 |===
 
 === 8.2 Kann-Kriterien
@@ -590,19 +598,19 @@ Anforderungen die das Programm leisten können soll, aber für den korrekten Bet
 |Name
 |Beschreibung
 
-|**<<FA09>>**
+|**<<FA010>>**
 |Passwort ändern
 |Unter dem Menüpukt "Konto" kann ein angemeldeter Benutzer die Option "Passwort ändern" sehen, welches ihm ermöglicht sein Passwort zu ändern.
 
-|**<<FA10>>**
+|**<<FA111>>**
 |Gewinngemeinschaft erstellen
 |Auf der Kontoseite eines angemeldeten Nutzers gibt es den Button "Gewinngemeinschaft erstellen". Die Anfrage wird zum Lotteriesystem weitergeleitet, welches für die Gruppe ein Passwort generiert und dem Ersteller der Gruppe mitteilt.
 
-|**<<FA11>>**
+|**<<FA12>>**
 |abgegebene Wetten anschauen
 |Dem Administrator wird der Menüpunkt "Statistik" angezeigt, dort kann er einsehen welche Wetten von welchem Kunden abgegeben wurden.
 
-|**<<FA12>>**
+|**<<FA13>>**
 |Konto löschen
 |Unter "Mein Profil" kann ein angemeldeter Nutzer die Option sein Konto zu löschen, d.h. die Benutzerdaten sind beim Anmelden nicht mehr gültig.
 |===
