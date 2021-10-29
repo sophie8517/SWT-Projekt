@@ -590,19 +590,19 @@ Anforderungen die das Programm leisten können soll, aber für den korrekten Bet
 |Name
 |Beschreibung
 
-|FA09
+|**<<FA09>>**
 |Passwort ändern
 |Unter dem Menüpukt "Konto" kann ein angemeldeter Benutzer die Option "Passwort ändern" sehen, welches ihm ermöglicht sein Passwort zu ändern.
 
-|FA10
+|**<<FA10>>**
 |Gewinngemeinschaft erstellen
 |Auf der Kontoseite eines angemeldeten Nutzers gibt es den Button "Gewinngemeinschaft erstellen". Die Anfrage wird zum Lotteriesystem weitergeleitet, welches für die Gruppe ein Passwort generiert und dem Ersteller der Gruppe mitteilt.
 
-|FA11
+|**<<FA11>>**
 |abgegebene Wetten anschauen
 |Dem Administrator wird der Menüpunkt "Statistik" angezeigt, dort kann er einsehen welche Wetten von welchem Kunden abgegeben wurden.
 
-|FA12
+|**<<FA12>>**
 |Konto löschen
 |Unter "Mein Profil" kann ein angemeldeter Nutzer die Option sein Konto zu löschen, d.h. die Benutzerdaten sind beim Anmelden nicht mehr gültig.
 |===
