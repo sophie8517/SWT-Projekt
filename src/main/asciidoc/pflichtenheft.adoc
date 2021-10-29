@@ -12,20 +12,14 @@
 |0.4     | In Arbeit   | 22.10.2021          | Song Bai    | Ergänzung der Beschreibung
 |0.5     | In Arbeit   | 25.10.2021          | Alle Gruppenmitglieder | Ergänzung des Pflichtenhesftes
 |0.6     | In Arbeit   | 26.10.2021          | Yu-Ju Chen | Ergänzung: Use Cases-Beschreibung
-|0.7     | In Arbeit   | 26.10.2021          | Sophie Schulze a| 
-- Zusammenfassung
-- Beschreibung UC02
-- Korrektur Rechtschreibung
-- Beginn Klassen und Enumerationen
+|0.7     | In Arbeit   | 26.10.2021          | Sophie Schulze a| Zusammenfassung, Beschreibung UC02, Korrektur Rechtschreibung, Beginn Klassen und Enumerationen
 |0.8     | In Arbeit   | 27.10.2021          | Sophie Schulze | Use Cases 13,14,15
 |0.9     | In Arbeit   | 27.10.2021          | Yu-Ju Chen | Ergänzung: Use Cases-Beschreibung
 |0.10    | In Arbeit   | 27.10.2021          | Mirek Král, Song Bai |Bilder hochladen und UC Ergänzung
-|0.11    | In Arbeit   | 28.10.2021          | Sophie Schulze a| 
-- Muss- und Kann Kriterien
-- Akzeptanztestfälle hinzugefügt
+|0.11    | In Arbeit   | 28.10.2021          | Sophie Schulze a| Muss- und Kann Kriterien, Akzeptanztestfälle hinzugefügt
 |0.12     | In Arbeit   | 29.10.2021          | Yu-Ju Chen | Use Cases-Beschreibung: Functionale Anforderung ginzugefügt und link geaddt
 |0.13    | In Arbeit   | 29.10.2021          | Mirek Král, Song Bai |Bilder hochladen, Klassendiagramm aktualisieren und GUI Ergänzung
-
+|0.14    |vorerst fertig |29.10.2021         |Klassen/Eumerationen ergänzt, Anpassung von Text an GUI 
 |===
 
 == 1. Inhaltsverzeichnis
@@ -140,7 +134,7 @@ Das Interessengruppen sind ausschließlich Erwachsene, d.h. Personen ab 18 Jahre
 == 6. Systemgrenze und Top-Level-Architektur
 
 === 6.1. Kontextdiagramm
-Das Kontextdiagramm zeigt das geplante Software-System in seiner Umgebung. Zur Umgebung gehören alle Nutzergruppen des Systems und Nachbarsysteme. Die Grafik kann auch informell gehalten sein. Überlegen Sie sich dann geeignete Symbole. Die Grafik kann beispielsweise mit Visio erstellt werden. Wenn nötig, erläutern Sie diese Grafik.
+
 
 [[context_diagram]]
 image:diagramm/kontext.png[context diagram]
@@ -156,8 +150,6 @@ Top-Level-Ansicht für Lotteriesystem
 
 === 7.1  Akteure
 
-Akteure sind die Benutzer des Software-Systems oder Nachbarsysteme, welche darauf zugreifen. Dokumentieren Sie die Akteure in einer Tabelle. Diese Tabelle gibt einen Überblick über die Akteure und beschreibt sie kurz. Die Tabelle hat also mindestens zwei Spalten (Akteur Name und Kommentar).
-Weitere relevante Spalten können bei Bedarf ergänzt werden.
 
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="header"]
@@ -182,10 +174,6 @@ Bemerkung: Sie bekommt einen offiziellen Name später in der Entwicklung.
 image::./diagramm/use_case.png[Use Case diagram, 100%, 100%, pdfwidth=100%, title= "Use case diagram of lottery system", align=center]
 
 === 7.3 Use-Case-Beschreibungen
-Dieser Unterabschnitt beschreibt die Anwendungsfälle. In dieser Beschreibung müssen noch nicht alle Sonderfälle und Varianten berücksichtigt werden. Schwerpunkt ist es, die wichtigsten Anwendungsfälle des Systems zu finden. Wichtig sind solche Anwendungsfälle, die für den Auftraggeber, den Nutzer den größten Nutzen bringen.
-Für komplexere Anwendungsfälle ein UML-Sequenzdiagramm ergänzen.
-Einfache Anwendungsfälle mit einem Absatz beschreiben.
-Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem einzigen zusammengefasst werden.
 
 In Folgenden werden die im Anwendungsfalldiagramm gezeigten Anwendungsfälle im Detail beschrieben.
 
@@ -196,7 +184,7 @@ In Folgenden werden die im Anwendungsfalldiagramm gezeigten Anwendungsfälle im 
 |Name                       |Fußballspiele anschauen          
 |Beschreibung               |Der Nutzer kann den Fußballwettenkatalog aufrufen, um zu sehen auf welche Fußballspiele man wetten kann.
 |Akteur                     |alle Nutzer der Website
-|Auslöser                   |(später: Durch Klicken auf den Menüpunkt Fußballkatalog)
+|Auslöser                   |Klicken auf den Menüpunkt "Katalog" und dann auf "Fußballtoto"
 |Vorbedingung               |keine 
 |Grundlegende Schritte     a|
 _Fußballspiele anschauen:_ 
@@ -220,7 +208,7 @@ image::./diagramm/UC01.png[Sequence diagram: Watch Football, 50%, 50%, pdfwidth=
 |Beschreibung               |Ein registrierter Nutzer füllt einen Lottoschein aus, indem er 6 aus 49 Zahlen auswählt. 
 |Akteur                     |registrierter Benutzer
 |Auslöser                   |-
-|Vorbedingung               |Der Benutzer muss sich registrieren und eingeloggt werden, um Lotoscheine ausfüllen zu können. 
+|Vorbedingung               |Der Benutzer muss sich registrieren und eingeloggt sein, um Lotoscheine ausfüllen zu können. 
 |Grundlegende Schritte     a|
 • Einloggen unter Gruppe oder einzeln
 • Katalog anschauen
@@ -237,7 +225,7 @@ image::./diagramm/UC01.png[Sequence diagram: Watch Football, 50%, 50%, pdfwidth=
 |Name                       |Fußballwetten        
 |Beschreibung               |Die Kunden entscheiden sich zuerst dafür, eine Wette auf das Gewinnerteam zu platzieren, und sie können auch den Spielstand zusätzlich addieren und dann schließlich mit den Quoten multiplizieren, um den Gewinnbetrag zu erhalten.
 |Akteur                     |Kunden
-|Auslöser                   |Zugriff auf Menüpunkt Fußballkatalog, der fürs Fußballtoto verantwortlich ist.
+|Auslöser                   |Zugriff über "Katalog" -> "Fußballtoto"
 |Vorbedingung              a|
 • Einloggen unter Gruppe oder einzeln
 • Katalog anschauen
@@ -246,7 +234,7 @@ image::./diagramm/UC01.png[Sequence diagram: Watch Football, 50%, 50%, pdfwidth=
 _Wetten:_ 
 
   1. Kunden wählen das Geweinnerteam oder unentscheiden
-  2. Kunden entscheiden sich, ob sie die Spielstand hochheben
+  2. Kunden entscheiden sich, ob sie den Spielstand hochheben
   3. Multipliziert mit der Gewinnwahrscheinlichkeit ergibt sich der erwartete Gewinnbetrag
 |Extensions                 |-
 |Funktionale Anforderungen  |<<FA03>>,<<FA04>>, <<FA09>>
@@ -261,11 +249,11 @@ _Wetten:_
 |Beschreibung               |Der Benutzer soll sein eigenes Passwort ändern können.
 |Akteur                     |registrierter Benutzer
 |Auslöser                   |-
-|Vorbedingung               |Der Benutzer muss sich registrieren und eingeloggt werden. 
+|Vorbedingung               |Der Benutzer muss sich registrieren und eingeloggt sein. 
 |Grundlegende Schritte     a|
 
 * Nutzer klikt auf Einstellungen "change Password".
-* Nutzer geben altes Passwort, neues Passwort ab, und wiederholt sich nochmal neues Passwort um alle zu bestätigen.
+* Nutzer gibt altes Passwort, neues Passwort an, und wiederholt nochmal neues Passwort um alle zu bestätigen.
 ** Falls die Eingabe korrekt war: Nutzer wird zur Startseite weitergeleitet.
 ** Sonst: Eine Fehlermeldung wird angezeigt.
 
@@ -282,16 +270,16 @@ image::./diagramm/UC04.png[Sequence diagram: Change Password, 50%, 50%, pdfwidth
 |===
 |ID                         |**<<UC05>>**
 |Name                       |Registrierung          
-|Beschreibung               |Damit sich ein potenzieller Kunde aktiv an der Zahlenlotterie, bzw. Fußballtoto teilnehmen kann, muss ihm ermöglicht werden sich zu registrieren. Diese Funktion bildet die Grundlage neuer Funktionalitäten z.B. Passwort ändern, Ein-/Ausloggen, Geldüberweisen, etc..
+|Beschreibung               |Damit ein potenzieller Kunde aktiv an der Zahlenlotterie, bzw. Fußballtoto teilnehmen kann, muss ihm ermöglicht werden sich zu registrieren. Diese Funktion bildet die Grundlage neuer Funktionalitäten z.B. Passwort ändern, Ein-/Ausloggen, Geld überweisen, etc..
 |Akteur                     |unregistrierter Benutzer
 |Auslöser                   |
 _Registration:_ Unregistrierter Benutzer möchte den Zutritt zur Teilnahme an den jeweiligen Angebote der Lotterie.
-|Vorbedingung               |Der Benutzer wurde nicht bereits registriert.
+|Vorbedingung               |Der Benutzer wurde noch nicht registriert.
 |Grundlegende Schritte     a|
 _Registration:_ 
 
   1. Eingabe eines bereits nicht besetzten Benutzernamens.
-  2. Eingabe eines Passwortes (Mit Hinsicht auf die Kriterien)
+  2. Eingabe eines Passwortes (mit Hinsicht auf die Kriterien)
  
 |Extensions                 |-
 |Funktionale Anforderungen  |<<FA01>>
@@ -319,13 +307,13 @@ image::./diagramm/UC05.png[Sequence diagram: Registration, 50%, 50%, pdfwidth=50
 |Grundlegende Schritte     a|
 _Einloggen:_
 
-  1.  Benutzer greift in der Startseite auf “log in” zu
+  1.  Benutzer greift in der Startseite auf “Anmelden” zu
   2.  Benutzer gibt seine Zugangsdaten ein
-  3.  Benutzer klickt auf “log in”
+  3.  Benutzer klickt auf “Anmelden”
   
 _Ausloggen:_
 
-  1.  Benutzer klickt auf “log out”
+  1.  Benutzer klickt auf “Abmelden”
   2.  Benutzer ist nicht authentifiziert und die Startseite wird angezeigt 
 |Extensions                 |-
 |Funktionale Anforderungen  |<<FA09>>
@@ -337,8 +325,8 @@ _Ausloggen:_
 |===
 |ID                         |**<<UC07>>**
 |Name                       |Geld überweisen
-|Beschreibung               |Der registiered Benutzer kann seine Guthaben mit einem bestimmten Betrag aufladen.
-|Akteur                     |Kunde
+|Beschreibung               |Der registierte Benutzer kann sein Guthaben mit einem bestimmten Betrag aufladen.
+|Akteur                     |registrierter Nutzer
 |Auslöser                   |Kunde möchte an der Lotterie finanziell teilnehmen.
 |Vorbedingung               |Der Nutzer ist bereits im System eingeloggt.
 |Grundlegende Schritte     a|
@@ -346,7 +334,7 @@ _Geld　überweisen:_
 
   1. Nutzer meldet sich an.
   2. Nutzer klickt auf Guthaben aufladen.
-  3. System lädtet Guthaben auf. 
+  3. System lädt Guthaben auf. 
  
 |Extensions                 |-
 |Funktionale Anforderungen a|<<FA08>>,<<FA09>>
@@ -364,7 +352,7 @@ image::./diagramm/UC07.png[Sequence diagram: Transfer, 50%, 50%, pdfwidth=50%, t
 |Beschreibung               |Das System wertet die abgegebenede Wetten und Tippscheinen aus und zahlt entsprechend des Ergibnisses ein Gewinn bzw. Verlust aus oder nicht.
 |Akteur                     |Lotterie
 |Auslöser                   |Kunde hat verloren oder gewonnen.
-|Vorbedingung               |Lotterie kennt das Ergibnis des Spieles oder der Ziehungs.
+|Vorbedingung               |Lotterie kennt das Ergebnis des Spieles oder der Ziehung.
 |Grundlegende Schritte     a|
 _Gewinn und Verlust auszahlen:_ 
 
@@ -388,13 +376,13 @@ image::./diagramm/UC08.png[Sequence diagram: Win Or Lose, 50%, 50%, pdfwidth=50%
 |Beschreibung               |Ein angemeldeter/registrierter Nutzer kann eine Gewinngemeinschaft erstellen. Das System generiert für die Gruppe ein Passwort,
 das der Ersteller an neue Mitglieder weitergeben kann.
 |Akteur                     |registrierter Nutzer
-|Auslöser                   |-
+|Auslöser                   |Ein Nutzer möchte in einer Gruppe wetten.
 |Vorbedingung               |Der Nutzer ist bereits im System registriert, hat also einen Benutzernamen sowie ein Passwort und muss sich vor dem Erstellen der Gruppe anmelden.
 |Grundlegende Schritte     a|
 _Gewinngemeinschaft erstellen:_ 
 
   1. Nutzer meldet sich an.
-  2. Nutzer klickt auf Gewinngemeinschaft erstellen.
+  2. Nutzer klickt auf Gewinngemeinschaft erstellen (unter Mein Profil).
   3. System generiert Passwort (hinsichtlich der Kriterien).
   4. System teilt dem Nutzer das Gruppenpasswort mit.
   5. System schickt Bestätigung für Erstellung der Gruppe.
@@ -411,9 +399,9 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
 |===
 |ID                         |**<<UC10>>**
 |Name                       |Einkommen anschauen          
-|Beschreibung               |Der Admin möchtet die Einkommen des Kunden anschauen.
+|Beschreibung               |Der Admin möchte das Einkommen der Kunden anschauen.
 |Akteur                     |Administrator
-|Auslöser                   |Admin hat das Recht auf Einsicht in des Einkommen des Kunden.
+|Auslöser                   |Admin hat das Recht auf Einsicht in das Einkommen der Kunden.
 |Vorbedingung               |- 
 |Grundlegende Schritte     a|
 
@@ -430,9 +418,9 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
 |===
 |ID                         |**<<UC11>>**
 |Name                       |Verluste anschauen          
-|Beschreibung               |Der Admin möchtet die Verluste des Kunden anschauen.
+|Beschreibung               |Der Admin möchtet die Verluste der Kunden anschauen.
 |Akteur                     |Administrator
-|Auslöser                   |Admin hat das Recht auf Einsicht in der Verluste des Kunden.
+|Auslöser                   |Admin hat das Recht auf Einsicht in die Verluste des Kunden.
 |Vorbedingung               |- 
 |Grundlegende Schritte     a|
 
@@ -455,7 +443,7 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
 |Vorbedingung               |- 
 |Grundlegende Schritte     a|
 
-* Admin drückt auf "bet management" in der Navigationsliste.
+* Admin navigiert über das Menü zur Statistik-Seite
 * Die Liste aller Wetten wird angezeigt.
 
 |Extensions                 |-
@@ -469,14 +457,14 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
 |===
 |ID                         |**<<UC013>>**
 |Name                       |Items anschauen        
-|Beschreibung               |ein registrierter Benutzer kann die Waren im Warenkorb ansehen.
+|Beschreibung               |ein registrierter Benutzer kann die abgegebenen Wetten im Warenkorb ansehen.
 |Akteur                     |registrierter Benutzer
-|Auslöser                   |Klick auf "Warenkorb" in Menüleiste
+|Auslöser                   |Klick auf "Mein Profil" in Menüleiste
 |Vorbedingung               |Nutzer ist registriert im System und angemeldet. 
 |Grundlegende Schritte     a|
 
-  1. registrierter Nutzer klickt auf "Warenkorb" in Menüleiste
-  2. registrierter Nutzer sieht Items im Warenkorb
+  1. Nutzer klickt auf "Mein Profil" in Menüleiste
+  2. Nutzer sieht Items im Warenkorb
 
 |Extensions                 |-
 |Funktionale Anforderungen  |<<FA05>>,<<FA09>>
@@ -492,11 +480,11 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
 |Auslöser                   |ein registrierter Nutzer hat eine Wette auf ein Item abgeschlossen (Tippschein ausgefüllt oder Fußballwette), und möchte dieses zum Warenkorb hinzufügen
 |Vorbedingung              a|
 - Nutzer ist registriert und angemeldet
-- Nutzer hat Wette abgeschlossen
+- Nutzer hat Tippschein ausgefüllt oder ein Fußballspiel ausgesucht, auf das er wetten möchte
 |Grundlegende Schritte     a|
 
-  1. Nutzer klickt auf "zu Warenkorb hinzufügen"
-  2. Item ist zu Warenkorb hinzugefügt
+  1. Nutzer klickt auf "Tippschein abgeben" bzw. "Jetzt wetten"
+  2. Item ist zum Warenkorb hinzugefügt
 
 |Extensions                 |-
 |Funktionale Anforderungen  |<<FA06>>,<<FA09>>
@@ -511,17 +499,15 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
 |Name                       |Item kaufen        
 |Beschreibung               |Kunde kauft die Ware/n in seinem Warenkorb
 |Akteur                     |Kunde
-|Auslöser                   |Klick auf "Kaufen"
+|Auslöser                   |Wette abschließen
 |Vorbedingung              a|
 - Nutzer ist registriert und angemeldet
-- Nutzer hat auf Menüpunkt Warenkorb geklickt
-- Nutzer hat Item(s) zum Warenkorb hinzugefügt
 - Nutzer hat ausreichend Guthaben auf seinem Konto
+- Nutzer ist bereit eine Wette abzuschließen
 |Grundlegende Schritte     a|
 
-  1. Nutzer klickt auf "Kaufen"
-  2. Warenkorb wird geleert
-  3. Kaufbetrag wird vom Guthaben des Nutzers abgezogen
+  1. Nutzer klickt auf "Tippschein abgeben" bzw. "Jetzt wetten"
+  2. Kaufbetrag wird vom Guthaben des Nutzers abgezogen
 |Extensions                 |-
 |Funktionale Anforderungen  |<<FA07>>,<<FA09>>
 |===
@@ -533,10 +519,6 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
 === 8.1 Muss-Kriterien
 _Muss-Kriterien_ 
 
-  1. Statistik erstellen
-  2. Bei Fußballtoto eine Wette abgeben und eine Liste mit kommenden Spiele anschauen.
-  3. Bei Zahlenloterie Lottoschein ausfüllen.
-  4. Registration für Kunden.
 
 [options="header", cols="2h, 3, 12"]
 |===
@@ -558,7 +540,7 @@ Das System muss überprüfen, ob der Benutzername bereits vergeben ist, wenn das
 
 |[[FA03]]<<FA03>>
 |Fußballwette abgeben
-|Ein registrierter Nutzer wettet auf ein Fußballspiel, indem er auf Sieg, Niederlage oder Unentschieden tippt.
+|Ein registrierter Nutzer wettet auf ein Fußballspiel, indem er auf Sieg für die Heim- oder Gastmannschaft oder auf Unentschieden tippt.
 
 |[[FA04]]<<FA04>>
 |Fußballkatalog ansehen
@@ -566,22 +548,24 @@ Das System muss überprüfen, ob der Benutzername bereits vergeben ist, wenn das
  - Spieltag
  - Heimmannschaft
  - Gastmannschaft
+ - Liga
+ - Einsatz
 
 |[[FA05]]<<FA05>>
 |Warenkorb ansehen
-|Jedem registrierten Nutzer wird im Menü "Warenkorb" angezeigt, in den er durch Anklicken dessen Inhalte ansehen kann. 
+|Jedem registrierten Nutzer wird unter "Mein Profil" die Inhalte des Warenkorbs angezeigt. 
 
 |[[FA06]]<<FA06>>
 |Item hinzufügen
-|Wenn ein registrierter Benutzer einen Tippschein bzw. eine Fußballwette abgeben möchte, wird ihm die Option "zu Warenkorb hinzufügen" angezeigt, durch Anklicken wird dann das Item in den Warenkorb gelegt.
+|Wenn ein registrierter Benutzer einen Tippschein bzw. eine Fußballwette abgeben möchte, wird ihm die Option "Tippschein abgeben" bzw. "Jetzt wetten" angezeigt, durch Anklicken wird dann das Item gekauft und in den Warenkorb gelegt.
 
 |[[FA07]]<<FA07>>
 |Item kaufen
-|Im Warenkorb ist unter den enthaltenen Items ein Button "Kaufen", welcher den Kauf der Waren ermöglicht.
+|Ein Item wird gekauft, wenn der Nutzer auf "Tippschein abgeben" bzw. "Jetzt wetten" klickt.
 
 |[[FA08]]<<FA08>>
 |Geld überweisen
-|Unter dem Menüpunkt "Konto" kann ein angemeldeter Benutzer seine Kontodetails einsehen. Dort gibt es ein Eingabefeld für den Überweisungsbetrag und daneben ein Button mit "überweisen" (o.ä.). Durch Klicken des Buttons wird vom System der gewünschte Betrag auf das Kontoguthaben gutgeschrieben.
+|Unter dem Menüpunkt "Mein Profil" kann ein angemeldeter Benutzer seine Kontodetails einsehen. Dort gibt es ein Eingabefeld für den Überweisungsbetrag und daneben ein Button mit "überweisen" (o.ä.). Durch Klicken des Buttons wird vom System der gewünschte Betrag auf das Kontoguthaben gutgeschrieben.
 
 |[[FA09]]<<FA09>>
 |Authentifizierung
@@ -603,7 +587,7 @@ Anforderungen die das Programm leisten können soll, aber für den korrekten Bet
 
 |[[FA10]]<<FA10>>
 |Passwort ändern
-|Unter dem Menüpukt "Konto" kann ein angemeldeter Benutzer die Option "Passwort ändern" sehen, welches ihm ermöglicht sein Passwort zu ändern.
+|Unter dem Menüpukt "Mein Profil" kann ein angemeldeter Benutzer die Option "Passwort ändern" sehen, welches ihm ermöglicht sein Passwort zu ändern.
 
 |[[FA11]]<<FA11>>
 |Gewinngemeinschaft erstellen
@@ -792,15 +776,20 @@ a|
 - für Tippschein: gemeint sind die 6 aus 49 ausgwählten Zahlen
 - für Football: Wette auf Sieg einer Mannschaft bzw. Unentschieden
 - gehört zu einem registrierten Nutzer, der die Wette abgegeben hat
+- hat den Status GEWONNEN oder VERLOREN
 
 |Warenkorb
-|enthält Items, die ein Nutzer kaufen möchte
+|enthält Items, die ein Nutzer gekauft hat bzw. die Wetten auf diese Items
 
 |Bestellung
-|
+|wird bei einem Kauf erstellt
 
 |Status
-|
+a|
+- GEWONNEN (Zahlenlotterie): es wurden die richtigen 6 Zahlen ausgewählt
+- GEWONNEN (Fußballtoto): es wurde auf den korrekten Spielausgang gewettet
+- VERLOREN (Zahlenlotterie): es wurden nicht die 6 Gewinnzahlen gewählt
+- VERLOREN (Fußballtoto): es wurde auf den falschen Spielausgang gewettet
 |===
 
 == 12. Akzeptanztestfälle
@@ -812,7 +801,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID             |<<AT01>>
 |Use Case       |<<UC01>>
 |Vorbedingung  a|Der Katalog enthält Fußballspiele.
-|Aktion        a|Ein unregistrierter Nutzer klickt auf "Katalog".
+|Aktion        a|Ein unregistrierter Nutzer klickt auf "Katalog -> Fußballtoto".
 |Ergebnis       |Dem Nutzer werden die eingetragenen Fußballspiele angezeigt.
 |===
 
@@ -821,7 +810,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID             |<<AT02>>
 |Use Case       |<<UC01>>
 |Vorbedingung  a|Der Katalog enthält Fußballspiele.
-|Aktion        a|Ein registrierter Nutzer klickt auf "Katalog".
+|Aktion        a|Ein registrierter Nutzer klickt auf "Katalog -> Fußballtoto".
 |Ergebnis       |Dem registrierten Nutzer werden die eingetragenen Fußballspiele angezeigt.
 |===
 
@@ -830,8 +819,8 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID             |<<AT03>>
 |Use Case       |<<UC02>>
 |Vorbedingung  a|Der Nutzer ist registriert und angemeldet.
-|Aktion        a|Der Nutzer hat "Zahlenlotterie" ausgewählt.
-|Ergebnis       |Dem Nutzer wird die Zahlen 1 bis 49 angezeigt, von denen er 6 auswählen kann.
+|Aktion        a|Der Nutzer hat "Zahlenlotterie" im Katalog ausgewählt.
+|Ergebnis       |Dem Nutzer werden die Zahlen 1 bis 49 angezeigt, von denen er 6 auswählen kann.
 |===
 
 [cols="1h, 4"]
@@ -839,7 +828,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID             |<<AT04>>
 |Use Case       |<<UC03>>
 |Vorbedingung  a|Der Katalog enthält Fußballspiele.
-|Aktion        a|Ein unregistrierter Nutzer klickt auf "Katalog".
+|Aktion        a|Ein unregistrierter Nutzer klickt auf "Katalog -> Fußballtoto".
 |Ergebnis       |Dem Nutzer werden die eingetragenen Fußballspiele angezeigt, aber nicht die Option eine Wette abzugeben.
 |===
 
@@ -848,7 +837,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID             |<<AT05>>
 |Use Case       |<<UC03>>
 |Vorbedingung  a|Der Katalog enthält Fußballspiele, Nutzer ist registriert
-|Aktion        a|Der Nutzer klickt auf "Katalog".
+|Aktion        a|Der Nutzer klickt auf "Katalog -> Fußballtoto".
 |Ergebnis       |Dem Nutzer werden die eingetragenen Fußballspiele angezeigt und auch die Option eine Wette abzugeben.
 |===
 
@@ -858,7 +847,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |Use Case       |<<UC04>>
 |Vorbedingung  a|Der Nutzer ist registriert.
 |Aktion        a|Der Nutzer klickt auf "Passwort ändern".
-|Ergebnis       |Der Nutzer muss sein altes und ein neues Passwort eingeben. Es wird eine Bestätigung angezeigt.
+|Ergebnis       |Der Nutzer muss sein altes und ein neues Passwort eingeben. Danach wird ihm eine Bestätigung angezeigt und er kann sich jetzt mit dem neuen Passwort einloggen.
 |===
 
 [cols="1h, 4"]
@@ -894,7 +883,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |Use Case       |<<UC06>>
 |Vorbedingung  a|Der Nutzer ist registriert.
 |Aktion        a|Es wird der richtige Benutzername und das richtige Passwort eingegeben.
-|Ergebnis       |Der Nutzer ist angemeldet und hat Zugriff auf seinen Warenkorb und kann wetten.
+|Ergebnis       |Der Nutzer ist angemeldet und hat Zugriff auf sein Profil, Warenkorb und er kann wetten.
 |===
 
 [cols="1h, 4"]
@@ -939,7 +928,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |Use Case       |<<UC08>>
 |Vorbedingung  a|Der Nutzer hat eine Fußballwette abgegeben.
 |Aktion        a|Das Ergebnis des Fußballspiels stimmt mit der Wette des Nutzers überein.
-|Ergebnis       |Das Guthaben des Nutzers wird erhöht.
+|Ergebnis       |Das Guthaben des Nutzers wird erhöht und der Status der Wette im Warenkorb zeigt GEWONNEN an.
 |===
 
 [cols="1h, 4"]
@@ -957,7 +946,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |Use Case       |<<UC10>>
 |Vorbedingung  a|Der Nutzer ist als Administrator angemeldet.
 |Aktion        a|Es wird "Statistik" angeklickt.
-|Ergebnis       |Dem Administrator wird das Einkommen der Lotterie angezeigt.
+|Ergebnis       |Dem Administrator wird das Einkommen der Kunden angezeigt.
 |===
 
 [cols="1h, 4"]
@@ -966,7 +955,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |Use Case       |<<UC11>>
 |Vorbedingung  a|Der Nutzer ist als Administrator angemeldet.
 |Aktion        a|Es wird "Statistik" angeklickt.
-|Ergebnis       |Dem Administrator werden die Verluste der Lotterie angezeigt.
+|Ergebnis       |Dem Administrator werden die Verluste der Kunden angezeigt.
 |===
 
 [cols="1h, 4"]
@@ -983,7 +972,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID             |<<AT20>>
 |Use Case       |<<UC13>>
 |Vorbedingung  a|Der Nutzer ist angemeldet.
-|Aktion        a|Es wird "Warenkorb" angeklickt.
+|Aktion        a|Es wird auf den Warenkorb zugegriffen.
 |Ergebnis       |Dem Nutzer wird der Warenkorbinhalt angezeigt.
 |===
 
@@ -992,8 +981,8 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID             |<<AT21>>
 |Use Case       |<<UC14>>
 |Vorbedingung  a|Der Nutzer ist angemeldet und hat einen Lottoschein  korrekt ausgefüllt (bzw. Fußballwette).
-|Aktion        a|Es wird "zu Warenkorb hinzufügen" angeklickt.
-|Ergebnis       |Das Item ist jetzt im Warenkorb zu sehen.
+|Aktion        a|Es wird "Tippschein abgeben" bzw. "Jetzt wetten" angeklickt.
+|Ergebnis       |Das Item ist jetzt im Warenkorb zu sehen (, der Kaufbetrag wird vom Guthaben abgezogen).
 |===
 
 [cols="1h, 4"]
@@ -1001,7 +990,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |ID             |<<AT22>>
 |Use Case       |<<UC14>>
 |Vorbedingung  a|Der Nutzer ist angemeldet und hat einen Lottoschein  nicht korrekt ausgefüllt (bzw. Fußballwette).
-|Aktion        a|Es wird "zu Warenkorb hinzufügen" angeklickt.
+|Aktion        a|Es wird "Tippschein abgeben" bzw. "Jetzt wetten" angeklickt.
 |Ergebnis       |Es erscheint eine Fehlermeldung, das Item wird nicht zum Warenkorb hinzugeügt.
 |===
 
@@ -1009,26 +998,34 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |===
 |ID             |<<AT23>>
 |Use Case       |<<UC15>>
-|Vorbedingung  a|Der Nutzer ist angemeldet und hat mindestens ein Item im Warenkorb.
-|Aktion        a|Es wird "Kaufen" angeklickt.
-|Ergebnis      a|
-- der Warenkorb ist leer
-- der Kaufbetrag ist vom Guthaben des Nutzers abgezogen
+|Vorbedingung  a|Der Nutzer ist angemeldet und hat einen Tippschein ausgefüllt (bzw. Fußballspiel ausgewählt).
+|Aktion        a|Es wird "Tippschein" (bzw. "Jetzt wetten") angeklickt.
+|Ergebnis      a|der Kaufbetrag ist vom Guthaben des Nutzers abgezogen
 |===
 
 
 
 == 13. Glossar
-Sämtliche Begriffe, die innerhalb des Projektes verwendet werden und deren gemeinsames Verständnis aller beteiligten Stakeholder essentiell ist, sollten hier aufgeführt werden.
-Insbesondere Begriffe der zu implementierenden Domäne wurden bereits beschrieben, jedoch gibt es meist mehr Begriffe, die einer Beschreibung bedürfen. +
-Beispiel: Was bedeutet "Kunde"? Ein Nutzer des Systems? Der Kunde des Projektes (Auftraggeber)?
 
 Warenkorb ist ein Übersicht aller Tippscheine und Wetten, für die der Kunde bezahlt hat. Im Warenkorb befinden sich Wetten bzw. Tippscheine, die noch nicht ausgewertet wurden, diese sind als Bestellungen angesehen. Obwohl der Kunde für die bereits bezahlt hat, kann er sie noch stornieren und der Betrag wird ihm in voller Höhe zurückbezahlt. Als nächstes gibt es da wiederrum Wetten bzw. Tippscheine, die bereits ausgewertet wurden, diese sind als Rechnung angesehen. Kunde kann sich sein Verlust oder Gewinn anschauen.
 
 Die Grenze zwischen registriertem Benutzer und dem Kunden liegt an dem Moment der eigentlichen Bezahlung für eine Wette / ein Tippschein.
 
+[options="header", cols="1h, 4"]
+[[glossar]]
+|===
+|Term                   
+|Description
+
+|Warenkorb
+|ist eine Übersicht aller Tippscheine und Wetten, für die der Kunde bezahlt hat. Im Warenkorb befinden sich Wetten bzw. Tippscheine, die noch nicht ausgewertet wurden, diese sind als Bestellungen angesehen. Obwohl der Kunde für die bereits bezahlt hat, kann er sie noch stornieren und der Betrag wird ihm in voller Höhe zurückbezahlt. Als nächstes gibt es da wiederrum Wetten bzw. Tippscheine, die bereits ausgewertet wurden, diese sind als Rechnung angesehen. Kunde kann sich sein Verlust oder Gewinn anschauen.
+
+|Kunde
+|Die Grenze zwischen registriertem Benutzer und dem Kunden liegt an dem Moment der eigentlichen Bezahlung für eine Wette / ein Tippschein. Das bedeutet der registrierte Nutzer wird zum Kunden, wenn er auf "Tippschein abgeben" bzw. "Jetzt wetten" klickt.
+|===
+
 == 14. Offene Punkte
-Offene Punkte werden entweder direkt in der Spezifikation notiert. Wenn das Pflichtenheft zum finalen Review vorgelegt wird, sollte es keine offenen Punkte mehr geben.
+
 
 Unterscheidung wie das System erkennt, ob eine Person für sich selbst spielt oder für eine Gewinngemeinschaft. Eine Möglichkeit wäre beim Anmelden das gleiche Benutzername zu verwenden, aber anderes Passwort.
 
