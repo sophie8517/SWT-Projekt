@@ -24,6 +24,7 @@
 - Muss- und Kann Kriterien
 - Akzeptanztestfälle hinzugefügt
 |0.12     | In Arbeit   | 29.10.2021          | Yu-Ju Chen | Use Cases-Beschreibung: Functionale Anforderung ginzugefügt und link geaddt
+|0.13    | In Arbeit   | 29.10.2021          | Mirek Král, Song Bai |Bilder hochladen, Klassendiagramm aktualisieren und GUI Ergänzung
 
 |===
 
@@ -653,24 +654,87 @@ In diesem Kapitel soll ein Entwurf der Navigationsmöglichkeiten und Dialoge des
 Idealerweise entsteht auch ein grafischer Prototyp, welcher dem Kunden zeigt, wie sein System visuell umgesetzt werden soll.
 Konkrete Absprachen - beispielsweise ob der grafische Prototyp oder die Dialoglandkarte höhere Priorität hat - sind mit dem Kunden zu treffen.
 
-=== 10.1 Überblick: Dialoglandkarte
-Erstellen Sie ein Übersichtsdiagramm, das das Zusammenspiel Ihrer Masken zur Laufzeit darstellt. Also mit welchen Aktionen zwischen den Masken navigiert wird.
-//Die nachfolgende Abbildung zeigt eine an die Pinnwand gezeichnete Dialoglandkarte. Ihre Karte sollte zusätzlich die Buttons/Funktionen darstellen, mit deren Hilfe Sie zwischen den Masken navigieren.
+[[home_page]]
+image::./gui/home1.png[Landing page, 100%, 100%, pdfwidth=100%, title= "Landing page of Lottery", align=center]
 
-=== 10.2 Dialogbeschreibung
-Für jeden Dialog:
 
-1. Kurze textuelle Dialogbeschreibung eingefügt: Was soll der jeweilige Dialog? Was kann man damit tun? Überblick?
-2. Maskenentwürfe (Screenshot, Mockup)
-3. Maskenelemente (Ein/Ausgabefelder, Aktionen wie Buttons, Listen, …)
-4. Evtl. Maskendetails, spezielle Widgets
+
+[[location]]
+image::./gui/home2.png[Location, 100%, 100%, pdfwidth=100%, title= "location of Lottery", align=center]
+
+
+
+[[game_rules]]
+image::./gui/home3.png[Game rules, 100%, 100%, pdfwidth=100%, title= "game rules of Lottery", align=center]
+
+
+
+[[contact]]
+image::./gui/kontakt1.png[Contact page, 100%, 100%, pdfwidth=100%, title= "contact page of Lottery", align=center]
+
+
+
+[[registration]]
+image::./gui/register1.png[Registration page, 100%, 100%, pdfwidth=100%, title= "registration page of Lottery", align=center]
+
+
+
+[[welcome_page]]
+image::./gui/welcome1.png[Welcome page, 100%, 100%, pdfwidth=100%, title= "welcome page for an authenticated customer of Lottery", align=center]
+
+
+
+[[catalog]]
+image::./gui/katalog1.png[Catalog overview, 100%, 100%, pdfwidth=100%, title= "catalog overview of Lottery", align=center]
+
+
+
+[[footballtoto1_page]]
+image::./gui/foot1.png[Footballtoto overview, 100%, 100%, pdfwidth=100%, title= "footballtoto overview", align=center]
+
+
+
+[[footballtoto2_page]]
+image::./gui/foot2.png[Footballtoto overview, 100%, 100%, pdfwidth=100%, title= "footballtoto overview", align=center]
+
+
+
+[[footballtoto3_page]]
+image::./gui/foot3.png[Footballtoto overview, 100%, 100%, pdfwidth=100%, title= "footballtoto overview", align=center]
+
+
+
+[[footballtoto4_page]]
+image::./gui/foot4.png[Footballtoto overview, 100%, 100%, pdfwidth=100%, title= "footballtoto overview", align=center]
+
+
+
+[[numberloto]]
+image::./gui/zahlen1.png[Zahlenlotterie overview, 100%, 100%, pdfwidth=100%, title= "Zahlenlotterie overview", align=center]
+
+
+
+[[cart1]]
+image::./gui/warenkorb1.png[Cart overview, 100%, 100%, pdfwidth=100%, title= "Cart overview for an authenticated customer of Lottery", align=center]
+
+
+
+[[cart2]]
+image::./gui/warenkorb2.png[Cart overview, 100%, 100%, pdfwidth=100%, title= "Cart overview for an authenticated customer of Lottery", align=center]
+
+
+
+[[cart3]]
+image::./gui/warenkorb3.png[Cart overview, 100%, 100%, pdfwidth=100%, title= "Cart overview for an authenticated customer of Lottery", align=center]
+
+
 
 == 11. Datenmodell
 
 === 11.1 Überblick: Klassendiagramm
 
 [[AKD]]
-image::./diagramm/domain_model.png[Class diagram]
+image::./diagramm/domain_model2.png[Class diagram]
 
 UML-Analyseklassendiagramm
 
