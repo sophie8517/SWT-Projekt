@@ -23,6 +23,9 @@
 |0.11    | In Arbeit   | 28.10.2021          | Sophie Schulze a| 
 - Muss- und Kann Kriterien
 - Akzeptanztestfälle hinzugefügt
+|0.12    | In Arbeit   | 28.10.2021          | Mirek Král     a|
+- Glossar
+- Offene Punkte
 |===
 
 == 1. Inhaltsverzeichnis
@@ -956,4 +959,4 @@ Die Grenze zwischen registriertem Benutzer und dem Kunden liegt an dem Moment de
 == 14. Offene Punkte
 Offene Punkte werden entweder direkt in der Spezifikation notiert. Wenn das Pflichtenheft zum finalen Review vorgelegt wird, sollte es keine offenen Punkte mehr geben.
 
-Unterscheidung wie das System erkennt, ob eine Person für sich selbst spielt oder für eine Gewinngemeinschaft. Eine Möglichkeit wäre beim Anmelden das gleiche Benutzername zu verwenden, aber anderes Passwort.
+Unterscheidung wie das System erkennt, ob eine Person für sich selbst spielt oder für eine Gewinngemeinschaft. Eine Möglichkeit wäre beim Anmelden den gleichen Benutzername zu verwenden, aber anderes Passwort.
