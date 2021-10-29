@@ -212,6 +212,9 @@ image::./diagramm/UC01.png[Sequence diagram: Watch Football, 50%, 50%, pdfwidth=
 
 [cols="1h, 3"]
 [[UC02]]
+
+[cols="1h, 3"]
+[[FA02]]
 |===
 |ID                         |**<<UC02>>**
 |Name                       |Lottoschein ausfüllen          
