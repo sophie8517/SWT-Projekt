@@ -23,9 +23,6 @@
 |0.11    | In Arbeit   | 28.10.2021          | Sophie Schulze a| 
 - Muss- und Kann Kriterien
 - Akzeptanztestfälle hinzugefügt
-|0.12    | In Arbeit   | 28.10.2021          | Mirek Král     a|
-- Glossar
-- Offene Punkte
 |===
 
 == 1. Inhaltsverzeichnis
@@ -205,7 +202,7 @@ _Fußballspiele anschauen:_
   2. Nutzer sieht Liste mit kommenden Fußballspielen
  
 |Extensions                 |-
-|Funktionale Anforderungen  |**<<FA04>>**
+|Funktionale Anforderungen  |<<FA04>>
 |===
 
 [[sequence_diagram_watch_football]]
@@ -226,7 +223,7 @@ image::./diagramm/UC01.png[Sequence diagram: Watch Football, 50%, 50%, pdfwidth=
 • Katalog anschauen
 • 6 Zahlen aus 49 Zahlen wählen
 |Extensions                 |-
-|Funktionale Anforderungen  |**<<FA02>>**
+|Funktionale Anforderungen  |<<FA02>>, <<FA09>>
 |===
 
 
@@ -249,7 +246,7 @@ _Wetten:_
   2. Kunden entscheiden sich, ob sie die Spielstand hochheben
   3. Multipliziert mit der Gewinnwahrscheinlichkeit ergibt sich der erwartete Gewinnbetrag
 |Extensions                 |-
-|Funktionale Anforderungen  |**<<FA03>>**,**<<FA04>>**
+|Funktionale Anforderungen  |<<FA03>>,<<FA04>>, <<FA09>>
 |===
 
 
@@ -270,7 +267,7 @@ _Wetten:_
 ** Sonst: Eine Fehlermeldung wird angezeigt.
 
 |Extensions                 |-
-|Funktionale Anforderungen  |**<<FA09>>**
+|Funktionale Anforderungen  |<<FA09>>, <<FA10>>
 |===
 
 [[sequence_diagram_change_password]]
@@ -294,7 +291,7 @@ _Registration:_
   2. Eingabe eines Passwortes (Mit Hinsicht auf die Kriterien)
  
 |Extensions                 |-
-|Funktionale Anforderungen  |**<<FA01>>**
+|Funktionale Anforderungen  |<<FA01>>
 |===
 
 [[sequence_diagram_registration]]
@@ -328,7 +325,7 @@ _Ausloggen:_
   1.  Benutzer klickt auf “log out”
   2.  Benutzer ist nicht authentifiziert und die Startseite wird angezeigt 
 |Extensions                 |-
-|Funktionale Anforderungen  |-
+|Funktionale Anforderungen  |<<FA09>>
 |===
 
 
@@ -349,7 +346,7 @@ _Geld　überweisen:_
   3. System lädtet Guthaben auf. 
  
 |Extensions                 |-
-|Funktionale Anforderungen a|**<<FA08>>**
+|Funktionale Anforderungen a|<<FA08>>,<<FA09>>
 |===
 
 [[sequence_diagram_transfer]]
@@ -400,7 +397,7 @@ _Gewinngemeinschaft erstellen:_
   5. System schickt Bestätigung für Erstellung der Gruppe.
  
 |Extensions                 |-
-|Funktionale Anforderungen  |**<<FA10>>**
+|Funktionale Anforderungen  |<<FA09>>,<<FA11>>
 |===
 
 [[sequence_diagram_make_group]]
@@ -459,7 +456,7 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
 * Die Liste aller Wetten wird angezeigt.
 
 |Extensions                 |-
-|Funktionale Anforderungen  |**<<FA11>>**
+|Funktionale Anforderungen  |<<FA12>>
 |===
 
 
@@ -479,7 +476,7 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
   2. registrierter Nutzer sieht Items im Warenkorb
 
 |Extensions                 |-
-|Funktionale Anforderungen  |**<<FA05>>**
+|Funktionale Anforderungen  |<<FA05>>,<<FA09>>
 |===
 
 [cols="1h, 3"]
@@ -499,7 +496,7 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
   2. Item ist zu Warenkorb hinzugefügt
 
 |Extensions                 |-
-|Funktionale Anforderungen  |**<<FA06>>**
+|Funktionale Anforderungen  |<<FA06>>,<<FA09>>
 |===
 
 
@@ -523,7 +520,7 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
   2. Warenkorb wird geleert
   3. Kaufbetrag wird vom Guthaben des Nutzers abgezogen
 |Extensions                 |-
-|Funktionale Anforderungen  |**<<FA07>>**
+|Funktionale Anforderungen  |<<FA07>>,<<FA09>>
 |===
 
 
@@ -544,7 +541,7 @@ _Muss-Kriterien_
 |Name
 |Beschreibung
 
-|**<<FA01>>**
+|[[FA01]]<<FA01>>
 |Registrierung
 |Ein Nutzer muss die Möglchkeit haben sich zu registrieren, indem er auf den Menüpunkt "Registrieren" klickt.
 Von dem Nutzer wird eine Eingabe erwartet:
@@ -552,36 +549,44 @@ Von dem Nutzer wird eine Eingabe erwartet:
   - Passwort
 Das System muss überprüfen, ob der Benutzername bereits vergeben ist, wenn das der Fall ist muss ein anderer Benutzername eingegeben werden.
 
-|**<<FA02>>**
+|[[FA02]]<<FA02>>
 |Lottoschein ausfüllen
 |Ein registrierter Nutzer kann einen Lottoschein ausfüllen, indem er aus einer Liste von 49 Zahlen, 6 Zahlen ankreuzt.
 
-|**<<FA03>>**
+|[[FA03]]<<FA03>>
 |Fußballwette abgeben
 |Ein registrierter Nutzer wettet auf ein Fußballspiel, indem er auf Sieg, Niederlage oder Unentschieden tippt.
 
-|**<<FA04>>**
+|[[FA04]]<<FA04>>
 |Fußballkatalog ansehen
 |Allen Besuchern wird ermöglicht eine Liste mit anstehenden Fußballspielen zusehen, mit folgenden Informationen:
  - Spieltag
  - Heimmannschaft
  - Gastmannschaft
 
-|**<<FA05>>**
+|[[FA05]]<<FA05>>
 |Warenkorb ansehen
 |Jedem registrierten Nutzer wird im Menü "Warenkorb" angezeigt, in den er durch Anklicken dessen Inhalte ansehen kann. 
 
-|**<<FA06>>**
+|[[FA06]]<<FA06>>
 |Item hinzufügen
 |Wenn ein registrierter Benutzer einen Tippschein bzw. eine Fußballwette abgeben möchte, wird ihm die Option "zu Warenkorb hinzufügen" angezeigt, durch Anklicken wird dann das Item in den Warenkorb gelegt.
 
-|**<<FA07>>**
+|[[FA07]]<<FA07>>
 |Item kaufen
 |Im Warenkorb ist unter den enthaltenen Items ein Button "Kaufen", welcher den Kauf der Waren ermöglicht.
 
-|**<<FA08>>**
+|[[FA08]]<<FA08>>
 |Geld überweisen
 |Unter dem Menüpunkt "Konto" kann ein angemeldeter Benutzer seine Kontodetails einsehen. Dort gibt es ein Eingabefeld für den Überweisungsbetrag und daneben ein Button mit "überweisen" (o.ä.). Durch Klicken des Buttons wird vom System der gewünschte Betrag auf das Kontoguthaben gutgeschrieben.
+
+|[[FA09]]<<FA09>>
+|Authentifizierung
+|Das System muss in öffentlich zugängliche Teile und in Teile, die für den Zugriff eine Authentifizierung erfordern, getrennt werden können. Wenn ein Benutzer im System vorhanden ist (registrierter Benutzer), kann er sich durch Angabe der folgenden Informationen authentifizieren:
+
+Nutzername
+
+Passwort
 |===
 
 === 8.2 Kann-Kriterien
@@ -593,19 +598,19 @@ Anforderungen die das Programm leisten können soll, aber für den korrekten Bet
 |Name
 |Beschreibung
 
-|**<<FA09>>**
+|[[FA10]]<<FA10>>
 |Passwort ändern
 |Unter dem Menüpukt "Konto" kann ein angemeldeter Benutzer die Option "Passwort ändern" sehen, welches ihm ermöglicht sein Passwort zu ändern.
 
-|**<<FA10>>**
+|[[FA11]]<<FA11>>
 |Gewinngemeinschaft erstellen
 |Auf der Kontoseite eines angemeldeten Nutzers gibt es den Button "Gewinngemeinschaft erstellen". Die Anfrage wird zum Lotteriesystem weitergeleitet, welches für die Gruppe ein Passwort generiert und dem Ersteller der Gruppe mitteilt.
 
-|**<<FA11>>**
+|[[FA12]]<<FA12>>
 |abgegebene Wetten anschauen
 |Dem Administrator wird der Menüpunkt "Statistik" angezeigt, dort kann er einsehen welche Wetten von welchem Kunden abgegeben wurden.
 
-|**<<FA12>>**
+|[[FA13]]<<FA13>>
 |Konto löschen
 |Unter "Mein Profil" kann ein angemeldeter Nutzer die Option sein Konto zu löschen, d.h. die Benutzerdaten sind beim Anmelden nicht mehr gültig.
 |===
@@ -952,11 +957,5 @@ Sämtliche Begriffe, die innerhalb des Projektes verwendet werden und deren geme
 Insbesondere Begriffe der zu implementierenden Domäne wurden bereits beschrieben, jedoch gibt es meist mehr Begriffe, die einer Beschreibung bedürfen. +
 Beispiel: Was bedeutet "Kunde"? Ein Nutzer des Systems? Der Kunde des Projektes (Auftraggeber)?
 
-Warenkorb ist ein Übersicht aller Tippscheine und Wetten, für die der Kunde bezahlt hat. Im Warenkorb befinden sich Wetten bzw. Tippscheine, die noch nicht ausgewertet wurden, diese sind als Bestellungen angesehen. Obwohl der Kunde für die bereits bezahlt hat, kann er sie noch stornieren und der Betrag wird ihm in voller Höhe zurückbezahlt. Als nächstes gibt es da wiederrum Wetten bzw. Tippscheine, die bereits ausgewertet wurden, diese sind als Rechnung angesehen. Kunde kann sich sein Verlust oder Gewinn anschauen.
-
-Die Grenze zwischen registriertem Benutzer und dem Kunden liegt an dem Moment der eigentlichen Bezahlung für eine Wette / ein Tippschein.
-
 == 14. Offene Punkte
 Offene Punkte werden entweder direkt in der Spezifikation notiert. Wenn das Pflichtenheft zum finalen Review vorgelegt wird, sollte es keine offenen Punkte mehr geben.
-
-Unterscheidung wie das System erkennt, ob eine Person für sich selbst spielt oder für eine Gewinngemeinschaft. Eine Möglichkeit wäre beim Anmelden den gleichen Benutzername zu verwenden, aber anderes Passwort.
