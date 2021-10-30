@@ -15,12 +15,14 @@
 |0.7     | In Arbeit   | 26.10.2021          | Sophie Schulze a| Zusammenfassung, Beschreibung UC02, Korrektur Rechtschreibung, Beginn Klassen und Enumerationen
 |0.8     | In Arbeit   | 27.10.2021          | Sophie Schulze | Use Cases 13,14,15
 |0.9     | In Arbeit   | 27.10.2021          | Yu-Ju Chen | Ergänzung: Use Cases-Beschreibung
-|0.10    | In Arbeit   | 27.10.2021          | Mirek Král, Song Bai |Bilder hochladen und UC Ergänzung
-|0.11    | In Arbeit   | 28.10.2021          | Sophie Schulze a| Muss- und Kann Kriterien, Akzeptanztestfälle hinzugefügt
-|0.12     | In Arbeit   | 29.10.2021          | Yu-Ju Chen | Use Cases-Beschreibung: Functionale Anforderung ginzugefügt und link geaddt
-|0.13    | In Arbeit   | 29.10.2021          | Mirek Král, Song Bai |Bilder hochladen, Klassendiagramm aktualisieren und GUI Ergänzung
-|0.14    |vorerst fertig |29.10.2021         |Klassen/Eumerationen ergänzt, Anpassung von Text an GUI 
+|1.0    | In Arbeit   | 27.10.2021          | Mirek Král, Song Bai |Bilder hochladen und UC Ergänzung
+|1.1    | In Arbeit   | 28.10.2021          | Sophie Schulze a| Muss- und Kann Kriterien, Akzeptanztestfälle hinzugefügt
+|1.2     | In Arbeit   | 29.10.2021          | Yu-Ju Chen | Use Cases-Beschreibung: Functionale Anforderung ginzugefügt und link geaddt
+|1.3    | In Arbeit   | 29.10.2021          | Mirek Král, Song Bai |Bilder hochladen, Klassendiagramm aktualisieren und GUI Ergänzung
+|1.4   |bereit für 1. Meilenstein |29.10.2021|Sophie Schulze         |Klassen/Enumerationen ergänzt, Anpassung von Text an GUI 
 |===
+
+
 
 == 1. Inhaltsverzeichnis
 Dieses Dokument benötigt ein Inhaltsverzeichnis. Es existieren mehrere Einbindungsmöglichkeiten.
@@ -129,7 +131,7 @@ Prorität:1 (niedrig) zu 5 (hoch)
 • leicht erweiterbarer Code
 |===
 
-Das Interessengruppen sind ausschließlich Erwachsene, d.h. Personen ab 18 Jahre alt.
+Die Interessengruppen sind ausschließlich Erwachsene, d.h. Personen ab 18 Jahre alt.
 
 == 6. Systemgrenze und Top-Level-Architektur
 
