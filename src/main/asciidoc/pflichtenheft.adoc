@@ -37,15 +37,18 @@ _Inhalt_
   
   6.1. Kontextdiagramm
   6.2. Top-Level-Architektur
-  6.3. Anwendungsfälle
   
   7. Use-Case
   
   7.1  Akteure
-  7.2  Überblick Anwendungsfalldiagramm
-  7.3  Anwendungsfallbeschreibungen
+  7.2  Überblick Use-Case-Diagramm
+  7.3  Use-Case-Beschreibungen
   
   8. Funktionale Anforderungen
+  
+  8.1  Muss-Kriterien
+  8.2  Kann-Kriterien
+  
   9. Nicht-Funktionale Anforderungen
   
   9.1  Qualitätsziele
