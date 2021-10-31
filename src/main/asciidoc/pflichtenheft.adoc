@@ -751,7 +751,7 @@ Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Kl
 |registrierter Nutzer, der durch seine Anmeldedaten vom System als Administrator erkannt wird
 
 |Statistik
-|gitb Auskkunft über Einkommen und Verluste der Lotterie sowie über die abgegebenen Wetten der Nutzer
+|gitb Auskkunft über Einkommen und Verluste sowie über die abgegebenen Wetten der Nutzer
 
 |Katalog
 a|
