@@ -41,34 +41,28 @@ __Teilnehmer:__
 == Aktueller Stand
 Anmerkungen und nötige Änderungen für das Pflichtenheft:
 
-- Akteure in UC-Diagramm als Strichmännchen (UML-Notation)
+* Akteure in UC-Diagramm als Strichmännchen (UML-Notation)
 
-- fehlende Pfeile in UC-Diagramm
+* fehlende Pfeile in UC-Diagramm
 
-- Korrektur und Überarbeitung der Pfeile in Sequenzdiagrammen
+* Korrektur und Überarbeitung der Pfeile in Sequenzdiagrammen
 
-- fehlende Muss-Kriterien:
-        - Gewinngemeinschaft erstellen
+* fehlende Muss-Kriterien:
 
-        - Auswertung der Wetten
+** Gewinngemeinschaft erstellen
+** Auswertung der Wetten
+** Nutzerprofil ansehen
+** Login/Logout
+** Lottoschein Dauerauftrag
+** abgegebene Wetten ansehen
 
-        - Nutzerprofil ansehen
+* fehlende Kann-Kriterien:
+** Finanzübersicht für den Administrator
+** mehrsprachige Website
 
-        - Login/Logout
-
-        - Lottoschein Dauerauftrag
-
-        - abgegebene Wetten ansehen
-
-- fehlende Kann-Kriterien:
-        - Finanzübersicht für den Administrator
-
-        - mehrsprachige Website
-
-- zum Klassendiagramm:
-        - Korrektur der Beziehungen zwischen Item und Wette sowie Wette und reg. Benutzer
-
-        - Beziehung zwischen Warenkorb und Item zu Aggregation
+* zum Klassendiagramm:
+** Korrektur der Beziehungen zwischen Item und Wette sowie Wette und reg. Benutzer
+** Beziehung zwischen Warenkorb und Item zu Aggregation
 
 == Planung des nächsten Sprints
 *Issue referenziert die Issue ID von GitHub*
