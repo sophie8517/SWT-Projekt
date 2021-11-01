@@ -14,12 +14,13 @@
 |0.6     | In Arbeit   | 26.10.2021          | Yu-Ju Chen | Ergänzung: Use Cases-Beschreibung
 |0.7     | In Arbeit   | 26.10.2021          | Sophie Schulze a| Zusammenfassung, Beschreibung UC02, Korrektur Rechtschreibung, Beginn Klassen und Enumerationen
 |0.8     | In Arbeit   | 27.10.2021          | Sophie Schulze | Use Cases 13,14,15
-|0.9     | In Arbeit   | 27.10.2021          | Yu-Ju Chen | Ergänzung: Use Cases-Beschreibung
-|1.0    | In Arbeit   | 27.10.2021          | Mirek Král, Song Bai |Bilder hochladen und UC Ergänzung
-|1.1    | In Arbeit   | 28.10.2021          | Sophie Schulze a| Muss- und Kann Kriterien, Akzeptanztestfälle hinzugefügt
-|1.2     | In Arbeit   | 29.10.2021          | Yu-Ju Chen | Use Cases-Beschreibung: Functionale Anforderung ginzugefügt und link geaddt
-|1.3    | In Arbeit   | 29.10.2021          | Mirek Král, Song Bai |Bilder hochladen, Klassendiagramm aktualisieren und GUI Ergänzung
-|1.4   |bereit für 1. Meilenstein |29.10.2021|Sophie Schulze         |Klassen/Enumerationen ergänzt, Anpassung von Text an GUI 
+|0.9     | In Arbeit   | 27.10.2021          | Yutian Lei   | Use Cases 10, 11
+|1.0     | In Arbeit   | 27.10.2021          | Yu-Ju Chen | Ergänzung: Use Cases-Beschreibung
+|1.1    | In Arbeit   | 27.10.2021          | Mirek Král, Song Bai |Bilder hochladen und UC Ergänzung
+|1.2    | In Arbeit   | 28.10.2021          | Sophie Schulze a| Muss- und Kann Kriterien, Akzeptanztestfälle hinzugefügt
+|1.3     | In Arbeit   | 29.10.2021          | Yu-Ju Chen | Use Cases-Beschreibung: Functionale Anforderung ginzugefügt und link geaddt
+|1.4    | In Arbeit   | 29.10.2021          | Mirek Král, Song Bai |Bilder hochladen, Klassendiagramm aktualisieren und GUI Ergänzung
+|1.5   |bereit für 1. Meilenstein |29.10.2021|Sophie Schulze         |Klassen/Enumerationen ergänzt, Anpassung von Text an GUI
 |===
 
 
