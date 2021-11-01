@@ -14,13 +14,13 @@
 |0.6     | In Arbeit   | 26.10.2021          | Yu-Ju Chen | Ergänzung: Use Cases-Beschreibung
 |0.7     | In Arbeit   | 26.10.2021          | Sophie Schulze a| Zusammenfassung, Beschreibung UC02, Korrektur Rechtschreibung, Beginn Klassen und Enumerationen
 |0.8     | In Arbeit   | 27.10.2021          | Sophie Schulze | Use Cases 13,14,15
-|0.9     | In Arbeit   | 27.10.2021          | Yutian Lei   | Use Cases 10, 11
-|1.0     | In Arbeit   | 27.10.2021          | Yu-Ju Chen | Ergänzung: Use Cases-Beschreibung
-|1.1    | In Arbeit   | 27.10.2021          | Mirek Král, Song Bai |Bilder hochladen und UC Ergänzung
-|1.2    | In Arbeit   | 28.10.2021          | Sophie Schulze a| Muss- und Kann Kriterien, Akzeptanztestfälle hinzugefügt
-|1.3     | In Arbeit   | 29.10.2021          | Yu-Ju Chen | Use Cases-Beschreibung: Functionale Anforderung ginzugefügt und link geaddt
-|1.4    | In Arbeit   | 29.10.2021          | Mirek Král, Song Bai |Bilder hochladen, Klassendiagramm aktualisieren und GUI Ergänzung
-|1.5   |bereit für 1. Meilenstein |29.10.2021|Sophie Schulze         |Klassen/Enumerationen ergänzt, Anpassung von Text an GUI
+|0.9     | In Arbeit   | 27.10.2021          | Yu-Ju Chen | Ergänzung: Use Cases-Beschreibung
+|1.0    | In Arbeit   | 27.10.2021          | Mirek Král, Song Bai |Bilder hochladen und UC Ergänzung
+|1.1    | In Arbeit   | 28.10.2021          | Sophie Schulze a| Muss- und Kann Kriterien, Akzeptanztestfälle hinzugefügt
+|1.2     | In Arbeit   | 29.10.2021          | Yu-Ju Chen | Use Cases-Beschreibung: Functionale Anforderung ginzugefügt und link geaddt
+|1.3    | In Arbeit   | 29.10.2021          | Mirek Král, Song Bai |Bilder hochladen, Klassendiagramm aktualisieren und GUI Ergänzung
+|1.4   |bereit für 1. Meilenstein |29.10.2021|Sophie Schulze         |Klassen/Enumerationen ergänzt, Anpassung von Text an GUI 
+|1.5   |bereit für 1. Meilenstein |01.11.2021|Yu-Ju Chen         |Ergänzung Kann-Kriterium
 |===
 
 
@@ -264,7 +264,7 @@ _Wetten:_
 ** Sonst: Eine Fehlermeldung wird angezeigt.
 
 |Extensions                 |-
-|Funktionale Anforderungen  |<<FA09>>, <<FA10>>
+|Funktionale Anforderungen  |<<FA09>>, <<FA16>>
 |===
 
 [[sequence_diagram_change_password]]
@@ -367,7 +367,7 @@ _Gewinn und Verlust auszahlen:_
   3. System zahlt ein Gewinn oder Verlust aus. 
  
 |Extensions                 |-
-|Funktionale Anforderungen a|-
+|Funktionale Anforderungen a|<<FA20>>
 |===
 
 [[sequence_diagram_win_or_lose]]
@@ -394,7 +394,7 @@ _Gewinngemeinschaft erstellen:_
   5. System schickt Bestätigung für Erstellung der Gruppe.
  
 |Extensions                 |-
-|Funktionale Anforderungen  |<<FA09>>,<<FA11>>
+|Funktionale Anforderungen  |<<FA09>>,<<FA17>>
 |===
 
 [[sequence_diagram_make_group]]
@@ -416,7 +416,7 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
 * Die Einkommen und Verluste aller registrirten Kunden werden angezeigt.
 
 |Extensions                 |-
-|Funktionale Anforderungen  |-
+|Funktionale Anforderungen  |<<FA20>>
 |===
 
 [cols="1h, 3"]
@@ -435,7 +435,7 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
 * Die Einkommen und Verluste aller registrirten Kunden werden angezeigt.
 
 |Extensions                 |-
-|Funktionale Anforderungen  |-
+|Funktionale Anforderungen  |<<FA20>>
 |===
 
 [cols="1h, 3"]
@@ -453,7 +453,7 @@ image::./diagramm/UC09.png[Sequence diagram: Make Group, 50%, 50%, pdfwidth=50%,
 * Die Liste aller Wetten wird angezeigt.
 
 |Extensions                 |-
-|Funktionale Anforderungen  |<<FA12>>
+|Funktionale Anforderungen  |<<FA18>>,<<FA20>>
 |===
 
 
@@ -591,21 +591,31 @@ Anforderungen die das Programm leisten können soll, aber für den korrekten Bet
 |Name
 |Beschreibung
 
-|[[FA10]]<<FA10>>
+|[[FA16]]<<FA16>>
 |Passwort ändern
 |Unter dem Menüpukt "Mein Profil" kann ein angemeldeter Benutzer die Option "Passwort ändern" sehen, welches ihm ermöglicht sein Passwort zu ändern.
 
-|[[FA11]]<<FA11>>
+|[[FA17]]<<FA17>>
 |Gewinngemeinschaft erstellen
 |Auf der Kontoseite eines angemeldeten Nutzers gibt es den Button "Gewinngemeinschaft erstellen". Die Anfrage wird zum Lotteriesystem weitergeleitet, welches für die Gruppe ein Passwort generiert und dem Ersteller der Gruppe mitteilt.
 
-|[[FA12]]<<FA12>>
+|[[FA18]]<<FA18>>
 |abgegebene Wetten anschauen
 |Dem Administrator wird der Menüpunkt "Statistik" angezeigt, dort kann er einsehen welche Wetten von welchem Kunden abgegeben wurden.
 
-|[[FA13]]<<FA13>>
+|[[FA19]]<<FA19>>
 |Konto löschen
 |Unter "Mein Profil" kann ein angemeldeter Nutzer die Option sein Konto zu löschen, d.h. die Benutzerdaten sind beim Anmelden nicht mehr gültig.
+
+|[[FA20]]<<FA20>>
+|Finanzübersicht für Administrator
+|Das System bietet dem Administrator die Möglichkeit, alle Finanzübersichten anzuzeigen.
+
+
+|[[FA21]]<<FA21>>
+|mehrsprachige Website
+|Das System bietet allen Besuchern die Möglichkeit, die Website in mehr Sprachen anzuzeigen.
+
 |===
 
 == 9. Nicht-Funktionale Anforderungen
