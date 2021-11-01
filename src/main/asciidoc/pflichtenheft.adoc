@@ -21,6 +21,7 @@
 |1.3    | In Arbeit   | 29.10.2021          | Mirek Král, Song Bai |Bilder hochladen, Klassendiagramm aktualisieren und GUI Ergänzung
 |1.4   |bereit für 1. Meilenstein |29.10.2021|Sophie Schulze         |Klassen/Enumerationen ergänzt, Anpassung von Text an GUI 
 |1.5   |bereit für 1. Meilenstein |01.11.2021|Yu-Ju Chen         |Ergänzung Kann-Kriterium
+|1.6   |bereit für 1. Meilenstein |01.11.2021|Sophie Schulze         |Ergänzung Muss-Kriterien
 |===
 
 
@@ -580,6 +581,25 @@ Das System muss überprüfen, ob der Benutzername bereits vergeben ist, wenn das
 Nutzername
 
 Passwort
+
+|[[FA10]]<<FA10>>
+|Gewinngemeinschaft erstellen
+|Ein registrierter Nutzer kann in "Mein Profil" eine Gewinngemeinschaft erstellen. Vom System wird ein Gruppenpasswort erstellt, mit diesem und dem eigenen Benutzernamen kann man sich dann als Gruppenmitglied einloggen.
+
+|[[FA11]]<<FA11>>
+|Auswertung der Wetten
+|Nachdem das Ergebnis einer Wette auf ein Item bekannt ist, wird das Ergebnis mit dem Tipp des Nutzers verglichen und ausgewertet. Entsprechend der Auswertung wird entweder dem Guthaben des Nutzers ein Gewinnbetrag gutgeschrieben (Nutzer hat richtig getippt) oder das Guthaben bleibt unverändert. Die Auswertung und Auszahlung erfolgt durch das Lotteriesystem.
+
+|[[FA12]]<<FA12>>
+|Nutzerprofil ansehen
+|Unter "Mein Profil" kann ein registrierter und angemeldeter Nutzer sein Profil aufrufen. 
+Dort ist folgendes zu finden:
+
+• persönliche Daten: Vorname, Nachname, Telefonnummer, E-Mail
+
+• Warenkorb anzeigen, Geld überweisen, Guthaben anzeigen 
+
+• Kontoaktionen: Passwort ändern, Profil löschen
 |===
 
 === 8.2 Kann-Kriterien
@@ -1038,6 +1058,13 @@ Die Grenze zwischen registriertem Benutzer und dem Kunden liegt an dem Moment de
 
 |Kunde
 |Die Grenze zwischen registriertem Benutzer und dem Kunden liegt an dem Moment der eigentlichen Bezahlung für eine Wette / ein Tippschein. Das bedeutet der registrierte Nutzer wird zum Kunden, wenn er auf "Tippschein abgeben" bzw. "Jetzt wetten" klickt.
+
+|Profil
+|Das Profil eines Nutzers ist unter "Mein Profil" zu finden. Dort kann man persönliche Daten einsehen und folgende Aktionen ausführen:
+
+• Warenkorb anzeigen, Geld überweisen, Guthaben anzeigen 
+
+• Kontoaktionen: Passwort ändern, Profil löschen
 |===
 
 == 14. Offene Punkte
