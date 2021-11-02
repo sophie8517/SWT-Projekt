@@ -914,7 +914,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 [cols="1h, 4"]
 |===
 |ID             |<<AT08>>
-|Use Case       |<<UC06>>
+|Use Case       |<<UC05>>
 |Vorbedingung  a|Der Nutzer ist nicht registriert.
 |Aktion        a|Es wird ein noch nicht vergebener Benutzername  und ein form-korrektes Passwort eingegeben.
 |Ergebnis       |Der Nutzer wird im System registriert und kann sich jetzt anmelden.
