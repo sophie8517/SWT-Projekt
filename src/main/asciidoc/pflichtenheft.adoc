@@ -950,7 +950,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 [cols="1h, 4"]
 |===
 |ID             |<<AT12>>
-|Use Case       |<<UC05>>
+|Use Case       |<<UC06>>
 |Vorbedingung  a|Der Nutzer ist angemeldet.
 |Aktion        a|Der Nutzer loggt sich aus.
 |Ergebnis       |Der Nutzer verliert Zugriff auf die Funktionalitäten, die nur angemeldeten Nutzern zur Verfügung stehen,z.B. zu wetten.
