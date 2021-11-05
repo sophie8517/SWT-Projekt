@@ -1,13 +1,14 @@
 [options="header"]
 [cols=""]
 |===
-|Version | Bearbeitungsdatum   | Autor              | Änderung 
-|0.1	   | In Arbeit           | Mirek Král        a|
+|Version | Bearbeitungsdatum   | Autor        |Datum        | Änderung 
+|0.1	   | In Arbeit           | Mirek Král   |5.11.2021   a|
 • Qualitätsziele
 • Hardware-Vorgaben
 • Software-Vorgaben
 • erste Frameworks
 • Gliederung des Dokumments
+|..      |...                   |...          |...          |...
 |===
 
 = Entwicklerdokumentation
