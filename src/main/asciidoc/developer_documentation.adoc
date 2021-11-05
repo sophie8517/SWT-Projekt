@@ -1,49 +1,98 @@
 [options="header"]
-[cols="1, 3, 3"]
+[cols=""]
 |===
-|Version | Bearbeitungsdatum   | Autor 
-|...	| ... | ...
+|Version | Bearbeitungsdatum   | Autor              | Änderung 
+|0.1	   | In Arbeit           | Mirek Král        a|
+• Qualitätsziele
+• Hardware-Vorgaben
+• Software-Vorgaben
+• erste Frameworks
+• Gliederung des Dokumments
 |===
 
 = Entwicklerdokumentation
 
-== Einführung und Ziele
-* Aufgabenstellung
-* Qualitätsziele
+== 1. Einführung und Ziele
+=== 1.1 Aufgabenstellung
+=== 1.2 Qualitätsziele
 
-== Randbedingungen
-* Hardware-Vorgaben
-* Software-Vorgaben
-* Vorgaben zum Betrieb des Software
+==== Wartbarkeit
+Dieses Merkmal stellt den Maß an Effektivität und Effizienz dar, mit dem ein Produkt oder System modifiziert werden kann, um es zu verbessern, zu korrigieren oder an veränderte Umgebungsbedingungen und Anforderungen anzupassen.
 
-== Kontextabgrenzung
-* Kontextdiagramm
+==== Wartbarkeit
+Maß, in dem ein Produkt oder System von bestimmten Benutzern verwendet werden kann, um bestimmte Ziele mit Effektivität, Effizienz und Zufriedenheit in einem bestimmten Nutzungskontext zu erreichen.
 
-== Lösungsstrategie
-=== Erfüllung der Qualitätsziele
+==== Sicherheit
+Maß, in dem ein Produkt oder System Informationen und Daten schützt, damit Personen oder andere Produkte oder Systeme den Grad des Datenzugriffs haben, der ihrer Art und Berechtigungsstufe entspricht.
+
+
+1 = Nicht wichtig
+2 = Sehr wichtig
+[options="header", cols="3h, ^1, ^1, ^1, ^1, ^1"]
+|===
+|Qualitätsanforderung | 1 | 2 | 3 | 4 | 5
+|Wartbarkeit          |   |   |   | x | 
+|Anwendbarkeit        |   |   | x |   | 
+|Sicherheit           |   |   | x |   | 
+|===
+
+== 2. Randbedingungen
+=== 2.1 Hardware-Vorgaben
+• Verbindung zum Internet (Router)
+• Elektronisches Gerät, der sich mit dem Internetnetz verbinden kann (PC, Handy, Tablet / iPad, usw.)
+• Zsätzlich: Tastatur, Maus
+
+=== 2.2 Software-Vorgaben
+Es wird verlangt Java der Version 11 und neuer.
+
+Das System wird von folgenden Web-Browsers unterstütz
+
+• Mozila Firefox v93.0+
+• Google Chrome 94.0+
+• Microsoft Edge 95.0+
+• Safari v15.0+
+
+=== 2.3 Vorgaben zum Betrieb des Software
+
+== 3. Kontextabgrenzung
+=== 3.1 Kontextdiagramm
+
+== 4. Lösungsstrategie
+=== 4.1 Erfüllung der Qualitätsziele
 [options="header"]
 |=== 
 |Qualitätsziel |Lösungsansatz
 |... |...
 |===
 
-=== Softwarearchitektur
+=== 4.2 Softwarearchitektur
 * Beschreibung der Architektur anhand der Top-Level-Architektur oder eines Client-Server-Diagramms
 
-=== Entwurfsentscheidungen
-* Verwendete Muster
-* Persistenz
-* Benutzeroberfläche
-* Verwendung externer Frameworks
+=== 4.3 Entwurfsentscheidungen
+==== 4.3.1. Verwendete Muster
+==== 4.3.2. Persistenz
+==== 4.3.3. Benutzeroberfläche
+==== 4.3.4. Verwendung externer Frameworks
 
 [options="header", cols="1,2"]
 |===
 |Externes Package |Verwendet von (Klasse der eigenen Anwendung)
-|... |... 
+|salespointframework.catalog              a|
+• catalog.Foot
+• catalog.Num
+|salespointframework.boot                  |lottery.Lottery
+|salespointframework.boot                 a|
+• customer.RegisteredUser
+• customer.RegisteredUserDataInitializer
+• customer.RegisteredUserManagement
+• order.OrderController
+|springframework.security                  |lottery.WebSecurityConfiguration
+|springframework.web                       |lottery.web
+
 |===
 
-== Bausteinsicht
-* Entwurfsklassendiagramme der einzelnen Packages
+== 5. Bausteinsicht
+=== 5.1 Entwurfsklassendiagramme der einzelnen Packages
 
 [options="header"]
 |=== 
@@ -51,7 +100,7 @@
 |...|...
 |===
 
-=== Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
+=== 5.6 Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
 _Die folgende Tabelle zeigt die Rückverfolgbarkeit zwischen Entwurfs- und Analysemodell. Falls eine Klasse aus einem externen Framework im Entwurfsmodell eine Klasse des Analysemodells ersetzt,
 wird die Art der Verwendung dieser externen Klasse in der Spalte *Art der Verwendung* mithilfe der folgenden Begriffe definiert:_
 
@@ -65,9 +114,9 @@ wird die Art der Verwendung dieser externen Klasse in der Spalte *Art der Verwen
 |...|...|...
 |===
 
-== Laufzeitsicht
+== 6. Laufzeitsicht
 * Darstellung der Komponenteninteraktion anhand eines Sequenzdiagramms, welches die relevantesten Interaktionen darstellt.
 
-== Technische Schulden
+== 7. Technische Schulden
 * Auflistung der nicht erreichten Quality Gates und der zugehörigen SonarQube Issues zum Zeitpunkt der Abgabe
 
