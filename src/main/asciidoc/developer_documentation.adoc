@@ -12,8 +12,10 @@
 • Kontext
 • Top_Level
 • External Frameworks
+• Diagramme
 |0.3	   | In Arbeit           | Yu-Ju Chen             |06.11.2021   a|
-• Aufgabestellung
+• 1.1 Aufgabestellung
+• 5.5 Block-view_Warenkorb
 |===
 
 = Entwicklerdokumentation
@@ -92,6 +94,9 @@ Das System wird von folgenden Web-Browsers unterstütz
 == 3. Kontextabgrenzung
 === 3.1 Kontextdiagramm
 
+[[context_diagram]]
+image:diagramm/kontext_devel.png[context diagram]
+
 == 4. Lösungsstrategie
 === 4.1 Erfüllung der Qualitätsziele
 [options="header"]
@@ -103,10 +108,20 @@ Das System wird von folgenden Web-Browsers unterstütz
 === 4.2 Softwarearchitektur
 * Beschreibung der Architektur anhand der Top-Level-Architektur oder eines Client-Server-Diagramms
 
+[[context_diagram]]
+image:diagramm/top_level_devel.png[context diagram]
+
+[[context_diagram]]
+image:diagramm/soft_arch.png[context diagram]
+
 === 4.3 Entwurfsentscheidungen
 ==== 4.3.1. Verwendete Muster
 ==== 4.3.2. Persistenz
 ==== 4.3.3. Benutzeroberfläche
+
+[[context_diagram]]
+image:diagramm/ui.png[context diagram]
+
 ==== 4.3.4. Verwendung externer Frameworks
 
 [options="header", cols="1,2"]
@@ -144,6 +159,10 @@ Das System wird von folgenden Web-Browsers unterstütz
 == 5. Bausteinsicht / Entwurfsklassendiagramme der einzelnen Packages
 
 === 5.1 Lotterie
+
+[[context_diagram]]
+image:diagramm/lottery.png[context diagram]
+
 [options="header"]
 |=== 
 |Klasse/Enumeration |Description
@@ -158,10 +177,21 @@ Das System wird von folgenden Web-Browsers unterstütz
 |===
 
 === 5.3. Kunde
+[[customer]]
+image::./models/design/block_customer.png[Location, 100%, 100%, pdfwidth=100%, title= "customer package", align=center]
+
+
 [options="header"]
 |=== 
 |Klasse/Enumeration |Description
-|...|...
+|Customer|Eine Klasse, erbt Salespoint-Useraccount mit Guthaben. Beschreibt einen Kunden.
+|CustomerController|Ein Spring MVC Controller, der kümmert sich um Registierung, Gruppeerstellung, Kontoaufladen, Kundeansicht usw.
+|CustomerDataInitializer|Eine Implementierung für DataInitializer, sodass die Applikation dummi Kunden haben können wenn die startet.
+|CustomerManagement|Verwaltet Kunden und Gruppen
+|CustomerRepository|Ein Interface, verwaltet Kunden-Instanz und speichert Kunden.
+|Group|Eine Klasse, erbt Salespoint-Useraccount und beschreibt die Gruppe.
+|GroupRepository|Ein Interface, verwaltet Gruppe-Instanz und speichert Gruppen.
+|RegistrationFrom|Ein Interface, kümmert sich um Validierung der Eingaben von Kunden über Registierung.
 |===
 
 === 5.4 Statistik 
@@ -171,11 +201,15 @@ Das System wird von folgenden Web-Browsers unterstütz
 |...|...
 |===
 
-=== 5.Warenkorb
+=== 5.5 Warenkorb
+
+[[Warenkorb]]
+image:models/design/Warenkorb.png[Location, 100%, 100%, pdfwidth=100%, title= "Warenkorb", align=center] 
+
 [options="header"]
 |=== 
-|Klasse/Enumeration |Description
-|...|...
+|Class/Enumeration |Description
+|BestellungController |Ein Spring MVC Controller zur Handhabung des Warenkorbs
 |===
 
 === 5.6 Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
