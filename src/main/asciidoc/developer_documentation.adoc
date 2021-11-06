@@ -202,12 +202,12 @@ image::./models/design/block_customer.png[Location, 100%, 100%, pdfwidth=100%, t
 |===
 
 === 5.5 Warenkorb
-[options="header"]
-|=== 
 
 [[Warenkorb]]
-image:models/design/Warenkorb.svg[Location, 100%, 100%, pdfwidth=100%, title= "Warenkorb", align=center] 
+image:models/design/Warenkorb.png[Location, 100%, 100%, pdfwidth=100%, title= "Warenkorb", align=center] 
 
+[options="header"]
+|=== 
 |Class/Enumeration |Description
 |BestellungController |Ein Spring MVC Controller zur Handhabung des Warenkorbs
 |===
