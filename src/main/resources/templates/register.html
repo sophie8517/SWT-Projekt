@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device - width, initial - scale = 1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>🍀 Mach Dein Glück!! 🍀</title>
+    <link rel="stylesheet" href="style_register.css">
+</head>
+
+<body class="backgrounds">
+    <div class="container">
+        <nav>
+            <a href="https://www.bk.com/">HOME</a>
+            <a href="https://www.bk.com/contact-us">KONTAKT</a>
+            <a href="">KATALOG</a>
+            <a href="">ANMELDEN</a>
+            <a href="">REGISTRIEREN</a>
+        </nav>
+
+        <main>
+            <section layout:fragment="content">
+                    <h3 class="ui dividing header" th:text="#{register.userdata}">Registrieren</h3>
+                    <h4>Kriterien</h4>
+                    
+                    <div class="field">
+                        <ol>
+                            <li>Name darf nicht leer sein.</li>
+                            <li>Passwort muss mindestens einen Großbuchstaben enthalten.</li>
+                            <li>Passwort muss mindestens eine Zahl enthalten.</li>
+                            <li>Password muss mindestens 8 Zeichen enthalten.</li>
+                        </ol>
+                    </div>
+
+                    <br>
+    
+                    <div class="style">
+                        <label for="name">Name:</label>
+                        <input id="name" name="name" th:field="*{name}" th:errorclass="fieldError" type="text" required="required"/><br/>
+                        <div class="ui negative message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                    </div>
+
+                    <br>
+    
+                    <div class="style">
+                        <label th:text="#{register.password}" for="password">Passwort:</label>
+                        <input id="password" name="password" th:field="*{password}" th:errorclass="fieldError" type="password"
+                               required="required"/><br/>
+                        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+                    </div>
+
+                    <div class="style">
+                        <label th:text="#{register.password}" for="password">Passwort-Check:</label>
+                        <input id="password" name="password" th:field="*{password}" th:errorclass="fieldError" type="password"
+                               required="required"/><br/>
+                        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+                    </div>
+
+                    <br>
+
+                    <button type="submit" class="ui button" th:text="#{register.submit}">Registrieren</button>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <p>Mach Dein Glück!! ©Copyright 2021©</p>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

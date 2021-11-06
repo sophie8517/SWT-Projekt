@@ -24,6 +24,7 @@
 |1.6   |bereit für 1. Meilenstein |01.11.2021|Sophie Schulze         |Ergänzung Muss-Kriterien
 |1.7     | In Arbeit   | 27.10.2021          | Yutian Lei     | Use Cases 10, 11
 |1.8     |bereit für 1.Meilenstein  |01.11.2021  |Yutian Lei  |Ergänzung Muss-Kriterien
+|1.9   | bereit für 1. Meilenstein |1.11.2021  | Mirek Král, Song Bai  | Diagramm Überarbeitung
 |===
 
 
@@ -769,7 +770,7 @@ image::./gui/warenkorb3.png[Cart overview, 100%, 100%, pdfwidth=100%, title= "Ca
 === 11.1 Überblick: Klassendiagramm
 
 [[AKD]]
-image::./diagramm/domain_model2.png[Class diagram]
+image::./diagramm/domain_model.png[Class diagram]
 
 UML-Analyseklassendiagramm
 
@@ -913,7 +914,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 [cols="1h, 4"]
 |===
 |ID             |<<AT08>>
-|Use Case       |<<UC06>>
+|Use Case       |<<UC05>>
 |Vorbedingung  a|Der Nutzer ist nicht registriert.
 |Aktion        a|Es wird ein noch nicht vergebener Benutzername  und ein form-korrektes Passwort eingegeben.
 |Ergebnis       |Der Nutzer wird im System registriert und kann sich jetzt anmelden.
@@ -949,7 +950,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 [cols="1h, 4"]
 |===
 |ID             |<<AT12>>
-|Use Case       |<<UC05>>
+|Use Case       |<<UC06>>
 |Vorbedingung  a|Der Nutzer ist angemeldet.
 |Aktion        a|Der Nutzer loggt sich aus.
 |Ergebnis       |Der Nutzer verliert Zugriff auf die Funktionalitäten, die nur angemeldeten Nutzern zur Verfügung stehen,z.B. zu wetten.

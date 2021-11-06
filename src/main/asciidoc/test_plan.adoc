@@ -41,5 +41,121 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 [options="headers"]
 |===
 |ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
-|…  |…              |…              |…       |…
+|AT07  
+|UC05             
+|Nutzer ist nicht registriert, Benutzername "maxmuster12" ist schon vorhanden          
+a|
+- Benutzername: maxmuster12
+- Passwort: Woerter44
+| Benutzername bereits vergeben, anderen Benutzernamen eingeben
+
+|not added yet (Bn vergeben, Pw-Form falsch)
+|UC05
+|Nutzer ist nicht registriert, Benutzername "maxmuster12" ist schon vorhanden
+a|
+- Benutzername: maxmuster12
+- Passwort: 1Wort
+|Benutzername bereits vergeben, Passwort zu kurz
+
+|AT08
+|UC05
+|Nutzer ist nicht registriert, Benutzername "janed67" ist noch nicht vergeben
+a|
+- Benutzername: janed67
+- Passwort: Woerter44
+|Registrierung erfolgreich, (intern: neuer Nutzer ist angelegt mit den Benutzerdaten)
+
+|AT09
+|UC05
+|Nutzer ist nicht registriert, Benutzername "muster0815" nicht vergeben
+a|
+- Benutzername: muster0815
+- Passwort: Helloo789
+|Passwort ungültig, (kein neuer Nutzer angelegt)
+
+|AT10
+|UC06
+|Nutzer ist registriert mit folgenden Eingabedaten. siehe Eingabe
+a|
+- Benutzername: maxmuster12
+- Passwort: Muster456
+|Login erfolgreich, Nutzer landet auf Startseite
+
+|AT11
+|UC06
+|ein Nutzer mit:
+- Benutzername: maik55
+- Passwort: Wortpass5
+existiert nicht
+a|
+- Benutzername: maik55
+- Passwort: Wortpass5
+|dieser Nutzer existiert nicht im System
+
+|AT12
+|UC06
+|
+|
+|
+
+|AT13
+|UC07
+|Nutzer ist angemeldet
+|20
+|Aufladen erfolgreich, prüfen: guthaben = altes guthaben + 20
+
+|AT14
+|UC07
+|Nutzer ist angemeldet
+|-15
+|Zahl darf nicht negativ sein, (Guthaben des Nutzers bleibt gleich)
+
+|AT15
+|UC08
+|Nutzer hat Fußballwette abgegeben:
+- Teams: FCB gegen BVB
+- Tipp: Sieg für FCB
+- Einsatz: 10
+|Ergebnis des Fußballspiels wird eingetragen: Sieg für FCB
+|Status der Fußballwette (bzgl. oben) ist GEWONNEN
+
+|AT15
+|UC08
+|Nutzer hat Fußballwette abgegeben:
+- Teams: FCB gegen BVB
+- Tipp: Sieg für FCB
+- Einsatz: 10
+|Ergebnis des Fußballspiels wird eingetragen: Sieg für FCB
+|Guthaben des Nutzers erhöht sich um 10
+
+|AT21
+|UC14
+|Nutzer füllt einen Lottoschein korrekt aus
+|Tipp: 1, 15, 19, 22, 33, 48
+|Wette wird zum Warenkorb hinzugefügt -> Anzahl der Warenkorbelemente um 1 erhöht
+
+|AT22
+|UC14
+|(Lottoschein nicht korrekt ausgefüllt)
+|Tipp: 1,2,3,4
+|zu wenig Zahlen ausgewählt, Anzahl der Warenkorbelemente ändert sich nicht
+
+|AT23
+|UC15
+|Nutzer füllt einen Lottoschein korrekt aus
+|Tipp: 1, 15, 19, 22, 33, 48
+|Guthaben um Kaufpreis vom Lottoschein reduziert
+
+|
+|
+|
+|
+|
+
+|
+|
+|
+|
+|
+
 |===
