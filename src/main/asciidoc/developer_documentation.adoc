@@ -2,22 +2,53 @@
 [cols=""]
 |===
 |Version | Bearbeitungsdatum   | Autor                  |Datum        | Änderung 
-|0.1	   | In Arbeit           | Mirek Král             |5.11.2021   a|
+|0.1	   | In Arbeit           | Mirek Král             |05.11.2021   a|
 • Qualitätsziele
 • Hardware-Vorgaben
 • Software-Vorgaben
 • erste Frameworks
 • Gliederung des Dokumments
-|0.2      | In Arbeit           |Song Bai, Mirek Král    |6.11.2021   a|
+|0.2      | In Arbeit           |Song Bai, Mirek Král    |06.11.2021   a|
 • Kontext
 • Top_Level
 • External Frameworks
+|0.3	   | In Arbeit           | Yu-Ju Chen             |06.11.2021   a|
+• Aufgabestellung
 |===
 
 = Entwicklerdokumentation
 
 == 1. Einführung und Ziele
 === 1.1 Aufgabenstellung
+In unserem kleinen Nachbarland Gamblien ist die staatlich betriebene Lotterie Mach Dein Glück!! sehr populär. 
+In Staatsbesitz befindet sich auch das weitverbreitete Netz an Annahmestellen. 
+Gambliens Wirtschaftsminister Lottermann plant den Einstieg in die "virtuelle Lotterie", um auch Ausländer als Kunden zu gewinnen. 
+Vorbereitend sollen der aktuelle Betrieb der Lotterie und der Annahmestellen auf Computer umgestellt und auf dieser Basis neue Dienste erprobt werden. 
+Aktuell gibt es bei Mach Dein Glück!! eine Zahlenlotterie mit wöchentlicher Ziehung und ein Fußballtoto.
+Wir brauchen eine Software, die alle Kernaspekte unsere aktuellen Lotterie Betrieb unterstützt und Prozesse wo immer möglich automatisieren kann.
+
+Unsere Website (Lotterie) kann eine beliebige Anzahl von Benutzern (Benutzer) haben, die mit ihr unterschiedlich interagieren können. 
+Jeder Besucher unseres Shops kann auf den Katalog (Katalog) und seine gesamte Funktionalität zugreifen. 
+Der Katalog enthält die von uns angebotenen Artikel und unterscheidet zwischen Zahllotterie (Tippschein) und Fussballtoto (Football).
+
+Neben normalen Benutzern in unserem System (Kunde) möchten wir auch administrativen Zugriff (Admin), um unser Lotteriegeschäft zu verwalten. 
+Wann immer ein Kunde etwas aus unserem Katalog wetten möchte, kann er es in beliebiger Anzahl in seinen virtuellen Warenkorb legen (addItem). 
+Das Gegenteil ist natürlich auch erwünscht, damit unsere Kunden ihre Meinung ändern können (stronineren). 
+Während des gesamten Vorgangs kann der Kunde selbstverständlich seine Auswahl einsehen und den Gesamtpreis davon (gesamtPreis) sehen.
+
+Nachdem Sie sich entschieden haben, auf etwas zu wetten, wird eine Bestellung (Bestellung) mit der aktuellen Uhrzeit (Datum) erstellt. 
+Es enthält jeden der ausgewählten Artikel (ItemID) mit Anzahl (Anzahl) und Preis (Preis). 
+Sollte der gewählte Artikel in dieser Zeit nicht verfügbar sein (aenderung5MinutenVorBeginn), sollte dem Kunden ein Fehler angezeigt werden. 
+Nachdem das Spiel beendet ist, zeigt das System den Kunden seinen Status an (BestellungStatus),weder gewinnen, verlieren oder unentschlossen(verloren/gewonnen/unentschieden).
+
+Unsere Website soll einem Besucher selbstverständlich die Möglichkeit bieten, sich zu registrieren (registrieren). 
+Da wir möchten, dass nur registrierte Benutzer Zugriff auf einige Funktionen haben, ist ein Sicherheitssystem erforderlich. 
+Wir vertrauen dem State-of-the-Art-Authentifizierungsmechanismus mit Benutzername (Benutzername) und einem Passwort (Passwort).
+
+Alles in allem wollen wir ein schönes, schnelles und sicheres System, mit dem wir alle unsere Kunden und die Statistik verwalten können. 
+Es soll unseren Bestellprozess unterstützen und es uns ermöglichen, alles, was damit zusammenhängt, zu verwalten. Die Benutzererfahrung sollte mit unserer schönen Benutzeroberfläche fantastisch sein.
+
+
 === 1.2 Qualitätsziele
 
 ==== Wartbarkeit
