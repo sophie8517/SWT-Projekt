@@ -116,9 +116,9 @@ Das System wird von folgenden Web-Browsers unterstütz
 |salespointframework.catalog                         a|
 • catalog.Foot
 • catalog.Num
-|salespointframework.boot                             |lottery.Lottery
+|salespointframework.boot                             |lottery.lottery
 |salespointframework.useraccount                     a|
-• customer.Customer
+• customer.customer
 • customer.CustomerDataInitializer
 • customer.CustomerManagement
 • order.OrderController

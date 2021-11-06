@@ -691,37 +691,37 @@ Idealerweise entsteht auch ein grafischer Prototyp, welcher dem Kunden zeigt, wi
 Konkrete Absprachen - beispielsweise ob der grafische Prototyp oder die Dialoglandkarte höhere Priorität hat - sind mit dem Kunden zu treffen.
 
 [[home_page]]
-image::./gui/home1.png[Landing page, 100%, 100%, pdfwidth=100%, title= "Landing page of Lottery", align=center]
+image::./gui/home1.png[Landing page, 100%, 100%, pdfwidth=100%, title= "Landing page of lottery", align=center]
 
 
 
 [[location]]
-image::./gui/home2.png[Location, 100%, 100%, pdfwidth=100%, title= "location of Lottery", align=center]
+image::./gui/home2.png[Location, 100%, 100%, pdfwidth=100%, title= "location of lottery", align=center]
 
 
 
 [[game_rules]]
-image::./gui/home3.png[Game rules, 100%, 100%, pdfwidth=100%, title= "game rules of Lottery", align=center]
+image::./gui/home3.png[Game rules, 100%, 100%, pdfwidth=100%, title= "game rules of lottery", align=center]
 
 
 
 [[contact]]
-image::./gui/kontakt1.png[Contact page, 100%, 100%, pdfwidth=100%, title= "contact page of Lottery", align=center]
+image::./gui/kontakt1.png[Contact page, 100%, 100%, pdfwidth=100%, title= "contact page of lottery", align=center]
 
 
 
 [[registration]]
-image::./gui/register1.png[Registration page, 100%, 100%, pdfwidth=100%, title= "registration page of Lottery", align=center]
+image::./gui/register1.png[Registration page, 100%, 100%, pdfwidth=100%, title= "registration page of lottery", align=center]
 
 
 
 [[welcome_page]]
-image::./gui/welcome1.png[Welcome page, 100%, 100%, pdfwidth=100%, title= "welcome page for an authenticated customer of Lottery", align=center]
+image::./gui/welcome1.png[Welcome page, 100%, 100%, pdfwidth=100%, title= "welcome page for an authenticated customer of lottery", align=center]
 
 
 
 [[catalog]]
-image::./gui/katalog1.png[Catalog overview, 100%, 100%, pdfwidth=100%, title= "catalog overview of Lottery", align=center]
+image::./gui/katalog1.png[catalog overview, 100%, 100%, pdfwidth=100%, title= "catalog overview of lottery", align=center]
 
 
 
@@ -751,17 +751,17 @@ image::./gui/zahlen1.png[Zahlenlotterie overview, 100%, 100%, pdfwidth=100%, tit
 
 
 [[cart1]]
-image::./gui/warenkorb1.png[Cart overview, 100%, 100%, pdfwidth=100%, title= "Cart overview for an authenticated customer of Lottery", align=center]
+image::./gui/warenkorb1.png[Cart overview, 100%, 100%, pdfwidth=100%, title= "Cart overview for an authenticated customer of lottery", align=center]
 
 
 
 [[cart2]]
-image::./gui/warenkorb2.png[Cart overview, 100%, 100%, pdfwidth=100%, title= "Cart overview for an authenticated customer of Lottery", align=center]
+image::./gui/warenkorb2.png[Cart overview, 100%, 100%, pdfwidth=100%, title= "Cart overview for an authenticated customer of lottery", align=center]
 
 
 
 [[cart3]]
-image::./gui/warenkorb3.png[Cart overview, 100%, 100%, pdfwidth=100%, title= "Cart overview for an authenticated customer of Lottery", align=center]
+image::./gui/warenkorb3.png[Cart overview, 100%, 100%, pdfwidth=100%, title= "Cart overview for an authenticated customer of lottery", align=center]
 
 
 
