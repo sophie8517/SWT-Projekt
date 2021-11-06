@@ -159,10 +159,21 @@ Das System wird von folgenden Web-Browsers unterstütz
 |===
 
 === 5.3. Kunde
+[[customer]]
+image::./models/design/block_customer.png[Location, 100%, 100%, pdfwidth=100%, title= "customer package", align=center]
+
+
 [options="header"]
 |=== 
 |Klasse/Enumeration |Description
-|...|...
+|Customer|Eine Klasse, erbt Salespoint-Useraccount mit Guthaben. Beschreibt einen Kunden.
+|CustomerController|Ein Spring MVC Controller, der kümmert sich um Registierung, Gruppeerstellung, Kontoaufladen, Kundeansicht usw.
+|CustomerDataInitializer|Eine Implementierung für DataInitializer, sodass die Applikation dummi Kunden haben können wenn die startet.
+|CustomerManagement|Verwaltet Kunden und Gruppen
+|CustomerRepository|Ein Interface, verwaltet Kunden-Instanz und speichert Kunden.
+|Group|Eine Klasse, erbt Salespoint-Useraccount und beschreibt die Gruppe.
+|GroupRepository|Ein Interface, verwaltet Gruppe-Instanz und speichert Gruppen.
+|RegistrationFrom|Ein Interface, kümmert sich um Validierung der Eingaben von Kunden über Registierung.
 |===
 
 === 5.4 Statistik 
