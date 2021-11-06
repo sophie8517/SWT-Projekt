@@ -1,14 +1,17 @@
 [options="header"]
 [cols=""]
 |===
-|Version | Bearbeitungsdatum   | Autor        |Datum        | Änderung 
-|0.1	   | In Arbeit           | Mirek Král   |5.11.2021   a|
+|Version | Bearbeitungsdatum   | Autor                  |Datum        | Änderung 
+|0.1	   | In Arbeit           | Mirek Král             |5.11.2021   a|
 • Qualitätsziele
 • Hardware-Vorgaben
 • Software-Vorgaben
 • erste Frameworks
 • Gliederung des Dokumments
-|..      |...                   |...          |...          |...
+|0.2      | In Arbeit           |Song Bai, Mirek Král    |6.11.2021   a|
+• Kontext
+• Top_Level
+• External Frameworks
 |===
 
 = Entwicklerdokumentation
@@ -78,23 +81,66 @@ Das System wird von folgenden Web-Browsers unterstütz
 [options="header", cols="1,2"]
 |===
 |Externes Package |Verwendet von (Klasse der eigenen Anwendung)
-|salespointframework.catalog              a|
+|salespointframework.catalog                         a|
 • catalog.Foot
 • catalog.Num
-|salespointframework.boot                  |lottery.Lottery
-|salespointframework.boot                 a|
-• customer.RegisteredUser
-• customer.RegisteredUserDataInitializer
-• customer.RegisteredUserManagement
+|salespointframework.boot                             |lottery.Lottery
+|salespointframework.useraccount                     a|
+• customer.Customer
+• customer.CustomerDataInitializer
+• customer.CustomerManagement
 • order.OrderController
-|springframework.security                  |lottery.WebSecurityConfiguration
-|springframework.web                       |lottery.web
-
+|springframework.security                              |lottery.WebSecurityConfiguration
+|springframework.web                                   |lottery.web
+|salespointframework.core                             a|
+• catalog.CatalogInitializer
+• customer.CustomerDatainitializer
+|salespointframework.SalespointSecurityConfiguration   |lottery.WebSecurityConfiguration
+|salespointframework.time                              |catalog.CatalogController
+|springframework.data                                 a|catalog.LotteryCatalog
+|springframework.security                              |videoshop.WebSecurityConfiguration
+|springframework.ui                                   a|
+• catalog.CatalogController
+• customer.CustomerController
+• order.OrderController               
+|springframework.util                                 a|
+• customer.CustomerDataInitializer
+• customer.CustomerController
+|springframework.validation                            |customer.CustomerController
+|springframework.web                                   |videoshop.VideoShopWebConfiguration
 |===
 
-== 5. Bausteinsicht
-=== 5.1 Entwurfsklassendiagramme der einzelnen Packages
+== 5. Bausteinsicht / Entwurfsklassendiagramme der einzelnen Packages
 
+=== 5.1 Lotterie
+[options="header"]
+|=== 
+|Klasse/Enumeration |Description
+|...|...
+|===
+
+=== 5.2 Katalog
+[options="header"]
+|=== 
+|Klasse/Enumeration |Description
+|...|...
+|===
+
+=== 5.3. Kunde
+[options="header"]
+|=== 
+|Klasse/Enumeration |Description
+|...|...
+|===
+
+=== 5.4 Statistik 
+[options="header"]
+|=== 
+|Klasse/Enumeration |Description
+|...|...
+|===
+
+=== 5.Warenkorb
 [options="header"]
 |=== 
 |Klasse/Enumeration |Description
