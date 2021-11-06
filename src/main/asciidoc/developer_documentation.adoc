@@ -13,7 +13,7 @@
 • Top_Level
 • External Frameworks
 |0.3	   | In Arbeit           | Yu-Ju Chen             |06.11.2021   a|
-•Aufgabestellung
+• Aufgabestellung
 |===
 
 = Entwicklerdokumentation
