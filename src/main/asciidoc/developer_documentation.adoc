@@ -47,6 +47,8 @@ Wir vertrauen dem State-of-the-Art-Authentifizierungsmechanismus mit Benutzernam
 
 Alles in allem wollen wir ein schönes, schnelles und sicheres System, mit dem wir alle unsere Kunden und die Statistik verwalten können. 
 Es soll unseren Bestellprozess unterstützen und es uns ermöglichen, alles, was damit zusammenhängt, zu verwalten. Die Benutzererfahrung sollte mit unserer schönen Benutzeroberfläche fantastisch sein.
+
+
 === 1.2 Qualitätsziele
 
 ==== Wartbarkeit
