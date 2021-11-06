@@ -175,10 +175,10 @@ Das System wird von folgenden Web-Browsers unterstütz
 === 5.5 Warenkorb
 [options="header"]
 |=== 
+[[Warenkorb]]
 image::./models/design/Warenkorb[Location, 100%, 100%, pdfwidth=100%, title= "Warenkorb", align=center] 
 |Klasse/Enumeration |Description
-|BestellungController|
-Ein Spring MVC Controller zur Handhabung des Wa
+|BestellungController|Ein Spring MVC Controller zur Handhabung des Warenkorbs
 |===
 
 === 5.6 Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
