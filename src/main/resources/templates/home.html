@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+		xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -13,10 +14,10 @@
     <div class="container">
         <br>
         <nav>
-            <a href="https://www.bk.com/">HOME</a>
-            <a href="https://www.bk.com/contact-us">KONTAKT</a>
+            <a href="home.html">HOME</a>
+            <a href="kontakt.html">KONTAKT</a>
             <a href="">ANMELDEN</a>
-            <a href="">REGISTRIEREN</a>
+            <a href="register.html">REGISTRIEREN</a>
         </nav>
 
         <main>
@@ -24,22 +25,17 @@
             <p>Mach Dein Glück ist eine Lotterie und damit ein Glücksspiel, bei dem der Spieler gegen einen finanziellen Einsatz auf das Ziehen vorher getippter Zahlen aus einer begrenzten Zahlenmenge setzt.
                 Spieler können nebenbei auch auf das Resultat einer oder mehrerer Fußballspiele wetten.
             </p>
-            <a href="https://www.burgerking.cz/?y_source=1_MTU2OTc5OTktNzE1LWxvY2F0aW9uLndlYnNpdGU=" target="_blank">
-                ZAHLENLOTTERIE</a>
-            &ensp;
-            &ensp;
-            &ensp;
-            &ensp;
-            &ensp;
-            &ensp;
+            <a class="item" href="3_catalog_num.html" th:href="@{/zahlenlotterie}" th:text="#{nav.zahlkatalog}">ZAHLENLOTTERIE</a>
+
             &ensp;
             &ensp;
             &ensp;
             &ensp;
             &ensp;
             &ensp;            
-            <a href = "https://www.burgerking.cz/?y_source=1_MTU2OTc5OTktNzE1LWxvY2F0aW9uLndlYnNpdGU=" target="_blank">
-            FUßBALLTOTO</a>
+            
+
+            <a class="item" href="2_catalog_foot.html" th:href="@{/football}" th:text="#{nav.footballkatalog}">FU�BALLTOTO</a>
         </main>
 
         <div class="box-one">
