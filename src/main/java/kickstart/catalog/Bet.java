@@ -2,22 +2,29 @@ package kickstart.catalog;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Bit {
+public class Bet implements Serializable {
+
+	private static final long serialVersionUID = -7114101035786254953L;
+
 	private int id2;
 	private LocalDateTime date;
 	private double einsatz;
 	private Item item;
 	private Status status;
+
+	@Id
 	private Long id;
 
 
-	public Bit(Item item, int id, LocalDateTime date, double einsatz){
+	public Bet(Item item, int id, LocalDateTime date, double einsatz){
 		this.item = item;
 		this.date = date;
 		this.id2 = id;
@@ -26,7 +33,7 @@ public class Bit {
 
 	}
 
-	public Bit() {
+	public Bet() {
 
 	}
 
@@ -42,7 +49,7 @@ public class Bit {
 		this.status = status;
 	}
 
-	@OneToOne
+	@ManyToOne
 	public Item getItem() {
 		return item;
 	}
@@ -71,7 +78,7 @@ public class Bit {
 		this.id = id2;
 	}
 
-	@Id
+
 	public Long getId() {
 		return id;
 	}
@@ -80,7 +87,7 @@ public class Bit {
 		this.id2 = id2;
 	}
 
-	@Id
+	//@Id
 	public int getId2() {
 		return id2;
 	}

@@ -1,11 +1,6 @@
 package kickstart.catalog;
 
-import kickstart.catalog.Bit;
-import kickstart.catalog.Item;
-import kickstart.catalog.NumberBit;
 
-
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.time.LocalDate;
@@ -16,20 +11,26 @@ import java.util.List;
 public class Ticket extends Item {
 
 	@OneToMany
-	private List<NumberBit> numberBits = new ArrayList<>();
+	private List<NumberBet> numberBets = new ArrayList<>();
 
 	public Ticket(){}
 
 	public Ticket(int id, LocalDate date, double price){
 		super(id, date, price);
 		setType("Ticket");
-		numberBits = new ArrayList<>();
+		numberBets = new ArrayList<>();
 	}
 
-	public void addBit(NumberBit numberBit){
-		numberBits.add(numberBit);
+	public void addBit(NumberBet numberBet){
+		numberBets.add(numberBet);
 	}
-	public List<NumberBit> getNumberBits(){
-		return numberBits;
+
+
+	public List<NumberBet> getNumberBits(){
+		return numberBets;
+	}
+
+	public void setNumberBits(List<NumberBet> numberBets) {
+		this.numberBets = numberBets;
 	}
 }

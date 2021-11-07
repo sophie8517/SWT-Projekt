@@ -1,11 +1,8 @@
 package kickstart.catalog;
 
-import kickstart.catalog.LotteryCatalog;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -50,7 +47,7 @@ public class CatalogController {
 		nums.add(zahl6);
 
 		//add: check if all numbers are different
-		t.addBit(new NumberBit(t, t.getNumberBits().size()+1, LocalDateTime.now(), t.getPrice2(), nums));
+		t.addBit(new NumberBet(t, t.getNumberBits().size()+1, LocalDateTime.now(), t.getPrice2(), nums));
 		lotteryCatalog.save(t);
 
 		return "redirect:/3_catalog_num";
@@ -72,7 +69,7 @@ public class CatalogController {
 			tip = "Unentschieden";
 		}
 
-		FootballBit f = new FootballBit(foot, foot.getFootballBits().size() + 1, LocalDateTime.now(), foot.getPrice2(), tip);
+		FootballBet f = new FootballBet(foot, foot.getFootballBits().size() + 1, LocalDateTime.now(), foot.getPrice2(), tip);
 		foot.addBit(f);
 		lotteryCatalog.save(foot);
 
