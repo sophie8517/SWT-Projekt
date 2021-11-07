@@ -24,7 +24,7 @@
         </main>
 
          <div class="box-three">
-            <div class="ui card" th:each="football : ${football.getFootballBits}">
+            <div class="ui card" th:each="football : ${footballcatalog}">
                 <div class="content">
                     <h2><a class="header" th:href="@{/football/{id}(id=${football.id})}" th:text="${football.name}">Spiel 1 </a></h2>
                 </div>
@@ -46,19 +46,19 @@
                         </tr>
                         <tr>
                             <td rowspan = "3"><div class="description" th:text="${football.guest}">BVB</div></td>
-                            <td rowspan = "3"><div class="description" th:text="${football.host}">FC Bayern München</div></td>
+                            <td rowspan = "3"><div class="description" th:text="${football.host}">FC Bayern Mï¿½nchen</div></td>
                             <td>Gast gewinnt</td>
-                            <td><div class="description" th:text="${football.price}">30</div></td>
+                            <td><div class="description" th:text="${football.price2}">30</div></td>
                             <td>1</td>
                         </tr>
                         <tr>
                             <td>Heim gewinnt</td>
-                            <td><div class="description" th:text="${football.price}">30</div></td>
+                            <td><div class="description" th:text="${football.price2}">30</div></td>
                             <td>2</td>
                         </tr>
                         <tr>
                             <td>Unentschieden</td>
-                            <td><div class="description" th:text="${football.price}">30</div></td>
+                            <td><div class="description" th:text="${football.price2}">30</div></td>
                             <td>3</td>
                         </tr>
                     </table>
