@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -13,10 +12,10 @@
 <body class="backgrounds">
     <div class="container">
         <nav>
-            <a href="index.html">HOME</a>
-            <a href="kontakt.html">KONTAKT</a>
-            <a href="meinProfil.html">MEIN PROFIL</a>
-            <a href="1_catalog.html">KATALOG</a>
+            <a href="https://www.bk.com/">HOME</a>
+            <a href="https://www.bk.com/contact-us">KONTAKT</a>
+            <a href="">MEIN PROFIL</a>
+            <a href="">KATALOG</a>
         </nav>
         
         <main class="box-one">
@@ -39,33 +38,26 @@
                     <th>Heim</th>
                     <th>Spielstand</th>
                     <th>Einsatz</th>
-                    <th>Wettoption</th>
+                    <th>Wette</th>
                 </tr>
                 <tr>
                     <td rowspan = "3"><b>Freiburg</b></td>
                     <td rowspan = "3"><b>Wolfsburg</b></td>
                     <td>Gast gewinnt</td>
                     <td>5.00€ </td>
-                    <td>1</td>
+                    <td><button type="submit" class="ui button" th:text="#{register.submit}">Jetzt Wetten!</button></form></td>
                 </tr>
                 <tr>
                     <td>Heim gewinnt</td>
                     <td>5.00€</td>
-                    <td>2</td>
+                    <td><button type="submit" class="ui button" th:text="#{register.submit}">Jetzt Wetten!</button></form></td>
                 </tr>
                 <tr>
                     <td>Unentschieden</td>
                     <td>5.00€</td>
-                    <td>3</td>
+                    <td><button type="submit" class="ui button" th:text="#{register.submit}">Jetzt Wetten!</button></form></td>
                 </tr>
             </table>
-            <form th:method="post" th:action="@{/lottery/footbit}">
-                <div class="field" >
-                    <label  for="fussballwette">Wettoption (1,2 oder 3):  </label>
-                    <input  id="fussballwette" type="number" name="fussballwette" min="1" max="3" required="required"/><br/>
-                </div>
-                <button type="submit" class="ui button" th:text="#{fussball.addWette}">Jetzt wetten</button>
-            </form>
         </div>
 
         <br>
@@ -266,59 +258,6 @@
                     <td><button type="submit" class="ui button" th:text="#{register.submit}">Jetzt Wetten!</button></form></td>
                 </tr>
             </table>
-        </div>
-
-        <div class="box-three">
-            <div class="ui card" th:each="football : ${football.getFootballBits}">
-                <div class="content">
-                    <h2><a class="header" th:href="@{/football/{id}(id=${football.id})}" th:text="${football.name}">Spiel 1 </a></h2>
-                </div>
-
-                <div class="content">
-
-
-                    Bundesliga: <div class="description" th:text="${football.league}">1. Bundesliga</div>
-                    <br><br>
-                    Datum: <div class="description" th:text="${football.date}">11.11.2021</div>
-                    <br><br>
-                    <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center">
-                        <tr>
-                            <th>Gast</th>
-                            <th>Heim</th>
-                            <th>Spielstand</th>
-                            <th>Einsatz</th>
-                            <th>Wettoption</th>
-                        </tr>
-                        <tr>
-                            <td rowspan = "3"><div class="description" th:text="${football.guest}">BVB</div></td>
-                            <td rowspan = "3"><div class="description" th:text="${football.host}">FC Bayern München</div></td>
-                            <td>Gast gewinnt</td>
-                            <td><div class="description" th:text="${football.price}">30</div></td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>Heim gewinnt</td>
-                            <td><div class="description" th:text="${football.price}">30</div></td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <td>Unentschieden</td>
-                            <td><div class="description" th:text="${football.price}">30</div></td>
-                            <td>3</td>
-                        </tr>
-                    </table>
-
-                    <form class="ui form" th:method="post" th:action="@{/lottery/footbit}">
-                        <input type="hidden" name="id" value="0" th:value="${football.id}"/>
-                        <div class="field" >
-                            <label th:text="#{fussball.wette}" for="fussballwette">Wettoption (1,2 oder 3):  </label>
-                            <input th:field="*{fussballwette}" id="fussballwette" type="number" name="fussballwette" min="1" max="3" required="required"/><br/>
-                        </div>
-                        <button type="submit" class="ui button" th:text="#{fussball.addWette}">Jetzt wetten</button>
-                    </form>
-                </div>
-
-            </div>
         </div>
 
         <br>
