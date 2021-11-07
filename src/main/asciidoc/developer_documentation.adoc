@@ -146,7 +146,7 @@ image:diagramm/ui.png[context diagram]
 |salespointframework.SalespointSecurityConfiguration   |lottery.WebSecurityConfiguration
 |salespointframework.time                              |catalog.CatalogController
 |springframework.data                                 a|catalog.LotteryCatalog
-|springframework.security                              |videoshop.WebSecurityConfiguration
+|springframework.security                              |lottery.WebSecurityConfiguration
 |springframework.ui                                   a|
 • catalog.CatalogController
 • customer.CustomerController
@@ -155,7 +155,7 @@ image:diagramm/ui.png[context diagram]
 • customer.CustomerDataInitializer
 • customer.CustomerController
 |springframework.validation                            |customer.CustomerController
-|springframework.web                                   |videoshop.VideoShopWebConfiguration
+|springframework.web                                   |lottery.LotteryWebConfiguration
 |===
 
 == 5. Bausteinsicht / Entwurfsklassendiagramme der einzelnen Packages
