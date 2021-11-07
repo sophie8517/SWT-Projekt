@@ -18,6 +18,8 @@
 • 5.5 Block-view_Warenkorb
 |0.4     | In Arbeit           | Yutian lei             |06.11.2021   a|
 • Statistic
+|0.5     | In Arbeit           | Sophie Schulze         |06.11.2021   a|
+• Katalog Entwurfsklassendiagramm, Beschreibung der Klassen
 |===
 
 = Entwicklerdokumentation
@@ -179,7 +181,47 @@ image::./diagramm/katalog_devel.png[100%]
 [options="header"]
 |=== 
 |Klasse/Enumeration |Description
-|...|...
+|Item
+|ist ein Produkt im Lotteriekatalog, ein Item ist ein Tippschein oder ein Fußballspiel
+
+|Tippschein
+|ist ein Produkt für die Zahlenlotterie, auf einen Tippschein können beliebig viele Zahlenwetten abgegeben werden
+
+|Football
+|repräsentiert ein Fußballspiel mit folgenden Merkmalen:
+
+* Heimmannschaft
+* Gastmannschaft
+* Preis
+* Liga
+* Datum bzw. Spieltag
+
+Auf ein Fußballspiel können beliebig viele Wetten abgegeben werden.
+
+|Wette
+|ist eine Zahlenwette oder eine Fußballwette; eine Wette einen Status, der initial OFFEN ist
+
+|Zahlenwette
+|ist eine Wette, die auf einen Tippschein abgegeben wird; der Tipp dieser Wette besteht aus einer Liste von 6 Zahlen
+
+|Fußballwette
+|wird auf einen Fußballspiel abgegeben; der Unterschied zur Zahlenwette liegt darin, dass der Tipp der Fußballwette ein String ist, z.B. "Heim gewinnt", "Gast gewinnt", "Unentschieden"
+
+|Status
+|beschreibt den Status einer Wette:
+
+* OFFEN: Wette noch nicht ausgewertet
+* GEWONNEN: Nutzer hat richtig getippt
+* VERLOREN: Nutzer hat falsch getippt
+
+|KatalogController
+|zeigt Items je nach Typ in einem Katalog  der Zahlenlotterie oder der Fußballlotterie an, bearbeitet Anfragen
+
+|KatalogInitializer
+|er implementiert DataInitializer, erstellt Produkte für den Katalog
+
+|Lotteriekatalog
+|ist eine Erweiterung von Salespoint.Catalog, die spezifische Anforderungen für die Lotterie enthält
 |===
 
 === 5.3. Kunde
