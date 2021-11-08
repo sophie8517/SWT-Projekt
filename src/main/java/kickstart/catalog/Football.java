@@ -14,12 +14,12 @@ public class Football extends Item {
 
 	private String host, guest, league;
 
-	public Football(int id, LocalDate date, double price, String host, String guest, String league){
-		super(id, date, price);
+	public Football(LocalDate date, double price, String host, String guest, String league){
+		super(date, price);
 		this.host = host;
 		this.guest = guest;
 		this.league = league;
-		setType("Football");
+		setType(ItemType.FOOTBALL);
 		footballBets = new ArrayList<>();
 	}
 
@@ -27,7 +27,7 @@ public class Football extends Item {
 
 	}
 
-	public void addBit(FootballBet footballBet){
+	public void addBet(FootballBet footballBet){
 		footballBets.add(footballBet);
 	}
 
@@ -35,32 +35,32 @@ public class Football extends Item {
 		return host;
 	}
 
-	public void setHost(String host) {
-		this.host = host;
-	}
+	//public void setHost(String host) {
+	//	this.host = host;
+	//}
 
 	public String getGuest() {
 		return guest;
 	}
 
-	public void setGuest(String guest) {
-		this.guest = guest;
-	}
+	//public void setGuest(String guest) {
+	//	this.guest = guest;
+	//}
 
 	public String getLeague() {
 		return league;
 	}
 
-	public void setLeague(String league) {
-		this.league = league;
-	}
+	//public void setLeague(String league) {
+	//	this.league = league;
+	//}
 
 
 	public List<FootballBet> getFootballBits() {
 		return footballBets;
 	}
 
-	public void setFootballBits(List<FootballBet> footballBits) {
-		this.footballBets = footballBits;
-	}
+	//public void setFootballBits(List<FootballBet> footballBits) {
+	//	this.footballBets = footballBits;
+	//}
 }
