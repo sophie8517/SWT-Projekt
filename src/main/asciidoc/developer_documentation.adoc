@@ -290,7 +290,7 @@ image:diagramm/Statistic.png[context diagram]
 === 5.5 Order
 
 [[Order]]
-image:models/design/block_Warenkorb.png[Location, 100%, 100%, pdfwidth=100%, title= "Warenkorb", align=center] 
+image:models/design/block_.png[Location, 100%, 100%, pdfwidth=100%, title= "Warenkorb", align=center] 
 
 [options="header"]
 |=== 
