@@ -20,6 +20,8 @@
 • Statistic
 |0.5     | In Arbeit           | Sophie Schulze         |06.11.2021   a|
 • Katalog Entwurfsklassendiagramm, Beschreibung der Klassen
+|0.6     | In Arbeit           | Yu-Ju Chen             |08.11.2021   a|
+• 6.4 Diagramm_Laufzeit_Order hinfügen
 |===
 
 = Entwicklerdokumentation
@@ -279,9 +281,9 @@ image:diagramm/Statistic.png[context diagram]
 |StatisticController|A Spring MVC Controller to handle requests to show Income and loss
 |===
 
-=== 5.5 Warenkorb
+=== 5.5 Order
 
-[[Warenkorb]]
+[[Order]]
 image:models/design/block_Warenkorb.png[Location, 100%, 100%, pdfwidth=100%, title= "Warenkorb", align=center] 
 
 [options="header"]
@@ -306,6 +308,9 @@ wird die Art der Verwendung dieser externen Klasse in der Spalte *Art der Verwen
 
 == 6. Laufzeitsicht
 * Darstellung der Komponenteninteraktion anhand eines Sequenzdiagramms, welches die relevantesten Interaktionen darstellt.
+
+=== 6.4 Order
+image:models/design/runtime_warenkorb.png[Location, 100%, 100%, pdfwidth=100%, title= "Order", align=center]
 
 == 7. Technische Schulden
 * Auflistung der nicht erreichten Quality Gates und der zugehörigen SonarQube Issues zum Zeitpunkt der Abgabe
