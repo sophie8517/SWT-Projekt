@@ -129,9 +129,9 @@ image:diagramm/ui.png[context diagram]
 [options="header", cols="1,2"]
 |===
 |Externes Package |Verwendet von (Klasse der eigenen Anwendung)
-|salespointframework.catalog                         a|
-• catalog.Foot
-• catalog.Num
+|salespointframework.catalog_ltr                         a|
+• catalog_ltr.Foot
+• catalog_ltr.Num
 |salespointframework.boot                             |lottery.lottery
 |salespointframework.useraccount                     a|
 • customer.customer
@@ -141,14 +141,14 @@ image:diagramm/ui.png[context diagram]
 |springframework.security                              |lottery.WebSecurityConfiguration
 |springframework.web                                   |lottery.web
 |salespointframework.core                             a|
-• catalog.CatalogInitializer
+• catalog_ltr.CatalogInitializer
 • customer.CustomerDatainitializer
 |salespointframework.SalespointSecurityConfiguration   |lottery.WebSecurityConfiguration
-|salespointframework.time                              |catalog.CatalogController
-|springframework.data                                 a|catalog.LotteryCatalog
+|salespointframework.time                              |catalog_ltr.CatalogController
+|springframework.data                                 a|catalog_ltr.LotteryCatalog
 |springframework.security                              |videoshop.WebSecurityConfiguration
 |springframework.ui                                   a|
-• catalog.CatalogController
+• catalog_ltr.CatalogController
 • customer.CustomerController
 • order.OrderController               
 |springframework.util                                 a|

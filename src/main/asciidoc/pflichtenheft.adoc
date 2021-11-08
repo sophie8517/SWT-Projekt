@@ -720,8 +720,8 @@ image::./gui/welcome1.png[Welcome page, 100%, 100%, pdfwidth=100%, title= "welco
 
 
 
-[[catalog]]
-image::./gui/katalog1.png[catalog overview, 100%, 100%, pdfwidth=100%, title= "catalog overview of lottery", align=center]
+[[catalog_ltr]]
+image::./gui/katalog1.png[catalog_ltr overview, 100%, 100%, pdfwidth=100%, title= "catalog_ltr overview of lottery", align=center]
 
 
 
