@@ -89,7 +89,7 @@
             </form>
             <br>
             <form th:method="post" th:action="@{/lottery/numbit}">
-                <input type="hidden" name="id" value="0" th:value="${ticket.id}"/>
+                <input type="hidden" name="id" value="0" th:value="${item.ticket.id}"/>
             <div class="field" >
                 <label th:text="#{zahl1}" for="zahl1">1. Zahl: </label>
                 <input th:field="*{zahl1}" id="zahl1" type="number" name="zahl1" min="1" max="49" required="required"/><br/>
