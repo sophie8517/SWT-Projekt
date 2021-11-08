@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 public class NumberBet extends Bet {
 
-	//@ElementCollection
+	@ElementCollection
 	private List<Integer> numbers;
 
 
@@ -21,7 +21,7 @@ public class NumberBet extends Bet {
 
 	}
 
-	@ElementCollection
+	//@ElementCollection
 	public List<Integer> getNumbers() {
 		return numbers;
 	}

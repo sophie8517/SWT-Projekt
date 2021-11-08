@@ -17,7 +17,10 @@ public class Bet implements Serializable {
 	private int id2;
 	private LocalDateTime date;
 	private double einsatz;
+
+	@ManyToOne
 	private Item item;
+
 	private Status status;
 
 	@Id
@@ -49,7 +52,7 @@ public class Bet implements Serializable {
 		this.status = status;
 	}
 
-	@ManyToOne
+
 	public Item getItem() {
 		return item;
 	}
