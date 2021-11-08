@@ -21,7 +21,7 @@
 |0.5     | In Arbeit           | Sophie Schulze         |06.11.2021   a|
 • Katalog Entwurfsklassendiagramm, Beschreibung der Klassen
 |0.6     | In Arbeit           | Yu-Ju Chen             |08.11.2021   a|
-• 6.4 Diagramm_Laufzeit_Order hinfügen
+• 6.4 Diagramm_Laufzeit_Order hinzufügen
 |===
 
 = Entwicklerdokumentation
