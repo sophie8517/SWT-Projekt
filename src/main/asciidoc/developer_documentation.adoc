@@ -95,6 +95,14 @@ Das System wird von folgenden Web-Browsers unterstütz
 
 === 2.3 Vorgaben zum Betrieb des Software
 
+Das System soll die Struktur der Lotterie digitalisieren. Die Kunden dürfen online wetten,
+Tippscheine ausfüllen und sich über Spielregeln informieren ohne an eine Filiale gebunden
+zu sein. Nebenbei soll das System die Welt der Lotterie auch internationalen Kunden eröffnen.
+Ein großer Vorteil besteht darin, dass die Online-Lotterie ganzjährig, rund um die Uhr geöffnet ist.
+
+Die häufigsten Nutzer der Lotterie sind Erwachsene (ab 18 J.), die am Glücksspiel interessiert sind.
+Des Weiteren muss ein Benutzer mit der Nutzung eines Internetbrowsers sowie des Umgangs einer Webseite vertraut sein.
+
 == 3. Kontextabgrenzung
 === 3.1 Kontextdiagramm
 
@@ -106,7 +114,25 @@ image:diagramm/kontext_devel.png[context diagram]
 [options="header"]
 |=== 
 |Qualitätsziel |Lösungsansatz
-|... |...
+|Wartbarkeit 
+a|
+* Wiederverwendbarkeit:
+** die Komponenten des Systems sollen so entwickelt werden, dass sie von anderen Objekten benutzt werden können
+    -> durch OOP
+* Erweiterbarkeit:
+** Objekte des Systems sollen fehlerfrei erweiterbar sein oder auch verbessert, ohne Konflikte mit anderen Komponenten auszulösen
+
+|Anwendbarkeit
+a|
+* einfache Bedienung: 
+** ein Nutzer soll keine großen Schwierigkeiten haben, die Funktionalitäten der Webseite zu nutzen -> z.B. Beschreibung wie man Lottoschein ausfüllt
+* Fehlerhate Eingaben:
+** Hinweise auch richtige Eingabe, abweisen von ungültigen Eingaben
+
+|Security
+a|
+* Authentifizierung von Nutzern
+* volle Funktionalität der Website nur für registrierte/eingeloggte Nutzer zugänglich
 |===
 
 === 4.2 Softwarearchitektur
