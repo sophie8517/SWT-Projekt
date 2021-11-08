@@ -210,7 +210,7 @@ image:diagramm/lottery.png[context diagram]
 === 5.2 Katalog
 
 [[catalog]]
-image::./diagramm/katalog_devel.png[100%]
+image::./diagramm/catalog_final.png[100%]
 
 [options="header"]
 |=== 
