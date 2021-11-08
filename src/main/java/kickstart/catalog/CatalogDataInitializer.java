@@ -26,10 +26,10 @@ public class CatalogDataInitializer implements DataInitializer {
 		LOG.info("Creating default lotterycatalog entries.");
 
 
-		lotteryCatalog.save(new Ticket(1,LocalDate.of(2021,11,5), 7.00));
-		lotteryCatalog.save(new Football(1,LocalDate.of(2021,11,7),8.00,"FC Bayern München", "BVB", "1.Bundesliga"));
-		lotteryCatalog.save(new Football(1,LocalDate.of(2021,11,20),5.00,"Hansa Rostock", "FC Erzgebirge", "2.Bundesliga"));
-		lotteryCatalog.save(new Football(1,LocalDate.of(2021,12,11),8.00,"RB Leipzig", "Borussia Mönchengladbach", "1.Bundesliga"));
+		lotteryCatalog.save(new Ticket(LocalDate.of(2021,11,5), 7.00));
+		lotteryCatalog.save(new Football(LocalDate.of(2021,11,7),8.00,"FC Bayern München", "BVB", "1.Bundesliga"));
+		lotteryCatalog.save(new Football(LocalDate.of(2021,11,20),5.00,"Hansa Rostock", "FC Erzgebirge", "2.Bundesliga"));
+		lotteryCatalog.save(new Football(LocalDate.of(2021,12,11),8.00,"RB Leipzig", "Borussia Mönchengladbach", "1.Bundesliga"));
 
 	}
 }

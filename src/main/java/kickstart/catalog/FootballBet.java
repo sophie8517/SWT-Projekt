@@ -15,9 +15,9 @@ public class FootballBet extends Bet {
 	public FootballBet() {
 
 	}
-	public void setTip(String tip){
-		this.tip = tip;
-	}
+	//public void setTip(String tip){
+	//	this.tip = tip;
+	//}
 
 	public String getTip() {
 		return tip;

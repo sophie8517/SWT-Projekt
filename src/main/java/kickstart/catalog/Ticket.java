@@ -15,13 +15,13 @@ public class Ticket extends Item {
 
 	public Ticket(){}
 
-	public Ticket(int id, LocalDate date, double price){
-		super(id, date, price);
-		setType("Ticket");
+	public Ticket(LocalDate date, double price){
+		super(date, price);
+		setType(ItemType.TICKET);
 		numberBets = new ArrayList<>();
 	}
 
-	public void addBit(NumberBet numberBet){
+	public void addBet(NumberBet numberBet){
 		numberBets.add(numberBet);
 	}
 
@@ -30,7 +30,7 @@ public class Ticket extends Item {
 		return numberBets;
 	}
 
-	public void setNumberBits(List<NumberBet> numberBets) {
-		this.numberBets = numberBets;
-	}
+	//public void setNumberBits(List<NumberBet> numberBets) {
+	//	this.numberBets = numberBets;
+	//}
 }

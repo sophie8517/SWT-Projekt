@@ -10,33 +10,34 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@MappedSuperclass
+@Entity
 public class Item extends Product{
 
-	@Id
-	private long id;
 
-	private int id2;
+	public static enum ItemType{
+		TICKET, FOOTBALL, NONE;
+	}
+
+	//private long id;
+
+	//private int id2;
 	private LocalDate date;
 	private double price2;
-	private String type = "none";
+	private ItemType type = ItemType.NONE;
 	//private List<Bet> bits;
 
 	public Item(){}
 
-	public Item(int id, LocalDate date, double price){
-		this.id2 = id;
+	public Item(LocalDate date, double price){
 		//this.id = new Long(id);
 		this.date = date;
 		this.price2 = price;
 		//bits = new ArrayList<Bet>();
 	}
 
-	public int getId2() {
-		return id2;
-	}
 
-	protected void setType(String type){
+
+	protected void setType(ItemType type){
 		this.type = type;
 	}
 
@@ -48,7 +49,7 @@ public class Item extends Product{
 		return price2;
 	}
 
-	public String getType() {
+	public ItemType getType() {
 		return type;
 	}
 
