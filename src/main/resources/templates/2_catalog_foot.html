@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-		xmlns:th="http://www.thymeleaf.org">
+		xmlns:th="http://thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -24,18 +24,14 @@
         </main>
 
          <div class="box-three">
-            <div class="ui card" th:each="football : ${footballcatalog}">
-                <div class="content">
-                    <h2><a class="header" th:href="@{/football/{id}(id=${football.id})}" th:text="${football.name}">Spiel 1 </a></h2>
-                </div>
+            <div th:each="football : ${footballcatalog}"
 
-                <div class="content">
-
-
-                    Bundesliga: <div class="description" th:text="${football.league}">1. Bundesliga</div>
+                    <div>
+                    Bundesliga: <div th:text="${football.league}">1. Bundesliga</div>
                     <br><br>
-                    Datum: <div class="description" th:text="${football.date}">11.11.2021</div>
+                    Datum: <div th:text="${football.date}">11.11.2021</div>
                     <br><br>
+                        </div>
                     <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center">
                         <tr>
                             <th>Gast</th>
@@ -45,20 +41,20 @@
                             <th>Wettoption</th>
                         </tr>
                         <tr>
-                            <td rowspan = "3"><div class="description" th:text="${football.guest}">BVB</div></td>
-                            <td rowspan = "3"><div class="description" th:text="${football.host}">FC Bayern M�nchen</div></td>
+                            <td rowspan = "3"><div th:text="${football.guest}">BVB</div></td>
+                            <td rowspan = "3"><div th:text="${football.host}">FC Bayern Muenchen</div></td>
                             <td>Gast gewinnt</td>
-                            <td><div class="description" th:text="${football.price2}">30</div></td>
+                            <td><div th:text="${football.price2}">30</div></td>
                             <td>1</td>
                         </tr>
                         <tr>
                             <td>Heim gewinnt</td>
-                            <td><div class="description" th:text="${football.price2}">30</div></td>
+                            <td><div th:text="${football.price2}">30</div></td>
                             <td>2</td>
                         </tr>
                         <tr>
                             <td>Unentschieden</td>
-                            <td><div class="description" th:text="${football.price2}">30</div></td>
+                            <td><div th:text="${football.price2}">30</div></td>
                             <td>3</td>
                         </tr>
                     </table>
