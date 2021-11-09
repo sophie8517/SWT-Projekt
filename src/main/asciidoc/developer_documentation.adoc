@@ -209,7 +209,9 @@ image:diagramm/lottery.png[context diagram]
 [options="header"]
 |=== 
 |Klasse/Enumeration |Description
-|...|...
+|Lottery                    |Die essentielle Klasse des ganzen Programms. Sie sorgt dafür, dass mit Hilfe von SpringApplication Klasse alles ordnungsgemäß beim Einschalten konfiguriert wird und abschließend startet die ganze Applikation.
+|WebSecurityConfiguration   |Sie dient zur unmittelbaren Weiterleiten von /login direkt an das template login.htm.
+|VideoShopWebConfiguration  |Konfigurationsklasse zum Einrichten grundlegender Sicherheits- und Anmelde-/Abmeldeoptionen.
 |===
 
 === 5.2 Katalog
