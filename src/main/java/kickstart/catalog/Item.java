@@ -1,5 +1,6 @@
 package kickstart.catalog;
 
+import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.catalog.ProductIdentifier;
 
@@ -18,23 +19,21 @@ public class Item extends Product{
 		TICKET, FOOTBALL, NONE;
 	}
 
-	//private long id;
-
-	//private int id2;
 	private LocalDate date;
-	private double price2;
+	private Money price2;
 	private ItemType type = ItemType.NONE;
-	//private List<Bet> bits;
+	private String name;
 
 	public Item(){}
 
-	public Item(LocalDate date, double price){
+	public Item(String name, LocalDate date, Money price, ItemType type){
 		//this.id = new Long(id);
+		super(name, price);
 		this.date = date;
-		this.price2 = price;
+
+		this.type = type;
 		//bits = new ArrayList<Bet>();
 	}
-
 
 
 	protected void setType(ItemType type){
@@ -45,28 +44,11 @@ public class Item extends Product{
 		return date;
 	}
 
-	public double getPrice2() {
-		return price2;
-	}
 
 	public ItemType getType() {
 		return type;
 	}
 
 
-
-
-
-	/*
-	public void addBet(Bet bit){
-		bits.add(bit);
-	}
-
-
-
-	public List<Bet> getBits(){
-		return bits;
-	}
-	*/
 
 }

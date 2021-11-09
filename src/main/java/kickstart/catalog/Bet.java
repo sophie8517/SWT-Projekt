@@ -1,36 +1,32 @@
 package kickstart.catalog;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import org.javamoney.moneta.Money;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Entity
 public class Bet implements Serializable {
 
 	private static final long serialVersionUID = -7114101035786254953L;
 
-	private int id2;
 	private LocalDateTime date;
-	private double einsatz;
+	private Money einsatz;
 
 	@ManyToOne
 	private Item item;
 
 	private Status status;
 
-	@Id
+	@Id@GeneratedValue
 	private Long id;
 
 
-	public Bet(Item item, int id, LocalDateTime date, double einsatz){
+	public Bet(Item item, LocalDateTime date, Money einsatz){
 		this.item = item;
 		this.date = date;
-		this.id2 = id;
 		this.einsatz = einsatz;
 		this.status = Status.OPEN;
 
@@ -48,37 +44,18 @@ public class Bet implements Serializable {
 		return status;
 	}
 
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
 
 	public Item getItem() {
 		return item;
-	}
-
-	public void setItem(Item item) {
-		this.item = item;
 	}
 
 	public LocalDateTime getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDateTime date) {
-		this.date = date;
-	}
 
-	public double getEinsatz() {
+	public Money getEinsatz() {
 		return einsatz;
-	}
-
-	public void setEinsatz(double einsatz) {
-		this.einsatz = einsatz;
-	}
-
-	public void setId(Long id2) {
-		this.id = id2;
 	}
 
 
@@ -86,12 +63,4 @@ public class Bet implements Serializable {
 		return id;
 	}
 
-	public void setId2(int id2) {
-		this.id2 = id2;
-	}
-
-	//@Id
-	public int getId2() {
-		return id2;
-	}
 }

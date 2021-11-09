@@ -1,5 +1,6 @@
 package kickstart.catalog;
 
+import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,22 +9,30 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import static org.salespointframework.core.Currencies.*;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import kickstart.catalog.Item.ItemType;
 
 @Controller
 public class CatalogController {
 
 	private final LotteryCatalog lotteryCatalog;
 
+
+
 	public CatalogController(LotteryCatalog lotteryCatalog){
 		this.lotteryCatalog = lotteryCatalog;
 	}
 
+
+
 	@GetMapping("/zahlenlotterie")
 	String ticketCatalog(Model model){
-		model.addAttribute("ticketcatalog", lotteryCatalog.findByType(Item.ItemType.TICKET));
+		model.addAttribute("ticketcatalog", lotteryCatalog.findByType(ItemType.TICKET));
 		model.addAttribute("title", "catalog.ticket.title");
 
 		return "3_catalog_num";
@@ -31,7 +40,7 @@ public class CatalogController {
 
 	@GetMapping("/football")
 	String footballCatalog(Model model){
-		model.addAttribute("footballcatalog", lotteryCatalog.findByType(Item.ItemType.FOOTBALL));
+		model.addAttribute("footballcatalog", lotteryCatalog.findByType(ItemType.FOOTBALL));
 		model.addAttribute("title", "catalog.football.title");
 
 		return "2_catalog_foot";
@@ -49,7 +58,7 @@ public class CatalogController {
 		nums.add(zahl6);
 
 		//add: check if all numbers are different
-		t.addBet(new NumberBet(t, t.getNumberBits().size()+1, LocalDateTime.now(), t.getPrice2(), nums));
+		t.addBet(new NumberBet(t, LocalDateTime.now(), Money.of(t.getPrice().getNumber(), EURO), nums));
 		lotteryCatalog.save(t);
 
 		return "redirect:/3_catalog_num";
@@ -71,7 +80,7 @@ public class CatalogController {
 			tip = "Unentschieden";
 		}
 
-		FootballBet f = new FootballBet(foot, foot.getFootballBits().size() + 1, LocalDateTime.now(), foot.getPrice2(), tip);
+		FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(foot.getPrice().getNumber(), EURO), tip);
 		foot.addBet(f);
 		lotteryCatalog.save(foot);
 

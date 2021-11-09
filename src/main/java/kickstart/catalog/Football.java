@@ -1,6 +1,9 @@
 package kickstart.catalog;
 
+import org.javamoney.moneta.Money;
+
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,17 +17,16 @@ public class Football extends Item {
 
 	private String host, guest, league;
 
-	public Football(LocalDate date, double price, String host, String guest, String league){
-		super(date, price);
+
+	public Football(String name, LocalDate date, Money price, ItemType type, String host, String guest, String league){
+		super(name, date, price, type);
 		this.host = host;
 		this.guest = guest;
 		this.league = league;
-		setType(ItemType.FOOTBALL);
 		footballBets = new ArrayList<>();
 	}
 
 	public Football() {
-
 	}
 
 	public void addBet(FootballBet footballBet){
@@ -35,32 +37,16 @@ public class Football extends Item {
 		return host;
 	}
 
-	//public void setHost(String host) {
-	//	this.host = host;
-	//}
-
 	public String getGuest() {
 		return guest;
 	}
-
-	//public void setGuest(String guest) {
-	//	this.guest = guest;
-	//}
 
 	public String getLeague() {
 		return league;
 	}
 
-	//public void setLeague(String league) {
-	//	this.league = league;
-	//}
-
 
 	public List<FootballBet> getFootballBits() {
 		return footballBets;
 	}
-
-	//public void setFootballBits(List<FootballBet> footballBits) {
-	//	this.footballBets = footballBits;
-	//}
 }

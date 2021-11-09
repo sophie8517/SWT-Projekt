@@ -1,5 +1,7 @@
 package kickstart.catalog;
 
+import org.javamoney.moneta.Money;
+
 import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
@@ -7,8 +9,8 @@ import java.time.LocalDateTime;
 public class FootballBet extends Bet {
 	private String tip;
 
-	public FootballBet(Item item, int id, LocalDateTime date, double einsatz, String tip){
-		super(item, id, date, einsatz);
+	public FootballBet(Item item,  LocalDateTime date, Money einsatz, String tip){
+		super(item, date, einsatz);
 		this.tip = tip;
 	}
 
