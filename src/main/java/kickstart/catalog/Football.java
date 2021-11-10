@@ -2,6 +2,7 @@ package kickstart.catalog;
 
 import org.javamoney.moneta.Money;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -12,8 +13,8 @@ import java.util.List;
 @Entity
 public class Football extends Item {
 
-	@OneToMany
-	private List<FootballBet> footballBets;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<FootballBet> footballBets = new ArrayList<>();
 
 	private String host, guest, league;
 
@@ -23,7 +24,7 @@ public class Football extends Item {
 		this.host = host;
 		this.guest = guest;
 		this.league = league;
-		footballBets = new ArrayList<>();
+		//footballBets = new ArrayList<>();
 	}
 
 	public Football() {

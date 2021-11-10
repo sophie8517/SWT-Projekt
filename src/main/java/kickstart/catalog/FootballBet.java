@@ -24,4 +24,10 @@ public class FootballBet extends Bet {
 	public String getTip() {
 		return tip;
 	}
+
+	@Override
+	public String toString(){
+		Football f = (Football) getItem();
+		return "Heim: " + f.getHost() +"\n Gast: " + f.getGuest() + "\nDatum: " + getDate() + "\nTipp: "+ getTip();
+	}
 }
