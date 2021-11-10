@@ -184,11 +184,9 @@ image:diagramm/ui.png[context diagram]
 • catalog_ltr.CatalogInitializer
 • customer.CustomerDatainitializer
 |salespointframework.SalespointSecurityConfiguration   |lottery.WebSecurityConfiguration
-<<<<<<< HEAD
 |salespointframework.time                              |catalog_ltr.CatalogController
 |springframework.data                                 a|catalog_ltr.LotteryCatalog
 |springframework.security                              |videoshop.WebSecurityConfiguration
-=======
 |salespointframework.time                              |catalog.CatalogController
 |springframework.data                                 a|catalog.LotteryCatalog
 |springframework.security                              |lottery.WebSecurityConfiguration
