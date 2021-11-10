@@ -156,7 +156,9 @@ image:diagramm/soft_arch.png[context diagram]
 === 4.3 Entwurfsentscheidungen
 ==== 4.3.1. Verwendete Muster
 • Spring MVC
+
 ==== 4.3.2. Persistenz
+
 ==== 4.3.3. Benutzeroberfläche
 
 [[context_diagram]]
