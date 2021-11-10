@@ -237,7 +237,7 @@ image::./diagramm/catalog_final.png[Location, 100%, 100%, pdfwidth=100%, title= 
 |ist ein Produkt für die Zahlenlotterie, auf einen Tippschein können beliebig viele Zahlenwetten abgegeben werden
 
 |Football
-|repräsentiert ein Fußballspiel mit folgenden Merkmalen:
+a|repräsentiert ein Fußballspiel mit folgenden Merkmalen:
 
 * Heimmannschaft
 * Gastmannschaft
@@ -257,7 +257,7 @@ Auf ein Fußballspiel können beliebig viele Wetten abgegeben werden.
 |wird auf einen Fußballspiel abgegeben; der Unterschied zur Zahlenwette liegt darin, dass der Tipp der Fußballwette ein String ist, z.B. "Heim gewinnt", "Gast gewinnt", "Unentschieden"
 
 |Status
-|beschreibt den Status einer Wette:
+a|beschreibt den Status einer Wette:
 
 * OFFEN: Wette noch nicht ausgewertet
 * GEWONNEN: Nutzer hat richtig getippt
@@ -347,6 +347,10 @@ wird die Art der Verwendung dieser externen Klasse in der Spalte *Art der Verwen
 == 6. Laufzeitsicht
 * Darstellung der Komponenteninteraktion anhand eines Sequenzdiagramms, welches die relevantesten Interaktionen darstellt.
 
+=== Catalog
+[[runtime_catalog]]
+image::./models/design/runtime_catalog.svg[Location, 100%, 100%, pdfwidth=100%, title = "runtime catalog", align=center]
+
 === Customer
 [[customer_runtime]]
 image::./models/design/runtime_customer.svg[Location, 100%, 100%, pdfwidth=100%, title= "runtime customer", align=center]
@@ -354,6 +358,7 @@ image::./models/design/runtime_customer.svg[Location, 100%, 100%, pdfwidth=100%,
 === Order
 [[runtime_Order]]
 image:models/design/runtime_order.png[Location, 100%, 100%, pdfwidth=100%, title= "runtime_Order", align=center]
+
 
 == 7. Technische Schulden
 * Auflistung der nicht erreichten Quality Gates und der zugehörigen SonarQube Issues zum Zeitpunkt der Abgabe
