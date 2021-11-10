@@ -28,6 +28,7 @@
 * finished Customer description
 |0.8     | In Arbeit           | Yu-Ju Chen             |10.11.2021   a|
 • 5.6 Rückverfolgbarkeit_order
+• Kontext 4.3.2
 
 |===
 
@@ -158,6 +159,10 @@ image:diagramm/soft_arch.png[context diagram]
 • Spring MVC
 
 ==== 4.3.2. Persistenz
+Die Anwendung verwendet Hibernate-Annotationsbasiertes Mapping, um Java-Klassen Datenbanktabellen zuzuordnen. Als Datenbank wird H2 verwendet. Die Persistenz ist standardmäßig deaktiviert. Um den Persistenzspeicher zu aktivieren, müssen die folgenden beiden Zeilen in der Datei application.properties unkommentiert werden:
+
+# spring.datasource.url=jdbc:h2:./db/lottery
+# spring.jpa.hibernate.ddl-auto=update
 
 ==== 4.3.3. Benutzeroberfläche
 
