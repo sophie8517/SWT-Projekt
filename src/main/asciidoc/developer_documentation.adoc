@@ -275,7 +275,7 @@ Auf ein Fußballspiel können beliebig viele Wetten abgegeben werden.
 
 === 5.3. Kunde
 [[customer]]
-image::./models/design/block_customer.png[Location, 100%, 100%, pdfwidth=100%, title= "customer package", align=center]
+image::./models/design/block_customer.svg[Location, 100%, 100%, pdfwidth=100%, title= "customer package", align=center]
 
 
 [options="header"]
