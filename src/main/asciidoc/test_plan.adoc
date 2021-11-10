@@ -131,6 +131,14 @@ a|
 |Ergebnis des Fußballspiels wird eingetragen: Sieg für FCB
 |Guthaben des Nutzers erhöht sich um 10
 
+|???????????
+|
+|Wette auf ein Fußballspiel wird abgegeben
+a|
+* Wette1: Fußballspiel1, Datum, Einsatz, Tipp
+* Wette1 zur Liste von Fußballwetten von Fußballspiel1 hinzufügen
+|Liste von Fußballwetten enthält Wette1
+
 |I-3
 |UC14, AT21
 |Nutzer füllt einen Lottoschein korrekt aus
