@@ -117,7 +117,7 @@ Des Weiteren muss ein Benutzer mit der Nutzung eines Internetbrowsers sowie des 
 === 3.1 Kontextdiagramm
 
 [[context_diagram]]
-image:diagramm/kontext_devel.png[context diagram]
+image:diagramm/kontext_devel.png[Location, 100%, 100%, pdfwidth=100%, title= "Kontextdiagramm", align=center]
 
 == 4. Lösungsstrategie
 === 4.1 Erfüllung der Qualitätsziele
@@ -149,10 +149,10 @@ a|
 * Beschreibung der Architektur anhand der Top-Level-Architektur oder eines Client-Server-Diagramms
 
 [[context_diagram]]
-image:diagramm/top_level_devel.png[context diagram]
+image:diagramm/top_level_devel.png[Location, 100%, 100%, pdfwidth=100%, title= "Top-Level-Architektur", align=center]
 
 [[context_diagram]]
-image:diagramm/soft_arch.png[context diagram]
+image:diagramm/soft_arch.png[Location, 100%, 100%, pdfwidth=100%, title= "Client-Server-Diagramm", align=center]
 
 === 4.3 Entwurfsentscheidungen
 ==== 4.3.1. Verwendete Muster
@@ -168,7 +168,7 @@ Die Anwendung verwendet Hibernate-Annotationsbasiertes Mapping, um Java-Klassen 
 ==== 4.3.3. Benutzeroberfläche
 
 [[context_diagram]]
-image:diagramm/ui.png[context diagram]
+image:diagramm/ui.png[Location, 100%, 100%, pdfwidth=100%, title= "ui", align=center]
 
 ==== 4.3.4. Verwendung externer Frameworks
 
@@ -211,8 +211,8 @@ image:diagramm/ui.png[context diagram]
 
 === 5.1 Lotterie
 
-[[context_diagram]]
-image:diagramm/lottery.png[context diagram]
+[[Lottery]]
+image:diagramm/lottery.png[Location, 100%, 100%, pdfwidth=100%, title= "lottery", align=center]
 
 [options="header"]
 |=== 
@@ -225,7 +225,7 @@ image:diagramm/lottery.png[context diagram]
 === 5.2 Katalog
 
 [[catalog]]
-image::./diagramm/catalog_final.png[100%]
+image::./diagramm/catalog_final.png[Location, 100%, 100%, pdfwidth=100%, title= "catalog", align=center]
 
 [options="header"]
 |=== 
@@ -294,7 +294,7 @@ image::./models/design/block_customer.png[Location, 100%, 100%, pdfwidth=100%, t
 === 5.4 Statistik 
 
 [[context]]
-image:diagramm/Statistic.png[context diagram]
+image:diagramm/Statistic.png[Location, 100%, 100%, pdfwidth=100%, title= "Statisik", align=center]
 
 [options="header"]
 |=== 
@@ -354,7 +354,7 @@ image::./models/design/runtime_customer.svg[Location, 100%, 100%, pdfwidth=100%,
 
 === Order
 [[runtime_Order]]
-image:models/design/runtime_order.png[Location, 100%, 100%, pdfwidth=100%, title= "Order", align=center]
+image:models/design/runtime_order.png[Location, 100%, 100%, pdfwidth=100%, title= "runtime_Order", align=center]
 
 == 7. Technische Schulden
 * Auflistung der nicht erreichten Quality Gates und der zugehörigen SonarQube Issues zum Zeitpunkt der Abgabe
