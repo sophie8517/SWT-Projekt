@@ -324,8 +324,9 @@ wird die Art der Verwendung dieser externen Klasse in der Spalte *Art der Verwen
 [options="header"]
 |===
 |Class/Enumeration (Analysis Model) |Class/Enumeration (Design Model) |Usage
-|Number Lottery         |catalog.Item|
-|Football Lottery       |catalog.Item|						
+|Item			|catalog.Item		|
+|Ticket         	|catalog.Ticket|
+|Football       	|catalog.Football|						
 |Cart                   |Salespoint.Cart | Method Parameter 
 |CartItem               |Salespoint.CartItem (via Salespoint.Cart) | Method Parameter (via Salespoint.Cart)
 |Order                  |Salespoint.Order | Method Parameter
