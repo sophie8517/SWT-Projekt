@@ -190,7 +190,6 @@ image:diagramm/ui.png[context diagram]
 |salespointframework.time                              |catalog.CatalogController
 |springframework.data                                 a|catalog.LotteryCatalog
 |springframework.security                              |lottery.WebSecurityConfiguration
->>>>>>> 92510a25e9c3e3ef18a02dc537b2c1160869d047
 |springframework.ui                                   a|
 • catalog_ltr.CatalogController
 • customer.CustomerController
