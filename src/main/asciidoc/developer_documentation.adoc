@@ -22,11 +22,15 @@
 • Katalog Entwurfsklassendiagramm, Beschreibung der Klassen
 |0.6     | In Arbeit           | Yu-Ju Chen             |08.11.2021   a|
 • 6.4 Diagramm_Laufzeit_Order hinzufügen
-|0.7     | In Arbeit           | Song Bai               |09.11.2021   a|
+|0.7	| In Arbeit		|Sophie Schulze		|08.11.2021	a|
+* Sequenzdiagramm für package Catalog
+* Vorgaben zum Betrieb der Software
+* Erfüllung der Qualitätsziele
+|0.8     | In Arbeit           | Song Bai               |09.11.2021   a|
 * updated Customer component
 * added runtime view of Customer
 * finished Customer description
-|0.8     | In Arbeit           | Yu-Ju Chen             |10.11.2021   a|
+|0.9     | In Arbeit           | Yu-Ju Chen             |10.11.2021   a|
 • 5.6 Rückverfolgbarkeit
 • 4.3.2 Kontext
 
