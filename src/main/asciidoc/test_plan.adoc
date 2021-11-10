@@ -4,6 +4,8 @@ Dieser Testplan stellt eine vereinfachte Version der IEEE 829-1998 Vorlage dar.
 
 == Einführung
 Wozu dient das Dokument? Zielgruppe?
+Das Dokument dient dazu mögliche Testfälle aufzulisten, um auftretende Fehler zu erkennen und zu behandeln. Außerdem dient es als Vorlage für das spätere Implementieren von Unit-Tests und Integrationstests.
+Die Zielgruppe stellt hauptsächlich das Entwicklerteam dar.
 
 == Aufbau der Testbezeichner
 Nach welchem Schema sind die Tests benannt?
@@ -17,12 +19,13 @@ Nach welchem Schema sind die Tests benannt?
 == Test Gegenstände
 
 == Zu testende Funktionalitäten
+* Komponenten mit deren Klassen und Methoden
+* Zusammenspiel der Komponenten
 
 == Nicht zu testende Funktionalitäten
-z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
+* verwendeten Frameworks wie z.B. Spring, Salespoint
 
 == Herangehensweise
-*Bsp.:*
 
 *Klassen werden mit JUnit getestet.*
 
@@ -30,9 +33,15 @@ z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnitt
 
 == Umgebungsvoraussetzungen
 * Wird spezielle Hardware benötigt?
+** Maus
+** Tastatur
+** Computer
 * Welche Daten müssen bereitgestellt werden? Wie werden die Daten bereitgestellt?
+** welche: die Daten, die in der Datenbank gespeichert sind: # spring.datasource.url=jdbc:h2:./db/lottery
 * Wird zusätzliche Software für das Testen benötigt?
+** nein
 * Wie kommuniziert die Software während des Testens? Internet? Netzwerk?
+** Internet
 
 == Testfälle und Verantwortlichkeit
 Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
@@ -41,15 +50,15 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 [options="headers"]
 |===
 |ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
-|AT07  
-|UC05             
+|U-1
+|UC05, AT07            
 |Nutzer ist nicht registriert, Benutzername "maxmuster12" ist schon vorhanden          
 a|
 - Benutzername: maxmuster12
 - Passwort: Woerter44
-| Benutzername bereits vergeben, anderen Benutzernamen eingeben
+| Benutzername bereits vergeben
 
-|not added yet (Bn vergeben, Pw-Form falsch)
+|U-2
 |UC05
 |Nutzer ist nicht registriert, Benutzername "maxmuster12" ist schon vorhanden
 a|
@@ -57,23 +66,23 @@ a|
 - Passwort: 1Wort
 |Benutzername bereits vergeben, Passwort zu kurz
 
-|AT08
-|UC05
+|U-3
+|UC05, AT08
 |Nutzer ist nicht registriert, Benutzername "janed67" ist noch nicht vergeben
 a|
 - Benutzername: janed67
 - Passwort: Woerter44
 |Registrierung erfolgreich, (intern: neuer Nutzer ist angelegt mit den Benutzerdaten)
 
-|AT09
-|UC05
+|U-4
+|UC05, AT09
 |Nutzer ist nicht registriert, Benutzername "muster0815" nicht vergeben
 a|
 - Benutzername: muster0815
 - Passwort: Helloo789
 |Passwort ungültig, (kein neuer Nutzer angelegt)
 
-|AT10
+|AT10   ??????????????????
 |UC06
 |Nutzer ist registriert mit folgenden Eingabedaten. siehe Eingabe
 a|
@@ -81,7 +90,7 @@ a|
 - Passwort: Muster456
 |Login erfolgreich, Nutzer landet auf Startseite
 
-|AT11
+|AT11   ??????????????????????
 |UC06
 |ein Nutzer mit:
 - Benutzername: maik55
@@ -92,26 +101,20 @@ a|
 - Passwort: Wortpass5
 |dieser Nutzer existiert nicht im System
 
-|AT12
-|UC06
-|
-|
-|
-
-|AT13
-|UC07
+|U-5
+|UC07, AT13
 |Nutzer ist angemeldet
 |20
 |Aufladen erfolgreich, prüfen: guthaben = altes guthaben + 20
 
-|AT14
-|UC07
+|U-6
+|UC07, AT14
 |Nutzer ist angemeldet
 |-15
 |Zahl darf nicht negativ sein, (Guthaben des Nutzers bleibt gleich)
 
-|AT15
-|UC08
+|I-1    ????????????
+|UC08, AT15
 |Nutzer hat Fußballwette abgegeben:
 - Teams: FCB gegen BVB
 - Tipp: Sieg für FCB
@@ -119,8 +122,8 @@ a|
 |Ergebnis des Fußballspiels wird eingetragen: Sieg für FCB
 |Status der Fußballwette (bzgl. oben) ist GEWONNEN
 
-|AT15
-|UC08
+|I-2   ????????????????
+|UC08, AT15
 |Nutzer hat Fußballwette abgegeben:
 - Teams: FCB gegen BVB
 - Tipp: Sieg für FCB
@@ -128,34 +131,39 @@ a|
 |Ergebnis des Fußballspiels wird eingetragen: Sieg für FCB
 |Guthaben des Nutzers erhöht sich um 10
 
-|AT21
-|UC14
+|I-3
+|UC14, AT21
 |Nutzer füllt einen Lottoschein korrekt aus
 |Tipp: 1, 15, 19, 22, 33, 48
 |Wette wird zum Warenkorb hinzugefügt -> Anzahl der Warenkorbelemente um 1 erhöht
 
-|AT22
-|UC14
+|I-4
+|UC14, AT22
 |(Lottoschein nicht korrekt ausgefüllt)
-|Tipp: 1,2,3,4
-|zu wenig Zahlen ausgewählt, Anzahl der Warenkorbelemente ändert sich nicht
+|Tipp: 1,2,3,4,4,4
+|kein 6 verschiedenen Zahlen ausgewählt, Anzahl der Warenkorbelemente ändert sich nicht
 
-|AT23
-|UC15
+|I-5
+|UC15, AT23
 |Nutzer füllt einen Lottoschein korrekt aus
 |Tipp: 1, 15, 19, 22, 33, 48
 |Guthaben um Kaufpreis vom Lottoschein reduziert
 
-|
-|
-|
-|
-|
+|I-6
+|Warenkorb nicht für unregsitrierte Nutzer sichtbar/zugreifbar
+|Nutzer ist nicht registriert
+|Zugriff auf "Warenkorb"
+|"kein Zugriff, Anmelden/Login nötig"
 
-|
-|
-|
-|
-|
+|I-7
+|Warenkorb nur für regsitrierte Nutzer sichtbar/zugreifbar
+|Nutzer ist registriert und angemeldet
+|Zugriff auf "Warenkorb"
+|Elemente des Warenkorbs
 
+|I-8
+|Statistik nur für Admin sichtbar
+|Nutzer ist als Admin angemeldet
+|Zugriff auf "Statistik"
+|Statsitik
 |===
