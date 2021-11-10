@@ -26,6 +26,8 @@
 * updated Customer component
 * added runtime view of Customer
 * finished Customer description
+|0.8     | In Arbeit           | Yu-Ju Chen             |10.11.2021   a|
+• 5.6 Rückverfolgbarkeit_order
 
 |===
 
@@ -316,8 +318,15 @@ wird die Art der Verwendung dieser externen Klasse in der Spalte *Art der Verwen
 
 [options="header"]
 |===
-|Klasse/Enumeration (Analysemodell) |Klasse/Enumeration (Entwurfsmodell) |Art der Verwendung
-|...|...|...
+|Class/Enumeration (Analysis Model) |Class/Enumeration (Design Model) |Usage
+
+|Order                  |Salespoint.Order | Method Parameter
+|OrderLine              |Salespoint.Orderline (via Salespoint.Order) | Method Parameter (via Salespoint.Order)
+|OrderManager           |Salespoint.OrderManager<Order> a|
+						* Class Attribute
+						* Method Parameter
+|OrderStatus            |Salespoint.OrderStatus | Method Parameter
+
 |===
 
 == 6. Laufzeitsicht
