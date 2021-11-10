@@ -153,6 +153,7 @@ image:diagramm/soft_arch.png[context diagram]
 
 === 4.3 Entwurfsentscheidungen
 ==== 4.3.1. Verwendete Muster
+• Spring MVC
 ==== 4.3.2. Persistenz
 ==== 4.3.3. Benutzeroberfläche
 
@@ -332,3 +333,16 @@ image:models/design/runtime_order.png[Location, 100%, 100%, pdfwidth=100%, title
 == 7. Technische Schulden
 * Auflistung der nicht erreichten Quality Gates und der zugehörigen SonarQube Issues zum Zeitpunkt der Abgabe
 
+=== 7.1 Quality Gates
+[options="header"]
+|===
+|Quality Gate                  |Tatsächlicher Wert        |Ziel
+|Zuverlässigkeit               |...                       |A
+|Abdeckung                     |..                        |50%
+|===
+
+=== 7.2 Probleme
+[options="header"]
+|===
+|..                    |..                        |..
+|===
