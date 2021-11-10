@@ -160,9 +160,10 @@ image:diagramm/soft_arch.png[context diagram]
 
 ==== 4.3.2. Persistenz
 Die Anwendung verwendet Hibernate-Annotationsbasiertes Mapping, um Java-Klassen Datenbanktabellen zuzuordnen. Als Datenbank wird H2 verwendet. Die Persistenz ist standardmäßig deaktiviert. Um den Persistenzspeicher zu aktivieren, müssen die folgenden beiden Zeilen in der Datei application.properties unkommentiert werden:
-
-# spring.datasource.url=jdbc:h2:./db/lottery
+....
+# spring.datasource.url=jdbc:h2:./db/videoshop
 # spring.jpa.hibernate.ddl-auto=update
+....
 
 ==== 4.3.3. Benutzeroberfläche
 
