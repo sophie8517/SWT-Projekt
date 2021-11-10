@@ -27,8 +27,8 @@
 * added runtime view of Customer
 * finished Customer description
 |0.8     | In Arbeit           | Yu-Ju Chen             |10.11.2021   a|
-• 5.6 Rückverfolgbarkeit_order
-• Kontext 4.3.2
+• 5.6 Rückverfolgbarkeit
+• 4.3.2 Kontext
 
 |===
 
@@ -324,14 +324,25 @@ wird die Art der Verwendung dieser externen Klasse in der Spalte *Art der Verwen
 [options="header"]
 |===
 |Class/Enumeration (Analysis Model) |Class/Enumeration (Design Model) |Usage
-
+|Number Lottery                 a|
+						* catalog.Item|
+|Football Lottery               a|
+						* catalog.Item|						
+|Cart                   |Salespoint.Cart | Method Parameter 
+|CartItem               |Salespoint.CartItem (via Salespoint.Cart) | Method Parameter (via Salespoint.Cart)
 |Order                  |Salespoint.Order | Method Parameter
 |OrderLine              |Salespoint.Orderline (via Salespoint.Order) | Method Parameter (via Salespoint.Order)
 |OrderManager           |Salespoint.OrderManager<Order> a|
 						* Class Attribute
 						* Method Parameter
 |OrderStatus            |Salespoint.OrderStatus | Method Parameter
-
+|ROLE/Role              |Salespoint.Role | Method Parameter
+|User                   a|
+						* Salespoint.UserAccount 
+						* customer.Customer a|
+						* Class Attribute
+						* Method Parameter
+|Lottery              |lottery.Lottery |						
 |===
 
 == 6. Laufzeitsicht
