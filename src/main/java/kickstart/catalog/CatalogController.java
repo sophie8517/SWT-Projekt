@@ -2,18 +2,18 @@ package kickstart.catalog;
 
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
+import org.salespointframework.catalog.ProductIdentifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import static org.salespointframework.core.Currencies.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import kickstart.catalog.Item.ItemType;
 
@@ -47,26 +47,49 @@ public class CatalogController {
 	}
 
 	@PostMapping("/lottery/numbit")
-	String bet_num(@PathVariable Ticket t, @RequestParam("zahl1") int zahl1, @RequestParam("zahl2") int zahl2, @RequestParam("zahl3")int zahl3, @RequestParam("zahl4")int zahl4, @RequestParam("zahl5")int zahl5, @RequestParam("zahl6")int zahl6){
+	String bet_num(@RequestParam("pid")ProductIdentifier id, @RequestParam("zahl1") int zahl1, @RequestParam("zahl2") int zahl2, @RequestParam("zahl3")int zahl3, @RequestParam("zahl4")int zahl4, @RequestParam("zahl5")int zahl5, @RequestParam("zahl6")int zahl6){
+
+		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 
 		List<Integer> nums = new ArrayList<>();
-		nums.add(zahl1);
-		nums.add(zahl2);
-		nums.add(zahl3);
-		nums.add(zahl4);
-		nums.add(zahl5);
-		nums.add(zahl6);
+		Set<Integer> checker = new HashSet<>();
+		checker.add(zahl1);
+		checker.add(zahl2);
+		checker.add(zahl3);
+		checker.add(zahl4);
+		checker.add(zahl5);
+		checker.add(zahl6);
+
+		if(checker.size() == 6){
+			nums.addAll(checker);
+		}
+		else{
+			return "3_catalog_num";
+		}
 
 		//add: check if all numbers are different
 		t.addBet(new NumberBet(t, LocalDateTime.now(), Money.of(t.getPrice().getNumber(), EURO), nums));
 		lotteryCatalog.save(t);
 
-		return "redirect:/3_catalog_num";
+		return "home";
 
 	}
 
+	@PostMapping("/lottery/wronginput")
+	String wrong_input(@RequestParam("option1") int number){
+		if(number == 0){
+			return "3_catalog_num";
+		}
+		else{
+			return "home";
+		}
+	}
+
 	@PostMapping("/lottery/footbit")
-	String bet_foot(@RequestParam("id") Football foot, @RequestParam("fussballwette") int number){
+	String bet_foot(@RequestParam("pid")ProductIdentifier id, @RequestParam("fussballwette") int number){
+
+		Football foot = (Football) lotteryCatalog.findById(id).get();
+
 
 		String  tip;
 
@@ -80,11 +103,15 @@ public class CatalogController {
 			tip = "Unentschieden";
 		}
 
+
 		FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(foot.getPrice().getNumber(), EURO), tip);
 		foot.addBet(f);
+		System.out.println(foot.getFootballBits());
 		lotteryCatalog.save(foot);
 
-		return "redirect:/2_catalog_foot";
+
+
+		return "home";
 
 	}
 

@@ -3,6 +3,7 @@ package kickstart.catalog;
 
 import org.javamoney.moneta.Money;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.time.LocalDate;
@@ -12,7 +13,7 @@ import java.util.List;
 @Entity
 public class Ticket extends Item {
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<NumberBet> numberBets = new ArrayList<>();
 
 
