@@ -229,7 +229,7 @@ image:diagramm/lottery.png[Location, 100%, 100%, pdfwidth=100%, title= "lottery"
 === 5.2 Katalog
 
 [[catalog]]
-image::./diagramm/catalog_final.png[Location, 100%, 100%, pdfwidth=100%, title= "catalog", align=center]
+image::./models/design/block_catalog.svg[Location, 100%, 100%, pdfwidth=100%, title= "catalog", align=center]
 
 [options="header"]
 |=== 
