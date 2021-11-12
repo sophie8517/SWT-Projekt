@@ -3,14 +3,12 @@
 Dieser Testplan stellt eine vereinfachte Version der IEEE 829-1998 Vorlage dar.
 
 == Einführung
-Wozu dient das Dokument? Zielgruppe?
+
 Das Dokument dient dazu mögliche Testfälle aufzulisten, um auftretende Fehler zu erkennen und zu behandeln. Außerdem dient es als Vorlage für das spätere Implementieren von Unit-Tests und Integrationstests.
 Die Zielgruppe stellt hauptsächlich das Entwicklerteam dar.
 
 == Aufbau der Testbezeichner
 Nach welchem Schema sind die Tests benannt?
-
-*Bsp.*
 
 *U - Unit Test, I - Integrationstest*
 
@@ -49,9 +47,10 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-|ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
+|ID |Anwendungsfall |Akzeptanztestfall|Vorbedingungen |Eingabe |Ausgabe
 |U-1
-|UC05, AT07            
+|UC05
+|AT07            
 |Nutzer ist nicht registriert, Benutzername "maxmuster12" ist schon vorhanden          
 a|
 - Benutzername: maxmuster12
@@ -60,6 +59,7 @@ a|
 
 |U-2
 |UC05
+|-
 |Nutzer ist nicht registriert, Benutzername "maxmuster12" ist schon vorhanden
 a|
 - Benutzername: maxmuster12
@@ -67,7 +67,8 @@ a|
 |Benutzername bereits vergeben, Passwort zu kurz
 
 |U-3
-|UC05, AT08
+|UC05
+|AT08
 |Nutzer ist nicht registriert, Benutzername "janed67" ist noch nicht vergeben
 a|
 - Benutzername: janed67
@@ -75,46 +76,31 @@ a|
 |Registrierung erfolgreich, (intern: neuer Nutzer ist angelegt mit den Benutzerdaten)
 
 |U-4
-|UC05, AT09
+|UC05
+|AT09
 |Nutzer ist nicht registriert, Benutzername "muster0815" nicht vergeben
 a|
 - Benutzername: muster0815
 - Passwort: Helloo789
 |Passwort ungültig, (kein neuer Nutzer angelegt)
 
-|AT10   ??????????????????
-|UC06
-|Nutzer ist registriert mit folgenden Eingabedaten. siehe Eingabe
-a|
-- Benutzername: maxmuster12
-- Passwort: Muster456
-|Login erfolgreich, Nutzer landet auf Startseite
-
-|AT11   ??????????????????????
-|UC06
-|ein Nutzer mit:
-- Benutzername: maik55
-- Passwort: Wortpass5
-existiert nicht
-a|
-- Benutzername: maik55
-- Passwort: Wortpass5
-|dieser Nutzer existiert nicht im System
-
 |U-5
-|UC07, AT13
+|UC07
+|AT13
 |Nutzer ist angemeldet
 |20
 |Aufladen erfolgreich, prüfen: guthaben = altes guthaben + 20
 
 |U-6
-|UC07, AT14
+|UC07
+|AT14
 |Nutzer ist angemeldet
 |-15
 |Zahl darf nicht negativ sein, (Guthaben des Nutzers bleibt gleich)
 
-|I-1    ????????????
-|UC08, AT15
+|I-1
+|UC08
+|AT15
 |Nutzer hat Fußballwette abgegeben:
 - Teams: FCB gegen BVB
 - Tipp: Sieg für FCB
@@ -122,8 +108,9 @@ a|
 |Ergebnis des Fußballspiels wird eingetragen: Sieg für FCB
 |Status der Fußballwette (bzgl. oben) ist GEWONNEN
 
-|I-2   ????????????????
-|UC08, AT15
+|I-2   
+|UC08
+|AT15
 |Nutzer hat Fußballwette abgegeben:
 - Teams: FCB gegen BVB
 - Tipp: Sieg für FCB
@@ -131,47 +118,60 @@ a|
 |Ergebnis des Fußballspiels wird eingetragen: Sieg für FCB
 |Guthaben des Nutzers erhöht sich um 10
 
-|???????????
-|
-|Wette auf ein Fußballspiel wird abgegeben
-a|
-* Wette1: Fußballspiel1, Datum, Einsatz, Tipp
-* Wette1 zur Liste von Fußballwetten von Fußballspiel1 hinzufügen
-|Liste von Fußballwetten enthält Wette1
-
 |I-3
-|UC14, AT21
+|UC14
+|AT21
 |Nutzer füllt einen Lottoschein korrekt aus
 |Tipp: 1, 15, 19, 22, 33, 48
 |Wette wird zum Warenkorb hinzugefügt -> Anzahl der Warenkorbelemente um 1 erhöht
 
 |I-4
-|UC14, AT22
+|UC14
+|AT22
 |(Lottoschein nicht korrekt ausgefüllt)
 |Tipp: 1,2,3,4,4,4
 |kein 6 verschiedenen Zahlen ausgewählt, Anzahl der Warenkorbelemente ändert sich nicht
 
 |I-5
-|UC15, AT23
+|UC15
+|AT23
 |Nutzer füllt einen Lottoschein korrekt aus
 |Tipp: 1, 15, 19, 22, 33, 48
 |Guthaben um Kaufpreis vom Lottoschein reduziert
 
 |I-6
 |Warenkorb nicht für unregsitrierte Nutzer sichtbar/zugreifbar
+|-
 |Nutzer ist nicht registriert
 |Zugriff auf "Warenkorb"
 |"kein Zugriff, Anmelden/Login nötig"
 
 |I-7
 |Warenkorb nur für regsitrierte Nutzer sichtbar/zugreifbar
+|-
 |Nutzer ist registriert und angemeldet
 |Zugriff auf "Warenkorb"
 |Elemente des Warenkorbs
 
 |I-8
 |Statistik nur für Admin sichtbar
+|-
 |Nutzer ist als Admin angemeldet
 |Zugriff auf "Statistik"
 |Statsitik
+
+|I-9
+|UC01
+|AT01, AT02
+|-
+|Zugriff auf "Fußballtoto"
+|Fußballspiele, auf die man wetten kann
+
+|I-10
+|UC03
+|AT05
+a|
+* Wette1: Fußballspiel1, Datum, Einsatz, Tipp
+* Wette1 zur Liste von Fußballwetten von Fußballspiel1 hinzufügen
+|Liste von Fußballwetten (von Fußballspiel1) enthält Wette1
 |===
