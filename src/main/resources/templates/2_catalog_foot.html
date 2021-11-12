@@ -11,14 +11,15 @@
 </head>
 
 <body class="backgrounds">
-    <div class="container">
-        <nav>
+
+        <!--<nav>
             <a href="home.html">HOME</a>
-            <a href="kontakt.html">KONTAKT</a>
+            <a class="item" href="contact.html" th:href="@{/contact}" th:text="#{nav.contact}">KONTAKT</a>
             <a href="meinProfil.html">MEIN PROFIL</a>
             <a href="1_catalog.html">KATALOG</a>
-        </nav>
-        
+        </nav>-->
+        <nav th:include="navigation :: navigation" class="navcontainer"></nav>
+        <div class="container">
         <main class="box-one">
             <h2 class="box-two">Übersicht der Fußballspiele</h2>
         </main>
@@ -27,9 +28,9 @@
             <div th:each="football : ${footballcatalog}">
                 <div class="box-three">
                     <div>
-                    Bundesliga: <div th:text="${football.league}">1. Bundesliga</div>
+                    Liga: <div th:text="${football.league}">1. Bundesliga</div>
                     <br><br>
-                    Datum: <div th:text="${football.date}">11.11.2021</div>
+                    Spieltag: <div th:text="${football.date}">11.11.2021</div>
                     <br><br>
                         </div>
                     <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center">
@@ -62,11 +63,14 @@
                 <form th:method="post" th:action="@{/lottery/footbit}">
                     <!--<input type="hidden" name="id" value="0" th:value="${football}"/>-->
                     <input type="hidden" name="pid" value="0" th:value="${football.id}"/>
-                    <div  >
-                        <label th:text="#{football.bet}" >Wettoption (1,2 oder 3):  </label>
-                        <input field="*{fussballwette}" id="fussballwette" type="number" name="fussballwette" min="1" max="3" required="required"/><br/>
+                    </br>
+                    <div >
+                        <label th:text="#{football.bet}" >Wettoption:  </label>
+                        <input field="*{fussballwette}" id="fussballwette" type="number" name="fussballwette" min="1" max="3" required="required"/>
+                        </br></br>
+
+                        <button class="button" type="submit" th:text="#{football.addBet}" >Jetzt wetten</button>
                     </div>
-                    <button type="submit" th:text="#{football.addBet}">Jetzt wetten</button>
                 </form>
 
             </div>

@@ -11,16 +11,17 @@
 </head>
 
 <body class="backgrounds">
-    <div class="container">
-        <nav>
+
+        <!--<nav>
 			<a href="home.html">HOME</a>
-            <a href="kontakt.html">KONTAKT</a>
+            <a class="item" href="contact.html" th:href="@{/contact}" th:text="#{nav.contact}">KONTAKT</a>
             <a href="meinProfil.html">MEIN PROFIL</a>
             <a href="1_catalog.html">KATALOG</a>
             <a class="item" href="3_catalog_num.html" th:href="@{/zahlenlotterie}" th:text="#{nav.zahlkatalog}">ZAHLENLOTTERIE</a>
-            <a class="item" href="2_catalog_foot.html" th:href="@{/football}" th:text="#{nav.footballkatalog}">FU�BALLTOTO</a>
-        </nav>
-
+            <a class="item" href="2_catalog_foot.html" th:href="@{/football}" th:text="#{nav.footballkatalog}">FUSSBALLTOTO</a>
+        </nav>-->
+        <nav th:include="navigation :: navigation" class="navcontainer"></nav>
+        <div class="container">
         <main class="box-one">
             <h3>Herzlich Willkommen!</h3>
             <h4>Los geht's, Mach Dein Glück!! </h4>

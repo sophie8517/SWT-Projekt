@@ -16,8 +16,8 @@ body {
     background-repeat: repeat;
     background-position: center top;
     display: block;
-    min-height: 100%;
-    min-width: 100%;
+    min-height: 50%;
+    min-width: 50%;
 
 }
 
@@ -26,6 +26,13 @@ body {
     margin-right: auto;
     width: 780px;
 }
+
+.navcontainer{
+    margin-left: 20px;
+    margin-right: 20px;
+    width: auto;
+}
+
 
 .box-one {
     margin-top: 40px;
@@ -87,10 +94,13 @@ header {
 
 nav {
     background-color: rgba(0, 0, 0, 0.75);
-    text-align: center;
+    text-align: left;
     padding-top: 14px;
     padding-bottom: 14px;
-    padding-right: -25px;
+    padding-right: 10px;
+    padding-left: 10px;
+
+
 }
 
 nav a{

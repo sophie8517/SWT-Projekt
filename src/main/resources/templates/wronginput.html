@@ -185,6 +185,11 @@
             .yt {
                 padding-bottom: 50px;
             }
+            .button {
+                width: 200px;
+                height: 40px;
+                font-size: 25px;
+            }
         </style>
 
     </head>
@@ -204,7 +209,7 @@
                 </br>
                 <form th:method="post" th:action="@{/lottery/wronginput}">
                     <input type="hidden" name="option1" value="1" />
-                    <button type="submit" th:text="#{ticket.wrong1}"><a style="color:black">Zurück zur Homepage</a></button>
+                    <button class="button" type="submit" th:text="#{ticket.wrong1}"><a style="color:black">Zur Homepage</a></button>
                 </form>
                 </br>
                 </br>
@@ -215,7 +220,7 @@
                 </nav>
                 -->
 
-                   <button><a class="item" href="3_catalog_num.html" th:href="@{/zahlenlotterie}" th:text="#{nav.zahlkatalog2}" style="text-decoration: none; color: black">Nochmal tippen</a></button>
+                   <button class="button"><a class="item" href="3_catalog_num.html" th:href="@{/zahlenlotterie}" th:text="#{nav.zahlkatalog2}" style="text-decoration: none; color: black">Nochmal tippen</a></button>
 
 
             </div>

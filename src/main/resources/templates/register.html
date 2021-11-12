@@ -10,15 +10,16 @@
 </head>
 
 <body class="backgrounds">
-    <div class="container">
-        <nav>
+
+        <!--<nav>
             <a href="https://www.bk.com/">HOME</a>
-            <a href="https://www.bk.com/contact-us">KONTAKT</a>
+            <a class="item" href="contact.html" th:href="@{/contact}" th:text="#{nav.contact}">KONTAKT</a>
             <a href="">KATALOG</a>
             <a href="">ANMELDEN</a>
             <a href="">REGISTRIEREN</a>
-        </nav>
-
+        </nav>-->
+        <nav th:include="navigation :: navigation" class="navcontainer"></nav>
+        <div class="container">
         <main>
             <section layout:fragment="content">
                     <h3 class="ui dividing header" th:text="#{register.userdata}">Registrieren</h3>

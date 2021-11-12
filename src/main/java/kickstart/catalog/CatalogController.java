@@ -1,7 +1,6 @@
 package kickstart.catalog;
 
 import org.javamoney.moneta.Money;
-import org.salespointframework.catalog.Product;
 import org.salespointframework.catalog.ProductIdentifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,6 +43,13 @@ public class CatalogController {
 		model.addAttribute("title", "catalog.football.title");
 
 		return "2_catalog_foot";
+	}
+
+	@GetMapping("/contact")
+	String catalog(Model model){
+		model.addAttribute("title","kontakt.title");
+
+		return "contact";
 	}
 
 	@PostMapping("/lottery/numbit")

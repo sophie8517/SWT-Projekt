@@ -11,15 +11,16 @@
 </head>
 
 <body class="backgrounds">
-    <div class="container">
+
         <br>
-        <nav>
+        <!--<nav>
             <a href="home.html">HOME</a>
-            <a href="kontakt.html">KONTAKT</a>
+            <a class="item" href="contact.html" th:href="@{/contact}" th:text="#{nav.contact}">KONTAKT</a>
             <a href="">ANMELDEN</a>
             <a href="register.html">REGISTRIEREN</a>
-        </nav>
-
+        </nav>-->
+        <nav th:include="navigation :: navigation" class="navcontainer"></nav>
+        <div class="container">
         <main>
             <h1>Mach Dein Glück!!</h1>
             <p>Mach Dein Glück ist eine Lotterie und damit ein Glücksspiel, bei dem der Spieler gegen einen finanziellen Einsatz auf das Ziehen vorher getippter Zahlen aus einer begrenzten Zahlenmenge setzt.
@@ -27,15 +28,9 @@
             </p>
             <a class="item" href="3_catalog_num.html" th:href="@{/zahlenlotterie}" th:text="#{nav.zahlkatalog}">ZAHLENLOTTERIE</a>
 
-            &ensp;
-            &ensp;
-            &ensp;
-            &ensp;
-            &ensp;
-            &ensp;            
-            
 
-            <a class="item" href="2_catalog_foot.html" th:href="@{/football}" th:text="#{nav.footballkatalog}">FU�BALLTOTO</a>
+
+            <a class="item" href="2_catalog_foot.html" th:href="@{/football}" th:text="#{nav.footballkatalog}">FUSSBALLTOTO</a>
         </main>
 
         <div class="box-one">
