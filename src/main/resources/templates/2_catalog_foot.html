@@ -27,12 +27,20 @@
 
             <div th:each="football : ${footballcatalog}">
                 <div class="box-three">
-                    <div>
-                    Liga: <div th:text="${football.league}">1. Bundesliga</div>
-                    <br><br>
-                    Spieltag: <div th:text="${football.date}">11.11.2021</div>
-                    <br><br>
-                        </div>
+
+                    <table>
+                        <tr>
+                            <th style="width: 300px">Liga: <div th:text="${football.league}">1. Bundesliga</div></th>
+                            <th style="width: 150px; text-align: center"> <img src="../logos/fcb.png" style="width: 80px"></th>
+                            <th style="font-size: 30px">:</th>
+                            <th style="width: 150px; text-align: center"><img src="../logos/fcb.png" style="width: 80px"></th>
+                        </tr>
+                        <tr>
+                            <td>Spieltag: <div th:text="${football.date}">11.11.2021</div></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
                     <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center">
                         <tr>
                             <th>Gast</th>
