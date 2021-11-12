@@ -7,7 +7,7 @@
     <meta name="viewport" content="width = device - width, initial - scale = 1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>🍀 Mach Dein Glück!! 🍀</title>
-    <link rel="stylesheet" href="style_foot.css">
+    <link th:href="@{resources/css/style_foot.css}" rel="stylesheet"  type="text/css" href="../static/resources/css/style_foot.css">
 </head>
 
 <body class="backgrounds">
@@ -23,9 +23,9 @@
             <h2 class="box-two">Übersicht der Fußballspiele</h2>
         </main>
 
-         <div class="box-three">
-            <div th:each="football : ${footballcatalog}">
 
+            <div th:each="football : ${footballcatalog}">
+                <div class="box-three">
                     <div>
                     Bundesliga: <div th:text="${football.league}">1. Bundesliga</div>
                     <br><br>

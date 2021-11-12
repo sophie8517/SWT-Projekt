@@ -7,7 +7,7 @@
     <meta name="viewport" content="width = device - width, initial - scale = 1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>🍀 Mach Dein Glück!! 🍀</title>
-    <link rel="stylesheet" href="style_num.css">
+    <link th:href="@{resources/css/style_num.css}" rel="stylesheet" href="../static/resources/css/style_num.css">
 </head>
 
 <body class="backgrounds">
@@ -27,7 +27,7 @@
         <div class="box-three">
              <div th:each="ticket : ${ticketcatalog}"  >
                 <form >
-                    <fieldset style="width: 25%">
+                    <fieldset style="width: auto; position: center">
                         <input type="checkbox" id="1" value="1" ><label for="1">01</label>
                         <input type="checkbox" id="2" value="2"><label for="2">02</label>
                         <input type="checkbox" id="3" value="3"><label for="3">03</label>
@@ -89,7 +89,7 @@
                     </fieldset>
                 </form>
                 <br>
-                <form th:method="post" th:action="@{/lottery/numbit}">
+                <form th:method="post" th:action="@{/lottery/numbit}" style="font-size: 20px">
                     <input type="hidden" name="pid" value="0" th:value="${ticket.id}"/>
                 <div >
                     <label th:text="#{ticket.zahl1}">1. Zahl: </label>
