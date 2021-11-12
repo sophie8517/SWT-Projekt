@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width = device - width, initial - scale = 1">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>🍀 Mach Dein Glück!! 🍀</title>
+        <!--<link th:href="@{resources/css/style_wronginput.css}" rel="stylesheet" href="../static/resources/css/style_wronginput.css" type="text/css">
+        -->
+        <style>
+            body {
+                /*background-color: grey;*/
+                background-image: url('https://www.fr.de/bilder/2021/10/27/91077510/27194553-lotto-mittwoch-heute-29-09-2021-aktuell-gewinnzahlen-jackpot-ziehung-2z13t93ji3ea.jpg');
+                background-size: cover;
+                background-repeat: repeat;
+                background-position: center;
+                min-height: 100%;
+            }
+
+            .backgrounds {
+                background-image: url('https://www.fr.de/bilder/2021/10/27/91077510/27194553-lotto-mittwoch-heute-29-09-2021-aktuell-gewinnzahlen-jackpot-ziehung-2z13t93ji3ea.jpg');
+                background-size: cover;
+                background-repeat: repeat;
+                background-position: center top;
+                display: block;
+                min-height: 100%;
+                /*min-width: 100%;*/
+
+            }
+
+            .container {
+                margin-left: auto;
+                margin-right: auto;
+                width: 780px;
+            }
+
+            .box-one {
+                padding-top: 1px;
+                padding-bottom: 1px;
+                padding-left: 100px;
+                font-size: 16px;
+
+                text-align: left;
+                background-color: rgba(0, 0, 0, 0.75);
+                color: white;
+                font-family: Arial, Helvetica, sans-serif;
+
+                height: 70px;
+            }
+
+            .box-two {
+                padding-top: 1px;
+                padding-bottom: 1px;
+                padding-right: 100px;
+                text-align: center;
+
+            }
+
+            .box-three {
+                margin-top: 60px;
+                margin-bottom: -50px;
+
+                margin-left: 90px;
+                margin-right: 90px;
+
+                padding-top: 20px;
+                padding-bottom: 20px;
+                padding-left: 20px;
+
+                text-align: center;
+                background-color: rgba(0, 0, 0, 0.75);
+                color: white;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 20px;
+                text-align: left;
+
+                height: 450px;
+            }
+
+            header {
+                height: 140px;
+                text-align: center;
+            }
+
+            nav {
+                background-color: rgba(0, 0, 0, 0.75);
+                text-align: center;
+                padding-top: 14px;
+                padding-bottom: 14px;
+                padding-right: -25px;
+            }
+
+            nav a{
+                text-decoration: none;
+                font-size: 22px;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            main {
+                background-color: rgba(0, 0, 0, 0.75);
+                height: 480px;
+                text-align: center;
+                padding-top: 1px;
+                margin-top: 30px;
+                margin-left: 100px;
+                margin-right: 100px;
+                /*margin-bottom: 50px;*/
+            }
+
+
+            footer {
+                background-color: rgba(0, 0, 0, 0.75);
+                padding-top: 1px;
+                padding-bottom: 1px;
+                margin-top: 150px;
+                margin-left: 210px;
+                margin-right: 210px;
+            }
+
+            footer p {
+                font-size: 20px;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 84px;
+                color: white;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            h2 {
+                font-size: 25px;
+                color: white;
+                font-family: Arial, Helvetica, sans-serif;
+                text-align: center;
+            }
+
+            h3 {
+                font-size: 40px;
+                color: white;
+                font-family: Arial, Helvetica, sans-serif;
+                text-align: center;
+            }
+
+            h4 {
+                font-size: 20px;
+                color: white;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            p {
+                font-size: 22px;
+                color: white;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            a {
+                color: white;
+                font-size: 22px;
+                font-family: Arial, Helvetica, sans-serif;
+                /*text-decoration: none;*/
+            }
+
+            .field {
+                color: white;
+                font-size: 16px;
+                font-family: Arial, Helvetica, sans-serif;
+                text-align: left;
+                padding-left: 190px;
+            }
+
+            .style {
+                color: white;
+                font-size: 16px;
+                font-family: Arial, Helvetica, sans-serif;
+                text-align: center;
+            }
+
+            .maps {
+                padding-bottom: 100px;
+            }
+
+            .yt {
+                padding-bottom: 50px;
+            }
+        </style>
+
+    </head>
+
+    <body class="backgrounds" >
+        <div class="container">
+            <main class="box-one">
+                Falsche Eingabe
+            </main>
+            <div class="box-three">
+                Du hast nicht 6 verschiedene Zahlen eingegen. Deine Eingabe ist ungültig.
+                </br>
+                Wie moechtest du fortfahren?
+                </br>
+                </br>
+                <form th:method="post" th:action="@{/lottery/wronginput}">
+                    <input type="hidden" name="option1" value="1" />
+                    <button type="submit" th:text="#{ticket.wrong1}">Zurück zur Homepage</button>
+                </form>
+
+                <!--
+                <nav>
+                    <a href="home.html">Zur Homepage zurueckkehren</a>
+                    <a href="3_catalog_num.html">Den Tippschein nochmal neu ausfuellen</a>
+                </nav>
+                -->
+
+                   <button><a class="item" href="3_catalog_num.html" th:href="@{/zahlenlotterie}" th:text="#{nav.zahlkatalog2}" style="text-decoration: none">ZAHLENLOTTERIE</a></button>
+
+
+            </div>
+            <footer>
+                <p>Mach Dein Glück!! ©Copyright 2021©</p>
+            </footer>
+        </div>
+    </body>
+</html>

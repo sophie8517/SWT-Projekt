@@ -64,24 +64,25 @@ public class CatalogController {
 			nums.addAll(checker);
 		}
 		else{
-			return "3_catalog_num";
+
+			return "wronginput";
 		}
 
 		//add: check if all numbers are different
 		t.addBet(new NumberBet(t, LocalDateTime.now(), Money.of(t.getPrice().getNumber(), EURO), nums));
 		lotteryCatalog.save(t);
 
-		return "home";
+		return "redirect:/";
 
 	}
 
 	@PostMapping("/lottery/wronginput")
 	String wrong_input(@RequestParam("option1") int number){
 		if(number == 0){
-			return "3_catalog_num";
+			return "redirect:/3_catalog_num.html";
 		}
 		else{
-			return "home";
+			return "redirect:/";
 		}
 	}
 
@@ -111,7 +112,7 @@ public class CatalogController {
 
 
 
-		return "home";
+		return "redirect:/";
 
 	}
 
