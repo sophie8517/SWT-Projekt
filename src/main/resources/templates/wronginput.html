@@ -36,9 +36,9 @@
             }
 
             .box-one {
-                padding-top: 1px;
+                padding-top: 10px;
                 padding-bottom: 1px;
-                padding-left: 100px;
+                padding-left: 50px;
                 font-size: 16px;
 
                 text-align: left;
@@ -68,7 +68,7 @@
                 padding-bottom: 20px;
                 padding-left: 20px;
 
-                text-align: center;
+                text-align: left;
                 background-color: rgba(0, 0, 0, 0.75);
                 color: white;
                 font-family: Arial, Helvetica, sans-serif;
@@ -101,7 +101,7 @@
             main {
                 background-color: rgba(0, 0, 0, 0.75);
                 height: 480px;
-                text-align: center;
+                text-align: left;
                 padding-top: 1px;
                 margin-top: 30px;
                 margin-left: 100px;
@@ -141,7 +141,7 @@
                 font-size: 40px;
                 color: white;
                 font-family: Arial, Helvetica, sans-serif;
-                text-align: center;
+                text-align: left;
             }
 
             h4 {
@@ -192,19 +192,22 @@
     <body class="backgrounds" >
         <div class="container">
             <main class="box-one">
-                Falsche Eingabe
+                <div style="font-size: 40px; text-align: left">Achtung! Falsche Eingabe</div>
             </main>
             <div class="box-three">
-                Du hast nicht 6 verschiedene Zahlen eingegen. Deine Eingabe ist ungültig.
+                Du hast nicht 6 verschiedene Zahlen eingegeben.
+                </br>Deine Eingabe ist ungültig.
                 </br>
-                Wie moechtest du fortfahren?
+                </br>
+                Wie möchtest du fortfahren?
                 </br>
                 </br>
                 <form th:method="post" th:action="@{/lottery/wronginput}">
                     <input type="hidden" name="option1" value="1" />
-                    <button type="submit" th:text="#{ticket.wrong1}">Zurück zur Homepage</button>
+                    <button type="submit" th:text="#{ticket.wrong1}"><a style="color:black">Zurück zur Homepage</a></button>
                 </form>
-
+                </br>
+                </br>
                 <!--
                 <nav>
                     <a href="home.html">Zur Homepage zurueckkehren</a>
@@ -212,7 +215,7 @@
                 </nav>
                 -->
 
-                   <button><a class="item" href="3_catalog_num.html" th:href="@{/zahlenlotterie}" th:text="#{nav.zahlkatalog2}" style="text-decoration: none">ZAHLENLOTTERIE</a></button>
+                   <button><a class="item" href="3_catalog_num.html" th:href="@{/zahlenlotterie}" th:text="#{nav.zahlkatalog2}" style="text-decoration: none; color: black">Nochmal tippen</a></button>
 
 
             </div>
