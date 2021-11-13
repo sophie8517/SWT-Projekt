@@ -31,9 +31,9 @@
                     <table>
                         <tr>
                             <th style="width: 300px">Liga: <div th:text="${football.league}">1. Bundesliga</div></th>
-                            <th style="width: 150px; text-align: center"> <img src="../logos/fcb.png" style="width: 80px"></th>
+                            <th style="width: 150px; text-align: center"> <img th:src="@{/resources/logos/{image}.png(image=${football.logo_host})}" src="../logos/fcb.png" style="width: 80px"></th>
                             <th style="font-size: 30px">:</th>
-                            <th style="width: 150px; text-align: center"><img src="../logos/fcb.png" style="width: 80px"></th>
+                            <th style="width: 150px; text-align: center"><img th:src="@{/resources/logos/{image}.png(image=${football.logo_guest})}" src="../logos/fcb.png" style="width: 80px"></th>
                         </tr>
                         <tr>
                             <td>Spieltag: <div th:text="${football.date}">11.11.2021</div></td>
@@ -43,15 +43,15 @@
                     </table>
                     <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center">
                         <tr>
-                            <th>Gast</th>
                             <th>Heim</th>
+                            <th>Gast</th>
                             <th>Spielstand</th>
                             <th>Einsatz</th>
                             <th>Wettoption</th>
                         </tr>
                         <tr>
-                            <td rowspan = "3"><div th:text="${football.guest}">BVB</div></td>
                             <td rowspan = "3"><div th:text="${football.host}">FC Bayern Muenchen</div></td>
+                            <td rowspan = "3"><div th:text="${football.guest}">BVB</div></td>
                             <td>Gast gewinnt</td>
                             <td><div th:text="${football.price}">30</div></td>
                             <td>1</td>

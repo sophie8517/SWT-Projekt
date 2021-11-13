@@ -40,9 +40,9 @@ class CatalogDataInitializer implements DataInitializer {
 
 
 		lotteryCatalog.save(new Ticket("name1",LocalDate.of(2021,11,5), Money.of(7,EURO), ItemType.TICKET));
-		lotteryCatalog.save(new Football("name2", LocalDate.of(2021,11,7),Money.of(8, EURO),ItemType.FOOTBALL,"FC Bayern München", "BVB", "1.Bundesliga"));
-		lotteryCatalog.save(new Football("name3",LocalDate.of(2021,11,20),Money.of(8, EURO),ItemType.FOOTBALL,"Hansa Rostock", "FC Erzgebirge", "2.Bundesliga"));
-		lotteryCatalog.save(new Football("name4",LocalDate.of(2021,12,11),Money.of(10, EURO),ItemType.FOOTBALL,"RB Leipzig", "Borussia Mönchengladbach", "1.Bundesliga"));
+		lotteryCatalog.save(new Football("name2", LocalDate.of(2021,11,7),Money.of(8, EURO),ItemType.FOOTBALL,"FC Bayern München", "BVB", "1.Bundesliga", "fcb", "bvb"));
+		lotteryCatalog.save(new Football("name3",LocalDate.of(2021,11,20),Money.of(8, EURO),ItemType.FOOTBALL,"Hansa Rostock", "FC Erzgebirge", "2.Bundesliga", "hansa", "aue"));
+		lotteryCatalog.save(new Football("name4",LocalDate.of(2021,12,11),Money.of(10, EURO),ItemType.FOOTBALL,"RB Leipzig", "Borussia Mönchengladbach", "1.Bundesliga","rb", "gladbach"));
 
 	}
 }
