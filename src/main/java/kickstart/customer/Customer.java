@@ -1,12 +1,13 @@
 package kickstart.customer;
 
+import kickstart.catalog.FootballBet;
+import kickstart.catalog.NumberBet;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Customer {
@@ -14,6 +15,13 @@ public class Customer {
 	private Money balance;
 	@OneToOne
 	private UserAccount userAccount;
+
+
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<FootballBet> footballBetList = new ArrayList<>();
+
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<NumberBet> numberBetList = new ArrayList<>();
 
 	public Customer(){}
 
@@ -35,5 +43,21 @@ public class Customer {
 
 	public UserAccount getUserAccount() {
 		return userAccount;
+	}
+
+	public List<FootballBet> getFootballBetList() {
+		return footballBetList;
+	}
+
+	public List<NumberBet> getNumberBetList() {
+		return numberBetList;
+	}
+
+	public void addFootballBet(FootballBet fb){
+		footballBetList.add(fb);
+	}
+
+	public void addNumberBet(NumberBet nb){
+		numberBetList.add(nb);
 	}
 }

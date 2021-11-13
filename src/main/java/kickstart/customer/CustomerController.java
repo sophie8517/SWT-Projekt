@@ -5,6 +5,8 @@ import static org.salespointframework.core.Currencies.*;
 
 
 import org.javamoney.moneta.Money;
+import org.salespointframework.useraccount.UserAccount;
+import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 public class CustomerController{
@@ -96,6 +99,16 @@ public class CustomerController{
 		customerManagement.deleteGroup(customerManagement.findByGroupId(groupId));
 		model.addAttribute("group",customerManagement.findAllGroups());
 		return "redirect:/";
+	}
+
+	@GetMapping("/showbets")
+	public String show_bets(Model model, @LoggedIn Optional<UserAccount> userAccount){
+		Customer c = customerManagement.findByUserAccount(userAccount.get());
+
+		model.addAttribute("numberBets", c.getNumberBetList());
+		model.addAttribute("footballBets", c.getFootballBetList());
+
+		return "customer_bets";
 	}
 
 }

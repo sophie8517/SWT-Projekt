@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width = device - width, initial - scale = 1">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>🍀 Mach Dein Glück!! 🍀</title>
+        <link th:href="@{resources/css/style_foot.css}" rel="stylesheet"  type="text/css" href="../static/resources/css/style_foot.css">
+    </head>
+    <body class="backgrounds">
+
+    <!--<nav>
+        <a href="home.html">HOME</a>
+        <a class="item" href="contact.html" th:href="@{/contact}" th:text="#{nav.contact}">KONTAKT</a>
+        <a href="meinProfil.html">MEIN PROFIL</a>
+        <a href="1_catalog.html">KATALOG</a>
+    </nav>-->
+    <nav th:include="navigation :: navigation" class="navcontainer"></nav>
+    <div class="container">
+        <main class="box-one">
+            <h2 class="box-two">Übersicht der Wetten</h2>
+        </main>
+
+
+        <div th:each="numbet : ${numberBets}">
+            <div class="box-three">
+                <table>
+                    <tr>
+                        <td>Datum der Abgabe: </td>
+                        <td th:text="${numbet.date}">heute</td>
+                    </tr>
+                    <tr>
+                        <td>Tipp: </td>
+                        <td th:text="${numbet.numbers}">zahlen</td>
+                    </tr>
+                    <tr>
+                        <td>Status: </td>
+                        <td th:text="${numbet.status}" style="color: cornflowerblue">offen</td>
+                    </tr>
+                </table>
+
+
+            </div>
+
+        </div>
+        <div th:each="footbet : ${footballBets}">
+            <div class="box-three">
+                <table>
+                    <tr>
+                        <td>Heim: </td>
+                        <td th:text="${footbet.host}">FCB</td>
+                    </tr>
+                    <tr>
+                        <td>Gast: </td>
+                        <td th:text="${footbet.guest}">FCB</td>
+                    </tr>
+                    <tr>
+                        <td>Datum der Abgabe: </td>
+                        <td th:text="${footbet.date}">FCB</td>
+                    </tr>
+                    <tr>
+                        <td>Tipp: </td>
+                        <td th:text="${footbet.tip}">FCB</td>
+                    </tr>
+                    <tr>
+                        <td>Status: </td>
+                        <td th:text="${footbet.status}" style="color: cornflowerblue">offen</td>
+                    </tr>
+                </table>
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <br>
+
+
+
+    <br>
+
+    <footer>
+        <p>Mach Dein Glück!! ©Copyright 2021©</p>
+    </footer>
+
+    </div>
+
+    </body>
+</html>

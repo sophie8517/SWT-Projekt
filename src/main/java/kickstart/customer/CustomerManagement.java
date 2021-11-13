@@ -3,6 +3,7 @@ package kickstart.customer;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.Password;
 import org.salespointframework.useraccount.Role;
+import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManagement;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
@@ -104,6 +105,10 @@ public class CustomerManagement {
 	public Group findByGroupId(long groupId){
 		var group = groups.findById(groupId).orElse(null);
 		return group;
+	}
+	public Customer findByUserAccount(UserAccount userAccount){
+		var customer = customers.findCustomerByUserAccount(userAccount);
+		return customer;
 	}
 
 }
