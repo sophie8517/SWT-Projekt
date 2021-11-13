@@ -38,6 +38,12 @@ public class CustomerController{
 		return "register";
 	}
 
+	@GetMapping("/kontakt")
+	String contact(Model model) { return "kontakt"; }
+
+	@GetMapping("/meinProfil")
+	String myProfile(Model model) { return "meinProfil"; }
+
 	@GetMapping("/customers")
 	@PreAuthorize("hasRole('ADMIN')")
 	String customers(Model model) {
