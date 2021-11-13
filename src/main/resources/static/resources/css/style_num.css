@@ -4,14 +4,14 @@ html {
 
 body {
     /*background-color: grey;*/
-    background-image: url('../images/ltr.jpg');
+    background-image: url('../images/lotto1.jpg');
     background-size: cover;
     background-repeat: repeat;
     background-position: center;
 }
 
 .backgrounds {
-    background-image: url('../images/ltr.jpg');
+    background-image: url('../images/lotto1.jpg');
     background-size: cover;
     background-repeat: repeat;
     background-position: center top;

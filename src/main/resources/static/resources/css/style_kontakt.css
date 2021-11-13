@@ -4,14 +4,14 @@ html {
 
 body {
     /*background-color: grey;*/
-    background-image: url('../images/lotto2.jpg');
+    background-image: url('../images/lotto1.jpg');
     background-size: cover;
     background-repeat: repeat;
     background-position: center;
 }
 
 .backgrounds {
-    background-image: url('../images/lotto2.jpg');
+    background-image: url('../images/lotto1.jpg');
     background-size: cover;
     background-repeat: repeat;
     background-position: center top;
@@ -24,7 +24,9 @@ body {
 .container {
     margin-left: auto;
     margin-right: auto;
-    width: 780px;
+    padding-bottom: 10px;
+    width: 1000px;
+
 }
 .navcontainer{
     margin-left: 20px;
