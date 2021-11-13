@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
 
@@ -26,7 +27,15 @@ public class CustomerController{
 	@PostMapping("/register")
 	String registerNew(@Valid RegistrationForm form, Errors result) {
 
-		if (result.hasErrors() || !form.check()) {
+		System.out.println(form.getPassword());
+		System.out.println("passwort2:"+ form.getPasswordCheck());
+		System.out.println(result.hasErrors());
+		System.out.println(form.check());
+
+		if (result.hasErrors()) {
+			return "register";
+		}
+		if(!form.check()){
 			return "register";
 		}
 		customerManagement.createCustomer(form);
