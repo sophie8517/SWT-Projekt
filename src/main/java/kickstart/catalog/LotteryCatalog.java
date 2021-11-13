@@ -8,10 +8,12 @@ public interface LotteryCatalog extends Catalog<Item> {
 
 	public Sort mysort = Sort.by("productIdentifier").ascending();
 
+	public Sort date_sort = Sort.by("date").ascending();
+
 	public Iterable<Item> findByType(Item.ItemType type, Sort sort);
 
 	public default Iterable<Item> findByType(Item.ItemType type) {
-		return findByType(type, mysort);
+		return findByType(type, date_sort);
 	}
 
 }
