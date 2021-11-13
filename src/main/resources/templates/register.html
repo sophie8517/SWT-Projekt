@@ -55,7 +55,7 @@
 
 
                     <div class="style">
-                        <label th:text="#{register.password}" for="password">Bestätigung:</label>
+                        <label th:text="#{register.password2}" for="password">Bestätigung:</label>
                         <input id="passwordCheck" name="passwordCheck" th:field="*{passwordCheck}" th:errorclass="fieldError" type="password" required="required"/><br/>
                         <p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}"></p>
                     </div>
