@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <nav th:fragment="navigation">
+            <a  href="home.html" th:href="@{/}" th:text="#{nav.home}">HOME</a>
+            <a  href="3_catalog_num.html" th:href="@{/zahlenlotterie}" th:text="#{nav.zahlkatalog}">ZAHLENLOTTERIE</a>
+            <a  href="2_catalog_foot.html" th:href="@{/football}" th:text="#{nav.footballkatalog}">FUSSBALLTOTO</a>
+            <a  href="contact.html" th:href="@{/contact}" th:text="#{nav.contact}">KONTAKT</a>
+            <a href="meinProfil.html">MEIN PROFIL</a>
+            <a href="#">REGISTRIERUNG</a>
+            <a href="#">ANMELDEN</a>
+        </nav>
+
+</body>
+</html>
