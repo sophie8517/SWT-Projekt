@@ -25,4 +25,9 @@ public class WelcomeController {
 	public String index() {
 		return "home";
 	}
+
+	@GetMapping("/myprofile")
+	public String proile(){
+		return "meinProfil";
+	}
 }
