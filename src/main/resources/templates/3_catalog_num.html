@@ -27,9 +27,9 @@
         </main>
 
         <div class="box-three">
-             <div th:each="ticket : ${ticketcatalog}"  >
+             <div class="ticket" th:each="ticket : ${ticketcatalog}"  >
                 <form >
-                    <fieldset style="width: 360px; position: center">
+                    <fieldset class="ticket" style="width: 360px; position: center">
                         <input type="checkbox" id="1" value="1" ><label for="1">01</label>
                         <input type="checkbox" id="2" value="2"><label for="2">02</label>
                         <input type="checkbox" id="3" value="3"><label for="3">03</label>
@@ -91,8 +91,10 @@
                     </fieldset>
                 </form>
                 <br>
+
                 <form th:method="post" th:action="@{/lottery/numbit}" style="font-size: 20px">
                     <input type="hidden" name="pid" value="0" th:value="${ticket.id}"/>
+                    <div class="ticket2">
                 <div class="field">
                     <label th:text="#{ticket.zahl1}">1. Zahl: </label>
                     <input field="*{zahl1}" id="zahl1" type="number" name="zahl1" min="1" max="49" required="required"/><br/>
@@ -116,11 +118,12 @@
                 <div class="field" >
                     <label th:text="#{ticket.zahl6}" >6. Zahl: </label>
                     <input field="*{zahl6}" id="zahl6" type="number" name="zahl6" min="1" max="49" required="required"/><br/>
-                </div>
+                </div></div>
                     <br>
                 <button class="button" type="submit" th:text="#{ticket.addBet}">Tippschein Abgeben</button>
 
                 </form>
+
              </div>
         </div>
 

@@ -48,13 +48,14 @@
                     <br>
     
                     <div class="style">
-                        <label th:text="#{register.password}" for="password">Passwort:</label>
-                        <input id="password" name="password" th:field="*{password}" th:errorclass="fieldError"  type="password" required="required" /><br/>
+                        <label th:text="#{register.password}" for="password" style="width: 50px">Passwort:</label>
+                        <input id="password" name="password" th:field="*{password}" th:errorclass="fieldError"  type="password" required="required" />
                         <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
                     </div>
 
+
                     <div class="style">
-                        <label th:text="#{register.password}" for="password">Passwort-Check:</label>
+                        <label th:text="#{register.password}" for="password">Bestätigung:</label>
                         <input id="passwordCheck" name="passwordCheck" th:field="*{passwordCheck}" th:errorclass="fieldError" type="password" required="required"/><br/>
                         <p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}"></p>
                     </div>
