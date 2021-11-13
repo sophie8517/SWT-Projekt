@@ -33,7 +33,7 @@
 |0.9     | In Arbeit           | Yu-Ju Chen             |10.11.2021   a|
 • 5.6 Rückverfolgbarkeit
 • 4.3.2 Kontext
-
+|1.0	| In Arbeit	| Sophie Schulze	|13.11.2021	|Rechtschreibkorrektur
 |===
 
 = Entwicklerdokumentation
@@ -53,13 +53,13 @@ Der Katalog enthält die von uns angebotenen Artikel und unterscheidet zwischen 
 
 Neben normalen Benutzern in unserem System (Kunde) möchten wir auch administrativen Zugriff (Admin), um unser Lotteriegeschäft zu verwalten. 
 Wann immer ein Kunde etwas aus unserem Katalog wetten möchte, kann er es in beliebiger Anzahl in seinen virtuellen Warenkorb legen (addItem). 
-Das Gegenteil ist natürlich auch erwünscht, damit unsere Kunden ihre Meinung ändern können (stronineren). 
+Das Gegenteil ist natürlich auch erwünscht, damit unsere Kunden ihre Meinung ändern können (stornieren). 
 Während des gesamten Vorgangs kann der Kunde selbstverständlich seine Auswahl einsehen und den Gesamtpreis davon (gesamtPreis) sehen.
 
 Nachdem Sie sich entschieden haben, auf etwas zu wetten, wird eine Bestellung (Bestellung) mit der aktuellen Uhrzeit (Datum) erstellt. 
 Es enthält jeden der ausgewählten Artikel (ItemID) mit Anzahl (Anzahl) und Preis (Preis). 
 Sollte der gewählte Artikel in dieser Zeit nicht verfügbar sein (aenderung5MinutenVorBeginn), sollte dem Kunden ein Fehler angezeigt werden. 
-Nachdem das Spiel beendet ist, zeigt das System den Kunden seinen Status an (BestellungStatus),weder gewinnen, verlieren oder unentschlossen(verloren/gewonnen/unentschieden).
+Nachdem das Spiel beendet ist, zeigt das System den Kunden seinen Status an (BestellungStatus),entweder GEWINN oder VERLOREN.
 
 Unsere Website soll einem Besucher selbstverständlich die Möglichkeit bieten, sich zu registrieren (registrieren). 
 Da wir möchten, dass nur registrierte Benutzer Zugriff auf einige Funktionen haben, ist ein Sicherheitssystem erforderlich. 
@@ -72,13 +72,13 @@ Es soll unseren Bestellprozess unterstützen und es uns ermöglichen, alles, was
 === 1.2 Qualitätsziele
 
 ==== Wartbarkeit
-Dieses Merkmal stellt den Maß an Effektivität und Effizienz dar, mit dem ein Produkt oder System modifiziert werden kann, um es zu verbessern, zu korrigieren oder an veränderte Umgebungsbedingungen und Anforderungen anzupassen.
+Dieses Merkmal stellt das Maß an Effektivität und Effizienz dar, mit dem ein Produkt oder System modifiziert werden kann, um es zu verbessern, zu korrigieren oder an veränderte Umgebungsbedingungen und Anforderungen anzupassen.
 
 ==== Wartbarkeit
-Maß, in dem ein Produkt oder System von bestimmten Benutzern verwendet werden kann, um bestimmte Ziele mit Effektivität, Effizienz und Zufriedenheit in einem bestimmten Nutzungskontext zu erreichen.
+Das Maß, in dem ein Produkt oder System von bestimmten Benutzern verwendet werden kann, um bestimmte Ziele mit Effektivität, Effizienz und Zufriedenheit in einem bestimmten Nutzungskontext zu erreichen.
 
 ==== Sicherheit
-Maß, in dem ein Produkt oder System Informationen und Daten schützt, damit Personen oder andere Produkte oder Systeme den Grad des Datenzugriffs haben, der ihrer Art und Berechtigungsstufe entspricht.
+Das Maß, in dem ein Produkt oder System Informationen und Daten schützt, damit Personen oder andere Produkte oder Systeme den Grad des Datenzugriffs haben, der ihrer Art und Berechtigungsstufe entspricht.
 
 
 1 = Nicht wichtig
@@ -94,13 +94,13 @@ Maß, in dem ein Produkt oder System Informationen und Daten schützt, damit Per
 == 2. Randbedingungen
 === 2.1 Hardware-Vorgaben
 • Verbindung zum Internet (Router)
-• Elektronisches Gerät, der sich mit dem Internetnetz verbinden kann (PC, Handy, Tablet / iPad, usw.)
-• Zsätzlich: Tastatur, Maus
+• Elektronisches Gerät, das sich mit dem Internetnetz verbinden kann (PC, Handy, Tablet / iPad, usw.)
+• Zusätzlich: Tastatur, Maus
 
 === 2.2 Software-Vorgaben
-Es wird verlangt Java der Version 11 und neuer.
+Es wird Java der Version 11 und neuer verlangt.
 
-Das System wird von folgenden Web-Browsers unterstütz
+Das System wird von folgenden Web-Browsern unterstützt
 
 • Mozila Firefox v93.0+
 • Google Chrome 94.0+
@@ -131,17 +131,17 @@ image:diagramm/kontext_devel.png[Location, 100%, 100%, pdfwidth=100%, title= "Ko
 |Wartbarkeit 
 a|
 * Wiederverwendbarkeit:
-** die Komponenten des Systems sollen so entwickelt werden, dass sie von anderen Objekten benutzt werden können
+** die Komponenten des Systems sollen so entwickelt werden, dass sie von anderen Objekten weiter verwendet werden können
     -> durch OOP
 * Erweiterbarkeit:
-** Objekte des Systems sollen fehlerfrei erweiterbar sein oder auch verbessert, ohne Konflikte mit anderen Komponenten auszulösen
+** Objekte des Systems sollen fehlerfrei erweiterbar sein oder auch verbessert werden, ohne Konflikte mit anderen Komponenten auszulösen
 
 |Anwendbarkeit
 a|
 * einfache Bedienung: 
 ** ein Nutzer soll keine großen Schwierigkeiten haben, die Funktionalitäten der Webseite zu nutzen -> z.B. Beschreibung wie man Lottoschein ausfüllt
-* Fehlerhate Eingaben:
-** Hinweise auch richtige Eingabe, abweisen von ungültigen Eingaben
+* Fehlerhafte Eingaben:
+** Hinweise zur richtige Eingabe, Abweisen von ungültigen Eingaben
 
 |Security
 a|
@@ -194,11 +194,7 @@ image:diagramm/ui.png[Location, 100%, 100%, pdfwidth=100%, title= "ui", align=ce
 • catalog_ltr.CatalogInitializer
 • customer.CustomerDatainitializer
 |salespointframework.SalespointSecurityConfiguration   |lottery.WebSecurityConfiguration
-|salespointframework.time                              |catalog_ltr.CatalogController
 |springframework.data                                 a|catalog_ltr.LotteryCatalog
-|springframework.security                              |videoshop.WebSecurityConfiguration
-|salespointframework.time                              |catalog.CatalogController
-|springframework.data                                 a|catalog.LotteryCatalog
 |springframework.security                              |lottery.WebSecurityConfiguration
 |springframework.ui                                   a|
 • catalog_ltr.CatalogController
@@ -221,8 +217,8 @@ image:diagramm/lottery.png[Location, 100%, 100%, pdfwidth=100%, title= "lottery"
 [options="header"]
 |=== 
 |Klasse/Enumeration |Description
-|Lottery                    |Die essentielle Klasse des ganzen Programms. Sie sorgt dafür, dass mit Hilfe von SpringApplication Klasse alles ordnungsgemäß beim Einschalten konfiguriert wird und abschließend startet die ganze Applikation.
-|WebSecurityConfiguration   |Sie dient zur unmittelbaren Weiterleiten von /login direkt an das template login.htm.
+|Lottery                    |Die essentielle Klasse des ganzen Programms. Sie sorgt dafür, dass mit Hilfe der SpringApplication Klasse alles ordnungsgemäß beim Einschalten konfiguriert wird und abschließend startet die Applikation.
+|WebSecurityConfiguration   |Sie dient zur unmittelbaren Weiterleitung von /login direkt an das template login.html.
 |VideoShopWebConfiguration  |Konfigurationsklasse zum Einrichten grundlegender Sicherheits- und Anmelde-/Abmeldeoptionen.
 |===
 
@@ -237,8 +233,8 @@ image::./models/design/block_catalog.svg[Location, 100%, 100%, pdfwidth=100%, ti
 |Item
 |ist ein Produkt im Lotteriekatalog, ein Item ist ein Tippschein oder ein Fußballspiel
 
-|Tippschein
-|ist ein Produkt für die Zahlenlotterie, auf einen Tippschein können beliebig viele Zahlenwetten abgegeben werden
+|Ticket
+|repräsentiert einen Tippschien für die Zahlenlotterie, auf einen Tippschein können beliebig viele Zahlenwetten abgegeben werden
 
 |Football
 a|repräsentiert ein Fußballspiel mit folgenden Merkmalen:
@@ -247,33 +243,36 @@ a|repräsentiert ein Fußballspiel mit folgenden Merkmalen:
 * Gastmannschaft
 * Preis
 * Liga
-* Datum bzw. Spieltag
+* Datum (Spieltag)
 
 Auf ein Fußballspiel können beliebig viele Wetten abgegeben werden.
 
-|Wette
-|ist eine Zahlenwette oder eine Fußballwette; eine Wette einen Status, der initial OFFEN ist
+|Bet
+a|
+* ist eine Zahlenwette oder eine Fußballwette
+* hat einen Status, der initial OFFEN ist
+* nach der Auswertung ändert sich der Status der Wette je nach Ergebis zu GEWONNEN oder VERLOREN
 
-|Zahlenwette
+|NumberBet
 |ist eine Wette, die auf einen Tippschein abgegeben wird; der Tipp dieser Wette besteht aus einer Liste von 6 Zahlen
 
-|Fußballwette
+|FootballBet
 |wird auf einen Fußballspiel abgegeben; der Unterschied zur Zahlenwette liegt darin, dass der Tipp der Fußballwette ein String ist, z.B. "Heim gewinnt", "Gast gewinnt", "Unentschieden"
 
-|Status
+|State
 a|beschreibt den Status einer Wette:
 
 * OFFEN: Wette noch nicht ausgewertet
 * GEWONNEN: Nutzer hat richtig getippt
 * VERLOREN: Nutzer hat falsch getippt
 
-|KatalogController
-|zeigt Items je nach Typ in einem Katalog  der Zahlenlotterie oder der Fußballlotterie an, bearbeitet Anfragen
+|CatalogController
+| Ein Spring MVC Controller, der Items je nach Typ in einem Katalog  der Zahlenlotterie oder der Fußballlotterie anzeigt sowie Anfragen (z.B. Fußballwette abgeben) bearbeitet.
 
-|KatalogInitializer
+|CatalogInitializer
 |er implementiert DataInitializer, erstellt Produkte für den Katalog
 
-|Lotteriekatalog
+|LotteryCatalog
 |ist eine Erweiterung von Salespoint.Catalog, die spezifische Anforderungen für die Lotterie enthält
 |===
 
@@ -285,14 +284,14 @@ image::./models/design/block_customer.svg[Location, 100%, 100%, pdfwidth=100%, t
 [options="header"]
 |=== 
 |Klasse/Enumeration |Description
-|Customer|Eine Klasse, erbt Salespoint-Useraccount mit Guthaben. Beschreibt einen Kunden.
-|CustomerController|Ein Spring MVC Controller, der kümmert sich um Registierung, Gruppeerstellung, Kontoaufladen, Kundeansicht usw.
-|CustomerDataInitializer|Eine Implementierung für DataInitializer, sodass die Applikation dummi Kunden haben können wenn die startet.
+|Customer|Eine Klasse, die von Salespoint-Useraccount erbt. Beschreibt einen Kunden, der ein Guthaben hat.
+|CustomerController|Ein Spring MVC Controller, der sich um die Registierung, Gruppenerstellung, Kontoaufladung, Kundenansicht usw. kümmert.
+|CustomerDataInitializer|Eine Implementierung für DataInitializer, sodass die Applikation schon Kunden gespeichert hat wenn die startet.
 |CustomerManagement|Verwaltet Kunden und Gruppen
-|CustomerRepository|Ein Interface, verwaltet Kunden-Instanz und speichert Kunden.
-|Group|Eine Klasse, erbt Salespoint-Useraccount und beschreibt die Gruppe.
-|GroupRepository|Ein Interface, verwaltet Gruppe-Instanz und speichert Gruppen.
-|RegistrationFrom|Ein Interface, kümmert sich um Validierung der Eingaben von Kunden über Registierung.
+|CustomerRepository|Ein Interface, das Kunden-Instanz verwaltet und Kunden speichert.
+|Group|Eine Klasse, die von Salespoint-Useraccount erbt. Sie beschreibt die Gruppe bzw. Gewinngemeinschaft.
+|GroupRepository|Ein Interface, das Gruppe-Instanz verwaltet und Gruppen speichert.
+|RegistrationFrom|Ein Interface, das sich um Validierung der Eingaben von Kunden bei der Registierung kümmert.
 |===
 
 === 5.4 Statistik 
@@ -303,7 +302,7 @@ image:diagramm/Statistic.png[Location, 100%, 100%, pdfwidth=100%, title= "Statis
 [options="header"]
 |=== 
 |Klasse/Enumeration |Description
-|StatisticController|A Spring MVC Controller to handle requests to show Income and loss
+|StatisticController|Ein Spring MVC Controller der Einkommen/Verluste und Wetten der Kunden anzeigt.
 |===
 
 === 5.5 Order
@@ -314,7 +313,7 @@ image:models/design/block_order.png[Location, 100%, 100%, pdfwidth=100%, title= 
 [options="header"]
 |=== 
 |Class/Enumeration |Description
-|BestellungController |Ein Spring MVC Controller zur Handhabung des Warenkorbs
+|BestellungController |Ein Spring MVC Controller zur Handhabung des Warenkorbs.
 |===
 
 === 5.6 Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
