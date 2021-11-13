@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-		xmlns:th="http://thymeleaf.org">
+		xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -68,7 +69,7 @@
                         </tr>
                     </table>
 
-                <form th:method="post" th:action="@{/lottery/footbit}">
+                <form th:method="post" sec:authorize="hasRole('CUSTOMER')" th:action="@{/lottery/footbit}">
                     <!--<input type="hidden" name="id" value="0" th:value="${football}"/>-->
                     <input type="hidden" name="pid" value="0" th:value="${football.id}"/>
                     </br>
