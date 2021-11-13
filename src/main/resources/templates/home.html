@@ -1,24 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width = device - width, initial - scale = 1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>🍀 Mach Dein Glück!! 🍀</title>
-    <link rel="stylesheet" href="style_home.css">
+    <link th:href="@{resources/css/style_home.css}" rel="stylesheet" href="../static/resources/css/home_register.css"
+          type="text/css">
 </head>
 
 <body class="backgrounds">
+    <nav th:include="navigation :: navigation"></nav>
     <div class="container">
         <br>
-        <nav>
-            <a href="https://www.bk.com/">HOME</a>
-            <a href="https://www.bk.com/contact-us">KONTAKT</a>
-            <a href="">ANMELDEN</a>
-            <a href="">REGISTRIEREN</a>
-        </nav>
-
         <main>
             <h1>Mach Dein Glück!!</h1>
             <p>Mach Dein Glück ist eine Lotterie und damit ein Glücksspiel, bei dem der Spieler gegen einen finanziellen Einsatz auf das Ziehen vorher getippter Zahlen aus einer begrenzten Zahlenmenge setzt.
@@ -37,7 +33,7 @@
             &ensp;
             &ensp;
             &ensp;
-            &ensp;            
+            &ensp;
             <a href = "https://www.burgerking.cz/?y_source=1_MTU2OTc5OTktNzE1LWxvY2F0aW9uLndlYnNpdGU=" target="_blank">
             FUßBALLTOTO</a>
         </main>

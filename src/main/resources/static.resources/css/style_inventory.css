@@ -11,9 +11,9 @@ body {
 }
 
 .backgrounds {
-    background: url(/Users/mirekkral/Documents/ProjectHTML/2Project/ltr.jpg),url(/Users/mirekkral/Documents/ProjectHTML/2Project/ltr.jpg);
+    background: url(../image/ltr.jpg),url(../image/ltr.jpg);
     background-size: cover,cover;
-    background-repeat: repeat-x, repeat-y;
+    background-repeat:  repeat-x,repeat-y;
     background-position: center top, center bottom;
 }
 
@@ -24,38 +24,26 @@ body {
 }
 
 .box-one {
-    margin-top: 40px;
-    margin-bottom: -50px;
-
-    margin-left: 100px;
-    margin-right: 100px;
-    
     padding-top: 1px;
     padding-bottom: 1px;
+    padding-left: 100px;
+    font-size: 16px;
 
-    text-align: center;
+    text-align: left;
     background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
     
-    height: 430px;
+    
+    height: 200px;
 }
 
 .box-two {
-    margin-top: 100px;
-    margin-bottom: -50px;
-
-    margin-left: 100px;
-    margin-right: 100px;
-    
     padding-top: 1px;
     padding-bottom: 1px;
-    padding-left: 10px;
-    padding-right: 10px;
-   
-
+    padding-right: 100px;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.75);
     
-    height: 230px;
 }
 
 .box-three {
@@ -65,15 +53,37 @@ body {
     margin-left: 100px;
     margin-right: 100px;
     
-    padding-top: 1px;
-    padding-bottom: 1px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
 
     text-align: center;
     background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    text-align: left;
     
-    height: 190px;
+    height: 380px;
+}
+
+.box-four {
+    background-color: rgba(0, 0, 0, 0.75);
+    height: 270px;
+    margin-top: 100px;
+    margin-left: 100px;
+    margin-right: 100px;
+
+    padding-top: 1px;
+    padding-left: 20px;
+
+
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    text-align: left;
 }
 
 header {
@@ -110,12 +120,11 @@ main {
 
 footer {
     background-color: rgba(0, 0, 0, 0.75);
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 1px;
+    padding-bottom: 1px;
     margin-top: 150px;
     margin-left: 210px;
     margin-right: 210px;
-    margin-bottom: 30px;
 }
 
 footer p {
@@ -129,10 +138,18 @@ h1 {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-h3 {
-    font-size: 30px;
+h2 {
+    font-size: 25px;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+h3 {
+    font-size: 40px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
 }
 
 h4 {
@@ -159,15 +176,14 @@ a {
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
     text-align: left;
-    padding-left: 45px;
+    padding-left: 190px;
 }
 
 .style {
     color: white;
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
-    text-align: left;
-    padding-left: 160px;
+    text-align: center;
 }
 
 .maps {
@@ -176,4 +192,12 @@ a {
 
 .yt {
     padding-bottom: 50px;
+}
+
+.green {
+    color: greenyellow;
+}
+
+.red {
+    color: rgb(255, 27, 27);
 }

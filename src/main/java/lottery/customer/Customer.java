@@ -1,4 +1,4 @@
-package customer;
+package lottery.customer;
 
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
@@ -15,7 +15,7 @@ public class Customer {
 	@OneToOne
 	private UserAccount userAccount;
 
-	//private Customer(){}
+	private Customer(){}
 
 	public Customer(UserAccount userAccount){
 		this.userAccount = userAccount;
@@ -36,6 +36,4 @@ public class Customer {
 	public UserAccount getUserAccount() {
 		return userAccount;
 	}
-
-
 }

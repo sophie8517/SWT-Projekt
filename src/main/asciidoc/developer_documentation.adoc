@@ -180,30 +180,30 @@ image:diagramm/ui.png[Location, 100%, 100%, pdfwidth=100%, title= "ui", align=ce
 • catalog_ltr.Num
 |salespointframework.boot                             |lottery.lottery
 |salespointframework.useraccount                     a|
-• customer.customer
-• customer.CustomerDataInitializer
-• customer.CustomerManagement
+• lottery.customer.lottery.customer
+• lottery.customer.CustomerDataInitializer
+• lottery.customer.CustomerManagement
 • order.OrderController
 |springframework.security                              |lottery.WebSecurityConfiguration
 |springframework.web                                   |lottery.web
 |salespointframework.core                             a|
 • catalog_ltr.CatalogInitializer
-• customer.CustomerDatainitializer
+• lottery.customer.CustomerDatainitializer
 |salespointframework.SalespointSecurityConfiguration   |lottery.WebSecurityConfiguration
 |salespointframework.time                              |catalog_ltr.CatalogController
 |springframework.data                                 a|catalog_ltr.LotteryCatalog
 |springframework.security                              |videoshop.WebSecurityConfiguration
-|salespointframework.time                              |catalog.CatalogController
-|springframework.data                                 a|catalog.LotteryCatalog
+|salespointframework.time                              |lottery.catalog.CatalogController
+|springframework.data                                 a|lottery.catalog.LotteryCatalog
 |springframework.security                              |lottery.WebSecurityConfiguration
 |springframework.ui                                   a|
 • catalog_ltr.CatalogController
-• customer.CustomerController
+• lottery.customer.CustomerController
 • order.OrderController               
 |springframework.util                                 a|
-• customer.CustomerDataInitializer
-• customer.CustomerController
-|springframework.validation                            |customer.CustomerController
+• lottery.customer.CustomerDataInitializer
+• lottery.customer.CustomerController
+|springframework.validation                            |lottery.customer.CustomerController
 |springframework.web                                   |lottery.LotteryWebConfiguration
 |===
 
@@ -211,21 +211,21 @@ image:diagramm/ui.png[Location, 100%, 100%, pdfwidth=100%, title= "ui", align=ce
 
 === 5.1 Lotterie
 
-[[Lottery]]
+[[lottery.Lottery]]
 image:diagramm/lottery.png[Location, 100%, 100%, pdfwidth=100%, title= "lottery", align=center]
 
 [options="header"]
 |=== 
 |Klasse/Enumeration |Description
-|Lottery                    |Die essentielle Klasse des ganzen Programms. Sie sorgt dafür, dass mit Hilfe von SpringApplication Klasse alles ordnungsgemäß beim Einschalten konfiguriert wird und abschließend startet die ganze Applikation.
+|lottery.Lottery                    |Die essentielle Klasse des ganzen Programms. Sie sorgt dafür, dass mit Hilfe von SpringApplication Klasse alles ordnungsgemäß beim Einschalten konfiguriert wird und abschließend startet die ganze Applikation.
 |WebSecurityConfiguration   |Sie dient zur unmittelbaren Weiterleiten von /login direkt an das template login.htm.
 |VideoShopWebConfiguration  |Konfigurationsklasse zum Einrichten grundlegender Sicherheits- und Anmelde-/Abmeldeoptionen.
 |===
 
 === 5.2 Katalog
 
-[[catalog]]
-image::./diagramm/catalog_final.png[Location, 100%, 100%, pdfwidth=100%, title= "catalog", align=center]
+[[lottery.catalog]]
+image::./diagramm/catalog_final.png[Location, 100%, 100%, pdfwidth=100%, title= "lottery.catalog", align=center]
 
 [options="header"]
 |=== 
@@ -274,8 +274,8 @@ Auf ein Fußballspiel können beliebig viele Wetten abgegeben werden.
 |===
 
 === 5.3. Kunde
-[[customer]]
-image::./models/design/block_customer.png[Location, 100%, 100%, pdfwidth=100%, title= "customer package", align=center]
+[[lottery.customer]]
+image::./models/design/block_customer.png[Location, 100%, 100%, pdfwidth=100%, title= "lottery.customer package", align=center]
 
 
 [options="header"]
@@ -324,8 +324,8 @@ wird die Art der Verwendung dieser externen Klasse in der Spalte *Art der Verwen
 [options="header"]
 |===
 |Class/Enumeration (Analysis Model) |Class/Enumeration (Design Model) |Usage
-|Number Lottery         |catalog.Item|
-|Football Lottery       |catalog.Item|						
+|Number lottery.Lottery         |lottery.catalog.Item|
+|Football lottery.Lottery       |lottery.catalog.Item|
 |Cart                   |Salespoint.Cart | Method Parameter 
 |CartItem               |Salespoint.CartItem (via Salespoint.Cart) | Method Parameter (via Salespoint.Cart)
 |Order                  |Salespoint.Order | Method Parameter
@@ -337,10 +337,10 @@ wird die Art der Verwendung dieser externen Klasse in der Spalte *Art der Verwen
 |ROLE/Role              |Salespoint.Role | Method Parameter
 |User                   a|
 						* Salespoint.UserAccount 
-						* customer.Customer a|
+						* lottery.customer.Customer a|
 						* Class Attribute
 						* Method Parameter
-|Lottery              |lottery.Lottery |						
+|lottery.Lottery              |lottery.lottery.Lottery |
 |===
 
 == 6. Laufzeitsicht
@@ -348,7 +348,7 @@ wird die Art der Verwendung dieser externen Klasse in der Spalte *Art der Verwen
 
 === Customer
 [[customer_runtime]]
-image::./models/design/runtime_customer.svg[Location, 100%, 100%, pdfwidth=100%, title= "runtime customer", align=center]
+image::./models/design/runtime_customer.svg[Location, 100%, 100%, pdfwidth=100%, title= "runtime lottery.customer", align=center]
 
 === Order
 [[runtime_Order]]

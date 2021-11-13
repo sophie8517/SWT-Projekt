@@ -1,3 +1,5 @@
+package lottery;
+
 import org.salespointframework.EnableSalespoint;
 import org.salespointframework.SalespointSecurityConfiguration;
 import org.springframework.boot.SpringApplication;
@@ -20,7 +22,7 @@ public class Lottery {
 		@Override
 		public void addViewControllers(ViewControllerRegistry registry){
 			registry.addViewController(LOGIN_ROUTE).setViewName("login");
-			registry.addViewController("/").setViewName("home");
+			registry.addViewController("/").setViewName("welcome");
 		}
 	}
 

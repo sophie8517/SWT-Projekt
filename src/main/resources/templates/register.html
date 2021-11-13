@@ -1,30 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width = device - width, initial - scale = 1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>🍀 Mach Dein Glück!! 🍀</title>
-    <link rel="stylesheet" href="style_register.css">
+    <link th:href="@{resources/css/style_register.css}" rel="stylesheet" href="../static/resources/css/style_register.css"
+          type="text/css">
 </head>
 
 <body class="backgrounds">
+    <nav th:include="navigation :: navigation"></nav>
     <div class="container">
-        <nav>
-            <a href="https://www.bk.com/">HOME</a>
-            <a href="https://www.bk.com/contact-us">KONTAKT</a>
-            <a href="">KATALOG</a>
-            <a href="">ANMELDEN</a>
-            <a href="">REGISTRIEREN</a>
-        </nav>
-
         <main>
-            <section layout:fragment="content">
+            <section>
+                <form method="post" role="form" class="ui form" id="form" th:action="@{/register}" th:object="${registrationForm}">
                     <h3 class="ui dividing header" th:text="#{register.userdata}">Registrieren</h3>
+                    <div class="ui negative message" th:if="${#fields.hasErrors('*')}">
+                        <p>Einige eingaben sind nicht korrekt.</p>
+                    </div>
+
                     <h4>Kriterien</h4>
                     
-                    <div class="field">
+                    <div class= "field">
                         <ol>
                             <li>Name darf nicht leer sein.</li>
                             <li>Passwort muss mindestens einen Großbuchstaben enthalten.</li>
@@ -34,25 +36,27 @@
                     </div>
 
                     <br>
-    
-                    <div class="style">
+
+                    <div class="field">
                         <label for="name">Name:</label>
                         <input id="name" name="name" th:field="*{name}" th:errorclass="fieldError" type="text" required="required"/><br/>
                         <div class="ui negative message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
                     </div>
 
                     <br>
-    
-                    <div class="style">
-                        <label th:text="#{register.password}" for="password">Passwort:</label>
+
+                    <div class="field">
+                        <label th:text="#{register.password}" for="password">Password:</label>
                         <input id="password" name="password" th:field="*{password}" th:errorclass="fieldError" type="password"
                                required="required"/><br/>
                         <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
                     </div>
 
-                    <div class="style">
-                        <label th:text="#{register.password}" for="password">Passwort-Check:</label>
-                        <input id="password" name="password" th:field="*{password}" th:errorclass="fieldError" type="password"
+                    <br>
+
+                    <div class="field">
+                        <label th:text="#{register.passwordCheck}" for="password">Password-Check:</label>
+                        <input id="passwordCheck" name="password" th:field="*{password}" th:errorclass="fieldError" type="password"
                                required="required"/><br/>
                         <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
                     </div>

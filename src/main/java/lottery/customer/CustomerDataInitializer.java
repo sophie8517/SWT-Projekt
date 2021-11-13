@@ -1,4 +1,4 @@
-package customer;
+package lottery.customer;
 
 import org.salespointframework.core.DataInitializer;
 import org.salespointframework.useraccount.Password;
@@ -41,9 +41,10 @@ class CustomerDataInitializer implements DataInitializer {
 
 		userAccountManagement.create("admin", Password.UnencryptedPassword.of("lottery"), Role.of("ADMIN"));
 		var password = "lottery";
+		var passwordCheck = "lottery";
 
 		List.of(
-				new RegistrationForm("Juergen Staub", password)
+				new RegistrationForm("Juergen Staub", password, passwordCheck)
 		).forEach(customerManagement::createCustomer);
 	}
 }

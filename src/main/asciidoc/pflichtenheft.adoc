@@ -716,7 +716,7 @@ image::./gui/register1.png[Registration page, 100%, 100%, pdfwidth=100%, title= 
 
 
 [[welcome_page]]
-image::./gui/welcome1.png[Welcome page, 100%, 100%, pdfwidth=100%, title= "welcome page for an authenticated customer of lottery", align=center]
+image::./gui/welcome1.png[Welcome page, 100%, 100%, pdfwidth=100%, title= "welcome page for an authenticated lottery.customer of lottery", align=center]
 
 
 
@@ -751,17 +751,17 @@ image::./gui/zahlen1.png[Zahlenlotterie overview, 100%, 100%, pdfwidth=100%, tit
 
 
 [[cart1]]
-image::./gui/warenkorb1.png[Cart overview, 100%, 100%, pdfwidth=100%, title= "Cart overview for an authenticated customer of lottery", align=center]
+image::./gui/warenkorb1.png[Cart overview, 100%, 100%, pdfwidth=100%, title= "Cart overview for an authenticated lottery.customer of lottery", align=center]
 
 
 
 [[cart2]]
-image::./gui/warenkorb2.png[Cart overview, 100%, 100%, pdfwidth=100%, title= "Cart overview for an authenticated customer of lottery", align=center]
+image::./gui/warenkorb2.png[Cart overview, 100%, 100%, pdfwidth=100%, title= "Cart overview for an authenticated lottery.customer of lottery", align=center]
 
 
 
 [[cart3]]
-image::./gui/warenkorb3.png[Cart overview, 100%, 100%, pdfwidth=100%, title= "Cart overview for an authenticated customer of lottery", align=center]
+image::./gui/warenkorb3.png[Cart overview, 100%, 100%, pdfwidth=100%, title= "Cart overview for an authenticated lottery.customer of lottery", align=center]
 
 
 

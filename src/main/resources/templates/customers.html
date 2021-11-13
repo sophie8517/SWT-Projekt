@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html(title=#{customers.title})}">
+<head>
+</head>
+<body>
+<section layout:fragment="content">
+  <table class="ui celled table">
+    <thead>
+    <tr>
+      <th th:text="#{customers.name}">Name</th>
+    </tr>
+    </thead>
+    <tbody th:remove="all-but-first">
+    <tr th:each=" customer : ${customerList}">
+      <td th:text="${customer.userAccount.id}">Paul</td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+</body>
+</html>

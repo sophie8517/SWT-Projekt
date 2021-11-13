@@ -1,4 +1,4 @@
-package customer;
+package lottery.customer;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.util.Streamable;

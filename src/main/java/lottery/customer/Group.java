@@ -1,17 +1,22 @@
-package customer;
+package lottery.customer;
 
 import org.salespointframework.useraccount.UserAccount;
 
+import javax.persistence.*;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
+@Entity
 public class Group {
-	private long id;
+	private @Id @GeneratedValue long id;
+	@OneToOne
 	private UserAccount userAccount;
+	@OneToMany
 	private Set<Customer> customers;
+	@OneToOne
 	private Customer leader;
+
+	private Group(){}
 
 	public Group(UserAccount userAccount, Customer leader){
 		this.userAccount = userAccount;

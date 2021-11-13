@@ -1,4 +1,4 @@
-package customer;
+package lottery.customer;
 
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.Password;
@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.security.SecureRandom;
-import java.util.Set;
 
 
 @Service

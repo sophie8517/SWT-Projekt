@@ -11,10 +11,10 @@ body {
 }
 
 .backgrounds {
-    background: url(/Users/mirekkral/Documents/ProjectHTML/2Project/ltr.jpg),url(/Users/mirekkral/Documents/ProjectHTML/2Project/ltr.jpg);
+    background: url(../image/ltr.jpg),url(../image/ltr.jpg);
     background-size: cover,cover;
-    background-repeat:  repeat-x,repeat-y;
-    background-position: center top, center bottom;
+    background-repeat: repeat-x, repeat-y,;
+    background-position: center top, center bottom,;
 }
 
 .container {
@@ -23,27 +23,48 @@ body {
     width: 780px;
 }
 
+.box-zero {
+    
+
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.75);
+    
+    height: 230px;
+}
+
 .box-one {
+    margin-top: 40px;
+    margin-bottom: -50px;
+
+    margin-left: 100px;
+    margin-right: 100px;
+    
     padding-top: 1px;
     padding-bottom: 1px;
-    padding-left: 100px;
-    font-size: 16px;
 
-    text-align: left;
+    text-align: center;
     background-color: rgba(0, 0, 0, 0.75);
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
     
-    
-    height: 1030px;
+    height: 250px;
 }
 
 .box-two {
+    margin-top: 100px;
+    margin-bottom: -50px;
+
+    margin-left: 100px;
+    margin-right: 100px;
+    
     padding-top: 1px;
     padding-bottom: 1px;
-    padding-right: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
+   
+
     text-align: center;
+    background-color: rgba(0, 0, 0, 0.75);
     
+    height: 250px;
 }
 
 .box-three {
@@ -86,23 +107,23 @@ nav a{
 
 main {
     background-color: rgba(0, 0, 0, 0.75);
-    height: 480px;
+    height: 330px;
     text-align: center;
-    padding-top: 1px;
+
     margin-top: 30px;
-    margin-left: 100px;
-    margin-right: 100px;
-    /*margin-bottom: 50px;*/
+    padding-left: 10px;
+    padding-right: 10px;
+
 }
 
 
 footer {
     background-color: rgba(0, 0, 0, 0.75);
-    padding-top: 1px;
-    padding-bottom: 1px;
-    margin-top: 150px;
-    margin-left: 210px;
-    margin-right: 210px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 220px;
+    margin-right: 220px;
+    padding-bottom: 20px;
 }
 
 footer p {
@@ -116,18 +137,10 @@ h1 {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-h2 {
-    font-size: 25px;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-}
-
 h3 {
-    font-size: 40px;
+    font-size: 30px;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
 }
 
 h4 {
@@ -149,20 +162,6 @@ a {
     /*text-decoration: none;*/
 }
 
-.field {
-    color: white;
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: left;
-    padding-left: 190px;
-}
-
-.style {
-    color: white;
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-}
 
 .maps {
     padding-bottom: 100px;

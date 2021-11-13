@@ -4,14 +4,14 @@ html {
 
 body {
     background-color: grey;
-    /*background-image: url(background2.jpg),url(background3.jpg);*/
+    background-image: url(../image/ltr.jpg), url(../image/ltr.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .backgrounds {
-    background: url(/Users/mirekkral/Documents/ProjectHTML/2Project/ltr.jpg),url(/Users/mirekkral/Documents/ProjectHTML/2Project/ltr.jpg);
+    background: url(../image/ltr.jpg),url(../image/ltr.jpg);
     background-size: cover,cover;
     background-repeat:  repeat-x,repeat-y;
     background-position: center top, center bottom;

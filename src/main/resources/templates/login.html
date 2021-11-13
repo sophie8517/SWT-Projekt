@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width = device - width, initial - scale = 1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>🍀 Mach Dein Glück!! 🍀</title>
+  <link th:href="@{resources/css/style_register.css}" rel="stylesheet" href="../static/resources/css/style_register.css"
+        type="text/css">
+</head>
+<body>
+<nav th:include="navigation :: navigation"></nav>
+<section>
+  <form class="ui form" role="form" th:action="@{/login}" method="post">
+
+    <div class="field">
+      <label th:text="#{login.username}" for="username">Username</label>
+      <input type="text" id="username" name="username" autofocus="autofocus"/> <br/>
+    </div>
+
+    <div class="field">
+      <label th:text="#{login.password}" for="password">Password</label>
+      <input type="password" id="password" name="password"/> <br/>
+    </div>
+
+    <button type="submit" th:text="#{login.login}" class="ui button">Log in</button>
+  </form>
+</section>
+</body>
+</html>

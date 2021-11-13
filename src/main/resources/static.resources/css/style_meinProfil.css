@@ -11,7 +11,7 @@ body {
 }
 
 .backgrounds {
-    background: url(/Users/mirekkral/Documents/ProjectHTML/2Project/ltr.jpg),url(/Users/mirekkral/Documents/ProjectHTML/2Project/ltr.jpg);
+    background: url(../image/ltr.jpg),url(../image/ltr.jpg);
     background-size: cover,cover;
     background-repeat:  repeat-x,repeat-y;
     background-position: center top, center bottom;
@@ -35,7 +35,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     
     
-    height: 200px;
+    height: 1030px;
 }
 
 .box-two {
@@ -53,37 +53,15 @@ body {
     margin-left: 100px;
     margin-right: 100px;
     
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 20px;
-
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.75);
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    text-align: left;
-    
-    height: 380px;
-}
-
-.box-four {
-    background-color: rgba(0, 0, 0, 0.75);
-    height: 270px;
-    margin-top: 100px;
-    margin-left: 100px;
-    margin-right: 100px;
-
     padding-top: 1px;
-    padding-left: 20px;
-
+    padding-bottom: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
 
     text-align: center;
     background-color: rgba(0, 0, 0, 0.75);
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    text-align: left;
+    
+    height: 190px;
 }
 
 header {
@@ -192,12 +170,4 @@ a {
 
 .yt {
     padding-bottom: 50px;
-}
-
-.green {
-    color: greenyellow;
-}
-
-.red {
-    color: rgb(255, 27, 27);
 }
