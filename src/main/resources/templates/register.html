@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -21,8 +22,8 @@
         <nav th:include="navigation :: navigation" class="navcontainer"></nav>
         <div class="container">
         <main>
-            <section layout:fragment="content">
-                    <h3 class="ui dividing header" th:text="#{register.userdata}">Registrieren</h3>
+            <section>
+                    <h3 th:text="#{register.userdata}">Registrieren</h3>
                     <h4>Kriterien</h4>
                     
                     <div class="field">
@@ -37,30 +38,29 @@
                     <br>
     
                     <div class="style">
+                        <form method="post" role="form" id="form" th:action="@{/register}" th:object="${registrationForm}">
                         <label for="name">Name:</label>
-                        <input id="name" name="name" th:field="*{name}" th:errorclass="fieldError" type="text" required="required"/><br/>
-                        <div class="ui negative message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                        <input id="name" name="name" field="*{name}" type="text" required="required"/><br/>
+                        <!--<div class="ui negative message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>-->
                     </div>
 
                     <br>
     
                     <div class="style">
                         <label th:text="#{register.password}" for="password">Passwort:</label>
-                        <input id="password" name="password" th:field="*{password}" th:errorclass="fieldError" type="password"
-                               required="required"/><br/>
-                        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+                        <input id="password" name="password" field="*{password}"  type="password" required="required" /><br/>
+                        <!--<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>-->
                     </div>
 
                     <div class="style">
                         <label th:text="#{register.password}" for="password">Passwort-Check:</label>
-                        <input id="password" name="password" th:field="*{password}" th:errorclass="fieldError" type="password"
-                               required="required"/><br/>
-                        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+                        <input id="passwordCheck" name="passwordCheck" field="*{password}" type="password" required="required"/><br/>
+                        <!--<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>-->
                     </div>
 
                     <br>
 
-                    <button type="submit" class="ui button" th:text="#{register.submit}">Registrieren</button>
+                    <button type="submit" th:text="#{register.submit}">Registrieren</button>
                 </form>
             </section>
         </main>
