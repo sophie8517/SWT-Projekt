@@ -21,7 +21,7 @@ Nach welchem Schema sind die Tests benannt?
 * Zusammenspiel der Komponenten
 
 == Nicht zu testende Funktionalitäten
-* verwendeten Frameworks wie z.B. Spring, Salespoint
+* verwendete Frameworks wie z.B. Spring, Salespoint
 
 == Herangehensweise
 
@@ -81,7 +81,7 @@ a|
 |Nutzer ist nicht registriert, Benutzername "muster0815" nicht vergeben
 a|
 - Benutzername: muster0815
-- Passwort: Helloo789
+- Passwort: Hel789
 |Passwort ungültig, (kein neuer Nutzer angelegt)
 
 |U-5
@@ -130,7 +130,7 @@ a|
 |AT22
 |(Lottoschein nicht korrekt ausgefüllt)
 |Tipp: 1,2,3,4,4,4
-|kein 6 verschiedenen Zahlen ausgewählt, Anzahl der Warenkorbelemente ändert sich nicht
+|es wurden nicht 6 verschiedene Zahlen ausgewählt (, Anzahl der Warenkorbelemente ändert sich nicht)
 
 |I-5
 |UC15
@@ -158,7 +158,7 @@ a|
 |-
 |Nutzer ist als Admin angemeldet
 |Zugriff auf "Statistik"
-|Statsitik
+|Statsitik wird angezeigt
 
 |I-9
 |UC01
