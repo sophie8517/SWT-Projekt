@@ -9,9 +9,10 @@ public class RegistrationForm {
 	private final String name;
 
 	@NotEmpty(message = "{RegistrationForm.password.NotEmpty}") //
-	@Min(8)
-	@Pattern(regexp = "^[0-9].+", message = "{RegistrationForm.password.NoNumber}") //
-	@Pattern(regexp = "^[A-Z].+", message = "{RegistrationForm.password.NoUpperCase}") //
+	//@Pattern(regexp = "^{8,}", message = "{RegistrationForm.password.length}")
+	//@Pattern(regexp = "^[0-9].*", message = "{RegistrationForm.password.NoNumber}") //
+	//@Pattern(regexp = "^[A-Z].*", message = "{RegistrationForm.password.NoUpperCase}") //
+	@Pattern(regexp = "^(?=.*[A-Z0-9].*).{8,}$", message = "{RegistrationForm.password.failure}")
 	private final String password;
 	private final String passwordCheck;
 

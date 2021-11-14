@@ -55,10 +55,10 @@
                     <br>
 
                     <div class="field">
-                        <label th:text="#{register.passwordCheck}" for="password">Password-Check:</label>
-                        <input id="passwordCheck" name="password" th:field="*{password}" th:errorclass="fieldError" type="password"
+                        <label th:text="#{register.passwordCheck}" for="passwordCheck">Password-Check:</label>
+                        <input id="passwordCheck" name="passwordCheck" th:field="*{passwordCheck}" th:errorclass="fieldError" type="password"
                                required="required"/><br/>
-                        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+                        <p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}"></p>
                     </div>
 
                     <br>

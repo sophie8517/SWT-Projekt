@@ -41,6 +41,14 @@ public class CustomerController{
 	@GetMapping("/kontakt")
 	String contact(Model model) { return "kontakt"; }
 
+	@PostMapping("/meinProfil")
+	String changeProfile(long customerId, @Valid Profile profile, Errors result) {
+		if (result.hasErrors()) return "meinProfil";
+
+		customerManagement.findByCustomerId(customerId).setProfile(profile);
+		return "redirect:/";
+	}
+
 	@GetMapping("/meinProfil")
 	String myProfile(Model model) { return "meinProfil"; }
 

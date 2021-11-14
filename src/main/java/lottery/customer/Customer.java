@@ -3,10 +3,7 @@ package lottery.customer;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Customer {
@@ -14,8 +11,10 @@ public class Customer {
 	private Money balance;
 	@OneToOne
 	private UserAccount userAccount;
+	@Transient
+	private Profile profile;
 
-	private Customer(){}
+	public Customer(){}
 
 	public Customer(UserAccount userAccount){
 		this.userAccount = userAccount;
@@ -36,4 +35,8 @@ public class Customer {
 	public UserAccount getUserAccount() {
 		return userAccount;
 	}
+
+	public void setProfile(Profile profile) { this.profile = profile; }
+
+	public Profile getProfile() { return profile; }
 }
