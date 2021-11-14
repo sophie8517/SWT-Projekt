@@ -180,8 +180,8 @@ image:diagramm/ui.png[Location, 100%, 100%, pdfwidth=100%, title= "ui", align=ce
 |===
 |Externes Package |Verwendet von (Klasse der eigenen Anwendung)
 |salespointframework.catalog_ltr                         a|
-• catalog_ltr.Foot
-• catalog_ltr.Num
+• catalog.Foot
+• catalog.Num
 |salespointframework.boot                             |lottery.lottery
 |salespointframework.useraccount                     a|
 • customer.customer
@@ -191,13 +191,13 @@ image:diagramm/ui.png[Location, 100%, 100%, pdfwidth=100%, title= "ui", align=ce
 |springframework.security                              |lottery.WebSecurityConfiguration
 |springframework.web                                   |lottery.web
 |salespointframework.core                             a|
-• catalog_ltr.CatalogInitializer
+• catalog.CatalogInitializer
 • customer.CustomerDatainitializer
 |salespointframework.SalespointSecurityConfiguration   |lottery.WebSecurityConfiguration
-|springframework.data                                 a|catalog_ltr.LotteryCatalog
+|springframework.data                                 a|catalog.LotteryCatalog
 |springframework.security                              |lottery.WebSecurityConfiguration
 |springframework.ui                                   a|
-• catalog_ltr.CatalogController
+• catalog.CatalogController
 • customer.CustomerController
 • order.OrderController               
 |springframework.util                                 a|
