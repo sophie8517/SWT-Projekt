@@ -104,7 +104,9 @@ public class CustomerController{
 	@GetMapping("/showbets")
 	public String show_bets(Model model, @LoggedIn Optional<UserAccount> userAccount){
 		Customer c = customerManagement.findByUserAccount(userAccount.get());
+		Money balance = c.getBalance();
 
+		model.addAttribute("balance", balance);
 		model.addAttribute("numberBets", c.getNumberBetList());
 		model.addAttribute("footballBets", c.getFootballBetList());
 

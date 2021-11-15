@@ -5,6 +5,8 @@ import kickstart.catalog.NumberBet;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 
+import static org.salespointframework.core.Currencies.*;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +14,7 @@ import java.util.List;
 @Entity
 public class Customer {
 	private @Id @GeneratedValue long id;
-	private Money balance;
+	private Money balance = Money.of(100,EURO);
 	@OneToOne
 	private UserAccount userAccount;
 
@@ -54,10 +56,18 @@ public class Customer {
 	}
 
 	public void addFootballBet(FootballBet fb){
+		double m = fb.getEinsatz().getNumber().doubleValue();
+		double old_bal = getBalance().getNumber().doubleValue();
+		double new_bal = old_bal - m;
+		setBalance(Money.of(new_bal, EURO));
 		footballBetList.add(fb);
 	}
 
 	public void addNumberBet(NumberBet nb){
+		double m = nb.getEinsatz().getNumber().doubleValue();
+		double old_bal = getBalance().getNumber().doubleValue();
+		double new_bal = old_bal - m;
+		setBalance(Money.of(new_bal, EURO));
 		numberBetList.add(nb);
 	}
 }

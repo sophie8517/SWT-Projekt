@@ -19,8 +19,12 @@
     </nav>-->
     <nav th:include="navigation :: navigation" class="navcontainer"></nav>
     <div class="container">
+
+
         <main class="box-one">
             <h2 class="box-two">Übersicht der Wetten</h2>
+            <p>Mein Guthaben</p>
+            <div th:text="${balance}">50</div>
         </main>
 
 
