@@ -1,26 +1,31 @@
-= Protokoll Gruppe XX
+= Protokoll Gruppe 09
 
 
-Treffen am XX.XX.20XX
+Treffen am 15.11.2021
 
-Ort:      Ort des Treffens +
-Beginn:   xx:xx Uhr +
-Ende:     xx:xx Uhr
+Ort:      Discord
+Beginn:   14:50 Uhr +
+Ende:     15:30 Uhr
 
-__Schriftführer:__
+__Schriftführer:__ Sophie Schulze
 
 *Nächstes Treffen:* +
-XX.XX.20XX, xx:xx Uhr, Ort des nächsten Treffens
+21.11.2021, 14:50 Uhr, Discord
 
 __Teilnehmer:__
 //Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
 
-- Teilnehmer 1
-- Teilnehmer 2
-- ...
+- Andre Schmidt (Kunde)
+- Yu-Ju Chen
+- Song Bai
+- Yutian Lei
+- Mirek Král
+- Sophie Schulze
 
 == Bemerkungen
-Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+Organisatorisches:
+
+* Zwischenpräsentation findet online statt am 29.11.2021 (voraussichtlich)
 
 == Retrospektive des letzten Sprints
 *Issue referenziert die Issue ID von GitHub*
@@ -30,13 +35,57 @@ Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entsch
 [option="headers"]
 |===
 |Issue |Aufgabe |Status |Bemerkung
-|…     |…       |…      |…
+|05   
+|Prototyp programmieren       
+a|
+* Lotterie: fertig
+* Katalog: fertig
+* Kunde: fertig
+* Order: in Arbeit
+* Statistik: in Arbeit
+|ausführlicher Stand siehe aktueller Stand
+
+|06     
+|test_plan   
+|Grundlage geschaffen, wird im Laufe des Projekts weiter bearbeitet   
+|-
+
+|07     
+|developer_documentation    
+|in Arbeit     
+|bis 21.11. Entwurfsdiagramme für Order und Statistik ferigstellen
 |===
 
 
 == Aktueller Stand
 Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
 Dokumenten.
+
+Anmerkungen:
+* developer_documentation:
+** Statistik und Order Entwurfsklassendiagramm noch unvollständig -> verbessern bis 21.11.2021
+* Prototypen:
+** Behandeln des Fehlers der bei "Run" auftritt
+** Prototyp für Order und Statistik nachreichen -> bis 21.11.2021
+
+Stand der Prototypen (was funktioniert schon):
+* Lotterie:
+** Anzeigen der Website
+* Kunde:
+** Erstellen eines neuen Nutzers
+** Registrieerung:
+*** Exception bei Eingabe von existierenden Nutzernamen (noch Problem)
+*** nur gültiges Passwort wird akzeptiert (entsprechend der Kriterien)
+** Anmelden funktioniert
+* Katalog:
+** Lottoschein:
+*** ausfüllbar
+*** Wette mit dem Tipp aus 6 Zahlen wird dem Item hinzugefügt
+*** Option "Tippschein abgeben" wird nur angemeldeten Nutzer angezeigt
+** Fußballtoto:
+*** Fußballspiele mit Spielinfos werden angezeigt
+*** "Jetzt wetten" wird nur angemeldeten Nutzern angezeigt
+*** abgegebene Wette wird zum Item hinzugefügt
 
 == Planung des nächsten Sprints
 *Issue referenziert die Issue ID von GitHub*
@@ -45,5 +94,39 @@ Dokumenten.
 [option="headers"]
 |===
 |Issue |Titel |Beschreibung |Verantwortlicher |Status
-|…     |…     |…            |…                |…
+|05   
+|Prototypen programmieren
+|die Prototypen für Statistik und Order fertigstellen
+a|
+* Order: Yuju Chen
+* Statistik: Yutian Lei
+|in Arbeit
+
+|07     
+|developer_documentation   
+|Entwurfsdiagramme für Order und Statistik erweitern bzw. anpassen            
+|Yuju Chen, Yutian Lei (+ andere)             
+|in Arbeit, Diagramme existieren schon sind nur unvollständig
+
+|08     
+|Zwischenpräsentation vorbereiten  
+a| 
+* Folienpräsentation
+* Design- und Analyseergebnisse
+* Szenarien vorbereiten
+* aufgetretene Probleme
+|alle               
+|in Arbeit
+
+|09     
+|Basisfuntionalität schaffen    
+|das System soll die Anforderungen der Muss-Kriterien erfüllen         
+|alle               
+|in Arbeit
+
+|10
+|Issues verteilen
+|jedes Teammitglied bekommt Arbeitsaufträge (issues), die den Muss-Kriterien entsprechen, zugeteilt
+|werden noch zugeteilt
+|in Arbeit
 |===
