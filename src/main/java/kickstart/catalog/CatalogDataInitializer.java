@@ -42,7 +42,7 @@ class CatalogDataInitializer implements DataInitializer {
 		lotteryCatalog.save(new Ticket("name1",LocalDate.of(2021,11,5), Money.of(7,EURO), ItemType.TICKET));
 
 		lotteryCatalog.save(new Football("name5",LocalDate.of(2021,11,19),
-				Money.of(10, EURO),ItemType.FOOTBALL,"FC Augsburg", "FC Bayern München",
+				Money.of(12.50, EURO),ItemType.FOOTBALL,"FC Augsburg", "FC Bayern München",
 				"1.Bundesliga","augsburg", "fcb"));
 		lotteryCatalog.save(new Football("name6",LocalDate.of(2021,11,20),
 				Money.of(10, EURO),ItemType.FOOTBALL,"TSG Hoffenheim", "RB Leipzig",

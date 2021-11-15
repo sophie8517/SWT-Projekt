@@ -77,7 +77,9 @@
                         <label th:text="#{football.bet}" >Wettoption:  </label>
                         <input field="*{fussballwette}" id="fussballwette" type="number" name="fussballwette" min="1" max="3" required="required"/>
                         </br></br>
-
+                        <label th:text="#{football.einsatz}" >Dein Einsatz:  </label>
+                        <input field="*{einsatz}" id="einsatz" type="number" step=".01" name="einsatz" th:min="${football.price2}" required="required"/>
+                        </br></br>
                         <button class="button" type="submit" th:text="#{football.addBet}" >Jetzt wetten</button>
                     </div>
                 </form>

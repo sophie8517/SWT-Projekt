@@ -101,12 +101,12 @@ public class CatalogController {
 	}
 
 	@PostMapping("/lottery/footbit")
-	String bet_foot(@RequestParam("pid")ProductIdentifier id, @RequestParam("fussballwette") int number, @LoggedIn Optional<UserAccount> userAccount){
+	String bet_foot(@RequestParam("pid")ProductIdentifier id, @RequestParam("fussballwette") int number,@RequestParam("einsatz") double einsatz ,@LoggedIn Optional<UserAccount> userAccount){
 
 		Football foot = (Football) lotteryCatalog.findById(id).get();
 
 		Customer c = customerRepository.findCustomerByUserAccount(userAccount.get());
-		System.out.println(c.toString());
+		System.out.println(einsatz);
 
 
 		String  tip;
@@ -122,7 +122,7 @@ public class CatalogController {
 		}
 
 
-		FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(foot.getPrice().getNumber(), EURO), tip);
+		FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(einsatz, EURO), tip);
 		foot.addBet(f);
 		c.addFootballBet(f);
 		System.out.println(foot.getFootballBits());
