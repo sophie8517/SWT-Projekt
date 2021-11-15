@@ -291,6 +291,7 @@ image::./models/design/block_customer.svg[Location, 100%, 100%, pdfwidth=100%, t
 |CustomerRepository|Ein Interface, das Kunden-Instanz verwaltet und Kunden speichert.
 |Group|Eine Klasse, die von Salespoint-Useraccount erbt. Sie beschreibt die Gruppe bzw. Gewinngemeinschaft.
 |GroupRepository|Ein Interface, das Gruppe-Instanz verwaltet und Gruppen speichert.
+|Profile|Eine Klasse, die das Profil eines Customers verwaltet.
 |RegistrationFrom|Ein Interface, das sich um Validierung der Eingaben von Kunden bei der Registierung kümmert.
 |===
 
