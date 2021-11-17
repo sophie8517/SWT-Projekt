@@ -13,7 +13,7 @@ public class Bet implements Serializable {
 	private static final long serialVersionUID = -7114101035786254953L;
 
 	private LocalDateTime date;
-	private Money einsatz;
+	private Money inset;
 
 	@ManyToOne
 	private Item item;
@@ -24,10 +24,10 @@ public class Bet implements Serializable {
 	private Long id;
 
 
-	public Bet(Item item, LocalDateTime date, Money einsatz){
+	public Bet(Item item, LocalDateTime date, Money inset){
 		this.item = item;
 		this.date = date;
-		this.einsatz = einsatz;
+		this.inset = inset;
 		this.status = Status.OPEN;
 
 	}
@@ -54,13 +54,15 @@ public class Bet implements Serializable {
 	}
 
 
-	public Money getEinsatz() {
-		return einsatz;
+	public Money getInset() {
+		return inset;
 	}
 
 
 	public Long getId() {
 		return id;
 	}
+
+	public void setInset(Money money){ this.inset = money; }
 
 }

@@ -25,7 +25,7 @@ public class CatalogController {
 
 
 
-	public CatalogController(LotteryCatalog lotteryCatalog,CustomerRepository customerRepository){
+	public CatalogController(LotteryCatalog lotteryCatalog, CustomerRepository customerRepository){
 		this.lotteryCatalog = lotteryCatalog;
 		this.customerRepository = customerRepository;
 	}
@@ -109,20 +109,20 @@ public class CatalogController {
 		System.out.println(c.toString());
 
 
-		String  tip;
+		Status  status;
 
 		if(number == 1){
-			tip = "Gast gewinnt";
+			status = Status.WIN;
 		}
 		else if(number == 2){
-			tip = "Heim gewinnt";
+			status = Status.LOSS;
 		}
 		else{
-			tip = "Unentschieden";
+			status = Status.DRAW;
 		}
 
 
-		FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(foot.getPrice().getNumber(), EURO), tip);
+		FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(foot.getPrice().getNumber(), EURO), status);
 		foot.addBet(f);
 		c.addFootballBet(f);
 		System.out.println(foot.getFootballBits());

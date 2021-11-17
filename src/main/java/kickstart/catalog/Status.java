@@ -1,5 +1,5 @@
 package kickstart.catalog;
 
 public enum Status {
-	WIN, LOSS, OPEN;
+	WIN, LOSS, OPEN, DRAW, CLOSED;
 }

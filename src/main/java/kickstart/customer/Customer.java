@@ -2,6 +2,7 @@ package kickstart.customer;
 
 import kickstart.catalog.FootballBet;
 import kickstart.catalog.NumberBet;
+import kickstart.catalog.Status;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 
@@ -45,11 +46,11 @@ public class Customer {
 		return userAccount;
 	}
 
-	public List<FootballBet> getFootballBetList() {
+	public List<FootballBet> getAllFootballBetList() {
 		return footballBetList;
 	}
 
-	public List<NumberBet> getNumberBetList() {
+	public List<NumberBet> getAllNumberBetList() {
 		return numberBetList;
 	}
 
@@ -60,4 +61,9 @@ public class Customer {
 	public void addNumberBet(NumberBet nb){
 		numberBetList.add(nb);
 	}
+
+	public void removeFootballBets(FootballBet fb) {footballBetList.remove(fb); }
+
+	public void removeNumberBets(NumberBet nb) {numberBetList.remove(nb); }
+
 }

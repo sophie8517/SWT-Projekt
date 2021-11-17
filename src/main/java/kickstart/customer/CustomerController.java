@@ -8,6 +8,8 @@ import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -50,10 +52,23 @@ public class CustomerController{
 		return "register";
 	}
 
+	@GetMapping("/profile")
+	String getProfile(Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Profile profile = new Profile("Tom", "Anderson", "+4010", "kjdsjd@anlknsa.com");
+
+		//Profile profile = customerManagement.findByCustomerId(customerId).getProfile();;
+
+		model.addAttribute("profile", profile);
+
+		//model.addAttribute("name", authentication.getName());
+		//model.addAttribute("name", "Michal");
+		return "meinProfil";
+	}
+
 	@GetMapping("/customers")
 	@PreAuthorize("hasRole('ADMIN')")
 	String customers(Model model) {
-
 		model.addAttribute("customerList", customerManagement.findAllCustomers());
 		return "customers";
 	}
@@ -100,15 +115,4 @@ public class CustomerController{
 		model.addAttribute("group",customerManagement.findAllGroups());
 		return "redirect:/";
 	}
-
-	@GetMapping("/showbets")
-	public String show_bets(Model model, @LoggedIn Optional<UserAccount> userAccount){
-		Customer c = customerManagement.findByUserAccount(userAccount.get());
-
-		model.addAttribute("numberBets", c.getNumberBetList());
-		model.addAttribute("footballBets", c.getFootballBetList());
-
-		return "customer_bets";
-	}
-
 }

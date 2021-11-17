@@ -2,16 +2,22 @@ package kickstart.catalog;
 
 import org.javamoney.moneta.Money;
 
+import javax.persistence.Access;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.time.LocalDateTime;
 
 @Entity
 public class FootballBet extends Bet {
-	private String tip,guest, host;
+	private Status tippedStatus;
+	@OneToOne
+	private Team guest, host;
 
-	public FootballBet(Item item,  LocalDateTime date, Money einsatz, String tip){
+
+	public FootballBet(Item item,  LocalDateTime date, Money einsatz, Status tippedStatus){
 		super(item, date, einsatz);
-		this.tip = tip;
+		this.tippedStatus = tippedStatus;
 		Football f = (Football) item;
 		this.host = f.getHost();
 		this.guest = f.getGuest();
@@ -24,8 +30,8 @@ public class FootballBet extends Bet {
 	//	this.tip = tip;
 	//}
 
-	public String getTip() {
-		return tip;
+	public Status getTip() {
+		return tippedStatus;
 	}
 
 	@Override
@@ -34,12 +40,12 @@ public class FootballBet extends Bet {
 		return "Heim: " + f.getHost() +"\n Gast: " + f.getGuest() + "\nDatum: " + getDate() + "\nTipp: "+ getTip();
 	}
 
-	public String getHost(){
+	public Team getHost(){
 		return host;
 
 	}
-	public String getGuest(){
+	public Team getGuest(){
 		return guest;
-
 	}
+
 }

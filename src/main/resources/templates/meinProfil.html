@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -10,69 +11,69 @@
 </head>
 
 <body class="backgrounds">
-
-        <!--<nav>
+<!--<nav>
             <a href="https://www.bk.com/">HOME</a>
             <a class="item" href="contact.html" th:href="@{/contact}" th:text="#{nav.contact}">KONTAKT</a>
             <a href="">KATALOG</a>
             <a href="">ABMELDEN</a>
         </nav>-->
-        <nav th:include="navigation :: navigation" class="navcontainer"></nav>
-        <div class="container">
-        <main class="box-one">
-            <h3 class="box-two">Mein Profil</h3>
-            <h2 class="box-two">Persönliche Daten</h2>
+<nav th:include="navigation :: navigation" class="navcontainer"></nav>
+<div class="container" >
+    <main class="box-one">
+        <h3 class="box-two" th:text="#{myProfile.title}">Mein Profil</h3>
+        <h2 class="box-two">Persönliche Daten</h2>
+
+        <form  th:object="${profile}" th:action="@{/profile}" >
             <div>
-                <label for="name"><h4>Vorname:</h4></label>
-                <input id="name" name="name" th:field="*{name}" th:errorclass="fieldError" type="text" required="required"/><br/>
-                <div class="ui negative message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
-            </div>
+                <label for="forename"><h4>Vorname:</h4></label>
+                <!--<input id="forename" name="name" th:field="*{firstname}" type="text"/><br/>-->
+                <!--<span th:text="${name}">Name</span>-->
 
+                <input class="form-control" type="text"
+                       th:value="*{firstname}" id="forename" name="name"/>
+
+                <label for="lastname"><h4>Nachname:</h4></label>
+                <input class="form-control" type="text"
+                       th:value="*{lastname}" id="lastname" name="name"/>
+
+                <label for="number"><h4>Tel.-Nummer:</h4></label>
+                <input class="form-control" type="text"
+                       th:value="*{phone}" id="number" name="name"/>
+
+                <label for="email"><h4>E-mail:</h4></label>
+                <input class="form-control" type="text"
+                       th:value="*{email}" id="email" name="name"/>
+
+            </div>
             <div>
-                <label for="name"><h4>Nachname:</h4></label>
-                <input id="name" name="name" th:field="*{name}" th:errorclass="fieldError" type="text" required="required"/><br/>
-                <div class="ui negative message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                <button type="submit" class="ui button" th:text="#{register.dataSave}" style="margin-top:40px ">Daten speichern</button>
             </div>
+        </form>
 
-            <div>
-                <label for="name"><h4>Tel-.Nummer:</h4></label>
-                <input id="name" name="name" th:field="*{name}" th:errorclass="fieldError" type="text" required="required"/><br/>
-                <div class="ui negative message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
-            </div>
 
-            <div>
-                <label for="name"><h4>E-mail:</h4></label>
-                <input id="name" name="name" th:field="*{name}" th:errorclass="fieldError" type="text" required="required"/><br/>
-                <div class="ui negative message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
-            </div>
+        <br><br>
 
-            <br><br>
+        <h2 class="box-two">Mach Dein Glück!!</h2>
 
-            <button type="submit" class="ui button" th:text="#{register.submit}">Daten speichern</button>
-            
-            <br><br>
+        <a href="" target="_blank"> Warenkorb anzeigen</a>
+        <br></br>
+        <a href="" target="_blank"> Geld überweisen</a>
+        <br></br>
+        <a href="" target="_blank"> Guthaben anzeigen</a>
 
-            <h2 class="box-two">Mach Dein Glück!!</h2>
+        <h2 class="box-two">Einstellungen</h2>
+        <a href="" target="_blank"> Passwort ändern</a>
+        <br></br>
+        <a href="" target="_blank"> Profil löschen</a>
 
-            <a href="" target="_blank"> Warenkorb anzeigen</a>
-            <br></br>
-            <a href="" target="_blank"> Geld überweisen</a>
-            <br></br>
-            <a href="" target="_blank"> Guthaben anzeigen</a>
 
-            <h2 class="box-two">Einstellungen</h2>
-            <a href="" target="_blank"> Passwort ändern</a>
-            <br></br>
-            <a href="" target="_blank"> Profil löschen</a>
-            
+    </main>
 
-        </main>
+    <footer>
+        <p>Mach Dein Glück!! ©Copyright 2021©</p>
+    </footer>
 
-        <footer>
-            <p>Mach Dein Glück!! ©Copyright 2021©</p>
-        </footer>
-
-    </div>
+</div>
 
 </body>
 
