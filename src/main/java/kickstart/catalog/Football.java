@@ -1,5 +1,6 @@
 package kickstart.catalog;
 
+import kickstart.customer.Customer;
 import org.javamoney.moneta.Money;
 
 import javax.persistence.CascadeType;
@@ -56,7 +57,18 @@ public class Football extends Item {
 		return logo_guest;
 	}
 
-	public List<FootballBet> getFootballBits() {
+	public List<FootballBet> getFootballBets() {
 		return footballBets;
+	}
+
+	public List<FootballBet> getFootballBetsbyCustomer(Customer c){
+		List<FootballBet> result = new ArrayList<>();
+
+		for(FootballBet fb: footballBets){
+			if(fb.getCustomer().equals(c)){
+				result.add(fb);
+			}
+		}
+		return result;
 	}
 }

@@ -1,5 +1,6 @@
 package kickstart.catalog;
 
+import kickstart.customer.Customer;
 import org.javamoney.moneta.Money;
 
 import javax.persistence.*;
@@ -24,12 +25,15 @@ public class Bet implements Serializable {
 	@Id@GeneratedValue
 	private Long id;
 
+	@ManyToOne
+	private Customer customer;
 
-	public Bet(Item item, LocalDateTime date, Money einsatz){
+	public Bet(Item item, LocalDateTime date, Money einsatz, Customer customer){
 		this.item = item;
 		this.date = date;
 		this.einsatz = einsatz;
 		this.status = Status.OPEN;
+		this.customer = customer;
 
 	}
 
@@ -71,4 +75,7 @@ public class Bet implements Serializable {
 		return id;
 	}
 
+	public Customer getCustomer() {
+		return customer;
+	}
 }

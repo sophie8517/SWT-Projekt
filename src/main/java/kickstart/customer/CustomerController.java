@@ -101,6 +101,7 @@ public class CustomerController{
 		return "redirect:/";
 	}
 
+	/*
 	@GetMapping("/showbets")
 	public String show_bets(Model model, @LoggedIn Optional<UserAccount> userAccount){
 		Customer c = customerManagement.findByUserAccount(userAccount.get());
@@ -112,5 +113,7 @@ public class CustomerController{
 
 		return "customer_bets";
 	}
+
+	 */
 
 }

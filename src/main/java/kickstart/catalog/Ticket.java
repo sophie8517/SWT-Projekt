@@ -1,6 +1,7 @@
 package kickstart.catalog;
 
 
+import kickstart.customer.Customer;
 import org.javamoney.moneta.Money;
 
 import javax.persistence.CascadeType;
@@ -30,5 +31,16 @@ public class Ticket extends Item {
 
 	public List<NumberBet> getNumberBits(){
 		return numberBets;
+	}
+
+	public List<NumberBet> getNumberBetsbyCustomer(Customer c){
+		List<NumberBet> result = new ArrayList<>();
+
+		for(NumberBet nb: numberBets){
+			if(nb.getCustomer().equals(c)){
+				result.add(nb);
+			}
+		}
+		return result;
 	}
 }
