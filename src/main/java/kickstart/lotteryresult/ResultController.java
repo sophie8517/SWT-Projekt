@@ -1,9 +1,6 @@
 package kickstart.lotteryresult;
 
-import kickstart.catalog.LotteryCatalog;
-import kickstart.catalog.NumberBet;
-import kickstart.catalog.Status;
-import kickstart.catalog.Ticket;
+import kickstart.catalog.*;
 import org.salespointframework.catalog.ProductIdentifier;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -43,6 +40,10 @@ public class ResultController {
 		for(NumberBet nb: wetten){
 			if(!nb.getExpiration().isBefore(LocalDate.now())){
 				wetten_valid.add(nb);
+				//wetten.remove(nb);
+			}
+			else{
+				nb.changeStatus(Status.EXPIRED);
 			}
 		}
 		for(NumberBet nb: wetten_valid){
@@ -57,5 +58,51 @@ public class ResultController {
 
 		return "redirect:/";
 
+	}
+
+	@PreAuthorize("hasRole('ADMIN')")
+	@PostMapping("/eval/foot")
+	String evalFootballBets(@RequestParam("pid") ProductIdentifier id, @RequestParam("ergebnis") int number){
+		Football f = (Football) lotteryCatalog.findById(id).get();
+		List<FootballBet> wetten = f.getFootballBets();
+		List<FootballBet> wetten_valid = new ArrayList<>();
+
+		String ergebnis;
+		Ergebnis erg;
+		if(number == 1){
+			ergebnis = "Gast gewinnt";
+			erg = Ergebnis.GASTSIEG;
+		}
+		else if(number == 2){
+			ergebnis = "Heim gewinnt";
+			erg = Ergebnis.HEIMSIEG;
+		}
+		else{
+			ergebnis = "Unentschieden";
+			erg = Ergebnis.UNENTSCHIEDEN;
+		}
+		f.setErgebnis(erg);
+
+		for(FootballBet fb: wetten){
+			if(!fb.getExpiration().isBefore(LocalDate.now())){
+				wetten_valid.add(fb);
+			}
+			else{
+				fb.changeStatus(Status.EXPIRED);
+			}
+		}
+		for(FootballBet fb: wetten_valid){
+			if(fb.getTip().equals(ergebnis)){
+				fb.changeStatus(Status.WIN);
+			}
+			else{
+				fb.changeStatus(Status.LOSS);
+			}
+		}
+
+
+		lotteryCatalog.save(f);
+
+		return "redirect:/";
 	}
 }

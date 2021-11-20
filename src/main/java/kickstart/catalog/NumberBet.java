@@ -15,12 +15,10 @@ public class NumberBet extends Bet {
 	@ElementCollection
 	private List<Integer> numbers;
 
-	private LocalDate expiration = LocalDate.of(2000,1,1);
 
 
-
-	public NumberBet(Item item, LocalDateTime date, Money einsatz, Customer c, List<Integer> numbers){
-		super(item, date, einsatz,c);
+	public NumberBet(Item item, LocalDateTime date, Money einsatz, Customer c,LocalDate expiration, List<Integer> numbers){
+		super(item, date, einsatz,c, expiration);
 		this.numbers = numbers;
 	}
 
@@ -37,11 +35,5 @@ public class NumberBet extends Bet {
 		this.numbers = numbers;
 	}
 
-	public LocalDate getExpiration() {
-		return expiration;
-	}
 
-	public void setExpiration(LocalDate expiration) {
-		this.expiration = expiration;
-	}
 }

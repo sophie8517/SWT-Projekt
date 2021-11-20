@@ -4,14 +4,15 @@ import kickstart.customer.Customer;
 import org.javamoney.moneta.Money;
 
 import javax.persistence.Entity;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 public class FootballBet extends Bet {
 	private String tip,guest, host;
 
-	public FootballBet(Item item, LocalDateTime date, Money einsatz, Customer c, String tip){
-		super(item, date, einsatz,c);
+	public FootballBet(Item item, LocalDateTime date, Money einsatz, Customer c, LocalDate expiration, String tip){
+		super(item, date, einsatz,c, expiration);
 		this.tip = tip;
 		Football f = (Football) item;
 		this.host = f.getHost();

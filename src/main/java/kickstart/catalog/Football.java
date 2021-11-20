@@ -18,6 +18,8 @@ public class Football extends Item {
 	private List<FootballBet> footballBets = new ArrayList<>();
 
 	private String host, guest, league, logo_host, logo_guest;
+	private Ergebnis ergebnis = Ergebnis.LEER;
+
 
 
 	public Football(String name, LocalDate date, Money price, ItemType type, String host, String guest, String league, String logo_host, String logo_guest){
@@ -70,5 +72,13 @@ public class Football extends Item {
 			}
 		}
 		return result;
+	}
+
+	public Ergebnis getErgebnis() {
+		return ergebnis;
+	}
+
+	public void setErgebnis(Ergebnis ergebnis) {
+		this.ergebnis = ergebnis;
 	}
 }

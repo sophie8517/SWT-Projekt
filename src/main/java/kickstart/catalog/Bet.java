@@ -5,6 +5,7 @@ import org.javamoney.moneta.Money;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -17,6 +18,8 @@ public class Bet implements Serializable {
 	private Money einsatz;
 	private double einsatz2;
 
+	private LocalDate expiration;
+
 	@ManyToOne
 	private Item item;
 
@@ -28,12 +31,13 @@ public class Bet implements Serializable {
 	@ManyToOne
 	private Customer customer;
 
-	public Bet(Item item, LocalDateTime date, Money einsatz, Customer customer){
+	public Bet(Item item, LocalDateTime date, Money einsatz, Customer customer, LocalDate expiration){
 		this.item = item;
 		this.date = date;
 		this.einsatz = einsatz;
 		this.status = Status.OPEN;
 		this.customer = customer;
+		this.expiration = expiration;
 
 	}
 
@@ -77,5 +81,12 @@ public class Bet implements Serializable {
 
 	public Customer getCustomer() {
 		return customer;
+	}
+	public LocalDate getExpiration() {
+		return expiration;
+	}
+
+	public void setExpiration(LocalDate expiration) {
+		this.expiration = expiration;
 	}
 }
