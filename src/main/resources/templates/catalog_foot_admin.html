@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://thymeleaf.org"
+        xmlns:th="http://thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
@@ -8,17 +8,214 @@
     <meta name="viewport" content="width = device - width, initial - scale = 1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>🍀 Mach Dein Glück!! 🍀</title>
-    <link th:href="@{resources/css/style_foot_admin.css}" rel="stylesheet"  type="text/css" href="../static/resources/css/style_foot_admin.css">
+    <!--<link th:href="@{resources/css/style_foot_admin.css}" rel="stylesheet"  type="text/css" href="../static/resources/css/style_foot_admin.css">-->
+    <style>
+        body {
+
+    background-image: url('../static/resources/images/lotto1.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+}
+
+.backgrounds {
+    background-image: url('../static/resources/images/lotto1.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center top;
+    display: block;
+    min-height: 100%;
+    min-width: 100%;
+
+}
+
+.container {
+    /*margin-left: auto;
+    margin-right: auto;*/
+    margin: auto;
+    width: 780px;
+}
+
+.navcontainer{
+    margin-left: 20px;
+    margin-right: 20px;
+    width: auto;
+}
+
+.box-one {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 100px;
+    font-size: 16px;
+    margin-right: auto;
+    margin-left: auto;
+
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+
+    height: auto;
+    width: 450px;
+}
+
+.box-two {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-right: 100px;
+    text-align: center;
+
+}
+
+.box-three {
+    margin-top: 60px;
+    margin-bottom: -50px;
+
+    /*margin-left: 90px;
+    margin-right: 90px;*/
+    margin-left:auto;
+    margin-right: auto;
+
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    text-align: left;
+
+    height: auto;
+    width: 660px;
+}
+
+header {
+    height: 140px;
+    text-align: center;
+}
+
+nav {
+    background-color: rgba(0, 0, 0, 0.75);
+    text-align: center;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-right: -25px;
+}
+
+nav a{
+    text-decoration: none;
+    font-size: 22px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+main {
+    background-color: rgba(0, 0, 0, 0.75);
+    height: 480px;
+    text-align: center;
+    padding-top: 1px;
+    margin-top: 30px;
+    margin-left: 100px;
+    margin-right: 100px;
+    /*margin-bottom: 50px;*/
+}
+
+
+footer {
+    background-color: rgba(0, 0, 0, 0.75);
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin-top: 150px;
+    margin-left: 210px;
+    margin-right: 210px;
+}
+
+footer p {
+    font-size: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 84px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
+    font-size: 25px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+h3 {
+    font-size: 40px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+h4 {
+    font-size: 20px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+p {
+    font-size: 22px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    color: white;
+    font-size: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+    /*text-decoration: none;*/
+}
+
+.field {
+    color: white;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+    padding-left: 190px;
+}
+
+.style {
+    color: white;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.maps {
+    padding-bottom: 100px;
+}
+
+.yt {
+    padding-bottom: 50px;
+}
+
+.button {
+    width: 200px;
+    height: 40px;
+    font-size: 25px;
+}
+    </style>
 </head>
 
 <body class="backgrounds">
 
-<!--<nav>
-    <a href="home.html">HOME</a>
-    <a class="item" href="contact.html" th:href="@{/contact}" th:text="#{nav.contact}">KONTAKT</a>
-    <a href="meinProfil.html">MEIN PROFIL</a>
-    <a href="1_catalog.html">KATALOG</a>
-</nav>-->
+    <!--<nav>
+        <a href="home.html">HOME</a>
+        <a class="item" href="contact.html" th:href="@{/contact}" th:text="#{nav.contact}">KONTAKT</a>
+        <a href="meinProfil.html">MEIN PROFIL</a>
+        <a href="1_catalog.html">KATALOG</a>
+    </nav>-->
     <nav th:include="navigation :: navigation" class="navcontainer"></nav>
     <div class="container">
         <main class="box-one">
@@ -68,16 +265,6 @@
                         <td>3</td>
                     </tr>
                 </table>
-                <p>Wetten: </p>
-                <div th:each="bet : ${football.footballBets}">
-                    <table>
-                        <tr>
-                            <td th:text="${bet.tip}"></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </table>
-                </div>
 
                 <form th:method="post" sec:authorize="hasRole('ADMIN')" th:action="@{/eval/foot}">
                     <!--<input type="hidden" name="id" value="0" th:value="${football}"/>-->
