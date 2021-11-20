@@ -42,8 +42,25 @@ public class CatalogController {
 	}
 
 	@GetMapping("/football")
-	String footballCatalog(Model model){
-		model.addAttribute("footballcatalog", lotteryCatalog.findByType(ItemType.FOOTBALL));
+	String footballCatalog(Model model, @LoggedIn Optional<UserAccount> userAccount){
+
+		List<Item> foots = lotteryCatalog.findByType(ItemType.FOOTBALL);
+		List<Item> result = new ArrayList<>();
+		if(!userAccount.isEmpty()){
+			Customer c = customerRepository.findCustomerByUserAccount(userAccount.get());
+			for(Item i:foots){
+				Football f = (Football) i;
+				if(f.getFootballBetsbyCustomer(c).isEmpty()){
+					result.add(i);
+				}
+			}
+		}
+		else{
+			result = foots;
+		}
+
+
+		model.addAttribute("footballcatalog", result);
 		model.addAttribute("title", "catalog.football.title");
 
 		return "2_catalog_foot";
