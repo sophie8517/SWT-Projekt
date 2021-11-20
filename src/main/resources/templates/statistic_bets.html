@@ -16,20 +16,31 @@
 <body class="backgrounds">
 <nav th:include="navigation :: navigation" class="navcontainer"></nav>
 <div class="container">
-  <main>
+  <main style="height: 1000px">
     <h3>Verluste und Einkommen</h3>
 
     <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center" style="margin: auto; border-color: white">
       <thead>
         <th>Fußball</th>
-        <th>Zahlen</th>
         <th>Einkommen</th>
         <th>Verluste</th>
       </thead>
       <tr>
         <td><div th:text="${football}"></div>
-        <td><div th:text="${number}"></div>
+      </tr>
+    </table>
 
+    <br><br>
+
+    <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center" style="margin: auto; border-color: white">
+
+      <thead>
+      <th>Zahlen</th>
+      <th>Einkommen</th>
+      <th>Verluste</th>
+      </thead>
+      <tr>
+        <td><div th:text="${number}"></div>
       </tr>
 
 
