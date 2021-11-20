@@ -61,14 +61,17 @@ a|
 Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
 Dokumenten.
 
-Anmerkungen:
+*Anmerkungen:*
+
 * developer_documentation:
 ** Statistik und Order Entwurfsklassendiagramm noch unvollständig -> verbessern bis 21.11.2021
 * Prototypen:
 ** Behandeln des Fehlers der bei "Run" auftritt
 ** Prototyp für Order und Statistik nachreichen -> bis 21.11.2021
 
-Stand der Prototypen (was funktioniert schon):
+
+*Stand der Prototypen (was funktioniert schon):*
+
 * Lotterie:
 ** Anzeigen der Website
 * Kunde:
