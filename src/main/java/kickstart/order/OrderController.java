@@ -3,10 +3,13 @@ import kickstart.catalog.*;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
-import kickstart.customer.Customer;
+import kickstart.customer.*;
 import org.javamoney.moneta.Money;
 import org.salespointframework.order.*;
+import org.salespointframework.useraccount.UserAccount;
+import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +35,7 @@ public class OrderController {
 		this.orderManagement = orderManagement;
 	}
 
-	 */
+
 
 	@ModelAttribute("cart")
 	Cart initializeCart() {
@@ -42,9 +45,19 @@ public class OrderController {
 	@GetMapping("/cart")
 	String basket() { return "cart";}
 
+	 */
+
+	private final CustomerManagement customerManagement;
+
+	OrderController(CustomerManagement customerManagement){
+		this.customerManagement = customerManagement;
+	}
+
 	@PreAuthorize("hasAnyRole('CUSTOMER', 'ADMIN')")
-	@GetMapping("/viewBets")
-	public String viewBets(Model model,Customer customer){
+	@GetMapping("/customer_bets")
+	public String viewBets(Model model,@LoggedIn Optional<UserAccount> userAccount){
+
+		var customer = customerManagement.findByUserAccount(userAccount.get());
 
 		model.addAttribute("numberBets", customer.getAllNumberBetList());
 		model.addAttribute("footballBets", customer.getAllFootballBetList());

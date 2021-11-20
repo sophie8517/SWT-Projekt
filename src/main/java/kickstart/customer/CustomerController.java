@@ -53,18 +53,27 @@ public class CustomerController{
 	}
 
 	@GetMapping("/profile")
-	String getProfile(Model model) {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		Profile profile = new Profile("Tom", "Anderson", "+4010", "kjdsjd@anlknsa.com");
+	String getProfile(Model model, @LoggedIn Optional<UserAccount> userAccount) {
+	/*	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-		//Profile profile = customerManagement.findByCustomerId(customerId).getProfile();;
+		System.out.println("Authenticate " + authentication.getName());
+		String username = authentication.getName();
+		for (Customer customer : customerManagement.findAllCustomers()){
+			System.out.println(customer.getUserAccount().getUsername());
+			if (username.equals(customer.getUserAccount().getUsername())){
+				//model.addAttribute("profile", new Profile(customer.getUserAccount().getFirstname(), customer.getUserAccount().getLastname(),customer.getUserAccount().getEmail()));
+				model.addAttribute("profile", new Profile(customer.getUserAccount().getUsername(), customer.getUserAccount().getEmail(), customer.getUserAccount().getEmail()));
+				System.out.println(new Profile(customer.getUserAccount().getFirstname(),customer.getUserAccount().getLastname(),customer.getUserAccount().getEmail()));
+			}
+		}
 
-		model.addAttribute("profile", profile);
-
-		//model.addAttribute("name", authentication.getName());
-		//model.addAttribute("name", "Michal");
+	 */
+		model.addAttribute("firstname", userAccount.get().getFirstname());
+		model.addAttribute("lastname", userAccount.get().getLastname());
+		model.addAttribute("email", userAccount.get().getEmail());
 		return "meinProfil";
 	}
+
 
 	@GetMapping("/customers")
 	@PreAuthorize("hasRole('ADMIN')")

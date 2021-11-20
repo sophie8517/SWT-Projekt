@@ -40,12 +40,28 @@
     
                     <div class="style">
 
-                        <label for="name">Name:</label>
-                        <input id="name" name="name" th:field="*{name}" th:errorclass="fieldError" type="text" required="required"/><br/>
-                        <div class="ui negative message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                        <label for="firstname">Vorname:</label>
+                        <input id="firstname" name="firstname" th:field="*{firstname}" th:errorclass="fieldError" type="text" required="required"/><br/>
+                        <div class="ui negative message" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></div>
                     </div>
 
                     <br>
+
+                    <div class="style">
+
+                        <label for="lastname">Nachname:</label>
+                        <input id="lastname" name="lastname" th:field="*{lastname}" th:errorclass="fieldError" type="text" required="required"/><br/>
+                        <div class="ui negative message" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></div>
+                    </div>
+
+                    <br>
+
+                    <div class="style">
+
+                        <label for="email">Email:</label>
+                        <input id="email" name="email" th:field="*{email}" th:errorclass="fieldError" type="text" required="required"/><br/>
+                        <div class="ui negative message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                    </div>
     
                     <div class="style">
                         <label th:text="#{register.password}" for="password" style="width: 50px">Passwort:</label>

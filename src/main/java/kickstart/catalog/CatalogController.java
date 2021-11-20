@@ -1,6 +1,7 @@
 package kickstart.catalog;
 
 import kickstart.customer.Customer;
+import kickstart.customer.CustomerManagement;
 import kickstart.customer.CustomerRepository;
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.ProductIdentifier;

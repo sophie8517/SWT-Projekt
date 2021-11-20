@@ -1,5 +1,6 @@
 package kickstart.customer;
 
+import com.fasterxml.classmate.util.ClassStack;
 import kickstart.catalog.FootballBet;
 import kickstart.catalog.NumberBet;
 import kickstart.catalog.Status;
@@ -18,17 +19,16 @@ public class Customer {
 	private UserAccount userAccount;
 
 
+	public Customer(){}
+	public Customer (UserAccount userAccount){
+		this.userAccount = userAccount;
+	}
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<FootballBet> footballBetList = new ArrayList<>();
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<NumberBet> numberBetList = new ArrayList<>();
 
-	public Customer(){}
-
-	public Customer(UserAccount userAccount){
-		this.userAccount = userAccount;
-	}
 
 	public long getId() {
 		return id;
@@ -65,5 +65,6 @@ public class Customer {
 	public void removeFootballBets(FootballBet fb) {footballBetList.remove(fb); }
 
 	public void removeNumberBets(NumberBet nb) {numberBetList.remove(nb); }
+
 
 }

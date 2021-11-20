@@ -39,12 +39,12 @@ class CustomerDataInitializer implements DataInitializer {
 
 		LOG.info("Creating default users and customers.");
 
-		userAccountManagement.create("admin", Password.UnencryptedPassword.of("lottery"), Role.of("ADMIN"));
-		var password = "lottery";
-		var passwordCheck = "lottery";
+		userAccountManagement.create("admin", Password.UnencryptedPassword.of("123"), Role.of("ADMIN"));
+		var password = "123";
+		var passwordCheck = "123";
 
 		List.of(
-				new RegistrationForm("Juergen Staub", password, passwordCheck)
+				new RegistrationForm("Song", "Bai","song@tu-dresden.de", password, passwordCheck)
 		).forEach(customerManagement::createCustomer);
 	}
 }

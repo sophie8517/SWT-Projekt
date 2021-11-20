@@ -34,7 +34,10 @@ public class CustomerManagement {
 		Assert.notNull(form, "Registration form must not be null!");
 
 		var password = Password.UnencryptedPassword.of(form.getPassword());
-		var userAccount = userAccounts.create(form.getName(), password, CUSTOMER_ROLE);
+		var userAccount = userAccounts.create(form.getEmail(), password, CUSTOMER_ROLE);
+		userAccount.setEmail(form.getEmail());
+		userAccount.setFirstname(form.getFirstname());
+		userAccount.setLastname(form.getLastname());
 
 		return customers.save(new Customer(userAccount));
 	}
@@ -57,7 +60,10 @@ public class CustomerManagement {
 			System.out.println(sb);
 
 		var password = Password.UnencryptedPassword.of(sb.toString());
-		var userAccount = userAccounts.create(form.getName(), password, CUSTOMER_ROLE);
+		var userAccount = userAccounts.create(form.getEmail(), password, CUSTOMER_ROLE);
+		userAccount.setEmail(form.getEmail());
+		userAccount.setFirstname(form.getFirstname());
+		userAccount.setLastname(form.getLastname());
 
 		return groups.save(new Group(customer.getUserAccount(),customer));
 	}
