@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device - width, initial - scale = 1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>🍀 Mach Dein Glück!! 🍀</title>
+    <link th:href="@{resources/css/style_foot_admin.css}" rel="stylesheet"  type="text/css" href="../static/resources/css/style_foot_admin.css">
+</head>
+
+<body class="backgrounds">
+
+<!--<nav>
+    <a href="home.html">HOME</a>
+    <a class="item" href="contact.html" th:href="@{/contact}" th:text="#{nav.contact}">KONTAKT</a>
+    <a href="meinProfil.html">MEIN PROFIL</a>
+    <a href="1_catalog.html">KATALOG</a>
+</nav>-->
+    <nav th:include="navigation :: navigation" class="navcontainer"></nav>
+    <div class="container">
+        <main class="box-one">
+            <h2 class="box-two">Übersicht der Fußballspiele</h2>
+        </main>
+
+
+        <div th:each="football : ${footballcatalogadmin}">
+            <div  class="box-three" >
+
+                <table>
+                    <tr>
+                        <th style="width: 300px">Liga: <div th:text="${football.league}">1. Bundesliga</div></th>
+                        <th style="width: 150px; text-align: center"> <img th:src="@{/resources/logos/{image}.png(image=${football.logo_host})}" src="../logos/fcb.png" style="width: 80px"></th>
+                        <th style="font-size: 30px">:</th>
+                        <th style="width: 150px; text-align: center"><img th:src="@{/resources/logos/{image}.png(image=${football.logo_guest})}" src="../logos/fcb.png" style="width: 80px"></th>
+                    </tr>
+                    <tr>
+                        <td>Spieltag: <div th:text="${football.date}">11.11.2021</div></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center">
+                    <tr>
+                        <th>Heim</th>
+                        <th>Gast</th>
+                        <th>Spielstand</th>
+                        <th>Einsatz</th>
+                        <th>Wettoption</th>
+                    </tr>
+                    <tr>
+                        <td rowspan = "3"><div th:text="${football.host}">FC Bayern Muenchen</div></td>
+                        <td rowspan = "3"><div th:text="${football.guest}">BVB</div></td>
+                        <td>Gast gewinnt</td>
+                        <td><div th:text="${football.price}">30</div></td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Heim gewinnt</td>
+                        <td><div th:text="${football.price}">30</div></td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>Unentschieden</td>
+                        <td><div th:text="${football.price}">30</div></td>
+                        <td>3</td>
+                    </tr>
+                </table>
+                <p>Wetten: </p>
+                <div th:each="bet : ${football.footballBets}">
+                    <table>
+                        <tr>
+                            <td th:text="${bet.tip}"></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <form th:method="post" sec:authorize="hasRole('ADMIN')" th:action="@{/eval/foot}">
+                    <!--<input type="hidden" name="id" value="0" th:value="${football}"/>-->
+                    <input type="hidden" name="pid" value="0" th:value="${football.id}"/>
+                    </br>
+                    <div >
+                        <label th:text="#{football.bet}" >Wettoption:  </label>
+                        <input field="*{ergebnis}" id="ergebnis" type="number" name="ergebnis" min="1" max="3" required="required"/>
+                        </br></br>
+                        <button class="button" type="submit" th:text="#{football.eval}" >Ergebnis eintragen</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+
+    <br>
+
+
+
+    <br>
+
+    <footer>
+        <p>Mach Dein Glück!! ©Copyright 2021©</p>
+    </footer>
+
+
+</body>
+
+</html>
+
+https://www.bundesliga.com/de/2bundesliga/tabelle
+
+https://www.bundesliga.com/de/bundesliga/tabelle

@@ -6,6 +6,7 @@ import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -60,10 +61,31 @@ public class CatalogController {
 		}
 
 
+
 		model.addAttribute("footballcatalog", result);
 		model.addAttribute("title", "catalog.football.title");
 
 		return "2_catalog_foot";
+	}
+
+	//@PreAuthorize("ADMIN")
+	@GetMapping("/football/admin")
+	String footballCatalogAdmin(Model model){
+
+		List<Item> foots = lotteryCatalog.findByType(ItemType.FOOTBALL);
+		List<Item> result = new ArrayList<>();
+
+		for(Item i: foots){
+			Football f = (Football) i;
+			if(f.getErgebnis() == Ergebnis.LEER){
+				result.add(i);
+			}
+		}
+
+		model.addAttribute("footballcatalogadmin", result);
+		model.addAttribute("title", "catalog.football.title.admin");
+
+		return "catalog_foot_admin";
 	}
 
 	@GetMapping("/contact")
@@ -110,8 +132,7 @@ public class CatalogController {
 		}
 
 		//add: check if all numbers are different
-		NumberBet nb = new NumberBet(t, LocalDateTime.now(), Money.of(t.getPrice().getNumber(), EURO),c, nums);
-		nb.setExpiration(exp);
+		NumberBet nb = new NumberBet(t, LocalDateTime.now(), Money.of(t.getPrice().getNumber(), EURO),c,exp, nums);
 
 		t.addBet(nb);
 		//c.addNumberBet(nb);
@@ -155,7 +176,8 @@ public class CatalogController {
 		}
 
 
-		FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(einsatz, EURO),c, tip);
+		FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(einsatz, EURO),c,foot.getDate(), tip);
+
 		foot.addBet(f);
 		//c.addFootballBet(f);
 		System.out.println(foot.getFootballBets());
