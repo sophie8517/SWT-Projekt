@@ -4,15 +4,19 @@ import javax.persistence.*;
 
 @Entity
 public class Team {
+	private @Id @GeneratedValue long id;
+
 	@Transient
 	private Status status = Status.OPEN;
-	private @Id @GeneratedValue String name;
+	private String name;
 	private int score;
 
 	public Team(String name){
 
 		this.name = name;
 	}
+
+	public Team(){}
 
 	public int getScore(){
 		return score;
@@ -36,5 +40,10 @@ public class Team {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return name;
 	}
 }

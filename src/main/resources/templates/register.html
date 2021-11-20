@@ -62,6 +62,8 @@
                         <input id="email" name="email" th:field="*{email}" th:errorclass="fieldError" type="text" required="required"/><br/>
                         <div class="ui negative message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
                     </div>
+
+                    <br>
     
                     <div class="style">
                         <label th:text="#{register.password}" for="password" style="width: 50px">Passwort:</label>
@@ -69,9 +71,10 @@
                         <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
                     </div>
 
+                    <br>
 
                     <div class="style">
-                        <label th:text="#{register.password2}" for="password">Bestätigung:</label>
+                        <label th:text="#{register.password2}" for="password">Wiederholung:</label>
                         <input id="passwordCheck" name="passwordCheck" th:field="*{passwordCheck}" th:errorclass="fieldError" type="password" required="required"/><br/>
                         <p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}"></p>
                     </div>

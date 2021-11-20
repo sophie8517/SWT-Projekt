@@ -24,7 +24,9 @@ body {
 .container {
     margin-left: auto;
     margin-right: auto;
-    width: 780px;
+    padding-bottom: 10px;
+    width: 1000px;
+
 }
 .navcontainer{
     margin-left: 20px;
@@ -38,14 +40,14 @@ body {
 
     margin-left: 100px;
     margin-right: 100px;
-    
+
     padding-top: 1px;
     padding-bottom: 1px;
 
     text-align: center;
     background-color: rgba(0, 0, 0, 0.75);
-    
-    height: 430px;
+
+    height: 230px;
 }
 
 .box-two {
@@ -54,16 +56,16 @@ body {
 
     margin-left: 100px;
     margin-right: 100px;
-    
+
     padding-top: 1px;
     padding-bottom: 1px;
     padding-left: 10px;
     padding-right: 10px;
-   
+
 
     text-align: center;
     background-color: rgba(0, 0, 0, 0.75);
-    
+
     height: 230px;
 }
 
@@ -73,7 +75,7 @@ body {
 
     margin-left: 100px;
     margin-right: 100px;
-    
+
     padding-top: 1px;
     padding-bottom: 1px;
     padding-left: 10px;
@@ -81,7 +83,7 @@ body {
 
     text-align: center;
     background-color: rgba(0, 0, 0, 0.75);
-    
+
     height: 190px;
 }
 
@@ -107,7 +109,7 @@ nav a{
 
 main {
     background-color: rgba(0, 0, 0, 0.75);
-    height: 510px;
+    height: 300px;
     text-align: center;
     padding-top: 1px;
     margin-top: 30px;
@@ -119,17 +121,18 @@ main {
 
 footer {
     background-color: rgba(0, 0, 0, 0.75);
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-top: 150px;
-    margin-left: 210px;
-    margin-right: 210px;
-    margin-bottom: 30px;
-}
 
-footer p {
-    font-size: 20px;
+    margin-top: 100px;
+    padding-top: 20px;
+    margin-left: 230px;
+    margin-right: 230px;
+
+    padding-bottom: 20px;
+
+    color: white;
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
 }
 
 h1 {
@@ -150,11 +153,6 @@ h4 {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-p {
-    font-size: 22px;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-}
 
 a {
     color: white;
@@ -163,30 +161,6 @@ a {
     /*text-decoration: none;*/
 }
 
-.field {
-    color: white;
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: left;
-    padding-left: 45px;
-}
-
-.style {
-    color: white;
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
-
-
-    /*display: inline-block;*/
-}
-label{
-    display: inline-block;
-    text-align: right;
-    width: 50px;
-}
-input{
-    margin-left: 80px;
-}
 
 .maps {
     padding-bottom: 100px;
@@ -194,4 +168,15 @@ input{
 
 .yt {
     padding-bottom: 50px;
+
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+
 }

@@ -2,17 +2,20 @@ package kickstart.catalog;
 
 import org.javamoney.moneta.Money;
 
+
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import kickstart.customer.Customer;
 
 @Entity
 public class Football extends Item {
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<FootballBet> footballBets;
-	@Transient
+	@OneToOne (cascade = CascadeType.ALL)
 	private Team host, guest;
 	private String league, logo_host, logo_guest;
 	private int score;
@@ -55,8 +58,18 @@ public class Football extends Item {
 		return logo_guest;
 	}
 
-	public List<FootballBet> getFootballBits() {
+	public List<FootballBet> getFootballBets() {
 		return footballBets;
 	}
 
+	public List<FootballBet> getFootballBetsbyCustomer(Customer c) {
+		List<FootballBet> result = new ArrayList<>();
+
+		for (FootballBet fb : footballBets) {
+			if (fb.getCustomer().equals(c)) {
+				result.add(fb);
+			}
+		}
+		return result;
+	}
 }

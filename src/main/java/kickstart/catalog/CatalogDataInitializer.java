@@ -60,13 +60,13 @@ class CatalogDataInitializer implements DataInitializer {
 				Money.of(10, EURO),ItemType.FOOTBALL,new Team("Borussia Dortmund"), new Team("VfB Stuttgart"),
 				"1.Bundesliga","bvb", "stuttgart"));
 		lotteryCatalog.save(new Football("name11",LocalDate.of(2021,11,20),
-				Money.of(10, EURO),ItemType.FOOTBALL,new Team("1. FC Union Berlin"), new Team("Hertha BSC"),
+				Money.of(10, EURO),ItemType.FOOTBALL,new Team("FC Union Berlin"), new Team("Hertha BSC"),
 				"1.Bundesliga","union", "hertha"));
 		lotteryCatalog.save(new Football("name12",LocalDate.of(2021,11,21),
 				Money.of(10, EURO),ItemType.FOOTBALL,new Team("SC Freiburg"), new Team("Eintracht Frankfurt"),
 				"1.Bundesliga","freiburg", "eintracht"));
 		lotteryCatalog.save(new Football("name13",LocalDate.of(2021,11,21),
-				Money.of(10, EURO),ItemType.FOOTBALL,new Team("1. FSV Mainz 05"), new Team("1. FC Köln"),
+				Money.of(10, EURO),ItemType.FOOTBALL,new Team("FSV Mainz 05"), new Team("FC Köln"),
 				"1.Bundesliga","mainz", "koeln"));
 	}
 }

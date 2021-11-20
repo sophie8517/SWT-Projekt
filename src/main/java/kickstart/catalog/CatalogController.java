@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import static org.salespointframework.core.Currencies.*;
 
 import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.*;
 
 import kickstart.catalog.Item.ItemType;
@@ -42,8 +43,25 @@ public class CatalogController {
 	}
 
 	@GetMapping("/football")
-	String footballCatalog(Model model){
-		model.addAttribute("footballcatalog", lotteryCatalog.findByType(ItemType.FOOTBALL));
+	String footballCatalog(Model model, @LoggedIn Optional<UserAccount> userAccount){
+
+		List<Item> foots = lotteryCatalog.findByType(ItemType.FOOTBALL);
+		List<Item> result = new ArrayList<>();
+		if(!userAccount.isEmpty()){
+			Customer c = customerRepository.findCustomerByUserAccount(userAccount.get());
+			for(Item i:foots){
+				Football f = (Football) i;
+				if(f.getFootballBetsbyCustomer(c).isEmpty()){
+					result.add(i);
+				}
+			}
+		}
+		else{
+			result = foots;
+		}
+
+
+		model.addAttribute("footballcatalog", result);
 		model.addAttribute("title", "catalog.football.title");
 
 		return "2_catalog_foot";
@@ -57,10 +75,10 @@ public class CatalogController {
 	}
 
 	@PostMapping("/lottery/numbit")
-	String bet_num(@RequestParam("pid")ProductIdentifier id, @RequestParam("zahl1") int zahl1, @RequestParam("zahl2") int zahl2, @RequestParam("zahl3")int zahl3, @RequestParam("zahl4")int zahl4, @RequestParam("zahl5")int zahl5, @RequestParam("zahl6")int zahl6, @LoggedIn Optional<UserAccount> userAccount){
+	String bet_num(@RequestParam("pid")ProductIdentifier id, @RequestParam("zahl1") int zahl1, @RequestParam("zahl2") int zahl2, @RequestParam("zahl3")int zahl3, @RequestParam("zahl4")int zahl4, @RequestParam("zahl5")int zahl5, @RequestParam("zahl6")int zahl6,@RequestParam("dauer")int dauer, @LoggedIn Optional<UserAccount> userAccount){
 
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
-		Customer c = customerRepository.findCustomerByUserAccount(userAccount.get());
+		Customer customer = customerRepository.findCustomerByUserAccount(userAccount.get());
 
 		List<Integer> nums = new ArrayList<>();
 		Set<Integer> checker = new HashSet<>();
@@ -79,13 +97,28 @@ public class CatalogController {
 			return "wronginput";
 		}
 
+		LocalDate exp;
+		if(dauer == 1){
+			exp = LocalDate.now().plusDays(7);
+		}
+		if(dauer == 2){
+			exp = LocalDate.now().plusMonths(1);
+		}
+		if(dauer == 3){
+			exp = LocalDate.now().plusMonths(6);
+		}
+		else{
+			exp = LocalDate.now().plusYears(1);
+		}
+
 		//add: check if all numbers are different
-		NumberBet nb = new NumberBet(t, LocalDateTime.now(), Money.of(t.getPrice().getNumber(), EURO), nums);
+		NumberBet nb = new NumberBet(t, LocalDateTime.now(), Money.of(t.getPrice().getNumber(), EURO), customer, nums);
+		nb.setExpiration(exp);
 		t.addBet(nb);
-		c.addNumberBet(nb);
+		customer.addNumberBet(nb);
 
 		lotteryCatalog.save(t);
-		customerRepository.save(c);
+		customerRepository.save(customer);
 
 		return "redirect:/";
 
@@ -102,12 +135,12 @@ public class CatalogController {
 	}
 
 	@PostMapping("/lottery/footbit")
-	String bet_foot(@RequestParam("pid")ProductIdentifier id, @RequestParam("fussballwette") int number, @LoggedIn Optional<UserAccount> userAccount){
+	String bet_foot(@RequestParam("pid")ProductIdentifier id, @RequestParam("fussballwette") int number, @RequestParam("inset") double inset, @LoggedIn Optional<UserAccount> userAccount){
 
 		Football foot = (Football) lotteryCatalog.findById(id).get();
 
-		Customer c = customerRepository.findCustomerByUserAccount(userAccount.get());
-		System.out.println(c.toString());
+		Customer customer = customerRepository.findCustomerByUserAccount(userAccount.get());
+		System.out.println(inset);
 
 
 		Status  status;
@@ -123,17 +156,36 @@ public class CatalogController {
 		}
 
 
-		FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(foot.getPrice().getNumber(), EURO), status);
+		FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(inset, EURO), customer, status);
 		foot.addBet(f);
-		c.addFootballBet(f);
-		System.out.println(foot.getFootballBits());
+		customer.addFootballBet(f);
+		System.out.println(foot.getFootballBets());
 		lotteryCatalog.save(foot);
-		customerRepository.save(c);
+		customerRepository.save(customer);
 
 
 
 		return "redirect:/";
 
+	}
+
+	@GetMapping("/showbets")
+	public String show_bets(Model model, @LoggedIn Optional<UserAccount> userAccount){
+		Customer c = customerRepository.findCustomerByUserAccount(userAccount.get());
+		Money balance = c.getBalance();
+		Ticket t = (Ticket) lotteryCatalog.findByType(ItemType.TICKET).get(0);
+		List<Item> foots = lotteryCatalog.findByType(ItemType.FOOTBALL);
+		List<FootballBet> result = new ArrayList<>();
+		for(Item i: foots){
+			Football f = (Football) i;
+			result.addAll(f.getFootballBetsbyCustomer(c));
+		}
+
+		model.addAttribute("balance", balance);
+		model.addAttribute("numberBets", t.getNumberBetsbyCustomer(c));
+		model.addAttribute("footballBets", result);
+
+		return "customer_bets";
 	}
 
 

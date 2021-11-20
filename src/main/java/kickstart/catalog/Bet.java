@@ -5,6 +5,7 @@ import org.javamoney.moneta.Money;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import kickstart.customer.Customer;
 
 
 @Entity
@@ -14,6 +15,7 @@ public class Bet implements Serializable {
 
 	private LocalDateTime date;
 	private Money inset;
+	private double inset2;
 
 	@ManyToOne
 	private Item item;
@@ -23,11 +25,15 @@ public class Bet implements Serializable {
 	@Id@GeneratedValue
 	private Long id;
 
+	@ManyToOne
+	private Customer customer;
 
-	public Bet(Item item, LocalDateTime date, Money inset){
+
+	public Bet(Item item, LocalDateTime date, Money inset, Customer customer){
 		this.item = item;
 		this.date = date;
 		this.inset = inset;
+		this.customer = customer;
 		this.status = Status.OPEN;
 
 	}
@@ -58,11 +64,20 @@ public class Bet implements Serializable {
 		return inset;
 	}
 
+	public double getEinsatz2(){
+		return inset.getNumber().doubleValue();
+	}
+
+	public void setEinsatz(Money inset) {
+		this.inset = inset;
+	}
 
 	public Long getId() {
 		return id;
 	}
 
 	public void setInset(Money money){ this.inset = money; }
+
+	public Customer getCustomer() {	return customer;}
 
 }

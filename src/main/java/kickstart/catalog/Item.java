@@ -20,7 +20,7 @@ public class Item extends Product{
 	}
 
 	private LocalDate date;
-	private Money price2;
+	private double price2;
 	private ItemType type = ItemType.NONE;
 	private String name;
 
@@ -49,6 +49,7 @@ public class Item extends Product{
 		return type;
 	}
 
-
-
+	public double getPrice2() {
+		return getPrice().getNumber().doubleValue();
+	}
 }
