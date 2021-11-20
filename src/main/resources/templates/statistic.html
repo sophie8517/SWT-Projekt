@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device - width, initial - scale = 1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>🍀 Mach Dein Glück!! 🍀</title>
+    <link th:href="@{resources/css/style_statistic.css}" rel="stylesheet" href="../static/resources/css/style_statistic.css">
+</head>
+
+
+
+<body class="backgrounds">
+<nav th:include="navigation :: navigation" class="navcontainer"></nav>
+<div class="container">
+    <main>
+        <h3>Statistic</h3>
+
+        <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center" style="margin: auto; border-color: white">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Bet</th>
+            </tr>
+            </thead>
+            <tr th:each="customer:${customers}">
+                <td th:text="${customer.getId()}"></td>
+                <td th:text="${customer.getUserAccount().getFirstname()}"></td>
+                <td th:text="${customer.getUserAccount().getLastname()}"></td>
+                <td th:text="${customer.getUserAccount().getEmail()}"></td>
+                <td>
+                    <form sec:authorize="hasRole('ADMIN')" class="ui form" method="get" th:action="@{/statistic_bets}">
+                        <button type="submit" class="ui button" th:text="#{statistic.bet}">Bet</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </main>
+
+    <footer>
+        <p>Mach Dein Glück!! ©Copyright 2021©</p>
+    </footer>
+
+</div>
+
+</body>
+
+</html>
