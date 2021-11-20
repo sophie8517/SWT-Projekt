@@ -1,0 +1,139 @@
+= Protokoll Gruppe 09
+
+
+Treffen am 08.11.2021
+
+Ort:      Discord
+Beginn:   14:50 Uhr +
+Ende:     15:10 Uhr
+
+__Schriftführer:__ Sophie Schulze
+
+*Nächstes Treffen:* +
+15.11.2021, 14:50 Uhr, Discord
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Andre Schmidt (Kunde)
+- Yu-Ju Chen
+- Song Bai
+- Yutian Lei
+- Mirek Král
+- Sophie Schulze
+
+== Bemerkungen
+
+Informationen Zwischenpräsentation:
+
+* ähnlich wie Abschlusspräsentation
+* Dauer: ca. 20 min
+* Teil 1:
+** Folienpräsentation
+** Analyseentscheidungen
+*** einzelne (einfache) Diagramme vorstellen
+** Design
+** Probleme + Lösung
+* Teil 2:
+** Anwendung/Website präsentieren
+** Szenarien durchspielen:
+*** z.B.: Registrierung -> Anmeldung -> Lottoschein ausfüllen -> Lottoschein kaufen
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Aufgabe |Status |Bemerkung
+|04
+|Zuteilung der Komponenten
+|fertig
+a|
+* Lotterie: Mirek
+* Kunde/Nutzer: Song
+* Warenkorb: Yuju
+* Statistik: Yutian
+* Katalog: Sophie
+
+|05
+|Prototyp programmieren
+|in Arbeit
+|bei Katalog: Probleme beim Anzeigen der Fußallspiele
+
+|06
+|test_plan
+|in Arbeit
+|wichtige Testfälle aus dem Plichtenheft wurden schon übernommen
+
+|07
+|developer_documentation
+|in Arbeit
+|Fortschritt siehe aktueller Stand
+|===
+
+
+== Aktueller Stand
+Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
+Dokumenten.
+
+
+developer documentation:
+
+* was wurde gemacht:
+** Einführung/Ziele
+** Randbedingungen
+** Kontextabgrenzung
+** Lösungsstrategie
+** 4.3.3 Benutzeroberfläche
+** verwendete Frameworks
+** 5. Bausteinsicht/ Entwurfsklassendiagramme der Packages
+
+test_plan:
+
+* noch hinzuzufügen ist:
+** (nicht) zu testende Funtionalitäten
+** Testgegenstände
+** Einführung
+** Testfälle erweitern bzw. korrigieren
+
+Stand der Prototypen:
+
+* Lotterie: Klassen implementiert
+* Warenkorb: Klassen implementiert
+* Kunde: einzelne Methoden fehlen noch
+* Katalog: Klassen implementiert, Probleme mit Anzeigen auf der Website
+* Statistik: noch in Arbeit
+* die Komponenten wurden noch nicht zusammen getestet
+* Funktionalität wurde noch nicht getestet
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|05
+|Prototyp programmieren
+|diese Aufgabe von letzer Woche weiter bearbeiten
+|alle (jeder für seine Komponente)
+|in Arbeit
+
+|06
+|test_plan
+|weitere Testfälle einfügen, Beschreibungen
+|Sophie Schulze
+|in Arbeit
+
+|07
+|developer_documentation
+|
+hinzufügen:
+* Laufzeitsicht (Sequenzdiagramme)
+* Klassenbeschreibung von Lotterie-Package
+* Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
+|alle
+|in Arbeit
+|===
