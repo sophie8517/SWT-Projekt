@@ -26,26 +26,6 @@ import static org.salespointframework.core.Currencies.EURO;
 @SessionAttributes("cart")
 
 public class OrderController {
-	/*
-	private final OrderManagement<Order> orderManagement;
-
-	OrderController(OrderManagement<Order> orderManagement) {
-
-		Assert.notNull(orderManagement, "OrderManagement must not be null!");
-		this.orderManagement = orderManagement;
-	}
-
-
-
-	@ModelAttribute("cart")
-	Cart initializeCart() {
-		return new Cart();
-	}
-
-	@GetMapping("/cart")
-	String basket() { return "cart";}
-
-	 */
 
 	private final CustomerManagement customerManagement;
 
@@ -68,11 +48,11 @@ public class OrderController {
 	@PostMapping("/raiseBet")
 	public String raiseBet(Model model,Bet bet, Money money, LocalDateTime date){
 		LocalDateTime time = date.plusMinutes(5);
-		if (date.isAfter(time) && money.isLessThan(bet.getInset())){
+		if (date.isAfter(time) && money.isLessThan(bet.getEinsatz())){
 			throw new IllegalStateException("Inset too low or change too late.");
 		}
-		bet.setInset(money);
-		model.addAttribute("raisedMoney",bet.getInset());
+		bet.setEinsatz(money);
+		model.addAttribute("raisedMoney",bet.getEinsatz());
 		return "redirect:/";
 	}
 
