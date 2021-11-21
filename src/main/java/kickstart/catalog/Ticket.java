@@ -35,17 +35,6 @@ public class Ticket extends Item {
 	}
 
 
-	public List<NumberBet> getNumberBetsbyCustomer(Customer customer){
-		List<NumberBet> result = new ArrayList<>();
-
-		for(NumberBet nb: numberBets){
-			if(nb.getCustomer().equals(customer)){
-				result.add(nb);
-			}
-		}
-		return result;
-	}
-
 	public List<NumberBet> getNumberBits(){
 		return numberBets;
 	}

@@ -133,10 +133,10 @@ public class CatalogController {
 		NumberBet nb = new NumberBet(t, LocalDateTime.now(), Money.of(t.getPrice().getNumber(), EURO),c,exp, nums);
 
 		t.addBet(nb);
-		c.addNumberBet(nb);
+		//c.addNumberBet(nb);
 
 		lotteryCatalog.save(t);
-		customerRepository.save(c);
+		//customerRepository.save(c);
 
 		return "redirect:/";
 
@@ -176,10 +176,10 @@ public class CatalogController {
 
 		FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(inset, EURO), customer, foot.getDate(), status);
 		foot.addBet(f);
-		customer.addFootballBet(f);
+		//customer.addFootballBet(f);
 		System.out.println(foot.getFootballBets());
 		lotteryCatalog.save(foot);
-		customerRepository.save(customer);
+		//customerRepository.save(customer);
 
 
 
@@ -187,6 +187,7 @@ public class CatalogController {
 
 	}
 
+	/*
 	@GetMapping("/showbets")
 	public String show_bets(Model model, @LoggedIn Optional<UserAccount> userAccount){
 		Customer c = customerRepository.findCustomerByUserAccount(userAccount.get());
@@ -205,6 +206,8 @@ public class CatalogController {
 
 		return "customer_bets";
 	}
+
+	 */
 
 
 }

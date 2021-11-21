@@ -63,6 +63,7 @@ public class OrderController {
 
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 
+
 		Ticket t = (Ticket) lotteryCatalog.findByType(Item.ItemType.TICKET).get(0);
 		List<Item> foots = lotteryCatalog.findByType(Item.ItemType.FOOTBALL);
 		List<FootballBet> result = new ArrayList<>();
@@ -96,6 +97,7 @@ public class OrderController {
 			Ticket t = (Ticket) numberBetRemove.getItem();
 			NumberBet b = (NumberBet) numberBetRemove;
 			t.removeBet(b);
+			lotteryCatalog.save(t);
 
 			model.addAttribute("removeNumberBets", t.getNumberBetsbyCustomer(customer));
 			return "redirect:/";
@@ -118,6 +120,7 @@ public class OrderController {
 				Football f = (Football) i;
 				result.addAll(f.getFootballBetsbyCustomer(customer));
 			}
+			lotteryCatalog.save(football);
 
 			model.addAttribute("removeFootballBets", result);
 			return "redirect:/";
@@ -141,9 +144,9 @@ public class OrderController {
 
 		if (temp.equals(time) || time.isAfter(temp)) {
 			//customer.getBalance().add(Money.of(15, EURO));
-			for (Bet fakeBet : result) {
+			for (FootballBet fakeBet : result) {
 				if (fakeBet.equals(footballBet)) {
-					if(fakeBet.getStatus().equals(match.result())){
+					if(fakeBet.getTip().equals(match.result())){
 						Money income = customer.getBalance().add(Money.of(15, EURO));
 						customer.setBalance(income);
 					}
