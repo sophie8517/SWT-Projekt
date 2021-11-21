@@ -3,6 +3,8 @@ import kickstart.catalog.*;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import kickstart.customer.*;
@@ -48,9 +50,11 @@ public class OrderController {
 	 */
 
 	private final CustomerManagement customerManagement;
+	private LotteryCatalog lotteryCatalog;
 
-	OrderController(CustomerManagement customerManagement){
+	OrderController(CustomerManagement customerManagement, LotteryCatalog lotteryCatalog){
 		this.customerManagement = customerManagement;
+		this.lotteryCatalog = lotteryCatalog;
 	}
 
 	@PreAuthorize("hasAnyRole('CUSTOMER', 'ADMIN')")
@@ -59,8 +63,16 @@ public class OrderController {
 
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 
-		model.addAttribute("numberBets", customer.getAllNumberBetList());
-		model.addAttribute("footballBets", customer.getAllFootballBetList());
+		Ticket t = (Ticket) lotteryCatalog.findByType(Item.ItemType.TICKET).get(0);
+		List<Item> foots = lotteryCatalog.findByType(Item.ItemType.FOOTBALL);
+		List<FootballBet> result = new ArrayList<>();
+		for(Item i: foots){
+			Football f = (Football) i;
+			result.addAll(f.getFootballBetsbyCustomer(customer));
+		}
+
+		model.addAttribute("numberBets", t.getNumberBetsbyCustomer(customer));
+		model.addAttribute("footballBets", result);
 
 		return "customer_bets";
 	}
@@ -80,7 +92,12 @@ public class OrderController {
 	public String removeNumberBets(Model model, Customer customer, Bet numberBetRemove, LocalDateTime date){
 
 		if (!date.getDayOfWeek().equals(DayOfWeek.SATURDAY)){
-			model.addAttribute("removeNumberBets", customer.getAllNumberBetList().remove(numberBetRemove));
+
+			Ticket t = (Ticket) numberBetRemove.getItem();
+			NumberBet b = (NumberBet) numberBetRemove;
+			t.removeBet(b);
+
+			model.addAttribute("removeNumberBets", t.getNumberBetsbyCustomer(customer));
 			return "redirect:/";
 		}
 		throw new IllegalStateException("Cancel possible at most 5 minutes before the draw.");
@@ -91,7 +108,18 @@ public class OrderController {
 	public String removeFootballBets(Model model, Customer customer, FootballBet footballBetRemove, LocalDateTime date){
 		LocalDateTime time = date.plusMinutes(5);
 		if (date.isBefore(time)){
-			model.addAttribute("removeFootballBets", customer.getAllFootballBetList().remove(footballBetRemove));
+
+			Football football = (Football) footballBetRemove.getItem();
+			football.removeBet(footballBetRemove);
+
+			List<Item> foots = lotteryCatalog.findByType(Item.ItemType.FOOTBALL);
+			List<FootballBet> result = new ArrayList<>();
+			for(Item i: foots){
+				Football f = (Football) i;
+				result.addAll(f.getFootballBetsbyCustomer(customer));
+			}
+
+			model.addAttribute("removeFootballBets", result);
 			return "redirect:/";
 		}
 		throw new IllegalStateException("Cancel possible at most 5 minutes before the match.");
@@ -103,10 +131,17 @@ public class OrderController {
 		LocalDateTime temp = date.plusMinutes(90);
 		LocalDateTime time = LocalDateTime.now();
 
+		List<Item> foots = lotteryCatalog.findByType(Item.ItemType.FOOTBALL);
+		List<FootballBet> result = new ArrayList<>();
+		for(Item i: foots){
+			Football f = (Football) i;
+			result.addAll(f.getFootballBetsbyCustomer(customer));
+		}
+
 
 		if (temp.equals(time) || time.isAfter(temp)) {
 			//customer.getBalance().add(Money.of(15, EURO));
-			for (Bet fakeBet : customer.getAllFootballBetList()) {
+			for (Bet fakeBet : result) {
 				if (fakeBet.equals(footballBet)) {
 					if(fakeBet.getStatus().equals(match.result())){
 						Money income = customer.getBalance().add(Money.of(15, EURO));

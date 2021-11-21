@@ -67,6 +67,25 @@ public class CatalogController {
 		return "2_catalog_foot";
 	}
 
+	@GetMapping("/football/admin")
+	String footballCatalogAdmin(Model model){
+
+		List<Item> foots = lotteryCatalog.findByType(ItemType.FOOTBALL);
+		List<Item> result = new ArrayList<>();
+
+		for(Item i: foots){
+			Football f = (Football) i;
+			if(f.getErgebnis() == Ergebnis.LEER){
+				result.add(i);
+			}
+		}
+
+		model.addAttribute("footballcatalogadmin", result);
+		model.addAttribute("title", "catalog.football.title.admin");
+
+		return "catalog_foot_admin";
+	}
+
 	@GetMapping("/contact")
 	String catalog(Model model){
 		model.addAttribute("title","kontakt.title");
@@ -78,7 +97,7 @@ public class CatalogController {
 	String bet_num(@RequestParam("pid")ProductIdentifier id, @RequestParam("zahl1") int zahl1, @RequestParam("zahl2") int zahl2, @RequestParam("zahl3")int zahl3, @RequestParam("zahl4")int zahl4, @RequestParam("zahl5")int zahl5, @RequestParam("zahl6")int zahl6,@RequestParam("dauer")int dauer, @LoggedIn Optional<UserAccount> userAccount){
 
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
-		Customer customer = customerRepository.findCustomerByUserAccount(userAccount.get());
+		Customer c = customerRepository.findCustomerByUserAccount(userAccount.get());
 
 		List<Integer> nums = new ArrayList<>();
 		Set<Integer> checker = new HashSet<>();
@@ -96,7 +115,6 @@ public class CatalogController {
 
 			return "wronginput";
 		}
-
 		LocalDate exp;
 		if(dauer == 1){
 			exp = LocalDate.now().plusDays(7);
@@ -112,13 +130,13 @@ public class CatalogController {
 		}
 
 		//add: check if all numbers are different
-		NumberBet nb = new NumberBet(t, LocalDateTime.now(), Money.of(t.getPrice().getNumber(), EURO), customer, nums);
-		nb.setExpiration(exp);
+		NumberBet nb = new NumberBet(t, LocalDateTime.now(), Money.of(t.getPrice().getNumber(), EURO),c,exp, nums);
+
 		t.addBet(nb);
-		customer.addNumberBet(nb);
+		c.addNumberBet(nb);
 
 		lotteryCatalog.save(t);
-		customerRepository.save(customer);
+		customerRepository.save(c);
 
 		return "redirect:/";
 
@@ -143,20 +161,20 @@ public class CatalogController {
 		System.out.println(inset);
 
 
-		Status  status;
+		Ergebnis  status;
 
 		if(number == 1){
-			status = Status.WIN;
+			status = Ergebnis.GASTSIEG;
 		}
 		else if(number == 2){
-			status = Status.LOSS;
+			status = Ergebnis.HEIMSIEG;
 		}
 		else{
-			status = Status.DRAW;
+			status = Ergebnis.UNENTSCHIEDEN;
 		}
 
 
-		FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(inset, EURO), customer, status);
+		FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(inset, EURO), customer, foot.getDate(), status);
 		foot.addBet(f);
 		customer.addFootballBet(f);
 		System.out.println(foot.getFootballBets());

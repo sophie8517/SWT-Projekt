@@ -29,6 +29,10 @@ public class Ticket extends Item {
 		numberBets.add(numberBet);
 	}
 
+	public void removeBet(NumberBet bet){
+		numberBets.remove(bet);
+	}
+
 
 	public List<NumberBet> getNumberBetsbyCustomer(Customer customer){
 		List<NumberBet> result = new ArrayList<>();

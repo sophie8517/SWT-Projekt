@@ -19,6 +19,7 @@ public class Football extends Item {
 	private Team host, guest;
 	private String league, logo_host, logo_guest;
 	private int score;
+	private Ergebnis ergebnis = Ergebnis.LEER;
 
 
 	public Football(String name, LocalDate date, Money price, ItemType type, Team host, Team guest, String league, String logo_host, String logo_guest){
@@ -36,6 +37,10 @@ public class Football extends Item {
 
 	public void addBet(FootballBet footballBet){
 		footballBets.add(footballBet);
+	}
+
+	public void removeBet(FootballBet footballBet){
+		footballBets.remove(footballBet);
 	}
 
 	public Team getHost() {
@@ -71,5 +76,13 @@ public class Football extends Item {
 			}
 		}
 		return result;
+	}
+
+	public Ergebnis getErgebnis() {
+		return ergebnis;
+	}
+
+	public void setErgebnis(Ergebnis ergebnis) {
+		this.ergebnis = ergebnis;
 	}
 }
