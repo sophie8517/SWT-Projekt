@@ -3,6 +3,8 @@ import kickstart.catalog.*;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import kickstart.customer.*;
@@ -79,7 +81,7 @@ public class OrderController {
 	}
 
 	@PostMapping("/order")
-	String income(Model model, LocalDateTime date, FootballBet footballBet, Customer customer, Match match){
+	String income(Model model, LocalDateTime date, FootballBet footballBet, NumberBet numberBet, Customer customer, Match match){
 		LocalDateTime temp = date.plusMinutes(90);
 		LocalDateTime time = LocalDateTime.now();
 
@@ -94,6 +96,16 @@ public class OrderController {
 					}
 				}
 			}
+		}
+
+		if (temp.equals(time) || time.isAfter(temp)) {
+			for(Bet winBet : customer.getAllNumberBetList()) {
+					if(winBet.equals(List<NumberBetsByCustomer>)){
+						Money income = customer.getBalance().add(Money.of(10, EURO));
+						customer.setBalance(income);
+				}
+			}
+
 		}
 
 		model.addAttribute("income", customer.getBalance());
