@@ -311,7 +311,7 @@ image:diagramm/Statistic.png[Location, 100%, 100%, pdfwidth=100%, title= "Statis
 === 5.5 Order
 
 [[Order]]
-image:models/design/block_order.png[Location, 100%, 100%, pdfwidth=100%, title= "Order", align=center] 
+image:models/design/block_order.svg[Location, 100%, 100%, pdfwidth=100%, title= "Order", align=center] 
 
 [options="header"]
 |=== 
@@ -363,7 +363,7 @@ image::./models/design/runtime_customer.svg[Location, 100%, 100%, pdfwidth=100%,
 
 === Order
 [[runtime_Order]]
-image:models/design/runtime_order.png[Location, 100%, 100%, pdfwidth=100%, title= "runtime_Order", align=center]
+image:models/design/runtime_order.svg[Location, 100%, 100%, pdfwidth=100%, title= "runtime_Order", align=center]
 
 
 == 7. Technische Schulden
