@@ -1,13 +1,13 @@
 package kickstart.catalog;
 
-import kickstart.customer.Customer;
 import org.javamoney.moneta.Money;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
+import kickstart.customer.Customer;
 
 @Entity
 public class NumberBet extends Bet {
@@ -15,12 +15,12 @@ public class NumberBet extends Bet {
 	@ElementCollection
 	private List<Integer> numbers;
 
+	private LocalDate expiration = LocalDate.of(2000,1,1);
 
 
-	public NumberBet(Item item, LocalDateTime date, Money einsatz, Customer c,LocalDate expiration, List<Integer> numbers){
-		super(item, date, einsatz,c, expiration);
-		this.numbers = numbers;
-	}
+	public NumberBet(Item item, LocalDateTime date, Money inset, Customer customer, LocalDate expiration, List<Integer> numbers){
+		super(item, date, inset,customer, expiration);
+		this.numbers = numbers;}
 
 	public NumberBet() {
 
@@ -35,5 +35,18 @@ public class NumberBet extends Bet {
 		this.numbers = numbers;
 	}
 
+	@Override
+	public String toString() {
+		return "NumberBet{" +
+				"numbers=" + numbers +
+				'}';
+	}
 
+	public LocalDate getExpiration() {
+		return expiration;
+	}
+
+	public void setExpiration(LocalDate expiration) {
+		this.expiration = expiration;
+	}
 }

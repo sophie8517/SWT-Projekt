@@ -10,6 +10,7 @@ import javax.persistence.OneToMany;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import kickstart.customer.Customer;
 
 @Entity
 public class Ticket extends Item {
@@ -27,6 +28,22 @@ public class Ticket extends Item {
 
 	public void addBet(NumberBet numberBet){
 		numberBets.add(numberBet);
+	}
+
+	public void removeBet(NumberBet bet){
+		numberBets.remove(bet);
+	}
+
+
+	public List<NumberBet> getNumberBetsbyCustomer(Customer customer){
+		List<NumberBet> result = new ArrayList<>();
+
+		for(NumberBet nb: numberBets){
+			if(nb.getCustomer().equals(customer)){
+				result.add(nb);
+			}
+		}
+		return result;
 	}
 
 	public List<NumberBet> getNumberBits(){

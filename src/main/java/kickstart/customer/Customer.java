@@ -1,22 +1,70 @@
 package kickstart.customer;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.classmate.util.ClassStack;
+import kickstart.catalog.FootballBet;
+import kickstart.catalog.NumberBet;
+import kickstart.catalog.Status;
+import org.javamoney.moneta.Money;
+import org.salespointframework.useraccount.UserAccount;
 
-@Data
-@NoArgsConstructor
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
 public class Customer {
+	private @Id @GeneratedValue long id;
+	private Money balance;
+	@OneToOne
+	private UserAccount userAccount;
 
-	private Integer id;
-	private String lastName;
-	private String email;
-	private Integer gender; //0:woman 1:man
 
-	public Customer(Integer id, String lastName, String email, Integer gender) {
-		this.id = id;
-		this.lastName = lastName;
-		this.email = email;
-		this.gender = gender;
+	public Customer(){}
+	public Customer (UserAccount userAccount){
+		this.userAccount = userAccount;
 	}
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<FootballBet> footballBetList = new ArrayList<>();
+
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<NumberBet> numberBetList = new ArrayList<>();
+
+
+	public long getId() {
+		return id;
+	}
+
+	public void setBalance(Money balance) {
+		this.balance = balance;
+	}
+
+	public Money getBalance() {
+		return balance;
+	}
+
+	public UserAccount getUserAccount() {
+		return userAccount;
+	}
+
+	public List<FootballBet> getAllFootballBetList() {
+		return footballBetList;
+	}
+
+	public List<NumberBet> getAllNumberBetList() {
+		return numberBetList;
+	}
+
+	public void addFootballBet(FootballBet fb){
+		footballBetList.add(fb);
+	}
+
+	public void addNumberBet(NumberBet nb){
+		numberBetList.add(nb);
+	}
+
+	public void removeFootballBets(FootballBet fb) {footballBetList.remove(fb); }
+
+	public void removeNumberBets(NumberBet nb) {numberBetList.remove(nb); }
+
+
 }

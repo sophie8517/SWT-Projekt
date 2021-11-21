@@ -19,12 +19,8 @@
     </nav>-->
     <nav th:include="navigation :: navigation" class="navcontainer"></nav>
     <div class="container">
-
-
         <main class="box-one">
             <h2 class="box-two">Übersicht der Wetten</h2>
-            <p>Mein Guthaben</p>
-            <div th:text="${balance}">50</div>
         </main>
 
 
@@ -40,13 +36,14 @@
                         <td th:text="${numbet.numbers}">zahlen</td>
                     </tr>
                     <tr>
+                        <td>Einsatz: </td>
+                        <td th:text="${numbet.inset}">10 Euro</td>
+                    </tr>
+                    <tr>
                         <td>Status: </td>
                         <td th:text="${numbet.status}" style="color: cornflowerblue">offen</td>
                     </tr>
-                    <tr>
-                        <td>Preis: </td>
-                        <td th:text="${numbet.einsatz}" >10</td>
-                    </tr>
+
                 </table>
 
 
@@ -75,10 +72,6 @@
                     <tr>
                         <td>Status: </td>
                         <td th:text="${footbet.status}" style="color: cornflowerblue">offen</td>
-                    </tr>
-                    <tr>
-                        <td>Einsatz: </td>
-                        <td th:text="${footbet.einsatz}">10</td>
                     </tr>
                 </table>
 

@@ -40,9 +40,27 @@
     
                     <div class="style">
 
-                        <label for="name">Name:</label>
-                        <input id="name" name="name" th:field="*{name}" th:errorclass="fieldError" type="text" required="required"/><br/>
-                        <div class="ui negative message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                        <label for="firstname">Vorname:</label>
+                        <input id="firstname" name="firstname" th:field="*{firstname}" th:errorclass="fieldError" type="text" required="required"/><br/>
+                        <div class="ui negative message" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></div>
+                    </div>
+
+                    <br>
+
+                    <div class="style">
+
+                        <label for="lastname">Nachname:</label>
+                        <input id="lastname" name="lastname" th:field="*{lastname}" th:errorclass="fieldError" type="text" required="required"/><br/>
+                        <div class="ui negative message" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></div>
+                    </div>
+
+                    <br>
+
+                    <div class="style">
+
+                        <label for="email">Email:</label>
+                        <input id="email" name="email" th:field="*{email}" th:errorclass="fieldError" type="text" required="required"/><br/>
+                        <div class="ui negative message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
                     </div>
 
                     <br>
@@ -53,9 +71,10 @@
                         <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
                     </div>
 
+                    <br>
 
                     <div class="style">
-                        <label th:text="#{register.password2}" for="password">Bestätigung:</label>
+                        <label th:text="#{register.password2}" for="password">Wiederholung:</label>
                         <input id="passwordCheck" name="passwordCheck" th:field="*{passwordCheck}" th:errorclass="fieldError" type="password" required="required"/><br/>
                         <p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}"></p>
                     </div>

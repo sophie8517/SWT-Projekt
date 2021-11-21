@@ -1,34 +1,49 @@
 package kickstart.statistic;
 
-import kickstart.customer.Customer;
-import kickstart.customer.CustomerDao;
-import org.springframework.beans.factory.annotation.Autowired;
+import kickstart.catalog.*;
+import kickstart.customer.CustomerManagement;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class StatisticController {
 
-//	@GetMapping("/statistic")
-//	public String test(Model model) {
-//		model.addAttribute("msg", "hello");
-//
-//		model.addAttribute("users", Arrays.asList("qinjiang", "kuangshen"));
-//		return "statistic";
-//	}
+	private final CustomerManagement customerManagement;
+	private LotteryCatalog lotteryCatalog;
 
-	@Autowired
-	CustomerDao customerDao;
+	StatisticController(CustomerManagement customerManagement, LotteryCatalog lotteryCatalog){
+		this.customerManagement = customerManagement;
+		this.lotteryCatalog = lotteryCatalog;
+	}
 
 	@GetMapping("/statistic")
-	public String list(Model model){
-		Collection<Customer> customers = customerDao.getAll();
-		model.addAttribute("customers", customers);
+	public String statistic(Model model){
+		model.addAttribute("customers", customerManagement.findAllCustomers());
 		return "statistic";
 	}
 
+	//zeigt Einkommen und Verluste an
+	@GetMapping("/statistic_bets")
+	public String toBetPage(Model model, @RequestParam("id") long id) {
+		var customer = customerManagement.findByCustomerId(id);
+
+		Ticket t = (Ticket) lotteryCatalog.findByType(Item.ItemType.TICKET).get(0);
+
+		List<Item> foots = lotteryCatalog.findByType(Item.ItemType.FOOTBALL);
+		List<FootballBet> result = new ArrayList<>();
+		for(Item i: foots){
+			Football f = (Football) i;
+			result.addAll(f.getFootballBetsbyCustomer(customer));
+		}
+
+		model.addAttribute("football", result.toString());
+		model.addAttribute("number", t.getNumberBetsbyCustomer(customer).toString());
+
+		return "statistic_bets";
+	}
 }

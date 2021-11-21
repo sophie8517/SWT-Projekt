@@ -26,8 +26,8 @@
         </main>
 
 
-            <div  th:each="football : ${footballcatalog}">
-                <div  class="box-three" >
+            <div th:each="football : ${footballcatalog}">
+                <div class="box-three">
 
                     <table>
                         <tr>
@@ -42,7 +42,7 @@
                             <td></td>
                         </tr>
                     </table>
-                    <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center">
+                    <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center" style="margin: auto; border-color: white">
                         <tr>
                             <th>Heim</th>
                             <th>Gast</th>
@@ -68,16 +68,6 @@
                             <td>3</td>
                         </tr>
                     </table>
-                    <p>Wetten: </p>
-                    <div th:each="bet : ${football.footballBets}">
-                        <table>
-                            <tr>
-                                <td th:text="${bet.tip}"></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </div>
 
                 <form th:method="post" sec:authorize="hasRole('CUSTOMER')" th:action="@{/lottery/footbit}">
                     <!--<input type="hidden" name="id" value="0" th:value="${football}"/>-->
@@ -88,31 +78,17 @@
                         <input field="*{fussballwette}" id="fussballwette" type="number" name="fussballwette" min="1" max="3" required="required"/>
                         </br></br>
                         <label th:text="#{football.einsatz}" >Dein Einsatz:  </label>
-                        <input field="*{einsatz}" id="einsatz" type="number" step=".01" name="einsatz" th:min="${football.price2}" required="required"/>
+                        <input field="*{inset}" id="inset" type="number" step=".01" name="inset" th:min="${football.price2}" required="required"/>
                         </br></br>
+
                         <button class="button" type="submit" th:text="#{football.addBet}" >Jetzt wetten</button>
+                        <button class="button" type="submit" sec:authorize="hasRole('ADMIN')" th:text="#{football.result}">Ergebnis abgeben</button>
                     </div>
                 </form>
-
-                    <!--<form th:method="post" sec:authorize="hasRole('ADMIN')" th:action="@{/eval/foot}">
-                        <input type="hidden" name="id" value="0" th:value="${football}"/>
-                        <input type="hidden" name="pid" value="0" th:value="${football.id}"/>
-                        </br>
-                        <div >
-                            <label th:text="#{football.bet}" >Wettoption:  </label>
-                            <input field="*{ergebnis}" id="ergebnis" type="number" name="ergebnis" min="1" max="3" required="required"/>
-                            </br></br>
-                            <button class="button" type="submit" th:text="#{football.eval}" >Ergebnis eintragen</button>
-                        </div>
-                        </form>-->
 
             </div>
 
         </div>
-
-
-
-
     </div>
 
 
@@ -126,7 +102,7 @@
         <p>Mach Dein Glück!! ©Copyright 2021©</p>
     </footer>
 
-
+</div>
 
 </body>
 

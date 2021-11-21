@@ -1,4 +1,3 @@
-
 package kickstart.catalog;
 
 import javax.persistence.*;

@@ -42,31 +42,31 @@ class CatalogDataInitializer implements DataInitializer {
 		lotteryCatalog.save(new Ticket("name1",LocalDate.of(2021,11,5), Money.of(7,EURO), ItemType.TICKET));
 
 		lotteryCatalog.save(new Football("name5",LocalDate.of(2021,11,19),
-				Money.of(12.50, EURO),ItemType.FOOTBALL,"FC Augsburg", "FC Bayern München",
+				Money.of(10, EURO),ItemType.FOOTBALL,new Team("FC Augsburg"), new Team("FC Bayern München") ,
 				"1.Bundesliga","augsburg", "fcb"));
 		lotteryCatalog.save(new Football("name6",LocalDate.of(2021,11,20),
-				Money.of(10, EURO),ItemType.FOOTBALL,"TSG Hoffenheim", "RB Leipzig",
+				Money.of(10, EURO),ItemType.FOOTBALL,new Team("TSG Hoffenheim"), new Team("RB Leipzig"),
 				"1.Bundesliga","hoffenheim", "rb"));
 		lotteryCatalog.save(new Football("name7",LocalDate.of(2021,11,20),
-				Money.of(10, EURO),ItemType.FOOTBALL,"Arminia Bielefeld", "VFL Wolfsburg",
+				Money.of(10, EURO),ItemType.FOOTBALL,new Team("Arminia Bielefeld"), new Team("VFL Wolfsburg"),
 				"1.Bundesliga","bielefeld", "wolfsburg"));
 		lotteryCatalog.save(new Football("name8",LocalDate.of(2021,11,20),
-				Money.of(10, EURO),ItemType.FOOTBALL,"Bayer Leverkusen 04", "VFL Bochum",
+				Money.of(10, EURO),ItemType.FOOTBALL,new Team("Bayer Leverkusen 04"), new Team("VFL Bochum"),
 				"1.Bundesliga","leverkusen", "bochum"));
 		lotteryCatalog.save(new Football("name9",LocalDate.of(2021,11,20),
-				Money.of(10, EURO),ItemType.FOOTBALL,"Borussia Mönchengladbach", "Greuther Fürth",
+				Money.of(10, EURO),ItemType.FOOTBALL,new Team("Borussia Mönchengladbach"), new Team("Greuther Fürth"),
 				"1.Bundesliga","gladbach", "fuerth"));
 		lotteryCatalog.save(new Football("name10",LocalDate.of(2021,11,20),
-				Money.of(10, EURO),ItemType.FOOTBALL,"Borussia Dortmund", "VfB Stuttgart",
+				Money.of(10, EURO),ItemType.FOOTBALL,new Team("Borussia Dortmund"), new Team("VfB Stuttgart"),
 				"1.Bundesliga","bvb", "stuttgart"));
 		lotteryCatalog.save(new Football("name11",LocalDate.of(2021,11,20),
-				Money.of(10, EURO),ItemType.FOOTBALL,"1. FC Union Berlin", "Hertha BSC",
+				Money.of(10, EURO),ItemType.FOOTBALL,new Team("FC Union Berlin"), new Team("Hertha BSC"),
 				"1.Bundesliga","union", "hertha"));
 		lotteryCatalog.save(new Football("name12",LocalDate.of(2021,11,21),
-				Money.of(10, EURO),ItemType.FOOTBALL,"SC Freiburg", "Eintracht Frankfurt",
+				Money.of(10, EURO),ItemType.FOOTBALL,new Team("SC Freiburg"), new Team("Eintracht Frankfurt"),
 				"1.Bundesliga","freiburg", "eintracht"));
 		lotteryCatalog.save(new Football("name13",LocalDate.of(2021,11,21),
-				Money.of(10, EURO),ItemType.FOOTBALL,"1. FSV Mainz 05", "1. FC Köln",
+				Money.of(10, EURO),ItemType.FOOTBALL,new Team("FSV Mainz 05"), new Team("FC Köln"),
 				"1.Bundesliga","mainz", "koeln"));
 	}
 }

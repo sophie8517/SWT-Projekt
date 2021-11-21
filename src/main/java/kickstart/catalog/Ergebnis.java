@@ -1,5 +1,5 @@
 package kickstart.catalog;
 
 public enum Ergebnis {
-	GASTSIEG, HEIMSIEG, UNENTSCHIEDEN, LEER;
+		GASTSIEG,HEIMSIEG,UNENTSCHIEDEN,LEER;
 }

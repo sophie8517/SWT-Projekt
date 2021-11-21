@@ -16,6 +16,7 @@ public class ResultController {
 
 	private LotteryCatalog lotteryCatalog;
 
+
 	public ResultController(LotteryCatalog lotteryCatalog){
 		this.lotteryCatalog = lotteryCatalog;
 	}
@@ -40,10 +41,6 @@ public class ResultController {
 		for(NumberBet nb: wetten){
 			if(!nb.getExpiration().isBefore(LocalDate.now())){
 				wetten_valid.add(nb);
-				//wetten.remove(nb);
-			}
-			else{
-				nb.changeStatus(Status.EXPIRED);
 			}
 		}
 		for(NumberBet nb: wetten_valid){
@@ -67,18 +64,18 @@ public class ResultController {
 		List<FootballBet> wetten = f.getFootballBets();
 		List<FootballBet> wetten_valid = new ArrayList<>();
 
-		String ergebnis;
+
 		Ergebnis erg;
 		if(number == 1){
-			ergebnis = "Gast gewinnt";
+
 			erg = Ergebnis.GASTSIEG;
 		}
 		else if(number == 2){
-			ergebnis = "Heim gewinnt";
+
 			erg = Ergebnis.HEIMSIEG;
 		}
 		else{
-			ergebnis = "Unentschieden";
+
 			erg = Ergebnis.UNENTSCHIEDEN;
 		}
 		f.setErgebnis(erg);
@@ -89,15 +86,17 @@ public class ResultController {
 			}
 			else{
 				fb.changeStatus(Status.EXPIRED);
+
 			}
 		}
 		for(FootballBet fb: wetten_valid){
-			if(fb.getTip().equals(ergebnis)){
+			if(fb.getTip().equals(erg)){
 				fb.changeStatus(Status.WIN);
 			}
 			else{
 				fb.changeStatus(Status.LOSS);
 			}
+
 		}
 
 

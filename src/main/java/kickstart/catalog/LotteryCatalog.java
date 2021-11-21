@@ -3,6 +3,7 @@ package kickstart.catalog;
 import org.salespointframework.catalog.Catalog;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.util.Streamable;
+import java.util.List;
 
 import java.util.List;
 

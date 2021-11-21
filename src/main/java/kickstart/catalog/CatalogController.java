@@ -1,20 +1,20 @@
 package kickstart.catalog;
 
 import kickstart.customer.Customer;
+import kickstart.customer.CustomerManagement;
 import kickstart.customer.CustomerRepository;
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import static org.salespointframework.core.Currencies.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.*;
 
 import kickstart.catalog.Item.ItemType;
@@ -27,7 +27,7 @@ public class CatalogController {
 
 
 
-	public CatalogController(LotteryCatalog lotteryCatalog,CustomerRepository customerRepository){
+	public CatalogController(LotteryCatalog lotteryCatalog, CustomerRepository customerRepository){
 		this.lotteryCatalog = lotteryCatalog;
 		this.customerRepository = customerRepository;
 	}
@@ -61,14 +61,12 @@ public class CatalogController {
 		}
 
 
-
 		model.addAttribute("footballcatalog", result);
 		model.addAttribute("title", "catalog.football.title");
 
 		return "2_catalog_foot";
 	}
 
-	//@PreAuthorize("ADMIN")
 	@GetMapping("/football/admin")
 	String footballCatalogAdmin(Model model){
 
@@ -135,10 +133,10 @@ public class CatalogController {
 		NumberBet nb = new NumberBet(t, LocalDateTime.now(), Money.of(t.getPrice().getNumber(), EURO),c,exp, nums);
 
 		t.addBet(nb);
-		//c.addNumberBet(nb);
+		c.addNumberBet(nb);
 
 		lotteryCatalog.save(t);
-		//customerRepository.save(c);
+		customerRepository.save(c);
 
 		return "redirect:/";
 
@@ -155,40 +153,40 @@ public class CatalogController {
 	}
 
 	@PostMapping("/lottery/footbit")
-	String bet_foot(@RequestParam("pid")ProductIdentifier id, @RequestParam("fussballwette") int number,@RequestParam("einsatz") double einsatz ,@LoggedIn Optional<UserAccount> userAccount){
+	String bet_foot(@RequestParam("pid")ProductIdentifier id, @RequestParam("fussballwette") int number, @RequestParam("inset") double inset, @LoggedIn Optional<UserAccount> userAccount){
 
 		Football foot = (Football) lotteryCatalog.findById(id).get();
 
-		Customer c = customerRepository.findCustomerByUserAccount(userAccount.get());
-		System.out.println(einsatz);
+		Customer customer = customerRepository.findCustomerByUserAccount(userAccount.get());
+		System.out.println(inset);
 
 
-		String  tip;
+		Ergebnis  status;
 
 		if(number == 1){
-			tip = "Gast gewinnt";
+			status = Ergebnis.GASTSIEG;
 		}
 		else if(number == 2){
-			tip = "Heim gewinnt";
+			status = Ergebnis.HEIMSIEG;
 		}
 		else{
-			tip = "Unentschieden";
+			status = Ergebnis.UNENTSCHIEDEN;
 		}
 
 
-		FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(einsatz, EURO),c,foot.getDate(), tip);
-
+		FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(inset, EURO), customer, foot.getDate(), status);
 		foot.addBet(f);
-		//c.addFootballBet(f);
+		customer.addFootballBet(f);
 		System.out.println(foot.getFootballBets());
 		lotteryCatalog.save(foot);
-		//customerRepository.save(c);
+		customerRepository.save(customer);
 
 
 
 		return "redirect:/";
 
 	}
+
 	@GetMapping("/showbets")
 	public String show_bets(Model model, @LoggedIn Optional<UserAccount> userAccount){
 		Customer c = customerRepository.findCustomerByUserAccount(userAccount.get());
