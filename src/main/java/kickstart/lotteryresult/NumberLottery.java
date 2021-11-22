@@ -22,7 +22,7 @@ public class NumberLottery {
 		}
 		return result;
 	}
-
+/*
 	public static void main(String[] args) {
 		NumberLottery l = new NumberLottery();
 		List<Integer> liste = l.generate_nums();
@@ -30,5 +30,7 @@ public class NumberLottery {
 		LocalDate d = LocalDate.now();
 		System.out.println(d.getDayOfWeek().getValue());
 	}
+
+ */
 
 }
