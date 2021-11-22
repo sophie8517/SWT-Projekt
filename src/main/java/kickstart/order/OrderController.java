@@ -11,6 +11,7 @@ import java.util.Optional;
 
 import kickstart.customer.*;
 import org.javamoney.moneta.Money;
+import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import static org.salespointframework.core.Currencies.EURO;
@@ -57,16 +59,54 @@ public class OrderController {
 		return "customer_bets";
 	}
 
-	@PostMapping("/raiseBet")
-	public String raiseBet(Model model,Bet bet, Money money, LocalDateTime date){
+	@PostMapping("/raiseFootBet")
+	public String raiseFootBet(Model model, @RequestParam("pid") ProductIdentifier id,@RequestParam("betid")long bet_id, @RequestParam("newinset")double inset){
+		/*
+		LocalDateTime date = LocalDateTime.now();
 		LocalDateTime time = date.plusMinutes(5);
 		if (date.isAfter(time) && money.isLessThan(bet.getInset())){
 			throw new IllegalStateException("Inset too low or change too late.");
 		}
-		bet.setInset(money);
-		model.addAttribute("raisedMoney",bet.getInset());
+		 */
+		LocalDateTime date = LocalDateTime.now();
+
+
+		Money money = Money.of(inset, EURO);
+
+		Football f = (Football) lotteryCatalog.findById(id).get();
+		FootballBet bet = f.findbyBetId(bet_id);
+		if(bet == null){
+
+		}
+		else{
+			bet.setInset(money);
+			lotteryCatalog.save(f);
+			//model.addAttribute("raisedMoney",bet.getInset());
+		}
+
+
 		return "redirect:/";
 	}
+
+	@PostMapping("/raiseNumBet")
+	public String raiseNumBet(Model model, @RequestParam("pid") ProductIdentifier id,@RequestParam("betid")long bet_id, @RequestParam("newinset")double inset){
+
+		Money money = Money.of(inset, EURO);
+
+		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
+		NumberBet bet = t.findbyBetId(bet_id);
+		if(bet == null){
+
+		}
+		else {
+			bet.setInset(money);
+			lotteryCatalog.save(t);
+		}
+
+
+		return "redirect:/";
+	}
+
 
 	@PostMapping("/removeNumberBets")
 	public String removeNumberBets(Model model, Customer customer, Bet numberBetRemove, LocalDateTime date){

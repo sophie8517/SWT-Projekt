@@ -85,4 +85,19 @@ public class Football extends Item {
 	public void setErgebnis(Ergebnis ergebnis) {
 		this.ergebnis = ergebnis;
 	}
+
+	public FootballBet findbyBetId(long id){
+		if(footballBets.isEmpty()){
+			return null;
+		}
+
+		FootballBet result = null;
+		for(FootballBet fb: footballBets){
+			if(fb.getId() == id){
+				result = fb;
+				break;
+			}
+		}
+		return result;
+	}
 }

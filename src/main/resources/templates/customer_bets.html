@@ -45,6 +45,16 @@
                     </tr>
 
                 </table>
+                <form th:method="post" sec:authorize="hasRole('CUSTOMER')" th:action="@{/raiseNumBet}">
+                    <input type="hidden" name="pid" value="0" th:value="${numbet.item.id}"/>
+                    <input type="hidden" name="betid" value="0" th:value="${numbet.id}"/>
+                    <label th:text="#{numbet.newinset}" >Dein Einsatz:  </label>
+                    <input field="*{newinset}" id="newinset" type="number" step=".01" name="newinset" th:min="${numbet.einsatz2}" required="required"/>
+                    </br></br>
+
+                    <button class="button" type="submit" th:text="#{numbet.raisebet}" >Einsatz ändern</button>
+
+                </form>
 
 
             </div>
@@ -73,7 +83,21 @@
                         <td>Status: </td>
                         <td th:text="${footbet.status}" style="color: cornflowerblue">offen</td>
                     </tr>
+                    <tr>
+                        <td>Einsatz: </td>
+                        <td th:text="${footbet.inset}" style="color: cornflowerblue">10</td>
+                    </tr>
                 </table>
+                <form th:method="post" sec:authorize="hasRole('CUSTOMER')" th:action="@{/raiseFootBet}">
+                    <input type="hidden" name="pid" value="0" th:value="${footbet.item.id}"/>
+                    <input type="hidden" name="betid" value="0" th:value="${footbet.id}"/>
+                    <label th:text="#{footbet.newinset}" >Dein Einsatz:  </label>
+                    <input field="*{newinset}" id="newinset" type="number" step=".01" name="newinset" th:min="${footbet.einsatz2}" required="required"/>
+                    </br></br>
+
+                    <button class="button" type="submit" th:text="#{footbet.raisebet}" >Einsatz ändern</button>
+
+                </form>
 
 
             </div>
