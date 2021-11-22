@@ -62,9 +62,12 @@ public class CustomerController{
 		for (Customer customer : customerManagement.findAllCustomers()){
 			System.out.println(customer.getUserAccount().getUsername());
 			if (username.equals(customer.getUserAccount().getUsername())){
-				//model.addAttribute("profile", new Profile(customer.getUserAccount().getFirstname(), customer.getUserAccount().getLastname(),customer.getUserAccount().getEmail()));
-				model.addAttribute("profile", new Profile(customer.getUserAccount().getUsername(), customer.getUserAccount().getEmail(), customer.getUserAccount().getEmail()));
-				System.out.println(new Profile(customer.getUserAccount().getFirstname(),customer.getUserAccount().getLastname(),customer.getUserAccount().getEmail()));
+				//model.addAttribute("profile", new Profile(customer.getUserAccount().getFirstname(),
+				 customer.getUserAccount().getLastname(),customer.getUserAccount().getEmail()));
+				model.addAttribute("profile", new Profile(customer.getUserAccount().getUsername(),
+				 customer.getUserAccount().getEmail(), customer.getUserAccount().getEmail()));
+				System.out.println(new Profile(customer.getUserAccount().getFirstname(),
+				customer.getUserAccount().getLastname(),customer.getUserAccount().getEmail()));
 			}
 		}
 

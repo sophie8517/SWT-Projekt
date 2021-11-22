@@ -60,7 +60,8 @@ public class OrderController {
 	}
 
 	@PostMapping("/raiseFootBet")
-	public String raiseFootBet(Model model, @RequestParam("pid") ProductIdentifier id,@RequestParam("betid")long bet_id, @RequestParam("newinset")double inset){
+	public String raiseFootBet(Model model, @RequestParam("pid") ProductIdentifier id,
+							   @RequestParam("betid")long bet_id, @RequestParam("newinset")double inset){
 		/*
 		LocalDateTime date = LocalDateTime.now();
 		LocalDateTime time = date.plusMinutes(5);
@@ -75,30 +76,26 @@ public class OrderController {
 
 		Football f = (Football) lotteryCatalog.findById(id).get();
 		FootballBet bet = f.findbyBetId(bet_id);
-		if(bet == null){
-
-		}
-		else{
+		if(bet != null){
 			bet.setInset(money);
 			lotteryCatalog.save(f);
 			//model.addAttribute("raisedMoney",bet.getInset());
+			return "redirect:/";
 		}
-
 
 		return "redirect:/";
 	}
 
 	@PostMapping("/raiseNumBet")
-	public String raiseNumBet(Model model, @RequestParam("pid") ProductIdentifier id,@RequestParam("betid")long bet_id, @RequestParam("newinset")double inset){
+	public String raiseNumBet(Model model, @RequestParam("pid") ProductIdentifier id,@RequestParam("betid")long bet_id,
+							  @RequestParam("newinset")double inset){
 
 		Money money = Money.of(inset, EURO);
 
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 		NumberBet bet = t.findbyBetId(bet_id);
-		if(bet == null){
+		if(bet != null){
 
-		}
-		else {
 			bet.setInset(money);
 			lotteryCatalog.save(t);
 		}
@@ -167,11 +164,11 @@ public class OrderController {
 		if (temp.equals(time) || time.isAfter(temp)) {
 			//customer.getBalance().add(Money.of(15, EURO));
 			for (FootballBet fakeBet : result) {
-				if (fakeBet.equals(footballBet)) {
-					if(fakeBet.getTip().equals(match.result())){
+				if (fakeBet.equals(footballBet) && fakeBet.getTip().equals(match.result())) {
+
 						Money income = customer.getBalance().add(Money.of(15, EURO));
 						customer.setBalance(income);
-					}
+
 				}
 			}
 		}

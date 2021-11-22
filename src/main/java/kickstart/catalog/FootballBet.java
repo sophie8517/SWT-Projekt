@@ -13,7 +13,8 @@ public class FootballBet extends Bet {
 	@OneToOne (cascade = CascadeType.ALL)
 	private Team host, guest;
 
-	public FootballBet(Item item, LocalDateTime date, Money einsatz, Customer customer, LocalDate expiration, Ergebnis tippedStatus){
+	public FootballBet(Item item, LocalDateTime date, Money einsatz, Customer customer, LocalDate expiration,
+					   Ergebnis tippedStatus){
 		super(item, date, einsatz, customer, expiration);
 		this.tippedStatus = tippedStatus;
 		Football f = (Football) item;
