@@ -7,6 +7,7 @@ import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -47,6 +48,7 @@ public class CatalogController {
 
 		List<Item> foots = lotteryCatalog.findByType(ItemType.FOOTBALL);
 		List<Item> result = new ArrayList<>();
+
 		if(!userAccount.isEmpty()){
 			Customer c = customerRepository.findCustomerByUserAccount(userAccount.get());
 			for(Item i:foots){
@@ -64,9 +66,11 @@ public class CatalogController {
 		model.addAttribute("footballcatalog", result);
 		model.addAttribute("title", "catalog.football.title");
 
+
 		return "2_catalog_foot";
 	}
 
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/football/admin")
 	String footballCatalogAdmin(Model model){
 
@@ -80,10 +84,10 @@ public class CatalogController {
 			}
 		}
 
-		model.addAttribute("footballcatalogadmin", result);
-		model.addAttribute("title", "catalog.football.title.admin");
+		model.addAttribute("footballcatalog", result);
+		model.addAttribute("title", "catalog.football.admin.title");
 
-		return "catalog_foot_admin";
+		return "2_catalog_foot";
 	}
 
 	@GetMapping("/contact")
