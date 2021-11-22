@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en"
+<<<<<<< HEAD
       xmlns:th="http://www.thymeleaf.org">
+=======
+		xmlns:th="http://www.thymeleaf.org">
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width = device - width, initial - scale = 1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>🍀 Mach Dein Glück!! 🍀</title>
+<<<<<<< HEAD
     <link th:href="@{/resources/css/style_home.css}" rel="stylesheet" href="../static/resources/css/style_home.css"
           type="text/css">
 </head>
@@ -15,13 +20,28 @@
     <nav th:include="navigation :: navigation"></nav>
     <div class="container">
         <br>
+=======
+    <link th:href="@{resources/css/style_home.css}" rel="stylesheet" href="../static/resources/css/style_home.css">
+</head>
+
+<body class="backgrounds">
+
+        <br>
+        <!--<nav>
+            <a href="home.html">HOME</a>
+            <a class="item" href="contact.html" th:href="@{/contact}" th:text="#{nav.contact}">KONTAKT</a>
+            <a href="">ANMELDEN</a>
+            <a href="register.html">REGISTRIEREN</a>
+        </nav>-->
+        <nav th:include="navigation :: navigation" class="navcontainer"></nav>
+        <div class="container">
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
         <main>
             <h1>Mach Dein Glück!!</h1>
             <p>Mach Dein Glück ist eine Lotterie und damit ein Glücksspiel, bei dem der Spieler gegen einen finanziellen Einsatz auf das Ziehen vorher getippter Zahlen aus einer begrenzten Zahlenmenge setzt.
                 Spieler können nebenbei auch auf das Resultat einer oder mehrerer Fußballspiele wetten.
             </p>
-            <a href="https://www.burgerking.cz/?y_source=1_MTU2OTc5OTktNzE1LWxvY2F0aW9uLndlYnNpdGU=" target="_blank">
-                ZAHLENLOTTERIE</a>
+            <a class="item" href="3_catalog_num.html" th:href="@{/zahlenlotterie}" th:text="#{nav.zahlkatalog}">ZAHLENLOTTERIE</a>
             &ensp;
             &ensp;
             &ensp;
@@ -30,12 +50,15 @@
             &ensp;
             &ensp;
             &ensp;
-            &ensp;
-            &ensp;
+<<<<<<< HEAD
             &ensp;
             &ensp;
             <a href = "https://www.burgerking.cz/?y_source=1_MTU2OTc5OTktNzE1LWxvY2F0aW9uLndlYnNpdGU=" target="_blank">
             FUßBALLTOTO</a>
+=======
+
+            <a class="item" href="2_catalog_foot.html" th:href="@{/football}" th:text="#{nav.footballkatalog}">FUSSBALLTOTO</a>
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
         </main>
 
         <div class="box-one">
@@ -57,17 +80,18 @@
         <div class="box-three">
             <h3>Spielregeln der Zahlenloterie</h3>
             <p>
-                Für die jenigen, für welche das Prinzip der Zahlenloterie, d.h. 6 aus 49, unbekannt ist, haben unsere Kollegen aus LOTTO.de ein kurzes Film gedreht.
+                Für die jenigen, für welche das Prinzip der Zahlenloterie, d.h. 6 aus 49, unbekannt ist, haben unsere Kollegen aus LOTTO.de ein kurzen Film gedreht.
             </p>
         </div>
 
         <br><br><br><br><br>
-
+        <!--
         <iframe width="780" height="500" src="/Users/mirekkral/Documents/ProjectHTML/2Project/LOTTO 6aus49.mp4" title="YouTube video player"
             frameborder="0"
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
-        </iframe>
+        </iframe>-->
+            <iframe width="780" height="500" src="https://www.youtube.com/embed/pbj4fV9Hcb8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
         <br><br>
 

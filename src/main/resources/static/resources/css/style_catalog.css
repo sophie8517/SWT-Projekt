@@ -3,18 +3,36 @@ html {
 }
 
 body {
+<<<<<<< HEAD
     background-color: grey;
     /*background-image: url(background2.jpg),url(background3.jpg);*/
     background-size: cover;
     background-repeat: no-repeat;
+=======
+    /*background-color: grey;*/
+    background-image: url('../images/lotto1.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
     background-position: center;
 }
 
 .backgrounds {
+<<<<<<< HEAD
     background: url(/Users/mirekkral/Documents/ProjectHTML/2Project/ltr.jpg),url(/Users/mirekkral/Documents/ProjectHTML/2Project/ltr.jpg);
     background-size: cover,cover;
     background-repeat:  repeat-x,repeat-y;
     background-position: center top, center bottom;
+=======
+    background-image: url('../images/lotto1.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center top;
+    display: block;
+    min-height: 100%;
+    min-width: 100%;
+
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
 }
 
 .container {
@@ -22,6 +40,14 @@ body {
     margin-right: auto;
     width: 780px;
 }
+<<<<<<< HEAD
+=======
+.navcontainer{
+    margin-left: 20px;
+    margin-right: 20px;
+    width: auto;
+}
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
 
 .box-one {
     padding-top: 1px;

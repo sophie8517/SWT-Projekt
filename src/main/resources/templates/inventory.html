@@ -6,18 +6,19 @@
     <meta name="viewport" content="width = device - width, initial - scale = 1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>🍀 Mach Dein Glück!! 🍀</title>
-    <link rel="stylesheet" href="style_inventory.css">
+    <link th:href="@{resources/css/style_inventory.css}" rel="stylesheet" href="../static/resources/css/style_inventory.css">
 </head>
 
 <body class="backgrounds">
-    <div class="container">
-        <nav>
+
+        <!--<nav>
             <a href="https://www.bk.com/">HOME</a>
-            <a href="https://www.bk.com/contact-us">KONTAKT</a>
+            <a class="item" href="contact.html" th:href="@{/contact}" th:text="#{nav.contact}">KONTAKT</a>
             <a href="">KATALOG</a>
             <a href="">ABMELDEN</a>
-        </nav>
-        
+        </nav>-->
+        <nav th:include="navigation :: navigation" class="navcontainer"></nav>
+        <div class="container">
         <main class="box-one">
             <h3 class="box-two">Mein Profil</h3>
             <h2 class="box-two">Warenkorb</h2>

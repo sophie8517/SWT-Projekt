@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+		xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device - width, initial - scale = 1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>🍀 Mach Dein Glück!! 🍀</title>
+    <link th:href="@{resources/css/style_welcome.css}" rel="stylesheet" href="../static/resources/css/style_welcome.css">
+</head>
+
+<body class="backgrounds">
+
+        <!--<nav>
+			<a href="home.html">HOME</a>
+            <a class="item" href="contact.html" th:href="@{/contact}" th:text="#{nav.contact}">KONTAKT</a>
+            <a href="meinProfil.html">MEIN PROFIL</a>
+            <a href="1_catalog.html">KATALOG</a>
+            <a class="item" href="3_catalog_num.html" th:href="@{/zahlenlotterie}" th:text="#{nav.zahlkatalog}">ZAHLENLOTTERIE</a>
+            <a class="item" href="2_catalog_foot.html" th:href="@{/football}" th:text="#{nav.footballkatalog}">FUSSBALLTOTO</a>
+        </nav>-->
+        <nav th:include="navigation :: navigation" class="navcontainer"></nav>
+        <div class="container">
+        <main class="box-one">
+            <h3>Herzlich Willkommen!</h3>
+            <h4>Los geht's, Mach Dein Glück!! </h4>
+        </main>
+
+        <footer>
+            <p>Mach Dein Glück!! ©Copyright 2021©</p>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

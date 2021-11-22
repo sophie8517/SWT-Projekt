@@ -3,18 +3,36 @@ html {
 }
 
 body {
+<<<<<<< HEAD
     background-color: grey;
     /*background-image: url(background2.jpg),url(background3.jpg);*/
     background-size: cover;
     background-repeat: no-repeat;
+=======
+    /*background-color: grey;*/
+    background-image: url('../images/lotto1.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
     background-position: center;
 }
 
 .backgrounds {
+<<<<<<< HEAD
     background: url(../image/ltr.jpg),url(../image/ltr.jpg);
     background-size: cover,cover;
     background-repeat:  repeat-x,repeat-y;
     background-position: center top, center bottom;
+=======
+    background-image: url('../images/lotto1.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center top;
+    display: block;
+    min-height: 100%;
+    min-width: 100%;
+
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
 }
 
 .container {
@@ -23,6 +41,15 @@ body {
     width: 780px;
 }
 
+<<<<<<< HEAD
+=======
+.navcontainer{
+    margin-left: 20px;
+    margin-right: 20px;
+    width: auto;
+}
+
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
 .box-one {
     padding-top: 1px;
     padding-bottom: 1px;
@@ -54,7 +81,12 @@ body {
     
     padding-top: 20px;
     padding-bottom: 20px;
+<<<<<<< HEAD
     padding-left: 160px;
+=======
+    padding-left: 20px;
+    padding-right: 20px;
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
 
     text-align: center;
     background-color: rgba(0, 0, 0, 0.75);
@@ -62,7 +94,21 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
     
+<<<<<<< HEAD
     height: 320px;
+=======
+    height: 400px;
+}
+.ticket{
+    margin:auto;
+    text-align: center;
+
+}
+.ticket2{
+    margin:auto;
+    text-align: center;
+    padding-left: 190px;
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
 }
 
 header {
@@ -157,7 +203,11 @@ a {
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
     text-align: left;
+<<<<<<< HEAD
     padding-left: 190px;
+=======
+    padding-left: 20px;
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
 }
 
 .style {
@@ -173,4 +223,13 @@ a {
 
 .yt {
     padding-bottom: 50px;
+<<<<<<< HEAD
+=======
+}
+
+.button {
+    width: 300px;
+    height: 40px;
+    font-size: 25px;
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
 }

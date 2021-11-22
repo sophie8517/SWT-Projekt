@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
+<<<<<<< HEAD
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
@@ -34,6 +35,70 @@
       <input id="nummer" name="name" th:field="*{name}" th:errorclass="fieldError" type="text" required="required"/><br/>
       <div class="ui negative message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
     </div>
+=======
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device - width, initial - scale = 1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>🍀 Mach Dein Glück!! 🍀</title>
+    <link th:href="@{resources/css/style_meinProfil.css}" rel="stylesheet" href="../static/resources/css/style_meinProfil.css">
+</head>
+
+<body class="backgrounds">
+<!--<nav>
+            <a href="https://www.bk.com/">HOME</a>
+            <a class="item" href="contact.html" th:href="@{/contact}" th:text="#{nav.contact}">KONTAKT</a>
+            <a href="">KATALOG</a>
+            <a href="">ABMELDEN</a>
+        </nav>-->
+<nav th:include="navigation :: navigation" class="navcontainer"></nav>
+<div class="container" >
+    <main class="box-one">
+        <h3 class="box-two" th:text="#{myProfile.title}">Mein Profil</h3>
+        <h2 class="box-two">Persönliche Daten</h2>
+
+        <table border = "5" cellpadding = "5" cellspacing = "0" class="box-four" style="margin-left: auto;margin-right: auto; border-color: white">
+            <tr>
+                <td><div th:text="#{myProfile.firstname}"></div></td>
+                <td><div th:text="#{myProfile.lastname}"></div></td>
+                <td><div th:text="#{myProfile.email}"></div></td>
+            </tr>
+            <tr>
+                <td><div th:text="${firstname}"></div></td>
+                <td><div th:text="${lastname}"></div></td>
+                <td><div th:text="${email}"></div></td>
+            </tr>
+
+        </table>
+
+
+        <br><br>
+
+        <h2 class="box-two">Mach Dein Glück!!</h2>
+
+        <a href="customer_bets.html" th:href="@{/customer_bets}" sec:authorize="isAuthenticated()"> Warenkorb anzeigen</a>
+        <br></br>
+        <a href="" target="_blank"> Geld überweisen</a>
+        <br></br>
+        <a href="" target="_blank"> Guthaben anzeigen</a>
+
+        <h2 class="box-two">Einstellungen</h2>
+        <a href="" target="_blank"> Passwort ändern</a>
+        <br></br>
+        <a href="" target="_blank"> Profil löschen</a>
+
+
+    </main>
+
+    <footer>
+        <p>Mach Dein Glück!! ©Copyright 2021©</p>
+    </footer>
+
+</div>
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
 
     <div>
       <label for="e-mail"><h4>E-mail:</h4></label>

@@ -3,29 +3,47 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
+<<<<<<< HEAD:src/main/resources/templates/kontakt.html
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 
     <link th:href="@{/resources/css/style_kontakt.css}" rel="stylesheet"
           href="../static/resources/css/style_kontakt.css" type="text/css"/>
 
     <title th:text="#{kontakt.title}">KONTAKT</title>
+=======
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device - width, initial - scale = 1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>🍀 Mach Dein Glück!! 🍀</title>
+    <link th:href="@{resources/css/style_kontakt.css}" rel="stylesheet" href="../static/resources/css/style_kontakt.css">
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183:src/main/resources/templates/contact.html
 </head>
 
 
 
 <body class="backgrounds">
+<<<<<<< HEAD:src/main/resources/templates/kontakt.html
     <div class="container">  
         <nav th:fragment="navigation">
             <a th:href="@{/}" th:text="#{nav.home}">HOME</a>
             <a href="https://www.bk.com/contact-us">KONTAKT</a>
+=======
+
+        <!--<nav>
+            <a href="https://www.bk.com/">HOME</a>
+            <a class="item" href="contact.html" th:href="@{/contact}" th:text="#{nav.contact}">KONTAKT</a>
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183:src/main/resources/templates/contact.html
             <a href="">KATALOG</a>
+            <a class="item" href="3_catalog_num.html" th:href="@{/zahlenlotterie}" th:text="#{nav.zahlkatalog}">ZAHLENLOTTERIE</a>
+            <a class="item" href="2_catalog_foot.html" th:href="@{/football}" th:text="#{nav.footballkatalog}">FUSSBALLTOTO</a>
             <a href="">ANMELDEN</a>
             <a href="">REGISTRIEREN</a>
-        </nav>   
-          
+        </nav>   -->
+        <nav th:include="navigation :: navigation" class="navcontainer"></nav>
+        <div class="container">
         <main>
             <h3>Kontakt</h3>
-            <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center">
+            <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center" style="margin: auto; border-color: white">
                 <tr>
                     <th></th>
                     <th>Position</th>

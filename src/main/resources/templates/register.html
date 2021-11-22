@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en"
+<<<<<<< HEAD
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+=======
+      xmlns:th="http://www.thymeleaf.org">
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width = device - width, initial - scale = 1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>🍀 Mach Dein Glück!! 🍀</title>
+<<<<<<< HEAD
     <link th:href="@{/resources/css/style_register.css}" rel="stylesheet" href="../static/resources/css/style_register.css"
           type="text/css">
 </head>
@@ -24,6 +29,26 @@
                         <p>Einige eingaben sind nicht korrekt.</p>
                     </div>
 
+=======
+    <link th:href="@{resources/css/style_register.css}" rel="stylesheet" href="../static/resources/css/style_register.css">
+</head>
+
+<body class="backgrounds">
+
+        <!--<nav>
+            <a href="https://www.bk.com/">HOME</a>
+            <a class="item" href="contact.html" th:href="@{/contact}" th:text="#{nav.contact}">KONTAKT</a>
+            <a href="">KATALOG</a>
+            <a href="">ANMELDEN</a>
+            <a href="">REGISTRIEREN</a>
+        </nav>-->
+        <nav th:include="navigation :: navigation" class="navcontainer"></nav>
+        <div class="container">
+        <main>
+            <section>
+                <form method="post" role="form" class="ui form" id="form" th:action="@{/register}" th:object="${registrationForm}">
+                    <h3 th:text="#{register.userdata}">Registrieren</h3>
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
                     <h4>Kriterien</h4>
                     
                     <div class= "field">
@@ -36,6 +61,7 @@
                     </div>
 
                     <br>
+<<<<<<< HEAD
 
                     <div class="field">
                         <label for="name">Name:</label>
@@ -49,21 +75,60 @@
                         <label th:text="#{register.password}" for="password">Password:</label>
                         <input id="password" name="password" th:field="*{password}" th:errorclass="fieldError" type="password"
                                required="required"/><br/>
+=======
+    
+                    <div class="style">
+
+                        <label for="firstname">Vorname:</label>
+                        <input id="firstname" name="firstname" th:field="*{firstname}" th:errorclass="fieldError" type="text" required="required"/><br/>
+                        <div class="ui negative message" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></div>
+                    </div>
+
+                    <br>
+
+                    <div class="style">
+
+                        <label for="lastname">Nachname:</label>
+                        <input id="lastname" name="lastname" th:field="*{lastname}" th:errorclass="fieldError" type="text" required="required"/><br/>
+                        <div class="ui negative message" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></div>
+                    </div>
+
+                    <br>
+
+                    <div class="style">
+
+                        <label for="email">Email:</label>
+                        <input id="email" name="email" th:field="*{email}" th:errorclass="fieldError" type="text" required="required"/><br/>
+                        <div class="ui negative message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                    </div>
+
+                    <br>
+    
+                    <div class="style">
+                        <label th:text="#{register.password}" for="password" style="width: 50px">Passwort:</label>
+                        <input id="password" name="password" th:field="*{password}" th:errorclass="fieldError"  type="password" required="required" />
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
                         <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
                     </div>
 
                     <br>
 
+<<<<<<< HEAD
                     <div class="field">
                         <label th:text="#{register.passwordCheck}" for="passwordCheck">Password-Check:</label>
                         <input id="passwordCheck" name="passwordCheck" th:field="*{passwordCheck}" th:errorclass="fieldError" type="password"
                                required="required"/><br/>
+=======
+                    <div class="style">
+                        <label th:text="#{register.password2}" for="password">Wiederholung:</label>
+                        <input id="passwordCheck" name="passwordCheck" th:field="*{passwordCheck}" th:errorclass="fieldError" type="password" required="required"/><br/>
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
                         <p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}"></p>
                     </div>
 
                     <br>
 
-                    <button type="submit" class="ui button" th:text="#{register.submit}">Registrieren</button>
+                    <button type="submit" th:text="#{register.submit}">Registrieren</button>
                 </form>
             </section>
         </main>
