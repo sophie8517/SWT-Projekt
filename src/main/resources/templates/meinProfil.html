@@ -35,23 +35,39 @@
                 <td><div th:text="${lastname}"></div></td>
                 <td><div th:text="${email}"></div></td>
             </tr>
-
         </table>
 
 
-        <br><br>
+        <br>
+        <br>
+        <br>
+        <br>
 
         <h2 class="box-two">Mach Dein Glück!!</h2>
 
-        <a href="customer_bets.html" th:href="@{/customer_bets}" sec:authorize="isAuthenticated()"> Warenkorb anzeigen</a>
-        <br></br>
-        <a href="" target="_blank"> Geld überweisen</a>
-        <br></br>
-        <a href="" target="_blank"> Guthaben anzeigen</a>
+        <a href="customer_bets.html" th:href="@{/customer_bets}" sec:authorize="isAuthenticated()"> Wette anzeigen</a>
+
+        <br>
+        <br>
+
+
+        <a href="balance.html" th:href="@{/balance}" sec:authorize="hasRole('CUSTOMER')"> Guthaben anzeigen</a>
+
+        <br>
+        <br>
+
+
+        <a href="" target="_blank"> Gewinngemeinschaft erstellen</a>
+
+        <br>
+        <br>
 
         <h2 class="box-two">Einstellungen</h2>
         <a href="" target="_blank"> Passwort ändern</a>
-        <br></br>
+
+        <br>
+        <br>
+
         <a href="" target="_blank"> Profil löschen</a>
 
 

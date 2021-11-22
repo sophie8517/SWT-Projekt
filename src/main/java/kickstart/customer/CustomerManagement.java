@@ -12,6 +12,8 @@ import org.springframework.util.Assert;
 
 import java.security.SecureRandom;
 
+import static org.salespointframework.core.Currencies.EURO;
+
 
 @Service
 @Transactional
@@ -97,10 +99,8 @@ public class CustomerManagement {
 	}
 
 
-	public Customer charge(Money money,  Customer customer){
-		Money balance = customer.getBalance();
-		balance.subtract(money);
-		return customer;
+	public void charge(Money money,  Customer customer){
+		customer.setBalance(customer.getBalance().add(money));
 	}
 
 	public Customer findByCustomerId(long customerId){
