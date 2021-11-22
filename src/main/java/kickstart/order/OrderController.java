@@ -7,17 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
+
 import kickstart.customer.*;
 import org.javamoney.moneta.Money;
-import org.salespointframework.order.*;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -28,26 +27,6 @@ import static org.salespointframework.core.Currencies.EURO;
 @SessionAttributes("cart")
 
 public class OrderController {
-	/*
-	private final OrderManagement<Order> orderManagement;
-
-	OrderController(OrderManagement<Order> orderManagement) {
-
-		Assert.notNull(orderManagement, "OrderManagement must not be null!");
-		this.orderManagement = orderManagement;
-	}
-
-
-
-	@ModelAttribute("cart")
-	Cart initializeCart() {
-		return new Cart();
-	}
-
-	@GetMapping("/cart")
-	String basket() { return "cart";}
-
-	 */
 
 	private final CustomerManagement customerManagement;
 	private LotteryCatalog lotteryCatalog;
@@ -134,6 +113,9 @@ public class OrderController {
 		LocalDateTime temp = date.plusMinutes(90);
 		LocalDateTime time = LocalDateTime.now();
 
+		Ticket t = (Ticket) lotteryCatalog.findByType(Item.ItemType.TICKET).get(0);
+
+
 		List<Item> foots = lotteryCatalog.findByType(Item.ItemType.FOOTBALL);
 		List<FootballBet> result = new ArrayList<>();
 		for(Item i: foots){
@@ -154,6 +136,15 @@ public class OrderController {
 			}
 		}
 
+		if (temp.equals(time) || time.isAfter(temp)) {
+			for(NumberBet nb: t.getNumberBetsbyCustomer(customer)){
+				if(nb.getStatus()==Status.WIN){
+					Money income = customer.getBalance().add(Money.of(t.getPrice2(),EURO));
+					customer.setBalance(income);
+				}
+			}
+		}
+
 		model.addAttribute("income", customer.getBalance());
 		return "redirect:/";
 
@@ -167,5 +158,7 @@ public class OrderController {
 		model.addAttribute("result", match.result());
 		return "redirect:/";
 	}
+
+
 
 }
