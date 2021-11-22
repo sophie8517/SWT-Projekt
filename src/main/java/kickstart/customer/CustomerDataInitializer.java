@@ -44,7 +44,11 @@ class CustomerDataInitializer implements DataInitializer {
 		var passwordCheck = "123";
 
 		List.of(
-				new RegistrationForm("Song", "Bai","song@tu-dresden.de", password, passwordCheck)
+				new RegistrationForm("Song", "Bai","song@tu-dresden.de", password, passwordCheck),
+				new RegistrationForm("Nina", "Chen", "nina@tu-dresden.de", password, passwordCheck),
+				new RegistrationForm("Mirek", "Kral", "mirek@tu-dresden.de", password, passwordCheck),
+				new RegistrationForm("Sophie", "Schulze", "sophie@tu-dresden.de", password, passwordCheck),
+				new RegistrationForm("Lukas", "Lei", "lukas@tu-dresden.de", password, passwordCheck)
 		).forEach(customerManagement::createCustomer);
 	}
 }
