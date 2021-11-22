@@ -2,16 +2,11 @@ package kickstart.catalog;
 
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
-import org.salespointframework.catalog.ProductIdentifier;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Item extends Product{
@@ -22,7 +17,7 @@ public class Item extends Product{
 	}
 
 	private LocalDate date;
-	private LocalDateTime time_limit;
+	private LocalDateTime timeLimit;
 	private double price2;
 	private ItemType type = ItemType.NONE;
 	private String name;
@@ -34,7 +29,7 @@ public class Item extends Product{
 		super(name, price);
 		this.date = date;
 		//time_limit später anpassen
-		this.time_limit = LocalDateTime.of(date, LocalTime.of(15,00));
+		this.timeLimit = LocalDateTime.of(date, LocalTime.of(15,00));
 		this.type = type;
 		//bits = new ArrayList<Bet>();
 	}
@@ -48,12 +43,12 @@ public class Item extends Product{
 		return date;
 	}
 
-	public LocalDateTime getTime_limit() {
-		return time_limit;
+	public LocalDateTime getTimeLimit() {
+		return timeLimit;
 	}
 
-	public void setTime_limit(LocalDateTime time_limit) {
-		this.time_limit = time_limit;
+	public void setTimeLimit(LocalDateTime timeLimit) {
+		this.timeLimit = timeLimit;
 	}
 
 	public ItemType getType() {

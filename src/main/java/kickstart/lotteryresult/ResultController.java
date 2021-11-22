@@ -29,7 +29,7 @@ public class ResultController {
 		List<NumberBet> wetten_valid = new ArrayList<>();
 
 		NumberLottery numlot = new NumberLottery();
-		//List<Integer> gewinnzahlen = numlot.generate_nums();
+		//List<Integer> gewinnzahlen = numlot.getWinNumbers();
 		List<Integer> gewinnzahlen = new ArrayList<>();
 		gewinnzahlen.add(1);
 		gewinnzahlen.add(2);

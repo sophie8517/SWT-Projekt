@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.Random;
 
 public class NumberLottery {
-	//private List<Integer> win_numbers = new ArrayList<>();
+	private List<Integer> winNumbers = new ArrayList<>();
 
 	/*
 	This is an empty constructor
 	 */
-	public NumberLottery(){}
+	public NumberLottery(){
+		this.winNumbers = generate_nums();
+	}
 
 	public List<Integer> generate_nums(){
 		List<Integer> result = new ArrayList<>();
@@ -25,7 +27,11 @@ public class NumberLottery {
 		}
 		return result;
 	}
-/*
+
+	public List<Integer> getWinNumbers() {
+		return winNumbers;
+	}
+	/*
 	public static void main(String[] args) {
 		NumberLottery l = new NumberLottery();
 		List<Integer> liste = l.generate_nums();
