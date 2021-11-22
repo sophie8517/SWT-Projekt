@@ -69,8 +69,7 @@ public class CatalogController {
 					result.add(i);
 				}
 			}
-		}
-		else{
+		} else{
 			result = foots;
 		}
 
@@ -110,7 +109,10 @@ public class CatalogController {
 	}
 
 	@PostMapping("/lottery/numbit")
-	String bet_num(@RequestParam("pid")ProductIdentifier id, @RequestParam("zahl1") int zahl1, @RequestParam("zahl2") int zahl2, @RequestParam("zahl3")int zahl3, @RequestParam("zahl4")int zahl4, @RequestParam("zahl5")int zahl5, @RequestParam("zahl6")int zahl6,@RequestParam("dauer")int dauer, @LoggedIn Optional<UserAccount> userAccount){
+	String bet_num(@RequestParam("pid")ProductIdentifier id, @RequestParam("zahl1") int zahl1,
+				   @RequestParam("zahl2") int zahl2, @RequestParam("zahl3")int zahl3, @RequestParam("zahl4")int zahl4,
+				   @RequestParam("zahl5")int zahl5, @RequestParam("zahl6")int zahl6,@RequestParam("dauer")int dauer,
+				   @LoggedIn Optional<UserAccount> userAccount){
 
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 		Customer c = customerRepository.findCustomerByUserAccount(userAccount.get());
@@ -126,8 +128,7 @@ public class CatalogController {
 
 		if(checker.size() == 6){
 			nums.addAll(checker);
-		}
-		else{
+		} else{
 
 			return "wronginput";
 		}
@@ -162,14 +163,14 @@ public class CatalogController {
 	String wrong_input(@RequestParam("option1") int number){
 		if(number == 0){
 			return "redirect:/3_catalog_num.html";
-		}
-		else{
+		} else{
 			return "redirect:/";
 		}
 	}
 
 	@PostMapping("/lottery/footbit")
-	String bet_foot(@RequestParam("pid")ProductIdentifier id, @RequestParam("fussballwette") int number, @RequestParam("inset") double inset, @LoggedIn Optional<UserAccount> userAccount){
+	String bet_foot(@RequestParam("pid")ProductIdentifier id, @RequestParam("fussballwette") int number,
+					@RequestParam("inset") double inset, @LoggedIn Optional<UserAccount> userAccount){
 
 		Football foot = (Football) lotteryCatalog.findById(id).get();
 
@@ -181,16 +182,15 @@ public class CatalogController {
 
 		if(number == 1){
 			status = Ergebnis.GASTSIEG;
-		}
-		else if(number == 2){
+		} else if(number == 2){
 			status = Ergebnis.HEIMSIEG;
-		}
-		else{
+		} else{
 			status = Ergebnis.UNENTSCHIEDEN;
 		}
 
 
-		FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(inset, EURO), customer, foot.getDate(), status);
+		FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(inset, EURO), customer, foot.getDate(),
+				status);
 		foot.addBet(f);
 		//customer.addFootballBet(f);
 		System.out.println(foot.getFootballBets());

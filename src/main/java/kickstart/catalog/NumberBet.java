@@ -18,9 +18,11 @@ public class NumberBet extends Bet {
 	private LocalDate expiration = LocalDate.of(2000,1,1);
 
 
-	public NumberBet(Item item, LocalDateTime date, Money inset, Customer customer, LocalDate expiration, List<Integer> numbers){
+	public NumberBet(Item item, LocalDateTime date, Money inset, Customer customer, LocalDate expiration,
+					 List<Integer> numbers){
 		super(item, date, inset,customer, expiration);
-		this.numbers = numbers;}
+		this.numbers = numbers;
+	}
 
 	public NumberBet() {
 

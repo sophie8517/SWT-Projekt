@@ -8,6 +8,9 @@ import java.util.Random;
 public class NumberLottery {
 	//private List<Integer> win_numbers = new ArrayList<>();
 
+	/*
+	This is an empty constructor
+	 */
 	public NumberLottery(){}
 
 	public List<Integer> generate_nums(){

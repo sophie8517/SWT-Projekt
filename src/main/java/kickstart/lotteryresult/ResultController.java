@@ -46,8 +46,7 @@ public class ResultController {
 		for(NumberBet nb: wetten_valid){
 			if(nb.getNumbers().containsAll(gewinnzahlen)){
 				nb.changeStatus(Status.WIN);
-			}
-			else{
+			} else{
 				nb.changeStatus(Status.LOSS);
 			}
 		}
@@ -69,12 +68,10 @@ public class ResultController {
 		if(number == 1){
 
 			erg = Ergebnis.GASTSIEG;
-		}
-		else if(number == 2){
+		} else if(number == 2){
 
 			erg = Ergebnis.HEIMSIEG;
-		}
-		else{
+		} else{
 
 			erg = Ergebnis.UNENTSCHIEDEN;
 		}
@@ -83,8 +80,7 @@ public class ResultController {
 		for(FootballBet fb: wetten){
 			if(!fb.getExpiration().isBefore(LocalDate.now())){
 				wetten_valid.add(fb);
-			}
-			else{
+			} else{
 				fb.changeStatus(Status.EXPIRED);
 
 			}
@@ -92,8 +88,7 @@ public class ResultController {
 		for(FootballBet fb: wetten_valid){
 			if(fb.getTip().equals(erg)){
 				fb.changeStatus(Status.WIN);
-			}
-			else{
+			} else{
 				fb.changeStatus(Status.LOSS);
 			}
 
