@@ -37,11 +37,16 @@ public class CatalogController {
 
 	@GetMapping("/zahlenlotterie")
 	String ticketCatalog(Model model){
+
+		//ziehungsdatum in ticket speichern
+		//wenn heute uhrzeit und datum nach ziehungsdatum -> ziehungsdatum neu setzen
+
 		model.addAttribute("ticketcatalog", lotteryCatalog.findByType(ItemType.TICKET));
 		model.addAttribute("title", "catalog.ticket.title");
 
 		return "3_catalog_num";
 	}
+
 
 	@GetMapping("/football")
 	String footballCatalog(Model model, @LoggedIn Optional<UserAccount> userAccount){
@@ -71,7 +76,7 @@ public class CatalogController {
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
-	@GetMapping("/football/admin")
+	@GetMapping("/footballadmin")
 	String footballCatalogAdmin(Model model){
 
 		List<Item> foots = lotteryCatalog.findByType(ItemType.FOOTBALL);
@@ -190,28 +195,6 @@ public class CatalogController {
 		return "redirect:/";
 
 	}
-
-	/*
-	@GetMapping("/showbets")
-	public String show_bets(Model model, @LoggedIn Optional<UserAccount> userAccount){
-		Customer c = customerRepository.findCustomerByUserAccount(userAccount.get());
-		Money balance = c.getBalance();
-		Ticket t = (Ticket) lotteryCatalog.findByType(ItemType.TICKET).get(0);
-		List<Item> foots = lotteryCatalog.findByType(ItemType.FOOTBALL);
-		List<FootballBet> result = new ArrayList<>();
-		for(Item i: foots){
-			Football f = (Football) i;
-			result.addAll(f.getFootballBetsbyCustomer(c));
-		}
-
-		model.addAttribute("balance", balance);
-		model.addAttribute("numberBets", t.getNumberBetsbyCustomer(c));
-		model.addAttribute("footballBets", result);
-
-		return "customer_bets";
-	}
-
-	 */
 
 
 }

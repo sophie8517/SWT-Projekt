@@ -49,4 +49,18 @@ public class Ticket extends Item {
 		}
 		return result;
 	}
+	public NumberBet findbyBetId(long id){
+		if(numberBets.isEmpty()){
+			return null;
+		}
+
+		NumberBet result = null;
+		for(NumberBet nb: numberBets){
+			if(nb.getId() == id){
+				result = nb;
+				break;
+			}
+		}
+		return result;
+	}
 }

@@ -72,10 +72,6 @@ public class Bet implements Serializable {
 		return inset.getNumber().doubleValue();
 	}
 
-	public void setEinsatz(Money inset) {
-		this.inset = inset;
-	}
-
 	public Long getId() {
 		return id;
 	}
