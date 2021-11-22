@@ -85,10 +85,23 @@
 
                     </div>
                 </form>
+                    <form th:method="post" sec:authorize="hasRole('ADMIN')" th:action="@{/eval/foot}">
+                        <!--<input type="hidden" name="id" value="0" th:value="${football}"/>-->
+                        <input type="hidden" name="pid" value="0" th:value="${football.id}"/>
+                        </br>
+                        <div >
+                            <label th:text="#{football.bet}" >Wettoption:  </label>
+                            <input field="*{ergebnis}" id="ergebnis" type="number" name="ergebnis" min="1" max="3" required="required"/>
+                            </br></br>
+                            <button class="button" type="submit" th:text="#{football.eval}" >Ergebnis eintragen</button>
+                        </div>
+                    </form>
 
             </div>
 
         </div>
+
+
     </div>
 
 
