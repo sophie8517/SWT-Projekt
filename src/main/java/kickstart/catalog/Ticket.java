@@ -8,6 +8,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import kickstart.customer.Customer;
@@ -23,6 +25,7 @@ public class Ticket extends Item {
 	public Ticket(String name, LocalDate date, Money price, ItemType type){
 		super(name, date, price, type);
 		numberBets = new ArrayList<>();
+		setTime_limit(LocalDateTime.of(LocalDate.of(2021,11,28), LocalTime.of(15,00)));
 	}
 	public Ticket(){}
 

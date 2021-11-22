@@ -38,10 +38,17 @@ public class CatalogController {
 	@GetMapping("/zahlenlotterie")
 	String ticketCatalog(Model model){
 
+		List<Item> result = lotteryCatalog.findByType(ItemType.TICKET);
+		Ticket t = (Ticket) result.get(0);
+
 		//ziehungsdatum in ticket speichern
 		//wenn heute uhrzeit und datum nach ziehungsdatum -> ziehungsdatum neu setzen
+		LocalDateTime now = LocalDateTime.now();
+		while(now.isAfter(t.getTime_limit())){
+			t.setTime_limit(t.getTime_limit().plusDays(7));
+		}
 
-		model.addAttribute("ticketcatalog", lotteryCatalog.findByType(ItemType.TICKET));
+		model.addAttribute("ticketcatalog", result);
 		model.addAttribute("title", "catalog.ticket.title");
 
 		return "3_catalog_num";
