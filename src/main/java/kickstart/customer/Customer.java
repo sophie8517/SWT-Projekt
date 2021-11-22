@@ -11,6 +11,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.salespointframework.core.Currencies.EURO;
+
 @Entity
 public class Customer {
 	private @Id @GeneratedValue long id;
@@ -22,6 +24,7 @@ public class Customer {
 	public Customer(){}
 	public Customer (UserAccount userAccount){
 		this.userAccount = userAccount;
+		balance = Money.of(0.0, EURO);
 	}
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<FootballBet> footballBetList = new ArrayList<>();
