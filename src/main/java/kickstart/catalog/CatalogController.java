@@ -1,7 +1,6 @@
 package kickstart.catalog;
 
 import kickstart.customer.Customer;
-import kickstart.customer.CustomerManagement;
 import kickstart.customer.CustomerRepository;
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.ProductIdentifier;
@@ -44,8 +43,8 @@ public class CatalogController {
 		//ziehungsdatum in ticket speichern
 		//wenn heute uhrzeit und datum nach ziehungsdatum -> ziehungsdatum neu setzen
 		LocalDateTime now = LocalDateTime.now();
-		while(now.isAfter(t.getTime_limit())){
-			t.setTime_limit(t.getTime_limit().plusDays(7));
+		while(now.isAfter(t.getTimeLimit())){
+			t.setTimeLimit(t.getTimeLimit().plusDays(7));
 		}
 
 		model.addAttribute("ticketcatalog", result);
@@ -141,8 +140,7 @@ public class CatalogController {
 		}
 		if(dauer == 3){
 			exp = LocalDate.now().plusMonths(6);
-		}
-		else{
+		} else{
 			exp = LocalDate.now().plusYears(1);
 		}
 

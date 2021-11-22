@@ -171,9 +171,6 @@ public class OrderController {
 
 				}
 			}
-		}
-
-		if (temp.equals(time) || time.isAfter(temp)) {
 			for(NumberBet nb: t.getNumberBetsbyCustomer(customer)){
 				if(nb.getStatus()==Status.WIN){
 					Money income = customer.getBalance().add(Money.of(t.getPrice2(),EURO));
