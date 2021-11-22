@@ -122,7 +122,7 @@ a|
 |in Arbeit
 
 |09     
-|Basisfuntionalität schaffen    
+|Basisfunktionalität schaffen    
 |das System soll die Anforderungen der Muss-Kriterien erfüllen         
 |alle               
 |in Arbeit
