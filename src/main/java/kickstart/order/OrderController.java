@@ -76,11 +76,14 @@ public class OrderController {
 
 		Football f = (Football) lotteryCatalog.findById(id).get();
 		FootballBet bet = f.findbyBetId(bet_id);
-		if(bet != null){
-			bet.setInset(money);
-			lotteryCatalog.save(f);
-			//model.addAttribute("raisedMoney",bet.getInset());
-			return "redirect:/";
+
+		if(bet != null) {
+			if(date.isBefore(f.getTimeLimit().minusMinutes(5))) {
+				bet.setInset(money);
+				lotteryCatalog.save(f);
+				//model.addAttribute("raisedMoney",bet.getInset());
+				//return "redirect:/";
+			}
 		}
 
 		return "redirect:/";
@@ -91,13 +94,15 @@ public class OrderController {
 							  @RequestParam("newinset")double inset){
 
 		Money money = Money.of(inset, EURO);
+		LocalDateTime date = LocalDateTime.now();
 
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 		NumberBet bet = t.findbyBetId(bet_id);
-		if(bet != null){
-
-			bet.setInset(money);
-			lotteryCatalog.save(t);
+		if(bet != null) {
+			if (date.isBefore(t.getTimeLimit().minusMinutes(5))) {
+				bet.setInset(money);
+				lotteryCatalog.save(t);
+			}
 		}
 
 

@@ -6,6 +6,8 @@ import org.javamoney.moneta.Money;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import kickstart.customer.Customer;
@@ -20,9 +22,10 @@ public class Football extends Item {
 	private String league, logoHost, logoGuest;
 	private int score;
 	private Ergebnis ergebnis = Ergebnis.LEER;
+	private LocalTime time;
 
 
-	public Football(String name, LocalDate date, Money price, ItemType type, Team host, Team guest, String league,
+	public Football(String name, LocalDate date, LocalTime time, Money price, ItemType type, Team host, Team guest, String league,
 					String logoHost, String logoGuest){
 		super(name, date, price, type);
 		this.host = host;
@@ -31,6 +34,8 @@ public class Football extends Item {
 		this.logoHost = logoHost;
 		this.logoGuest = logoGuest;
 		footballBets = new ArrayList<>();
+		this.time = time;
+		setTimeLimit(LocalDateTime.of(date,time));
 	}
 
 	public Football() {
@@ -62,6 +67,10 @@ public class Football extends Item {
 
 	public String getLogoGuest() {
 		return logoGuest;
+	}
+
+	public LocalTime getTime() {
+		return time;
 	}
 
 	public List<FootballBet> getFootballBets() {
