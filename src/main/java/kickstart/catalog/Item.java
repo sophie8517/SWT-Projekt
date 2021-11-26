@@ -16,32 +16,23 @@ public class Item extends Product{
 		TICKET, FOOTBALL, NONE;
 	}
 
-	private LocalDate date;
-	private LocalDateTime timeLimit;
-	private double price2;
+
+	private LocalDateTime timeLimit; //date and time of the drawing
+	//private double price2;
 	private ItemType type = ItemType.NONE;
 	private String name;
 
 	public Item(){}
 
-	public Item(String name, LocalDate date, Money price, ItemType type){
+	public Item(String name, LocalDateTime timeLimit, Money price, ItemType type){
 		//this.id = new Long(id);
 		super(name, price);
-		this.date = date;
+		this.timeLimit = timeLimit;
 		//time_limit später anpassen
-		this.timeLimit = LocalDateTime.of(date, LocalTime.of(15,00));
 		this.type = type;
 		//bits = new ArrayList<Bet>();
 	}
 
-
-	protected void setType(ItemType type){
-		this.type = type;
-	}
-
-	public LocalDate getDate() {
-		return date;
-	}
 
 	public LocalDateTime getTimeLimit() {
 		return timeLimit;
@@ -58,4 +49,5 @@ public class Item extends Product{
 	public double getPrice2() {
 		return getPrice().getNumber().doubleValue();
 	}
+
 }
