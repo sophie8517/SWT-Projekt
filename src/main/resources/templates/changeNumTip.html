@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device - width, initial - scale = 1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>🍀 Mach Dein Glück!! 🍀</title>
+    <link th:href="@{resources/css/style_foot.css}" rel="stylesheet"  type="text/css" href="../static/resources/css/style_foot.css">
+</head>
+<body class="backgrounds">
+
+<!--<nav>
+    <a href="home.html">HOME</a>
+    <a class="item" href="contact.html" th:href="@{/contact}" th:text="#{nav.contact}">KONTAKT</a>
+    <a href="meinProfil.html">MEIN PROFIL</a>
+    <a href="1_catalog.html">KATALOG</a>
+</nav>-->
+<nav th:include="navigation :: navigation" class="navcontainer"></nav>
+<div class="container">
+    <main class="box-one">
+        <h2 class="box-two">Übersicht der Wetten</h2>
+    </main>
+
+
+    <div>
+        <div class="box-three">
+            <table>
+                <tr>
+                    <td>Datum der Abgabe: </td>
+                    <td th:text="${numbet.date}">heute</td>
+                </tr>
+                <tr>
+                    <td>Tipp: </td>
+                    <td th:text="${numbet.numbers}">zahlen</td>
+                </tr>
+                <tr>
+                    <td>Zusatzzahl: </td>
+                    <td th:text="${numbet.additionalNum}">9</td>
+                </tr>
+                <tr>
+                    <td>Einsatz: </td>
+                    <td th:text="${numbet.inset}">10 Euro</td>
+                </tr>
+                <tr>
+                    <td>Status: </td>
+                    <td th:text="${numbet.status}" style="color: cornflowerblue">offen</td>
+                </tr>
+
+            </table>
+            <!--<form th:method="post" sec:authorize="hasRole('CUSTOMER')" th:action="@{/raiseNumBet}">
+                <input type="hidden" name="pid" value="0" th:value="${numbet.item.id}"/>
+                <input type="hidden" name="betid" value="0" th:value="${numbet.id}"/>
+                <label th:text="#{numbet.newinset}" >Dein Einsatz:  </label>
+                <input field="*{newinset}" id="newinset" type="number" step=".01" name="newinset" th:min="${numbet.einsatz2}" required="required"/>
+                </br></br>
+
+                <button class="button" type="submit" th:text="#{numbet.raisebet}" >Einsatz ändern</button>
+
+            </form>-->
+
+            <form th:method="post" sec:authorize="hasRole('CUSTOMER')"  th:action="@{/changeNumbetTip}" style="font-size: 20px">
+                <input type="hidden" name="pid" value="0" th:value="${numbet.item.id}"/>
+                <input type="hidden" name="betid" value="0" th:value="${numbet.id}"/>
+                <div class="ticket2">
+                    <table>
+                        <tr>
+                            <td><label th:text="#{ticket.zahl1}">1. Zahl: </label></td>
+                            <td><input field="*{zahl1}" id="zahl1" type="number" name="zahl1" min="1" max="49" required="required"/></td>
+                        </tr>
+                        <tr>
+                            <td><label th:text="#{ticket.zahl2}">2. Zahl: </label></td>
+                            <td><input field="*{zahl2}" id="zahl2" type="number" name="zahl2" min="1" max="49" required="required"/></td>
+                        </tr>
+                        <tr>
+                            <td><label th:text="#{ticket.zahl3}" >3. Zahl: </label></td>
+                            <td><input field="*{zahl3}" id="zahl3" type="number" name="zahl3" min="1" max="49" required="required"/></td>
+                        </tr>
+                        <tr>
+                            <td><label th:text="#{ticket.zahl4}">4. Zahl: </label></td>
+                            <td><input field="*{zahl4}" id="zahl4" type="number" name="zahl4" min="1" max="49" required="required"/></td>
+                        </tr>
+                        <tr>
+                            <td><label th:text="#{ticket.zahl5}" >5. Zahl: </label></td>
+                            <td><input field="*{zahl5}" id="zahl5" type="number" name="zahl5" min="1" max="49" required="required"/></td>
+                        </tr>
+                        <tr>
+                            <td><label th:text="#{ticket.zahl6}" >6. Zahl: </label></td>
+                            <td><input field="*{zahl6}" id="zahl6" type="number" name="zahl6" min="1" max="49" required="required"/></td>
+                        </tr>
+                        <tr>
+                            <td><label th:text="#{ticket.zusatz}" >Zusatzzahl: </label></td>
+                            <td><input field="*{zusatz}" id="zusatz" type="number" name="zusatz" min="1" max="49" required="required"/></td>
+                        </tr>
+                        <tr>
+                            <td><br></td>
+                            <td><br></td>
+                        </tr>
+                    </table>
+
+                    <br>
+                </div>
+                <button sec:authorize="hasRole('CUSTOMER')" class="button" type="submit" th:text="#{numbet.changeTip}" >Tipp ändern</button>
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<br>
+
+
+
+<br>
+
+<footer>
+    <p>Mach Dein Glück!! ©Copyright 2021©</p>
+</footer>
+
+
+</body>
+</html>
