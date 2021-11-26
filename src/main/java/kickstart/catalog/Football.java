@@ -20,12 +20,13 @@ public class Football extends Item {
 	@OneToOne (cascade = CascadeType.ALL)
 	private Team host, guest;
 	private String league, logoHost, logoGuest;
-	private int score;
+	//private int score;
 	private Ergebnis ergebnis = Ergebnis.LEER;
-	private LocalTime time;
+
+	//private boolean check = true;
 
 
-	public Football(String name, LocalDate date, LocalTime time, Money price, ItemType type, Team host, Team guest, String league,
+	public Football(String name, LocalDateTime date, Money price, ItemType type, Team host, Team guest, String league,
 					String logoHost, String logoGuest){
 		super(name, date, price, type);
 		this.host = host;
@@ -34,8 +35,8 @@ public class Football extends Item {
 		this.logoHost = logoHost;
 		this.logoGuest = logoGuest;
 		footballBets = new ArrayList<>();
-		this.time = time;
-		setTimeLimit(LocalDateTime.of(date,time));
+
+
 	}
 
 	public Football() {
@@ -69,9 +70,14 @@ public class Football extends Item {
 		return logoGuest;
 	}
 
-	public LocalTime getTime() {
-		return time;
+
+	/*
+	public boolean getCheck(){
+		boolean t = host.getName().equals("FC Bayern München") || guest.getName().equals("FC Bayern München");
+		return t;
 	}
+
+	 */
 
 	public List<FootballBet> getFootballBets() {
 		return footballBets;
