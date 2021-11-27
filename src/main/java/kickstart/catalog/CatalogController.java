@@ -170,11 +170,16 @@ public class CatalogController {
 				exp = LocalDate.now().plusYears(1);
 			}
 
+			if(c.getBalance().isLessThan(t.getPrice())){
+				return "time_up.html"; //change to error page for not enough money
+			}
+
 			//add: check if all numbers are different
 			NumberBet nb = new NumberBet(t, LocalDateTime.now(), Money.of(t.getPrice().getNumber(), EURO),c,
 					LocalDateTime.of(exp, t.getTimeLimit().toLocalTime()), nums,zusatz);
 
 			t.addBet(nb);
+
 			//c.addNumberBet(nb);
 
 			lotteryCatalog.save(t);
