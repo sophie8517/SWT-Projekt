@@ -159,15 +159,15 @@ public class CatalogController {
 			LocalDate exp;
 
 			if(dauer == 1){
-				exp = LocalDate.now().plusDays(7);
+				exp = now.toLocalDate().plusDays(7);
 			}
 			if(dauer == 2){
-				exp = LocalDate.now().plusMonths(1);
+				exp = now.toLocalDate().plusMonths(1);
 			}
 			if(dauer == 3){
-				exp = LocalDate.now().plusMonths(6);
+				exp = now.toLocalDate().plusMonths(6);
 			} else{
-				exp = LocalDate.now().plusYears(1);
+				exp = now.toLocalDate().plusYears(1);
 			}
 
 			if(c.getBalance().isLessThan(t.getPrice())){
@@ -175,7 +175,7 @@ public class CatalogController {
 			}
 
 			//add: check if all numbers are different
-			NumberBet nb = new NumberBet(t, LocalDateTime.now(), Money.of(t.getPrice().getNumber(), EURO),c,
+			NumberBet nb = new NumberBet(t, now, Money.of(t.getPrice().getNumber(), EURO),c,
 					LocalDateTime.of(exp, t.getTimeLimit().toLocalTime()), nums,zusatz);
 
 			t.addBet(nb);
