@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 public class Item extends Product{
@@ -48,6 +49,14 @@ public class Item extends Product{
 
 	public double getPrice2() {
 		return getPrice().getNumber().doubleValue();
+	}
+
+	public String getFormatDate(){
+		DateTimeFormatter date = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+		String formatdate = date.format(timeLimit.toLocalDate());
+		DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm");
+		String formattime = time.format(timeLimit.toLocalTime());
+		return formatdate + "  " + formattime;
 	}
 
 }

@@ -110,11 +110,5 @@ public class Football extends Item {
 		return result;
 	}
 
-	public String getFormatDate(){
-		DateTimeFormatter date = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-		String formatdate = date.format(getTimeLimit().toLocalDate());
-		DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm");
-		String formattime = time.format(getTimeLimit().toLocalTime());
-		return formatdate + "  " + formattime;
-	}
+
 }

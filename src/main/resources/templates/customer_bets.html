@@ -29,11 +29,11 @@
                 <table>
                     <tr>
                         <td>Datum/Zeit der Abgabe: </td>
-                        <td th:text="${numbet.date}">heute</td>
+                        <td th:text="${numbet.DateFormat}">heute</td>
                     </tr>
                     <tr>
                         <td>Gültig bis: </td>
-                        <td th:text="${numbet.expiration}">heute</td>
+                        <td th:text="${numbet.FormatExp}">heute</td>
                     </tr>
                     <tr>
                         <td>Tipp: </td>
@@ -89,15 +89,15 @@
                     </tr>
                     <tr>
                         <td>Spieltag: </td>
-                        <td th:text="${footbet.matchDay}">FCB</td>
+                        <td th:text="${footbet.MatchDay}">FCB</td>
                     </tr>
                     <tr>
                         <td>Datum/Zeit der Abgabe: </td>
-                        <td th:text="${footbet.date}">FCB</td>
+                        <td th:text="${footbet.DateFormat}">FCB</td>
                     </tr>
                     <tr>
                         <td>Gültig bis: </td>
-                        <td th:text="${footbet.expiration}">heute</td>
+                        <td th:text="${footbet.FormatExp}">heute</td>
                     </tr>
                     <tr>
                         <td>Tipp: </td>
@@ -105,7 +105,7 @@
                     </tr>
                     <tr>
                         <td>Einsatz: </td>
-                        <td th:text="${footbet.inset}" style="color: cornflowerblue">10</td>
+                        <td th:text="${footbet.inset}" >10</td>
                     </tr>
                     <tr>
                         <td>Status: </td>
