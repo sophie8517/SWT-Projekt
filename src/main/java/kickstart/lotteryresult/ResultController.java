@@ -28,6 +28,7 @@ public class ResultController {
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 		if(today.equals(t.getTimeLimit().toLocalDate())) {
 
+<<<<<<< HEAD
 
 			List<NumberBet> wetten = t.getNumberBits();
 			List<NumberBet> wetten_valid = new ArrayList<>();
@@ -38,6 +39,10 @@ public class ResultController {
 			t.setWinNumbers(gewinnzahlen);
 			t.setAdditionalNumber(zusatzzahl);
 		/*
+=======
+		NumberLottery numlot = new NumberLottery();
+		//List<Integer> gewinnzahlen = numlot.getWinNumbers();
+>>>>>>> 44b366b5d9e497327ffebb5e9cd9df9c9218b003
 		List<Integer> gewinnzahlen = new ArrayList<>();
 		gewinnzahlen.add(1);
 		gewinnzahlen.add(2);
@@ -46,6 +51,7 @@ public class ResultController {
 		gewinnzahlen.add(5);
 		gewinnzahlen.add(6);
 
+<<<<<<< HEAD
 		 */
 
 			for (NumberBet nb : wetten) {
@@ -64,6 +70,18 @@ public class ResultController {
 				} else {
 					nb.changeStatus(Status.LOSS);
 				}
+=======
+		for(NumberBet nb: wetten){
+			if(!nb.getExpiration().isBefore(LocalDate.now())){
+				wetten_valid.add(nb);
+			}
+		}
+		for(NumberBet nb: wetten_valid){
+			if(nb.getNumbers().containsAll(gewinnzahlen)){
+				nb.changeStatus(Status.WIN);
+			} else{
+				nb.changeStatus(Status.LOSS);
+>>>>>>> 44b366b5d9e497327ffebb5e9cd9df9c9218b003
 			}
 			lotteryCatalog.save(t);
 

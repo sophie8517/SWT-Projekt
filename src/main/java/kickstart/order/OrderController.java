@@ -75,6 +75,7 @@ public class OrderController {
 
 		Football f = (Football) lotteryCatalog.findById(id).get();
 		FootballBet bet = f.findbyBetId(bet_id);
+<<<<<<< HEAD
 
 		if(bet != null) {
 			if(date.isBefore(f.getTimeLimit().minusMinutes(5))) {
@@ -132,6 +133,15 @@ public class OrderController {
 			}
 		}
 
+=======
+		if(bet != null){
+			bet.setInset(money);
+			lotteryCatalog.save(f);
+			//model.addAttribute("raisedMoney",bet.getInset());
+			return "redirect:/";
+		}
+
+>>>>>>> 44b366b5d9e497327ffebb5e9cd9df9c9218b003
 		return "redirect:/";
 	}
 
@@ -144,6 +154,7 @@ public class OrderController {
 
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 		NumberBet bet = t.findbyBetId(bet_id);
+<<<<<<< HEAD
 		if(bet != null) {
 			if (date.isBefore(t.getTimeLimit().minusMinutes(5))) {
 				var customer = bet.getCustomer();
@@ -209,6 +220,12 @@ public class OrderController {
 			}else{
 				return "error.html";
 			}
+=======
+		if(bet != null){
+
+			bet.setInset(money);
+			lotteryCatalog.save(t);
+>>>>>>> 44b366b5d9e497327ffebb5e9cd9df9c9218b003
 		}
 
 

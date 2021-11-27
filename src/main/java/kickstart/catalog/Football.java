@@ -20,13 +20,21 @@ public class Football extends Item {
 	@OneToOne (cascade = CascadeType.ALL)
 	private Team host, guest;
 	private String league, logoHost, logoGuest;
+<<<<<<< HEAD
 	//private int score;
+=======
+	private int score;
+>>>>>>> 44b366b5d9e497327ffebb5e9cd9df9c9218b003
 	private Ergebnis ergebnis = Ergebnis.LEER;
 
 	//private boolean check = true;
 
+<<<<<<< HEAD
 
 	public Football(String name, LocalDateTime date, Money price, ItemType type, Team host, Team guest, String league,
+=======
+	public Football(String name, LocalDate date, Money price, ItemType type, Team host, Team guest, String league,
+>>>>>>> 44b366b5d9e497327ffebb5e9cd9df9c9218b003
 					String logoHost, String logoGuest){
 		super(name, date, price, type);
 		this.host = host;

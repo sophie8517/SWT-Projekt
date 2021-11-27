@@ -28,6 +28,7 @@ public class Ticket extends Item {
 
 
 
+<<<<<<< HEAD
 	public Ticket(String name, LocalDateTime timeLimit, Money price, ItemType type){
 		super(name, timeLimit, price, type);
 
@@ -40,6 +41,12 @@ public class Ticket extends Item {
 		winNumbers.add(6);
 
 		 */
+=======
+	public Ticket(String name, LocalDate date, Money price, ItemType type){
+		super(name, date, price, type);
+		numberBets = new ArrayList<>();
+		setTimeLimit(LocalDateTime.of(LocalDate.of(2021,11,28), LocalTime.of(15,00)));
+>>>>>>> 44b366b5d9e497327ffebb5e9cd9df9c9218b003
 	}
 	public Ticket(){}
 
