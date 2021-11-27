@@ -58,22 +58,27 @@
                     <td th:text="${footbet.guest}">FCB</td>
                 </tr>
                 <tr>
-                    <td>Datum der Abgabe: </td>
+                    <td>Datum/Zeit der Abgabe: </td>
                     <td th:text="${footbet.date}">FCB</td>
+                </tr>
+                <tr>
+                    <td>Gültig bis: </td>
+                    <td th:text="${footbet.expiration}">heute</td>
                 </tr>
                 <tr>
                     <td>Tipp: </td>
                     <td th:text="${footbet.tip}">FCB</td>
                 </tr>
                 <tr>
-                    <td>Status: </td>
-                    <td th:text="${footbet.status}" style="color: cornflowerblue">offen</td>
-                </tr>
-                <tr>
                     <td>Einsatz: </td>
                     <td th:text="${footbet.inset}" style="color: cornflowerblue">10</td>
                 </tr>
+                <tr>
+                    <td>Status: </td>
+                    <td th:text="${footbet.status}" style="color: cornflowerblue">offen</td>
+                </tr>
             </table>
+            <br>
             <form th:method="post" sec:authorize="hasRole('CUSTOMER')" th:action="@{/changeFootTip}">
                 <input type="hidden" name="pid" value="0" th:value="${footbet.item.id}"/>
                 <input type="hidden" name="betid" value="0" th:value="${footbet.id}"/>

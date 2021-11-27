@@ -28,8 +28,12 @@
         <div class="box-three">
             <table>
                 <tr>
-                    <td>Datum der Abgabe: </td>
+                    <td>Datum/Zeit der Abgabe: </td>
                     <td th:text="${numbet.date}">heute</td>
+                </tr>
+                <tr>
+                    <td>Gültig bis: </td>
+                    <td th:text="${numbet.expiration}">heute</td>
                 </tr>
                 <tr>
                     <td>Tipp: </td>
@@ -59,7 +63,7 @@
                 <button class="button" type="submit" th:text="#{numbet.raisebet}" >Einsatz ändern</button>
 
             </form>-->
-
+            <br>
             <form th:method="post" sec:authorize="hasRole('CUSTOMER')"  th:action="@{/changeNumbetTip}" style="font-size: 20px">
                 <input type="hidden" name="pid" value="0" th:value="${numbet.item.id}"/>
                 <input type="hidden" name="betid" value="0" th:value="${numbet.id}"/>
