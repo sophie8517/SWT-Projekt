@@ -73,17 +73,24 @@ public class OrderController {
 
 		Money money = Money.of(inset, EURO);
 
+
 		Football f = (Football) lotteryCatalog.findById(id).get();
 		FootballBet bet = f.findbyBetId(bet_id);
 
 		if(bet != null) {
 			if(date.isBefore(f.getTimeLimit().minusMinutes(5))) {
 				var customer = bet.getCustomer();
-				customer.setBalance(customer.getBalance().add(bet.getInset()));
-				bet.setInset(money);
-				customer.setBalance(customer.getBalance().subtract(bet.getInset()));
-				customerRepository.save(customer);
-				lotteryCatalog.save(f);
+				Money diff = money.subtract(bet.getInset());
+				if(customer.getBalance().isGreaterThanOrEqualTo(diff)){
+					customer.setBalance(customer.getBalance().add(bet.getInset()));
+					bet.setInset(money);
+					customer.setBalance(customer.getBalance().subtract(bet.getInset()));
+					customerRepository.save(customer);
+					lotteryCatalog.save(f);
+				}else{
+					return "error";
+				}
+
 				//model.addAttribute("raisedMoney",bet.getInset());
 				//return "redirect:/";
 			}else{
@@ -91,7 +98,7 @@ public class OrderController {
 			}
 		}
 
-		return "redirect:/";
+		return "redirect:/customer_bets";
 	}
 
 	@GetMapping("/changeFoot")
@@ -133,7 +140,7 @@ public class OrderController {
 		}
 
 
-		return "redirect:/";
+		return "redirect:/customer_bets";
 	}
 
 	@PostMapping("/raiseNumBet")
@@ -148,18 +155,24 @@ public class OrderController {
 		if(bet != null) {
 			if (date.isBefore(t.getTimeLimit().minusMinutes(5))) {
 				var customer = bet.getCustomer();
-				customer.setBalance(customer.getBalance().add(bet.getInset()));
-				bet.setInset(money);
-				customer.setBalance(customer.getBalance().subtract(bet.getInset()));
-				customerRepository.save(customer);
-				lotteryCatalog.save(t);
+				Money diff = money.subtract(bet.getInset());
+				if(customer.getBalance().isGreaterThanOrEqualTo(diff)){
+					customer.setBalance(customer.getBalance().add(bet.getInset()));
+					bet.setInset(money);
+					customer.setBalance(customer.getBalance().subtract(bet.getInset()));
+					customerRepository.save(customer);
+					lotteryCatalog.save(t);
+				}else{
+					return "error";
+				}
+
 			}else{
 				return "time_up.html";
 			}
 		}
 
 
-		return "redirect:/";
+		return "redirect:/customer_bets";
 	}
 
 	@GetMapping("/changeNums")
@@ -212,7 +225,7 @@ public class OrderController {
 		}
 
 
-		return "redirect:/";
+		return "redirect:/customer_bets";
 
 	}
 
