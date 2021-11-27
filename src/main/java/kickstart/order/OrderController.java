@@ -58,7 +58,7 @@ public class OrderController {
 
 	@PostMapping("/raiseFootBet")
 	public String raiseFootBet(Model model, @RequestParam("pid") ProductIdentifier id,
-							   @RequestParam("betid")long bet_id, @RequestParam("newinset")double inset){
+							   @RequestParam("betid")long bet_id, @RequestParam("newinsetfoot")double inset){
 		/*
 		LocalDateTime date = LocalDateTime.now();
 		LocalDateTime time = date.plusMinutes(5);

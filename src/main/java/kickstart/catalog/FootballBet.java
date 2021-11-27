@@ -53,5 +53,9 @@ public class FootballBet extends Bet {
 		Football f = (Football) getItem();
 		return f.getGuest();
 	}
+	public String getmatchDay(){
+		Football f = (Football) getItem();
+		return f.getFormatDate();
+	}
 
 }

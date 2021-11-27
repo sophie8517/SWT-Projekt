@@ -88,6 +88,10 @@
                         <td th:text="${footbet.guest}">FCB</td>
                     </tr>
                     <tr>
+                        <td>Spieltag: </td>
+                        <td th:text="${footbet.matchDay}">FCB</td>
+                    </tr>
+                    <tr>
                         <td>Datum/Zeit der Abgabe: </td>
                         <td th:text="${footbet.date}">FCB</td>
                     </tr>
@@ -113,7 +117,7 @@
                     <input type="hidden" name="pid" value="0" th:value="${footbet.item.id}"/>
                     <input type="hidden" name="betid" value="0" th:value="${footbet.id}"/>
                     <label th:text="#{footbet.newinset}" >Dein Einsatz:  </label>
-                    <input field="*{newinset}" id="newinset" type="number" step=".01" name="newinset" th:min="${footbet.einsatz2}" required="required"/>
+                    <input field="*{newinsetfoot}" id="newinsetfoot" type="number" step=".01" name="newinsetfoot" th:min="${footbet.einsatz2}" required="required"/>
                     </br></br>
 
                     <button class="button" type="submit" th:text="#{footbet.raisebet}" >Einsatz ändern</button>
