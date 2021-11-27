@@ -69,7 +69,7 @@ public class ResultController {
 
 			return "redirect:/";
 		}
-		return "error.html"; //noch ändern zu noch keine Auswertung möglich
+		return "time_up.html"; //noch ändern zu noch keine Auswertung möglich
 
 	}
 

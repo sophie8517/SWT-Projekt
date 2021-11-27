@@ -31,8 +31,24 @@
                 <div class="box-three">
                     <table>
                         <tr>
+                            <td>Preis: </td>
+                            <td><div th:text="${ticket.price}">preis</div></td>
+                        </tr>
+                        <tr>
+                            <td><br></td>
+                            <td><br></td>
+                        </tr>
+                        <tr>
                             <td>letzten Gewinnzahlen: </td>
                             <td><div th:text="${ticket.winNumbers}">liste</div></td>
+                        </tr>
+                        <tr>
+                            <td><br></td>
+                            <td><br></td>
+                        </tr>
+                        <tr>
+                            <td>nächste Ziehung: </td>
+                            <td><div th:text="${ticket.FormatDate}">datum</div></td>
                         </tr>
                     </table>
                 </div>
