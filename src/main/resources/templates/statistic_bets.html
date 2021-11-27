@@ -19,33 +19,59 @@
   <main style="height: 1000px">
     <h3>Verluste und Einkommen</h3>
 
+    <h4>Footballtoto</h4>
     <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center" style="margin: auto; border-color: white">
       <thead>
-        <th>Fußball</th>
-        <th>Einkommen</th>
-        <th>Verluste</th>
-      </thead>
       <tr>
-        <td><div th:text="${football}"></div>
+        <th>Heim</th>
+        <th>Gast</th>
+        <th>Datum</th>
+        <th>Tipp</th>
+        <th>Status</th>
+        <th>Einkommen/Verluste</th>
+      </tr>
+      </thead>
+      <tr th:each="footbet : ${footballBets}">
+        <td th:text="${footbet.host}">FCB</td>
+        <td th:text="${footbet.guest}">FCB</td>
+        <td th:text="${footbet.date}">date</td>
+        <td th:text="${footbet.tip}">tip</td>
+        <td th:text="${footbet.status}" style="color: cornflowerblue">status</td>
+        <td th:switch="${footbet.status}">
+          <p th:case="${footbet.status.OPEN}" th:text="WARTEN"></p>
+          <p th:case="${footbet.status.WIN}" th:text="15"></p>
+          <p th:case="${footbet.status.LOSS}" th:text="'-' + ${footbet.getEinsatz2()}"></p>
+        </td>
+
       </tr>
     </table>
 
     <br><br>
 
+    <h4>Zahlenlotterie</h4>
     <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center" style="margin: auto; border-color: white">
-
       <thead>
-      <th>Zahlen</th>
-      <th>Einkommen</th>
-      <th>Verluste</th>
-      </thead>
       <tr>
-        <td><div th:text="${number}"></div>
+        <th>Datum</th>
+        <th>Zahlen</th>
+        <th>Einsatz</th>
+        <th>Zustand</th>
+        <th>Einkommen/Verluste</th>
       </tr>
-
-
-
+      </thead>
+      <tr th:each="numbet : ${numberBets}">
+        <td th:text="${numbet.date}">heute</td>
+        <td th:text="${numbet.numbers}">zahlen</td>
+        <td th:text="${numbet.inset}">10 Euro</td>
+        <td th:text="${numbet.status}" style="color: cornflowerblue">offen</td>
+        <td th:switch="${numbet.status}">
+          <p th:case="${numbet.status.OPEN}" th:text="WARTEN"></p>
+          <p th:case="${numbet.status.WIN}" th:text="2*${numbet.getEinsatz2()}"></p>
+          <p th:case="${numbet.status.LOSS}" th:text="'-' + ${numbet.getEinsatz2()}"></p>
+        </td>
+      </tr>
     </table>
+
   </main>
 
   <footer>
