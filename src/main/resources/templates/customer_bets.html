@@ -63,7 +63,7 @@
                     <input type="hidden" name="betid" value="0" th:value="${numbet.id}"/>
                     <table>
                         <tr>
-                            <td style="width:210px"><label th:text="#{numbet.newinset}" >Neuer Einsatz</label></td>
+                            <td style="width:210px">Neuer Einsatz: </td>
                             <td><input field="*{newinset}" id="newinset" type="number" step=".01" name="newinset" th:min="${numbet.einsatz2}" required="required"/></td>
                         </tr>
                     </table>
@@ -128,7 +128,7 @@
                     <input type="hidden" name="betid" value="0" th:value="${footbet.id}"/>
                     <table>
                         <tr>
-                            <td style="width:210px"><label th:text="#{footbet.newinset}" >Neuer Einsatz</label></td>
+                            <td style="width:210px">Neuer Einsatz: </td>
                             <td><input field="*{newinsetfoot}" id="newinsetfoot" type="number" step=".01" name="newinsetfoot" th:min="${footbet.einsatz2}" required="required"/></td>
                         </tr>
                     </table>
