@@ -29,7 +29,11 @@
                 <table>
                     <tr>
                         <td>Datum/Zeit der Abgabe: </td>
-                        <td th:text="${numbet.date}">heute</td>
+                        <td th:text="${numbet.DateFormat}">heute</td>
+                    </tr>
+                    <tr>
+                        <td>Gültig bis: </td>
+                        <td th:text="${numbet.FormatExp}">heute</td>
                     </tr>
                     <tr>
                         <td>Gültig bis: </td>
@@ -57,8 +61,14 @@
                 <form th:method="post" sec:authorize="hasRole('CUSTOMER')" th:action="@{/raiseNumBet}">
                     <input type="hidden" name="pid" value="0" th:value="${numbet.item.id}"/>
                     <input type="hidden" name="betid" value="0" th:value="${numbet.id}"/>
-                    <label th:text="#{numbet.newinset}" >Dein Einsatz:  </label>
-                    <input field="*{newinset}" id="newinset" type="number" step=".01" name="newinset" th:min="${numbet.einsatz2}" required="required"/>
+                    <table>
+                        <tr>
+                            <td style="width:210px"><label th:text="#{numbet.newinset}" >Neuer Einsatz</label></td>
+                            <td><input field="*{newinset}" id="newinset" type="number" step=".01" name="newinset" th:min="${numbet.einsatz2}" required="required"/></td>
+                        </tr>
+                    </table>
+
+
                     </br></br>
 
                     <button class="button" type="submit" th:text="#{numbet.raisebet}" >Einsatz ändern</button>
@@ -88,12 +98,16 @@
                         <td th:text="${footbet.guest}">FCB</td>
                     </tr>
                     <tr>
+                        <td>Spieltag: </td>
+                        <td th:text="${footbet.MatchDay}">FCB</td>
+                    </tr>
+                    <tr>
                         <td>Datum/Zeit der Abgabe: </td>
-                        <td th:text="${footbet.date}">FCB</td>
+                        <td th:text="${footbet.DateFormat}">FCB</td>
                     </tr>
                     <tr>
                         <td>Gültig bis: </td>
-                        <td th:text="${footbet.expiration}">heute</td>
+                        <td th:text="${footbet.FormatExp}">heute</td>
                     </tr>
                     <tr>
                         <td>Tipp: </td>
@@ -101,7 +115,7 @@
                     </tr>
                     <tr>
                         <td>Einsatz: </td>
-                        <td th:text="${footbet.inset}" style="color: cornflowerblue">10</td>
+                        <td th:text="${footbet.inset}" >offen</td>
                     </tr>
                     <tr>
                         <td>Status: </td>
@@ -112,8 +126,14 @@
                 <form th:method="post" sec:authorize="hasRole('CUSTOMER')" th:action="@{/raiseFootBet}">
                     <input type="hidden" name="pid" value="0" th:value="${footbet.item.id}"/>
                     <input type="hidden" name="betid" value="0" th:value="${footbet.id}"/>
-                    <label th:text="#{footbet.newinset}" >Dein Einsatz:  </label>
-                    <input field="*{newinset}" id="newinset" type="number" step=".01" name="newinset" th:min="${footbet.einsatz2}" required="required"/>
+                    <table>
+                        <tr>
+                            <td style="width:210px"><label th:text="#{footbet.newinset}" >Neuer Einsatz</label></td>
+                            <td><input field="*{newinsetfoot}" id="newinsetfoot" type="number" step=".01" name="newinsetfoot" th:min="${footbet.einsatz2}" required="required"/></td>
+                        </tr>
+                    </table>
+
+
                     </br></br>
 
                     <button class="button" type="submit" th:text="#{footbet.raisebet}" >Einsatz ändern</button>

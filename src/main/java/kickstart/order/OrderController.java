@@ -60,7 +60,7 @@ public class OrderController {
 
 	@PostMapping("/raiseFootBet")
 	public String raiseFootBet(Model model, @RequestParam("pid") ProductIdentifier id,
-							   @RequestParam("betid")long bet_id, @RequestParam("newinset")double inset){
+							   @RequestParam("betid")long bet_id, @RequestParam("newinsetfoot")double inset){
 		/*
 		LocalDateTime date = LocalDateTime.now();
 		LocalDateTime time = date.plusMinutes(5);
@@ -87,7 +87,7 @@ public class OrderController {
 				//model.addAttribute("raisedMoney",bet.getInset());
 				//return "redirect:/";
 			}else{
-				return "error.html";
+				return "time_up.html";
 			}
 		}
 
@@ -128,7 +128,7 @@ public class OrderController {
 				bet.setTippedStatus(status);
 				lotteryCatalog.save(f);
 			}else{
-				return "error.html";
+				return "time_up.html";
 			}
 		}
 
@@ -154,10 +154,9 @@ public class OrderController {
 				customerRepository.save(customer);
 				lotteryCatalog.save(t);
 			}else{
-				return "error.html";
+				return "time_up.html";
 			}
 		}
-
 
 
 		return "redirect:/";
@@ -208,7 +207,7 @@ public class OrderController {
 
 				lotteryCatalog.save(t);
 			}else{
-				return "error.html";
+				return "time_up.html";
 			}
 		}
 

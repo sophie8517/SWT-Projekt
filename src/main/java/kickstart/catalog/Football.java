@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import kickstart.customer.Customer;
@@ -71,14 +72,6 @@ public class Football extends Item {
 	}
 
 
-	/*
-	public boolean getCheck(){
-		boolean t = host.getName().equals("FC Bayern München") || guest.getName().equals("FC Bayern München");
-		return t;
-	}
-
-	 */
-
 	public List<FootballBet> getFootballBets() {
 		return footballBets;
 	}
@@ -116,4 +109,6 @@ public class Football extends Item {
 		}
 		return result;
 	}
+
+
 }

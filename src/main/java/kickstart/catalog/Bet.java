@@ -6,6 +6,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import kickstart.customer.Customer;
 
 
@@ -61,6 +63,21 @@ public class Bet implements Serializable {
 
 	public LocalDateTime getDate() {
 		return date;
+	}
+
+	public String getDateFormat(){
+		DateTimeFormatter wert = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+		String formatdate = wert.format(date.toLocalDate());
+		DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm");
+		String formattime = time.format(date.toLocalTime());
+		return formatdate + "  " + formattime;
+	}
+	public String getFormatExp(){
+		DateTimeFormatter date = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+		String formatdate = date.format(expiration.toLocalDate());
+		DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm");
+		String formattime = time.format(expiration.toLocalTime());
+		return formatdate + "  " + formattime;
 	}
 
 

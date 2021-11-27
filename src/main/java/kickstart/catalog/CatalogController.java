@@ -195,6 +195,9 @@ public class CatalogController {
 
 			return "redirect:/";
 		}
+
+
+
 	}
 
 
@@ -236,12 +239,12 @@ public class CatalogController {
 			lotteryCatalog.save(foot);
 			//customerRepository.save(customer);
 
+
 			return "redirect:/";
 		}
-		return "error.html";
+		return "time_up.html";
 
 	}
-
 	@PostMapping("/wronginput")
 	String wrong_input(){
 
