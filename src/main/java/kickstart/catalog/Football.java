@@ -6,6 +6,8 @@ import org.javamoney.moneta.Money;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import kickstart.customer.Customer;
@@ -17,19 +19,24 @@ public class Football extends Item {
 	private List<FootballBet> footballBets;
 	@OneToOne (cascade = CascadeType.ALL)
 	private Team host, guest;
-	private String league, logo_host, logo_guest;
-	private int score;
+	private String league, logoHost, logoGuest;
+	//private int score;
 	private Ergebnis ergebnis = Ergebnis.LEER;
 
+	//private boolean check = true;
 
-	public Football(String name, LocalDate date, Money price, ItemType type, Team host, Team guest, String league, String logo_host, String logo_guest){
+
+	public Football(String name, LocalDateTime date, Money price, ItemType type, Team host, Team guest, String league,
+					String logoHost, String logoGuest){
 		super(name, date, price, type);
 		this.host = host;
 		this.guest = guest;
 		this.league = league;
-		this.logo_host = logo_host;
-		this.logo_guest = logo_guest;
+		this.logoHost = logoHost;
+		this.logoGuest = logoGuest;
 		footballBets = new ArrayList<>();
+
+
 	}
 
 	public Football() {
@@ -55,13 +62,22 @@ public class Football extends Item {
 		return league;
 	}
 
-	public String getLogo_host() {
-		return logo_host;
+	public String getLogoHost() {
+		return logoHost;
 	}
 
-	public String getLogo_guest() {
-		return logo_guest;
+	public String getLogoGuest() {
+		return logoGuest;
 	}
+
+
+	/*
+	public boolean getCheck(){
+		boolean t = host.getName().equals("FC Bayern München") || guest.getName().equals("FC Bayern München");
+		return t;
+	}
+
+	 */
 
 	public List<FootballBet> getFootballBets() {
 		return footballBets;

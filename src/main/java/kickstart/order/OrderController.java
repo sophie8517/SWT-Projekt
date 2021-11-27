@@ -3,10 +3,7 @@ import kickstart.catalog.*;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
+import java.util.*;
 
 
 import kickstart.customer.*;
@@ -31,11 +28,13 @@ import static org.salespointframework.core.Currencies.EURO;
 public class OrderController {
 
 	private final CustomerManagement customerManagement;
+	private CustomerRepository customerRepository;
 	private LotteryCatalog lotteryCatalog;
 
-	OrderController(CustomerManagement customerManagement, LotteryCatalog lotteryCatalog){
+	OrderController(CustomerManagement customerManagement, LotteryCatalog lotteryCatalog, CustomerRepository customerRepository){
 		this.customerManagement = customerManagement;
 		this.lotteryCatalog = lotteryCatalog;
+		this.customerRepository = customerRepository;
 	}
 
 	@PreAuthorize("hasAnyRole('CUSTOMER', 'ADMIN')")
@@ -60,7 +59,8 @@ public class OrderController {
 	}
 
 	@PostMapping("/raiseFootBet")
-	public String raiseFootBet(Model model, @RequestParam("pid") ProductIdentifier id,@RequestParam("betid")long bet_id, @RequestParam("newinset")double inset){
+	public String raiseFootBet(Model model, @RequestParam("pid") ProductIdentifier id,
+							   @RequestParam("betid")long bet_id, @RequestParam("newinset")double inset){
 		/*
 		LocalDateTime date = LocalDateTime.now();
 		LocalDateTime time = date.plusMinutes(5);
@@ -75,36 +75,145 @@ public class OrderController {
 
 		Football f = (Football) lotteryCatalog.findById(id).get();
 		FootballBet bet = f.findbyBetId(bet_id);
-		if(bet == null){
 
-		}
-		else{
-			bet.setInset(money);
-			lotteryCatalog.save(f);
-			//model.addAttribute("raisedMoney",bet.getInset());
+		if(bet != null) {
+			if(date.isBefore(f.getTimeLimit().minusMinutes(5))) {
+				var customer = bet.getCustomer();
+				customer.setBalance(customer.getBalance().add(bet.getInset()));
+				bet.setInset(money);
+				customer.setBalance(customer.getBalance().subtract(bet.getInset()));
+				customerRepository.save(customer);
+				lotteryCatalog.save(f);
+				//model.addAttribute("raisedMoney",bet.getInset());
+				//return "redirect:/";
+			}else{
+				return "error.html";
+			}
 		}
 
+		return "redirect:/";
+	}
+
+	@GetMapping("/changeFoot")
+	public String changeFoot(Model model, @RequestParam("item")ProductIdentifier id, @RequestParam("betid")long bid){
+		Football f = (Football) lotteryCatalog.findById(id).get();
+		FootballBet bet = f.findbyBetId(bid);
+
+		model.addAttribute("footbet",bet);
+
+		return "changeFootTip.html";
+	}
+
+	@PostMapping("/changeFootTip")
+	public String changeFootbetTip(@RequestParam("pid")ProductIdentifier id,@RequestParam("betid")long bet_id,
+								   @RequestParam("newtip")int number){
+
+		LocalDateTime date = LocalDateTime.now();
+
+
+		Ergebnis  status;
+
+		if(number == 1){
+			status = Ergebnis.GASTSIEG;
+		} else if(number == 2){
+			status = Ergebnis.HEIMSIEG;
+		} else{
+			status = Ergebnis.UNENTSCHIEDEN;
+		}
+
+		Football f = (Football) lotteryCatalog.findById(id).get();
+		FootballBet bet = f.findbyBetId(bet_id);
+		if(bet != null) {
+			if(date.isBefore(f.getTimeLimit().minusMinutes(5))) {
+				bet.setTippedStatus(status);
+				lotteryCatalog.save(f);
+			}else{
+				return "error.html";
+			}
+		}
 
 		return "redirect:/";
 	}
 
 	@PostMapping("/raiseNumBet")
-	public String raiseNumBet(Model model, @RequestParam("pid") ProductIdentifier id,@RequestParam("betid")long bet_id, @RequestParam("newinset")double inset){
+	public String raiseNumBet(Model model, @RequestParam("pid") ProductIdentifier id,@RequestParam("betid")long bet_id,
+							  @RequestParam("newinset")double inset){
 
 		Money money = Money.of(inset, EURO);
+		LocalDateTime date = LocalDateTime.now();
 
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 		NumberBet bet = t.findbyBetId(bet_id);
-		if(bet == null){
-
+		if(bet != null) {
+			if (date.isBefore(t.getTimeLimit().minusMinutes(5))) {
+				var customer = bet.getCustomer();
+				customer.setBalance(customer.getBalance().add(bet.getInset()));
+				bet.setInset(money);
+				customer.setBalance(customer.getBalance().subtract(bet.getInset()));
+				customerRepository.save(customer);
+				lotteryCatalog.save(t);
+			}else{
+				return "error.html";
+			}
 		}
-		else {
-			bet.setInset(money);
-			lotteryCatalog.save(t);
+
+
+
+		return "redirect:/";
+	}
+
+	@GetMapping("/changeNums")
+	public String changeNums(Model model, @RequestParam("item")ProductIdentifier id, @RequestParam("betid")long bet_id){
+
+		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
+		NumberBet bet = t.findbyBetId(bet_id);
+
+		model.addAttribute("numbet", bet);
+		return "changeNumTip.html";
+	}
+
+	@PostMapping("/changeNumbetTip")
+	public String changeNumbetTip(@RequestParam("pid") ProductIdentifier id,@RequestParam("betid")long bet_id,
+								  @RequestParam("zahl1") int zahl1, @RequestParam("zahl2") int zahl2,
+								  @RequestParam("zahl3")int zahl3, @RequestParam("zahl4")int zahl4,
+								  @RequestParam("zahl5")int zahl5, @RequestParam("zahl6")int zahl6,
+								  @RequestParam("zusatz")int zusatz){
+
+		LocalDateTime date = LocalDateTime.now();
+
+		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
+		NumberBet bet = t.findbyBetId(bet_id);
+		if(bet != null) {
+			if (date.isBefore(t.getTimeLimit().minusMinutes(5))) {
+				List<Integer> nums = new ArrayList<>();
+				Set<Integer> checker = new HashSet<>();
+				checker.add(zahl1);
+				checker.add(zahl2);
+				checker.add(zahl3);
+				checker.add(zahl4);
+				checker.add(zahl5);
+				checker.add(zahl6);
+				//checker.add(zusatz);
+
+				if(checker.size() == 6 && !checker.contains(zusatz)){
+					nums.addAll(checker);
+
+				} else{
+
+					return "wronginput.html";
+				}
+				bet.setNumbers(nums);
+				bet.setAdditionalNum(zusatz);
+
+				lotteryCatalog.save(t);
+			}else{
+				return "error.html";
+			}
 		}
 
 
 		return "redirect:/";
+
 	}
 
 
@@ -167,16 +276,13 @@ public class OrderController {
 		if (temp.equals(time) || time.isAfter(temp)) {
 			//customer.getBalance().add(Money.of(15, EURO));
 			for (FootballBet fakeBet : result) {
-				if (fakeBet.equals(footballBet)) {
-					if(fakeBet.getTip().equals(match.result())){
+				if (fakeBet.equals(footballBet) && fakeBet.getTip().equals(match.result())) {
+
 						Money income = customer.getBalance().add(Money.of(15, EURO));
 						customer.setBalance(income);
-					}
+
 				}
 			}
-		}
-
-		if (temp.equals(time) || time.isAfter(temp)) {
 			for(NumberBet nb: t.getNumberBetsbyCustomer(customer)){
 				if(nb.getStatus()==Status.WIN){
 					Money income = customer.getBalance().add(Money.of(t.getPrice2(),EURO));

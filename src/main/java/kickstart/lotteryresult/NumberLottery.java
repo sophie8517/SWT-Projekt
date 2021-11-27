@@ -6,15 +6,23 @@ import java.util.List;
 import java.util.Random;
 
 public class NumberLottery {
-	//private List<Integer> win_numbers = new ArrayList<>();
+	private List<Integer> winNumbers = new ArrayList<>();
+	private int additionalN;
 
-	public NumberLottery(){}
+	/*
+	This is an empty constructor
+	 */
+	public NumberLottery(){
+		this.winNumbers = generate_nums();
+		this.additionalN = winNumbers.get(6);
+		this.winNumbers.remove(additionalN);
+	}
 
 	public List<Integer> generate_nums(){
 		List<Integer> result = new ArrayList<>();
 		Random random = new Random();
 
-		while(result.size() < 6){
+		while(result.size() != 7){
 			int num =Math.abs((random.nextInt() % 49)) + 1;
 			if(!result.contains(num)){
 				result.add(num);
@@ -22,15 +30,25 @@ public class NumberLottery {
 		}
 		return result;
 	}
-/*
-	public static void main(String[] args) {
-		NumberLottery l = new NumberLottery();
-		List<Integer> liste = l.generate_nums();
-		System.out.println(liste);
-		LocalDate d = LocalDate.now();
-		System.out.println(d.getDayOfWeek().getValue());
+
+	public List<Integer> getWinNumbers() {
+		return winNumbers;
 	}
 
- */
+	public int getAdditionalN() {
+		return additionalN;
+	}
+	/*
+	public static void main(String[] args) {
+		LocalDate d = LocalDate.of(2021,12,28);
+		LocalDate e = d.plusDays(7);
+		System.out.println(d.getDayOfWeek());
+		System.out.println(e);
+		System.out.println(e.getDayOfWeek());
+	}
+
+	 */
+
+
 
 }

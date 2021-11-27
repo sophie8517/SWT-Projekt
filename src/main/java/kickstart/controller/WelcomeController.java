@@ -15,6 +15,7 @@ package kickstart.controller;/*
  */
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -28,5 +29,12 @@ public class WelcomeController {
 	@GetMapping("/myprofile")
 	public String proile(){
 		return "meinProfil";
+	}
+
+	@GetMapping("/contact")
+	String catalog(Model model){
+		model.addAttribute("title","kontakt.title");
+
+		return "contact";
 	}
 }

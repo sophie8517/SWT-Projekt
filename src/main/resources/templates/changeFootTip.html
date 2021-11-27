@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device - width, initial - scale = 1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>🍀 Mach Dein Glück!! 🍀</title>
+    <link th:href="@{resources/css/style_foot.css}" rel="stylesheet"  type="text/css" href="../static/resources/css/style_foot.css">
+</head>
+<body class="backgrounds">
+
+<!--<nav>
+    <a href="home.html">HOME</a>
+    <a class="item" href="contact.html" th:href="@{/contact}" th:text="#{nav.contact}">KONTAKT</a>
+    <a href="meinProfil.html">MEIN PROFIL</a>
+    <a href="1_catalog.html">KATALOG</a>
+</nav>-->
+<nav th:include="navigation :: navigation" class="navcontainer"></nav>
+<div class="container">
+    <main class="box-one">
+        <h2 class="box-two">Übersicht der Wetten</h2>
+    </main>
+
+        <div class="box-three">
+            <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center" style="margin: auto; border-color: white">
+                <tr>
+                    <th>Spielstand</th>
+                    <th>Wettoption</th>
+                </tr>
+                <tr>
+                    <td>Gast gewinnt</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Heim gewinnt</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>Unentschieden</td>
+                    <td>3</td>
+                </tr>
+            </table>
+        </div>
+
+
+
+        <div class="box-three">
+
+            <table>
+                <tr>
+                    <td>Heim: </td>
+                    <td th:text="${footbet.host}">FCB</td>
+                </tr>
+                <tr>
+                    <td>Gast: </td>
+                    <td th:text="${footbet.guest}">FCB</td>
+                </tr>
+                <tr>
+                    <td>Datum/Zeit der Abgabe: </td>
+                    <td th:text="${footbet.date}">FCB</td>
+                </tr>
+                <tr>
+                    <td>Gültig bis: </td>
+                    <td th:text="${footbet.expiration}">heute</td>
+                </tr>
+                <tr>
+                    <td>Tipp: </td>
+                    <td th:text="${footbet.tip}">FCB</td>
+                </tr>
+                <tr>
+                    <td>Einsatz: </td>
+                    <td th:text="${footbet.inset}" style="color: cornflowerblue">10</td>
+                </tr>
+                <tr>
+                    <td>Status: </td>
+                    <td th:text="${footbet.status}" style="color: cornflowerblue">offen</td>
+                </tr>
+            </table>
+            <br>
+            <form th:method="post" sec:authorize="hasRole('CUSTOMER')" th:action="@{/changeFootTip}">
+                <input type="hidden" name="pid" value="0" th:value="${footbet.item.id}"/>
+                <input type="hidden" name="betid" value="0" th:value="${footbet.id}"/>
+                <label th:text="#{footbet.newTip}" >Dein Tipp:  </label>
+                <input field="*{newtip}" id="newtip" type="number" min="1" max="3" name="newtip" required="required"/>
+                </br></br>
+
+                <button class="button" type="submit" th:text="#{footbet.changeTip}" >Tipp ändern</button>
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+
+
+<br>
+
+
+
+<br>
+
+<footer>
+    <p>Mach Dein Glück!! ©Copyright 2021©</p>
+</footer>
+
+</div>
+
+</body>
+</html>
