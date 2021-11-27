@@ -7,21 +7,15 @@ import java.util.Random;
 
 public class NumberLottery {
 	private List<Integer> winNumbers = new ArrayList<>();
-<<<<<<< HEAD
 	private int additionalN;
-=======
->>>>>>> 44b366b5d9e497327ffebb5e9cd9df9c9218b003
 
 	/*
 	This is an empty constructor
 	 */
 	public NumberLottery(){
 		this.winNumbers = generate_nums();
-<<<<<<< HEAD
 		this.additionalN = winNumbers.get(6);
 		this.winNumbers.remove(additionalN);
-=======
->>>>>>> 44b366b5d9e497327ffebb5e9cd9df9c9218b003
 	}
 
 	public List<Integer> generate_nums(){
@@ -40,13 +34,10 @@ public class NumberLottery {
 	public List<Integer> getWinNumbers() {
 		return winNumbers;
 	}
-<<<<<<< HEAD
 
 	public int getAdditionalN() {
 		return additionalN;
 	}
-=======
->>>>>>> 44b366b5d9e497327ffebb5e9cd9df9c9218b003
 	/*
 	public static void main(String[] args) {
 		LocalDate d = LocalDate.of(2021,12,28);
