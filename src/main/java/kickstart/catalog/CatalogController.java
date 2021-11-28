@@ -123,23 +123,14 @@ public class CatalogController {
 				   @RequestParam("zahl5")int zahl5, @RequestParam("zahl6")int zahl6,@RequestParam("zusatz")int zusatz,
 				   @RequestParam("dauer")int dauer, @LoggedIn Optional<UserAccount> userAccount) {
 
+
 		LocalDateTime now = LocalDateTime.now();
 
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 		Customer c = customerRepository.findCustomerByUserAccount(userAccount.get());
 		Money money = c.getBalance();
-		/*
-		LocalDate basisdate;
-		LocalDate dayofDraw;
+		Money price = Money.of(t.getPrice2(),EURO);
 
-		if(now.getDayOfWeek().getValue() == 7){
-			dayofDraw = now.toLocalDate().plusDays(7);
-
-		}else{
-			dayofDraw = t.getTimeLimit().toLocalDate();
-		}
-
-		 */
 		List<Integer> nums = new ArrayList<>();
 		Set<Integer> checker = new HashSet<>();
 		checker.add(zahl1);
@@ -160,35 +151,26 @@ public class CatalogController {
 		LocalDate exp;
 
 		if (dauer == 1) {
-			exp = LocalDate.now().plusDays(7);
-		}
-		if (dauer == 2) {
-			exp = LocalDate.now().plusMonths(1);
-		}
-		if (dauer == 3) {
-			exp = LocalDate.now().plusMonths(6);
-		} else {
-			exp = LocalDate.now().plusYears(1);
+			exp = now.toLocalDate().plusDays(7);
+		}else if (dauer == 2) {
+			exp = now.toLocalDate().plusMonths(1);
+		}else if (dauer == 3) {
+			exp = now.toLocalDate().plusMonths(6);
+		}else {
+			exp = now.toLocalDate().plusYears(1);
 		}
 
-		if (c.getBalance().isLessThan(t.getPrice())) {
-			return "error.html"; //change to error page for not enough money
-		}
 
-		//add: check if all numbers are different
-		NumberBet nb = new NumberBet(t, LocalDateTime.now(), Money.of(t.getPrice().getNumber(), EURO), c,
-				LocalDateTime.of(exp, t.getTimeLimit().toLocalTime()), nums, zusatz);
-
-		t.addBet(nb);
-
-		//c.addNumberBet(nb);
-
-		if (money.isLessThan(nb.getInset())) {
+		if (money.isLessThan(price)) {
 			return "error";
 		} else {
-			money = money.subtract(nb.getInset());
+			money = money.subtract(price);
 			c.setBalance(money);
 			customerRepository.save(c);
+			NumberBet nb = new NumberBet(t, now, price, c,
+					LocalDateTime.of(exp, t.getTimeLimit().toLocalTime()), nums, zusatz);
+
+			t.addBet(nb);
 
 			lotteryCatalog.save(t);
 			//customerRepository.save(c);
@@ -210,6 +192,7 @@ public class CatalogController {
 		Customer customer = customerRepository.findCustomerByUserAccount(userAccount.get());
 		LocalDateTime spieltag_minus24h = LocalDateTime.of(foot.getTimeLimit().toLocalDate().minusDays(1),LocalTime.of(0,0));
 		Money money = customer.getBalance();
+		Money insetMoney = Money.of(inset,EURO);
 		//System.out.println(inset);
 		if(!now.isAfter(spieltag_minus24h)){
 			Ergebnis  status;
@@ -223,24 +206,20 @@ public class CatalogController {
 			}
 
 
-			FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(inset, EURO), customer, foot.getTimeLimit(), status);
-			foot.addBet(f);
 
-			if (money.isLessThan(f.getInset())) {
+
+			if(money.isLessThan(insetMoney)){
 				return "error";
-			} else {
-				money = money.subtract(f.getInset());
+			} else{
+				money = money.subtract(insetMoney);
 				customer.setBalance(money);
 				customerRepository.save(customer);
+				FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(inset, EURO), customer, foot.getTimeLimit(), status);
+				foot.addBet(f);
+				lotteryCatalog.save(foot);
+				return "redirect:/";
 			}
 
-			//customer.addFootballBet(f);
-			System.out.println(foot.getFootballBets());
-			lotteryCatalog.save(foot);
-			//customerRepository.save(customer);
-
-
-			return "redirect:/";
 		}
 		return "time_up.html";
 
