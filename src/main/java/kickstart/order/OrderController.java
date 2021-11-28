@@ -31,7 +31,8 @@ public class OrderController {
 	private CustomerRepository customerRepository;
 	private LotteryCatalog lotteryCatalog;
 
-	OrderController(CustomerManagement customerManagement, LotteryCatalog lotteryCatalog, CustomerRepository customerRepository){
+	OrderController(CustomerManagement customerManagement, LotteryCatalog lotteryCatalog,
+					CustomerRepository customerRepository){
 		this.customerManagement = customerManagement;
 		this.lotteryCatalog = lotteryCatalog;
 		this.customerRepository = customerRepository;

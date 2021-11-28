@@ -185,7 +185,8 @@ public class CatalogController {
 
 
 	@PostMapping("/footbit")
-	String bet_foot(@RequestParam("pid")ProductIdentifier id, @RequestParam("fussballwette") int number, @RequestParam("inset") double inset, @LoggedIn Optional<UserAccount> userAccount){
+	String bet_foot(@RequestParam("pid")ProductIdentifier id, @RequestParam("fussballwette") int number,
+					@RequestParam("inset") double inset, @LoggedIn Optional<UserAccount> userAccount){
 
 		LocalDateTime now = LocalDateTime.now();
 		Football foot = (Football) lotteryCatalog.findById(id).get();
@@ -214,7 +215,8 @@ public class CatalogController {
 				money = money.subtract(insetMoney);
 				customer.setBalance(money);
 				customerRepository.save(customer);
-				FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(inset, EURO), customer, foot.getTimeLimit(), status);
+				FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(inset, EURO), customer,
+						foot.getTimeLimit(), status);
 				foot.addBet(f);
 				lotteryCatalog.save(foot);
 				return "redirect:/";
