@@ -207,9 +207,9 @@ public class OrderController {
 				checker.add(zahl4);
 				checker.add(zahl5);
 				checker.add(zahl6);
-				//checker.add(zusatz);
 
-				if(checker.size() == 6 && !checker.contains(zusatz)){
+
+				if(checker.size() == 6 ){
 					nums.addAll(checker);
 
 				} else{

@@ -33,8 +33,8 @@ public class ResultController {
 			List<NumberBet> wetten_valid = new ArrayList<>();
 
 			NumberLottery numlot = new NumberLottery();
-			List<Integer> gewinnzahlen = numlot.getWinNumbers();
-			int zusatzzahl = numlot.getAdditionalN();
+			List<Integer> gewinnzahlen = numlot.generate_nums();
+			int zusatzzahl = numlot.generateAdditionalNumber();
 			t.setWinNumbers(gewinnzahlen);
 			t.setAdditionalNumber(zusatzzahl);
 		/*
