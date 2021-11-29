@@ -1,26 +1,29 @@
-= Protokoll Gruppe XX
+= Protokoll Gruppe 09
 
 
-Treffen am XX.XX.20XX
+Treffen am 29.11.2021
 
-Ort:      Ort des Treffens +
-Beginn:   xx:xx Uhr +
-Ende:     xx:xx Uhr
+Ort:      Discord
+Beginn:   14:50 Uhr +
+Ende:     16:00 Uhr
 
-__Schriftführer:__
+__Schriftführer:__ Sophie Schulze
 
 *Nächstes Treffen:* +
-XX.XX.20XX, xx:xx Uhr, Ort des nächsten Treffens
+06.12.2021, 14:50 Uhr, Discord
 
 __Teilnehmer:__
 //Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
 
-- Teilnehmer 1
-- Teilnehmer 2
-- ...
+- Andre Schmidt (Kunde)
+- Yu-Ju Chen
+- Song Bai
+- Yutian Lei
+- Mirek Král
+- Sophie Schulze
 
 == Bemerkungen
-Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+-
 
 == Retrospektive des letzten Sprints
 *Issue referenziert die Issue ID von GitHub*
@@ -30,13 +33,46 @@ Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entsch
 [option="headers"]
 |===
 |Issue |Aufgabe |Status |Bemerkung
-|…     |…       |…      |…
+|08     
+|Zwischenpräsentation vorbereiten       
+|fertig     
+|Zwischenpräsentation abgeschlossen
+
+|09     
+|Basisfunktionalität schaffen       
+|(fast) fertig     
+|unser Verständnis der Superzahl war falsch
+
+|10     
+|Issues verteilen       
+|fertig     
+|-
+
+|11     
+|Klassendiagramme erweitern       
+|auf aktuellem Stand     
+|wird im Laufe der Entwicklung weitergeführt
 |===
 
 
 == Aktueller Stand
 Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
 Dokumenten.
+
+*Anmerkungen und Kritik zur Zwischenpräsentation:*
+
+* Zeitvorgaben (insgesamt ca. 20 min) einhalten
+* Nennen der Tools & Sources nicht nötig
+* TU Dresden Foliensatz verwenden
+* Use Cases an der Anwendung zeigen anstatt an Screenshots
+
+*Anmerkungen zur Basisfunktionalität:*
+
+* Zahlenlotterie-Superzahl
+** Zahl zwischen 0 und 9
+** kann schon vorhanden sein unter den ersten 6 Zahlen
+* Registrierung:
+** E-Mail darf noch nicht vorhanden sein
 
 == Planung des nächsten Sprints
 *Issue referenziert die Issue ID von GitHub*
@@ -45,5 +81,44 @@ Dokumenten.
 [option="headers"]
 |===
 |Issue |Titel |Beschreibung |Verantwortlicher |Status
-|…     |…     |…            |…                |…
+|11     
+|Klassendiagramme erweitern     
+|Klassendiagramme an Änderungen im Code anpassen            
+a|
+* Order: Yuju
+* Kunde: Mirek, Song
+* Statistik: Yutian
+* Katalog: Sophie
+|auf akuellem Stand
+
+|12     
+|Gewinngemeinschaft erstellen     
+|die Funktionalität, eine Gewinngemeinschaft erstellen und in dieser Wetten abzugeben, hinzufügen            
+a|
+* Mirek
+* Song
+|in Arbeit
+
+|13     
+|Auswertung der Wetten   
+|die Funktionalität, Zahlen- und Fußballwetten auszuwerten und den Gewinn auszuzahlen, hinzufügen           
+|Sophie                
+|in Arbeit
+
+|14     
+|Testfälle     
+|Tests implementieren            
+a|
+* Kunde: Mirek, Song
+* Statistik: Yutian
+* Katalog: Yuju, Sophie
+* Order: Yuju, Sophie
+* lotteryresult: noch nicht entschieden
+|in Arbeit
+
+|15     
+|Cross-Testing Feedback     
+|das Dokument Cross-Testing Feedback ausfüllen            
+|alle                
+|in Arbeit
 |===
