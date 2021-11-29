@@ -49,11 +49,9 @@ public class ResultController {
 		 */
 
 			for (NumberBet nb : wetten) {
-				if (!nb.getExpiration().isBefore(t.getTimeLimit())) {
-					if(!nb.getDate().toLocalDate().equals(today)){
-						wetten_valid.add(nb);
-					}
+				if (!nb.getExpiration().isBefore(t.getTimeLimit()) && !nb.getDate().toLocalDate().equals(today)) {
 
+						wetten_valid.add(nb);
 				}else{
 					nb.changeStatus(Status.EXPIRED);
 				}
@@ -69,7 +67,7 @@ public class ResultController {
 
 			return "redirect:/";
 		}
-		return "error.html"; //noch ändern zu noch keine Auswertung möglich
+		return "time_up.html"; //noch ändern zu noch keine Auswertung möglich
 
 	}
 

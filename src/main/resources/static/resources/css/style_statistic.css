@@ -42,12 +42,12 @@ body {
     margin-right: 100px;
 
     padding-top: 1px;
-    padding-bottom: 1px;
+    padding-bottom: 30px;
 
     text-align: center;
     background-color: rgba(0, 0, 0, 0.75);
 
-    height: 230px;
+    height: auto;
 }
 
 .box-two {
@@ -84,7 +84,7 @@ body {
     text-align: center;
     background-color: rgba(0, 0, 0, 0.75);
 
-    height: 190px;
+    height: auto;
 }
 
 header {

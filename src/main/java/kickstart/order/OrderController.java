@@ -31,7 +31,8 @@ public class OrderController {
 	private CustomerRepository customerRepository;
 	private LotteryCatalog lotteryCatalog;
 
-	OrderController(CustomerManagement customerManagement, LotteryCatalog lotteryCatalog, CustomerRepository customerRepository){
+	OrderController(CustomerManagement customerManagement, LotteryCatalog lotteryCatalog,
+					CustomerRepository customerRepository){
 		this.customerManagement = customerManagement;
 		this.lotteryCatalog = lotteryCatalog;
 		this.customerRepository = customerRepository;
@@ -60,7 +61,7 @@ public class OrderController {
 
 	@PostMapping("/raiseFootBet")
 	public String raiseFootBet(Model model, @RequestParam("pid") ProductIdentifier id,
-							   @RequestParam("betid")long bet_id, @RequestParam("newinset")double inset){
+							   @RequestParam("betid")long bet_id, @RequestParam("newinsetfoot")double inset){
 		/*
 		LocalDateTime date = LocalDateTime.now();
 		LocalDateTime time = date.plusMinutes(5);
@@ -73,25 +74,32 @@ public class OrderController {
 
 		Money money = Money.of(inset, EURO);
 
+
 		Football f = (Football) lotteryCatalog.findById(id).get();
 		FootballBet bet = f.findbyBetId(bet_id);
 
 		if(bet != null) {
 			if(date.isBefore(f.getTimeLimit().minusMinutes(5))) {
 				var customer = bet.getCustomer();
-				customer.setBalance(customer.getBalance().add(bet.getInset()));
-				bet.setInset(money);
-				customer.setBalance(customer.getBalance().subtract(bet.getInset()));
-				customerRepository.save(customer);
-				lotteryCatalog.save(f);
+				Money diff = money.subtract(bet.getInset());
+				if(customer.getBalance().isGreaterThanOrEqualTo(diff)){
+					customer.setBalance(customer.getBalance().add(bet.getInset()));
+					bet.setInset(money);
+					customer.setBalance(customer.getBalance().subtract(bet.getInset()));
+					customerRepository.save(customer);
+					lotteryCatalog.save(f);
+				}else{
+					return "error";
+				}
+
 				//model.addAttribute("raisedMoney",bet.getInset());
 				//return "redirect:/";
 			}else{
-				return "error.html";
+				return "time_up.html";
 			}
 		}
 
-		return "redirect:/";
+		return "redirect:/customer_bets";
 	}
 
 	@GetMapping("/changeFoot")
@@ -128,12 +136,12 @@ public class OrderController {
 				bet.setTippedStatus(status);
 				lotteryCatalog.save(f);
 			}else{
-				return "error.html";
+				return "time_up.html";
 			}
 		}
 
 
-		return "redirect:/";
+		return "redirect:/customer_bets";
 	}
 
 	@PostMapping("/raiseNumBet")
@@ -148,19 +156,24 @@ public class OrderController {
 		if(bet != null) {
 			if (date.isBefore(t.getTimeLimit().minusMinutes(5))) {
 				var customer = bet.getCustomer();
-				customer.setBalance(customer.getBalance().add(bet.getInset()));
-				bet.setInset(money);
-				customer.setBalance(customer.getBalance().subtract(bet.getInset()));
-				customerRepository.save(customer);
-				lotteryCatalog.save(t);
+				Money diff = money.subtract(bet.getInset());
+				if(customer.getBalance().isGreaterThanOrEqualTo(diff)){
+					customer.setBalance(customer.getBalance().add(bet.getInset()));
+					bet.setInset(money);
+					customer.setBalance(customer.getBalance().subtract(bet.getInset()));
+					customerRepository.save(customer);
+					lotteryCatalog.save(t);
+				}else{
+					return "error";
+				}
+
 			}else{
-				return "error.html";
+				return "time_up.html";
 			}
 		}
 
 
-
-		return "redirect:/";
+		return "redirect:/customer_bets";
 	}
 
 	@GetMapping("/changeNums")
@@ -208,12 +221,12 @@ public class OrderController {
 
 				lotteryCatalog.save(t);
 			}else{
-				return "error.html";
+				return "time_up.html";
 			}
 		}
 
 
-		return "redirect:/";
+		return "redirect:/customer_bets";
 
 	}
 
