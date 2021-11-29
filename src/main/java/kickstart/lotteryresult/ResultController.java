@@ -1,6 +1,9 @@
 package kickstart.lotteryresult;
 
 import kickstart.catalog.*;
+import kickstart.customer.Customer;
+import kickstart.customer.CustomerRepository;
+import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.ProductIdentifier;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -15,10 +18,12 @@ import java.util.List;
 public class ResultController {
 
 	private LotteryCatalog lotteryCatalog;
+	private CustomerRepository customerRepository;
 
 
-	public ResultController(LotteryCatalog lotteryCatalog){
+	public ResultController(LotteryCatalog lotteryCatalog, CustomerRepository customerRepository){
 		this.lotteryCatalog = lotteryCatalog;
+		this.customerRepository = customerRepository;
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
@@ -59,6 +64,10 @@ public class ResultController {
 			for (NumberBet nb : wetten_valid) {
 				if (nb.getNumbers().containsAll(gewinnzahlen) && nb.getAdditionalNum() == zusatzzahl) {
 					nb.changeStatus(Status.WIN);
+					Customer c = nb.getCustomer();
+					Money bal = c.getBalance().add(nb.getInset());
+					c.setBalance(bal);
+					customerRepository.save(c);
 				} else {
 					nb.changeStatus(Status.LOSS);
 				}
@@ -104,6 +113,10 @@ public class ResultController {
 		for(FootballBet fb: wetten_valid){
 			if(fb.getTip().equals(erg)){
 				fb.changeStatus(Status.WIN);
+				Customer c = fb.getCustomer();
+				Money bal = c.getBalance().add(fb.getInset());
+				c.setBalance(bal);
+				customerRepository.save(c);
 			} else{
 				fb.changeStatus(Status.LOSS);
 			}
