@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.security.SecureRandom;
+import java.util.Optional;
 
 
 @Service
@@ -116,5 +117,7 @@ public class CustomerManagement {
 		var customer = customers.findCustomerByUserAccount(userAccount);
 		return customer;
 	}
+
+	public Optional<UserAccount> findByEmail(String name){ return userAccounts.findByUsername(name); }
 
 }

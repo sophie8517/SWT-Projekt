@@ -16,6 +16,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -30,7 +31,7 @@ public class CustomerController{
 	}
 
 	@PostMapping("/register")
-	String registerNew(@Valid RegistrationForm form, Errors result) {
+	String registerNew(@Valid RegistrationForm form, Errors result, RedirectAttributes redirAttrs) {
 
 		System.out.println(form.getPassword());
 		System.out.println("passwort2:"+ form.getPasswordCheck());
@@ -43,6 +44,12 @@ public class CustomerController{
 		if(!form.check()){
 			return "register";
 		}
+
+		if(customerManagement.findByEmail(form.getEmail()).isPresent()){
+			redirAttrs.addFlashAttribute("message", "Name you entered is already exist!");
+			return "redirect:/register";
+		}
+
 		customerManagement.createCustomer(form);
 		return "redirect:/";
 	}
