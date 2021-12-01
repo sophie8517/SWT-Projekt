@@ -1,41 +1,5 @@
 <!DOCTYPE html>
 <html lang="en"
-<<<<<<< HEAD
-      xmlns:th="http://www.thymeleaf.org">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width = device - width, initial - scale = 1">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>🍀 Mach Dein Glück!! 🍀</title>
-  <link rel="stylesheet" href="style_meinProfil.css">
-</head>
-
-<body class="backgrounds">
-<div class="container">
-
-  <main class="box-one">
-    <h3 class="box-two">Mein Profil</h3>
-    <h2 class="box-two">Persönliche Daten</h2>
-
-    <div>
-      <label for="vorname"><h4>Vorname:</h4></label>
-      <input id="vorname" name="name" th:field="*{name}" th:errorclass="fieldError" type="text" required="required"/><br/>
-      <div class="ui negative message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
-    </div>
-
-    <div>
-      <label for="nachname"><h4>Nachname:</h4></label>
-      <input id="nachname" name="name" th:field="*{name}" th:errorclass="fieldError" type="text" required="required"/><br/>
-      <div class="ui negative message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
-    </div>
-
-    <div>
-      <label for="nummer"><h4>Tel-.Nummer:</h4></label>
-      <input id="nummer" name="name" th:field="*{name}" th:errorclass="fieldError" type="text" required="required"/><br/>
-      <div class="ui negative message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
-    </div>
-=======
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
@@ -72,7 +36,6 @@
                 <td><div th:text="${email}"></div></td>
             </tr>
         </table>
-
 
         <br>
         <br>
@@ -112,41 +75,6 @@
     <footer>
         <p>Mach Dein Glück!! ©Copyright 2021©</p>
     </footer>
-
-</div>
->>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
-
-    <div>
-      <label for="e-mail"><h4>E-mail:</h4></label>
-      <input id="e-mail" name="name" th:field="*{name}" th:errorclass="fieldError" type="text" required="required"/><br/>
-      <div class="ui negative message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
-    </div>
-
-    <br><br>
-
-    <button type="submit" class="ui button" th:text="#{register.submit}">Daten speichern</button>
-
-    <br><br>
-
-    <h2 class="box-two">Mach Dein Glück!!</h2>
-
-    <a href="" target="_blank"> Warenkorb anzeigen</a>
-    <br></br>
-    <a href="" target="_blank"> Geld überweisen</a>
-    <br></br>
-    <a href="" target="_blank"> Guthaben anzeigen</a>
-
-    <h2 class="box-two">Einstellungen</h2>
-    <a href="" target="_blank"> Passwort ändern</a>
-    <br></br>
-    <a href="" target="_blank"> Profil löschen</a>
-
-
-  </main>
-
-  <footer>
-    <p>Mach Dein Glück!! ©Copyright 2021©</p>
-  </footer>
 
 </div>
 

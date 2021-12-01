@@ -6,6 +6,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import kickstart.customer.Customer;
 
 
@@ -14,7 +16,7 @@ public class Bet implements Serializable {
 
 	private static final long serialVersionUID = -7114101035786254953L;
 
-	private LocalDateTime date;
+	private LocalDateTime date; //date when the user placed the bet
 	private Money inset;
 	private double inset2;
 
@@ -29,10 +31,10 @@ public class Bet implements Serializable {
 	@ManyToOne
 	private Customer customer;
 
-	private LocalDate expiration;
+	private LocalDateTime expiration; //time until when the bet is valid
 
 
-	public Bet(Item item, LocalDateTime date, Money einsatz, Customer customer, LocalDate expiration){
+	public Bet(Item item, LocalDateTime date, Money einsatz, Customer customer, LocalDateTime expiration){
 		this.item = item;
 		this.date = date;
 		this.inset = einsatz;
@@ -63,6 +65,21 @@ public class Bet implements Serializable {
 		return date;
 	}
 
+	public String getDateFormat(){
+		DateTimeFormatter wert = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+		String formatdate = wert.format(date.toLocalDate());
+		DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm");
+		String formattime = time.format(date.toLocalTime());
+		return formatdate + "  " + formattime;
+	}
+	public String getFormatExp(){
+		DateTimeFormatter date = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+		String formatdate = date.format(expiration.toLocalDate());
+		DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm");
+		String formattime = time.format(expiration.toLocalTime());
+		return formatdate + "  " + formattime;
+	}
+
 
 	public Money getInset() {
 		return inset;
@@ -80,11 +97,14 @@ public class Bet implements Serializable {
 
 	public Customer getCustomer() {	return customer;}
 
-	public LocalDate getExpiration() {
+	public LocalDateTime getExpiration() {
 		return expiration;
 	}
 
-	public void setExpiration(LocalDate expiration) {
+	/*
+	public void setExpiration(LocalDateTime expiration) {
 		this.expiration = expiration;
 	}
+
+	 */
 }
