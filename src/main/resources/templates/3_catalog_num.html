@@ -128,7 +128,6 @@
                 </form>
                  <form th:method="post"  th:action="@{/evalnum}">
                      <input type="hidden" name="pid" value="0" th:value="${ticket.id}"/>
-                     <input type="hidden" name="today" value="1" th:value="${ticket.Today}"/>
                      <button sec:authorize="hasRole('ADMIN')" class="button" type="submit" th:text="#{ticket.eval}">Tippschein Auswerten</button>
                  </form>
 

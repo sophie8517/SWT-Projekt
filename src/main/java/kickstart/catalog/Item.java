@@ -59,8 +59,6 @@ public class Item extends Product{
 		return formatdate + "  " + formattime;
 	}
 
-	public LocalDateTime getToday(){
-		return LocalDateTime.now();
-	}
+
 
 }

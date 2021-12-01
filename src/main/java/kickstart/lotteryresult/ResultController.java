@@ -27,61 +27,59 @@ public class ResultController {
 		this.customerRepository = customerRepository;
 	}
 
+
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/evalnum")
-	public String evalNumberBets(@RequestParam("pid") ProductIdentifier id, @RequestParam("today")LocalDateTime todaytime){
+	public String evalNumberBets(@RequestParam("pid") ProductIdentifier id){
+		LocalDateTime todaytime = LocalDateTime.now();
 		LocalDate today = todaytime.toLocalDate();
 
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 		if(todaytime.isAfter(t.getTimeLimit().minusSeconds(1)) && todaytime.isBefore(t.getTimeLimit().plusMinutes(30))) {
 
 
-			List<NumberBet> wetten = t.getNumberBits();
-			List<NumberBet> wetten_valid = new ArrayList<>();
+			evaluateNum(t,today);
 
-			NumberLottery numlot = new NumberLottery();
-			List<Integer> gewinnzahlen = numlot.generate_nums();
-			int zusatzzahl = numlot.generateAdditionalNumber();
-			t.setWinNumbers(gewinnzahlen);
-			t.setAdditionalNumber(zusatzzahl);
-		/*
-		List<Integer> gewinnzahlen = new ArrayList<>();
-		gewinnzahlen.add(1);
-		gewinnzahlen.add(2);
-		gewinnzahlen.add(3);
-		gewinnzahlen.add(4);
-		gewinnzahlen.add(5);
-		gewinnzahlen.add(6);
 
-		 */
-
-			for (NumberBet nb : wetten) {
-				if (!nb.getExpiration().isBefore(t.getTimeLimit()) && !nb.getDate().toLocalDate().equals(today) && nb.getStatus().equals(Status.OPEN)) {
-
-						wetten_valid.add(nb);
-				}else{
-					nb.changeStatus(Status.EXPIRED);
-				}
-			}
-			for (NumberBet nb : wetten_valid) {
-				if (nb.getNumbers().containsAll(gewinnzahlen) && nb.getAdditionalNum() == zusatzzahl) {
-					nb.changeStatus(Status.WIN);
-					Customer c = nb.getCustomer();
-					Money bal = c.getBalance().add(nb.getInset());
-					c.setBalance(bal);
-					customerRepository.save(c);
-				} else {
-					nb.changeStatus(Status.LOSS);
-				}
-			}
-
-			lotteryCatalog.save(t);
-
-			return "redirect:/";
 		}
-		return "keineZiehung.html"; //noch ändern zu noch keine Auswertung möglich
+		return "keineZiehung"; //noch ändern zu noch keine Auswertung möglich
 
 	}
+
+	public void evaluateNum(Ticket t, LocalDate today){
+		List<NumberBet> wetten = t.getNumberBits();
+		List<NumberBet> wetten_valid = new ArrayList<>();
+
+		NumberLottery numlot = new NumberLottery();
+		List<Integer> gewinnzahlen = numlot.generate_nums();
+		int zusatzzahl = numlot.generateAdditionalNumber();
+		t.setWinNumbers(gewinnzahlen);
+		t.setAdditionalNumber(zusatzzahl);
+
+
+		for (NumberBet nb : wetten) {
+			if (!nb.getExpiration().isBefore(t.getTimeLimit()) && !nb.getDate().toLocalDate().equals(today) && nb.getStatus().equals(Status.OPEN)) {
+
+				wetten_valid.add(nb);
+			}else{
+				nb.changeStatus(Status.EXPIRED);
+			}
+		}
+		for (NumberBet nb : wetten_valid) {
+			if (nb.getNumbers().containsAll(gewinnzahlen) && nb.getAdditionalNum() == zusatzzahl) {
+				nb.changeStatus(Status.WIN);
+				Customer c = nb.getCustomer();
+				Money bal = c.getBalance().add(nb.getInset());
+				c.setBalance(bal);
+				customerRepository.save(c);
+			} else {
+				nb.changeStatus(Status.LOSS);
+			}
+		}
+
+		lotteryCatalog.save(t);
+	}
+
 
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/evalfoot")
