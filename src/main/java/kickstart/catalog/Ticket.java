@@ -12,7 +12,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 public class Ticket extends Item {
@@ -25,7 +27,7 @@ public class Ticket extends Item {
 
 	private int additionalNumber;
 
-
+	private Map<LocalDate,Boolean> checkEvaluation = new HashMap<>();
 
 
 	public Ticket(String name, LocalDateTime timeLimit, Money price, ItemType type){
@@ -103,5 +105,13 @@ public class Ticket extends Item {
 
 	public void setAdditionalNumber(int additionalNumber) {
 		this.additionalNumber = additionalNumber;
+	}
+
+	public Map<LocalDate, Boolean> getCheckEvaluation() {
+		return checkEvaluation;
+	}
+	public void addCheck(LocalDate date){
+		checkEvaluation.clear();
+		checkEvaluation.put(date,true);
 	}
 }
