@@ -79,7 +79,7 @@ public class CatalogController {
 		} else{
 
 			for(Item i: foots){
-				if(now.isBefore(i.getTimeLimit().minusMinutes(5))){
+				if(now.isBefore(i.getTimeLimit())){
 					result.add(i);
 				}
 			}
@@ -194,7 +194,7 @@ public class CatalogController {
 		Money money = customer.getBalance();
 		Money insetMoney = Money.of(inset,EURO);
 		//System.out.println(inset);
-		if(!now.isAfter(spieltag_minus24h)){
+		if(now.isBefore(spieltag_minus24h)){
 			Ergebnis  status;
 
 			if(number == 1){
