@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,10 +29,11 @@ public class ResultController {
 
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/evalnum")
-	public String evalNumberBets(@RequestParam("pid") ProductIdentifier id){
-		LocalDate today = LocalDate.now();
+	public String evalNumberBets(@RequestParam("pid") ProductIdentifier id, @RequestParam("today")LocalDateTime todaytime){
+		LocalDate today = todaytime.toLocalDate();
+
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
-		if(today.equals(t.getTimeLimit().toLocalDate())) {
+		if(todaytime.isAfter(t.getTimeLimit().minusSeconds(1)) && todaytime.isBefore(t.getTimeLimit().plusMinutes(30))) {
 
 
 			List<NumberBet> wetten = t.getNumberBits();
@@ -54,7 +56,7 @@ public class ResultController {
 		 */
 
 			for (NumberBet nb : wetten) {
-				if (!nb.getExpiration().isBefore(t.getTimeLimit()) && !nb.getDate().toLocalDate().equals(today)) {
+				if (!nb.getExpiration().isBefore(t.getTimeLimit()) && !nb.getDate().toLocalDate().equals(today) && nb.getStatus().equals(Status.OPEN)) {
 
 						wetten_valid.add(nb);
 				}else{
@@ -72,11 +74,12 @@ public class ResultController {
 					nb.changeStatus(Status.LOSS);
 				}
 			}
+
 			lotteryCatalog.save(t);
 
 			return "redirect:/";
 		}
-		return "time_up.html"; //noch ändern zu noch keine Auswertung möglich
+		return "keineZiehung.html"; //noch ändern zu noch keine Auswertung möglich
 
 	}
 

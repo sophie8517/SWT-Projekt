@@ -50,6 +50,7 @@ public class CatalogController {
 				t.setTimeLimit(t.getTimeLimit().plusDays(7));
 			}
 		}
+
 		lotteryCatalog.save(t);
 
 		model.addAttribute("ticketcatalog", result);
