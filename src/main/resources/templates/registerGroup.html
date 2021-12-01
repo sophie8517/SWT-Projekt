@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device - width, initial - scale = 1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>🍀 Mach Dein Glück!! 🍀</title>
+    <link th:href="@{resources/css/style_register.css}" rel="stylesheet" href="../static/resources/css/style_register.css">
+</head>
+
+<body class="backgrounds">
+
+<!--<nav>
+    <a href="https://www.bk.com/">HOME</a>
+    <a class="item" href="contact.html" th:href="@{/contact}" th:text="#{nav.contact}">KONTAKT</a>
+    <a href="">KATALOG</a>
+    <a href="">ANMELDEN</a>
+    <a href="">REGISTRIEREN</a>
+</nav>-->
+<nav th:include="navigation :: navigation" class="navcontainer"></nav>
+<div class="container">
+    <main>
+        <section>
+            <form method="post" role="form" class="ui form" id="form" th:action="@{/registerGroup}" th:object="${groupRegistrationForm}">
+                <h3 th:text="#{register.userdata}">Registrieren</h3>
+                <h4>Kriterien</h4>
+
+                <div class="field">
+                    <ol>
+                        <li>Name darf nicht leer sein.</li>
+                    </ol>
+                </div>
+
+                <h4>Hinweis</h4>
+
+                <div class="field">
+                    <ol>
+                        <li>Nach erfolgreicher Bestimmung der Gruppenname, generiert sich Ihnen das Passwort!</li>
+                    </ol>
+                </div>
+
+                <br>
+
+                <div class="style">
+
+                    <label for="groupName">Name:</label>
+                    <input id="groupName" name="groupName" th:field="*{groupName}" th:errorclass="fieldError" type="text" required="required"/><br/>
+                    <div class="ui negative message" th:if="${#fields.hasErrors('groupName')}" th:errors="*{groupName}"></div>
+                </div>
+
+                <br>
+
+                <button type="submit" th:text="#{register.submit}">Registrieren</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>Mach Dein Glück!! ©Copyright 2021©</p>
+    </footer>
+
+</div>
+
+</body>
+
+</html>
