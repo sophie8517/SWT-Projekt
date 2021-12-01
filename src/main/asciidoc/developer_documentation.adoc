@@ -184,27 +184,13 @@ image:diagramm/ui.png[Location, 100%, 100%, pdfwidth=100%, title= "ui", align=ce
 • catalog.Num
 |salespointframework.boot                             |lottery.lottery
 |salespointframework.useraccount                     a|
-• lottery.customer.lottery.customer
-• lottery.customer.CustomerDataInitializer
-• lottery.customer.CustomerManagement
+• customer.customer
+• customer.CustomerDataInitializer
+• customer.CustomerManagement
 • order.OrderController
 |springframework.security                              |lottery.WebSecurityConfiguration
 |springframework.web                                   |lottery.web
 |salespointframework.core                             a|
-<<<<<<< HEAD
-• catalog_ltr.CatalogInitializer
-• lottery.customer.CustomerDatainitializer
-|salespointframework.SalespointSecurityConfiguration   |lottery.WebSecurityConfiguration
-|salespointframework.time                              |catalog_ltr.CatalogController
-|springframework.data                                 a|catalog_ltr.LotteryCatalog
-|springframework.security                              |videoshop.WebSecurityConfiguration
-|salespointframework.time                              |lottery.catalog.CatalogController
-|springframework.data                                 a|lottery.catalog.LotteryCatalog
-|springframework.security                              |lottery.WebSecurityConfiguration
-|springframework.ui                                   a|
-• catalog_ltr.CatalogController
-• lottery.customer.CustomerController
-=======
 • catalog.CatalogInitializer
 • customer.CustomerDatainitializer
 |salespointframework.SalespointSecurityConfiguration   |lottery.WebSecurityConfiguration
@@ -213,12 +199,11 @@ image:diagramm/ui.png[Location, 100%, 100%, pdfwidth=100%, title= "ui", align=ce
 |springframework.ui                                   a|
 • catalog.CatalogController
 • customer.CustomerController
->>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
 • order.OrderController               
 |springframework.util                                 a|
-• lottery.customer.CustomerDataInitializer
-• lottery.customer.CustomerController
-|springframework.validation                            |lottery.customer.CustomerController
+• customer.CustomerDataInitializer
+• customer.CustomerController
+|springframework.validation                            |customer.CustomerController
 |springframework.web                                   |lottery.LotteryWebConfiguration
 |===
 
@@ -226,31 +211,21 @@ image:diagramm/ui.png[Location, 100%, 100%, pdfwidth=100%, title= "ui", align=ce
 
 === 5.1 Lotterie
 
-[[lottery.Lottery]]
+[[Lottery]]
 image:diagramm/lottery.png[Location, 100%, 100%, pdfwidth=100%, title= "lottery", align=center]
 
 [options="header"]
 |=== 
 |Klasse/Enumeration |Description
-<<<<<<< HEAD
-|lottery.Lottery                    |Die essentielle Klasse des ganzen Programms. Sie sorgt dafür, dass mit Hilfe von SpringApplication Klasse alles ordnungsgemäß beim Einschalten konfiguriert wird und abschließend startet die ganze Applikation.
-|WebSecurityConfiguration   |Sie dient zur unmittelbaren Weiterleiten von /login direkt an das template login.htm.
-=======
 |Lottery                    |Die essentielle Klasse des ganzen Programms. Sie sorgt dafür, dass mit Hilfe der SpringApplication Klasse alles ordnungsgemäß beim Einschalten konfiguriert wird und abschließend startet die Applikation.
 |WebSecurityConfiguration   |Sie dient zur unmittelbaren Weiterleitung von /login direkt an das template login.html.
->>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
 |VideoShopWebConfiguration  |Konfigurationsklasse zum Einrichten grundlegender Sicherheits- und Anmelde-/Abmeldeoptionen.
 |===
 
 === 5.2 Katalog
 
-<<<<<<< HEAD
-[[lottery.catalog]]
-image::./diagramm/catalog_final.png[Location, 100%, 100%, pdfwidth=100%, title= "lottery.catalog", align=center]
-=======
 [[catalog]]
 image::./models/design/block_catalog.svg[Location, 100%, 100%, pdfwidth=100%, title= "catalog", align=center]
->>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
 
 [options="header"]
 |=== 
@@ -302,13 +277,8 @@ a|beschreibt den Status einer Wette:
 |===
 
 === 5.3. Kunde
-<<<<<<< HEAD
-[[lottery.customer]]
-image::./models/design/block_customer.png[Location, 100%, 100%, pdfwidth=100%, title= "lottery.customer package", align=center]
-=======
 [[customer]]
 image::./models/design/block_customer.svg[Location, 100%, 100%, pdfwidth=100%, title= "customer package", align=center]
->>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
 
 
 [options="header"]
@@ -359,14 +329,9 @@ wird die Art der Verwendung dieser externen Klasse in der Spalte *Art der Verwen
 [options="header"]
 |===
 |Class/Enumeration (Analysis Model) |Class/Enumeration (Design Model) |Usage
-<<<<<<< HEAD
-|Number lottery.Lottery         |lottery.catalog.Item|
-|Football lottery.Lottery       |lottery.catalog.Item|
-=======
 |Item			|catalog.Item		|
 |Ticket         	|catalog.Ticket|
 |Football       	|catalog.Football|						
->>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
 |Cart                   |Salespoint.Cart | Method Parameter 
 |CartItem               |Salespoint.CartItem (via Salespoint.Cart) | Method Parameter (via Salespoint.Cart)
 |Order                  |Salespoint.Order | Method Parameter
@@ -378,10 +343,10 @@ wird die Art der Verwendung dieser externen Klasse in der Spalte *Art der Verwen
 |ROLE/Role              |Salespoint.Role | Method Parameter
 |User                   a|
 						* Salespoint.UserAccount 
-						* lottery.customer.Customer a|
+						* customer.Customer a|
 						* Class Attribute
 						* Method Parameter
-|lottery.Lottery              |lottery.lottery.Lottery |
+|Lottery              |lottery.Lottery |						
 |===
 
 == 6. Laufzeitsicht
@@ -393,7 +358,7 @@ image::./models/design/runtime_catalog.svg[Location, 100%, 100%, pdfwidth=100%, 
 
 === Customer
 [[customer_runtime]]
-image::./models/design/runtime_customer.svg[Location, 100%, 100%, pdfwidth=100%, title= "runtime lottery.customer", align=center]
+image::./models/design/runtime_customer.svg[Location, 100%, 100%, pdfwidth=100%, title= "runtime customer", align=center]
 
 === Order
 [[runtime_Order]]
