@@ -5,12 +5,14 @@ import org.salespointframework.useraccount.Password;
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManagement;
+import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.security.SecureRandom;
+import java.util.Optional;
 
 import static org.salespointframework.core.Currencies.EURO;
 
@@ -20,10 +22,12 @@ import static org.salespointframework.core.Currencies.EURO;
 public class CustomerManagement {
 
 	public static final Role CUSTOMER_ROLE = Role.of("CUSTOMER");
+	public static final Role GROUP_ROLE = Role.of("GROUP");
 
 	private GroupRepository groups;
 	private CustomerRepository customers;
 	private UserAccountManagement userAccounts;
+	private CustomerManagement customerManagement;
 
 	public CustomerManagement(CustomerRepository customers, GroupRepository groups, UserAccountManagement userAccounts){
 		this.customers = customers;
@@ -44,8 +48,8 @@ public class CustomerManagement {
 		return customers.save(new Customer(userAccount));
 	}
 
-	public Group createGroup(RegistrationForm form, Customer customer){
-		Assert.notNull(form, "Registration form must not be null!");
+	public Group createGroup(GroupRegistrationForm groupForm, @LoggedIn Optional<UserAccount> userAccount){
+		Assert.notNull(groupForm, "Registration form must not be null!");
 
 			int length = 8;
 			final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -57,16 +61,12 @@ public class CustomerManagement {
 				int randomIndex = random.nextInt(chars.length());
 				sb.append(chars.charAt(randomIndex));
 			}
-
-			System.out.println(sb);
-
 		var password = Password.UnencryptedPassword.of(sb.toString());
-		var userAccount = userAccounts.create(form.getEmail(), password, CUSTOMER_ROLE);
-		userAccount.setEmail(form.getEmail());
-		userAccount.setFirstname(form.getFirstname());
-		userAccount.setLastname(form.getLastname());
+		var groupAccount = userAccounts.create(groupForm.getGroupName(), password,GROUP_ROLE);
+		var customer = customerManagement.findByUserAccount(userAccount.get());
 
-		return groups.save(new Group(customer.getUserAccount(),customer));
+
+		return groups.save(new Group(groupAccount,customer, groupForm.getGroupName()));
 	}
 
 	public Group deleteGroup(Group group){

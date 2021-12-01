@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device - width, initial - scale = 1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>🍀 Mach Dein Glück!! 🍀</title>
+    <link th:href="@{resources/css/style_meinProfil.css}" rel="stylesheet" href="../static/resources/css/style_meinProfil.css">
+</head>
+
+<body class="backgrounds">
+<!--<nav>
+            <a href="https://www.bk.com/">HOME</a>
+            <a class="item" href="contact.html" th:href="@{/contact}" th:text="#{nav.contact}">KONTAKT</a>
+            <a href="">KATALOG</a>
+            <a href="">ABMELDEN</a>
+        </nav>-->
+<nav th:include="navigation :: navigation" class="navcontainer"></nav>
+<div class="container" >
+    <main class="box-one">
+        <h3 class="box-two" th:text="#{myGroup.title}">Meine Gruppe</h3>
+        <h4 class="box-two">Mitglieder</h4>
+
+        <table border = "5" cellpadding = "5" cellspacing = "0" align="left" style="margin: auto; border-color: white">
+            <thead>
+            <tr>
+                <th>Vorname</th>
+                <th>Nachname</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+            <tr th:each="member:${groupMembers}">
+                <td th:text="${member.getUserAccount().getFirstname()}"></td>
+                <td th:text="${member.getUserAccount().getLastname()}"></td>
+                <td th:text="${member.getUserAccount().getEmail()}"></td>
+            </tr>
+
+        </table>
+
+    </main>
+
+    <footer>
+        <p>Mach Dein Glück!! ©Copyright 2021©</p>
+    </footer>
+
+</div>
+
+</body>
+
+</html>

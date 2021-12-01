@@ -4,6 +4,8 @@ import com.mysema.commons.lang.Assert;
 import static org.salespointframework.core.Currencies.*;
 
 
+import kickstart.catalog.Football;
+import kickstart.catalog.Item;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
@@ -19,7 +21,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 public class CustomerController{
@@ -87,18 +94,18 @@ public class CustomerController{
 	}
 
 	@PostMapping("/registerGroup")
-	String createNewGroup(@Valid RegistrationForm form, Errors result) {
+	String createNewGroup(@Valid GroupRegistrationForm form, Errors result, @LoggedIn Optional <UserAccount> userAccount) {
 
 		if (result.hasErrors()) {
 			return "register";
 		}
 
-		customerManagement.createCustomer(form);
+		customerManagement.createGroup(form, userAccount);
 		return "redirect:/";
 	}
 
 	@GetMapping("/registerGroup")
-	public String create(Model model, RegistrationForm form){
+	public String create(Model model, GroupRegistrationForm form){
 		return "redirect:/";
 	}
 
@@ -141,5 +148,15 @@ public class CustomerController{
 		customerManagement.deleteGroup(customerManagement.findByGroupId(groupId));
 		model.addAttribute("group",customerManagement.findAllGroups());
 		return "redirect:/";
+	}
+
+	@GetMapping("/meineGruppe")
+	public String showMembers(Model model, Group group){
+		//model.addAttribute("groupName", group.getUserAccount().getUsername());
+		if(group.getMembers() == null){
+			return "noGroup";
+		}
+		model.addAttribute("groupMembers", group.getMembers());
+		return "meineGruppe";
 	}
 }
