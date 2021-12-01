@@ -15,8 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -68,9 +69,12 @@ public class CustomerController{
 		for (Customer customer : customerManagement.findAllCustomers()){
 			System.out.println(customer.getUserAccount().getUsername());
 			if (username.equals(customer.getUserAccount().getUsername())){
-				//model.addAttribute("profile", new Profile(customer.getUserAccount().getFirstname(), customer.getUserAccount().getLastname(),customer.getUserAccount().getEmail()));
-				model.addAttribute("profile", new Profile(customer.getUserAccount().getUsername(), customer.getUserAccount().getEmail(), customer.getUserAccount().getEmail()));
-				System.out.println(new Profile(customer.getUserAccount().getFirstname(),customer.getUserAccount().getLastname(),customer.getUserAccount().getEmail()));
+				//model.addAttribute("profile", new Profile(customer.getUserAccount().getFirstname(),
+				 customer.getUserAccount().getLastname(),customer.getUserAccount().getEmail()));
+				model.addAttribute("profile", new Profile(customer.getUserAccount().getUsername(),
+				 customer.getUserAccount().getEmail(), customer.getUserAccount().getEmail()));
+				System.out.println(new Profile(customer.getUserAccount().getFirstname(),
+				customer.getUserAccount().getLastname(),customer.getUserAccount().getEmail()));
 			}
 		}
 
@@ -105,10 +109,24 @@ public class CustomerController{
 		return "redirect:/";
 	}
 
-	@PostMapping("/chargeProfil")
-	public String charge(double balance, long customerId){
-		customerManagement.charge(Money.of(balance, EURO),customerManagement.findByCustomerId(customerId));
-		return "redirect:/";
+	@PostMapping("/balance/charge")
+	public String charge(@RequestParam("money") double money, @LoggedIn Optional<UserAccount> userAccount){
+		//customerManagement.charge(Money.of(balance, EURO),customerManagement.findByCustomerId(customerId));
+
+		var customer = customerManagement.findByUserAccount(userAccount.get());
+		customerManagement.charge(Money.of(money, EURO), customer);
+		return "redirect:/balance";
+	}
+
+	@GetMapping("/balance")
+	public String viewBalance(Model model, @LoggedIn Optional<UserAccount> userAccount) {
+		var customer = customerManagement.findByUserAccount(userAccount.get());
+		model.addAttribute("firstname", customer.getUserAccount().getFirstname());
+		model.addAttribute("lastname", customer.getUserAccount().getLastname());
+		model.addAttribute("email", customer.getUserAccount().getEmail());
+		model.addAttribute("balance", customer.getBalance());
+
+		return "balance";
 	}
 
 	@PostMapping("/addMember")

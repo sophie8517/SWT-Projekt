@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device - width, initial - scale = 1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>🍀 Mach Dein Glück!! 🍀</title>
+    <link th:href="@{resources/css/style_foot.css}" rel="stylesheet" href="../static/resources/css/style_foot.css" type="text/css">
+
+
+
+</head>
+
+<body class="backgrounds" >
+<div class="container">
+    <main class="box-one">
+        <h2 class="box-two">Achtung! Zeit abgelaufen.</h2>
+    </main>
+    <div class="box-three">
+        Die Zeit ist abgelaufen. Leider kannst du keine Wette mehr auf dieses Item abgeben oder deinen Einsatz erhöhen.
+        </br>
+        </br>
+        </br>
+        Wie möchtest du fortfahren?
+        </br>
+        </br>
+        <form th:method="post" th:action="@{/timeup}">
+            <button class="button" type="submit" th:text="#{timeup}"><a style="color:black">Zur Homepage</a></button>
+        </form>
+        </br>
+        </br>
+        <!--
+        <nav>
+            <a href="home.html">Zur Homepage zurueckkehren</a>
+            <a href="3_catalog_num.html">Den Tippschein nochmal neu ausfuellen</a>
+        </nav>
+        -->
+
+
+
+
+    </div>
+    <footer>
+        <p>Mach Dein Glück!! ©Copyright 2021©</p>
+    </footer>
+</div>
+</body>
+</html>

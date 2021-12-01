@@ -3,18 +3,22 @@ html {
 }
 
 body {
-    background-color: grey;
-    /*background-image: url(background2.jpg),url(background3.jpg);*/
+    /*background-color: grey;*/
+    background-image: url('../images/lotto1.jpg');
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-position: center;
 }
 
 .backgrounds {
-    background: url(/Users/mirekkral/Documents/ProjectHTML/2Project/ltr.jpg),url(/Users/mirekkral/Documents/ProjectHTML/2Project/ltr.jpg);
-    background-size: cover,cover;
-    background-repeat:  repeat-x,repeat-y;
-    background-position: center top, center bottom;
+    background-image: url('../images/lotto1.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center top;
+    display: block;
+    min-height: 100%;
+    min-width: 100%;
+
 }
 
 .container {
@@ -23,39 +27,32 @@ body {
     width: 780px;
 }
 
-.box-one {
-    margin-top: 40px;
-    margin-bottom: -50px;
+.navcontainer{
+    margin-left: 20px;
+    margin-right: 20px;
+    width: auto;
+}
 
-    margin-left: 100px;
-    margin-right: 100px;
-    
+.box-one {
     padding-top: 1px;
     padding-bottom: 1px;
+    font-size: 16px;
 
-    text-align: center;
+    text-align: left;
     background-color: rgba(0, 0, 0, 0.75);
-    
-    height: 230px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+
+
+    height: 320px;
 }
 
 .box-two {
-    margin-top: 100px;
-    margin-bottom: -50px;
-
-    margin-left: 100px;
-    margin-right: 100px;
-    
     padding-top: 1px;
     padding-bottom: 1px;
-    padding-left: 10px;
-    padding-right: 10px;
-   
-
+    padding-right: 100px;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.75);
-    
-    height: 230px;
+
 }
 
 .box-three {
@@ -64,7 +61,7 @@ body {
 
     margin-left: 100px;
     margin-right: 100px;
-    
+
     padding-top: 1px;
     padding-bottom: 1px;
     padding-left: 10px;
@@ -72,7 +69,7 @@ body {
 
     text-align: center;
     background-color: rgba(0, 0, 0, 0.75);
-    
+
     height: 190px;
 }
 
@@ -128,14 +125,22 @@ h1 {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+h2 {
+    font-size: 25px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
 h3 {
     font-size: 40px;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
 }
 
 h4 {
-    font-size: 30px;
+    font-size: 20px;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
 }

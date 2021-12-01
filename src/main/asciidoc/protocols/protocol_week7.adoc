@@ -1,0 +1,134 @@
+= Protokoll Gruppe 09
+
+
+Treffen am 22.11.2021
+
+Ort:      Discord
+Beginn:   14:50 Uhr +
+Ende:     15:30 Uhr
+
+__Schriftführer:__ Sophie Schulze
+
+*Nächstes Treffen:* +
+29.11.2021, 14:50 Uhr, Discord
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Andre Schmidt (Kunde)
+- Yu-Ju Chen
+- Song Bai
+- Yutian Lei
+- Mirek Král
+- Sophie Schulze
+
+== Bemerkungen
+
+* *Erinnerung* : Zwischenpräsentation am 29.11.2021
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Aufgabe |Status |Bemerkung
+|05     
+|Prototypen programmieren       
+a|
+* Statistik: fertig
+* Order: fertig
+|-
+
+|07     
+|developer_documentation: Entwurfsdiagramme von Order und Statistik erweitern        
+|fertig      
+|-
+
+|08     
+|Zwischenpräsentation vorbereiten       
+|in Arbeit      
+|-
+
+|09     
+|Basisfunktionalität schaffen     
+|fast fertig      
+|genauer Stand siehe aktueller Stand
+
+|10     
+|Issues verteilen      
+|in Arbeit      
+|es fehlen noch die Verteilung der Muss-Kriterien 6,7,8,10,15
+
+|===
+
+
+== Aktueller Stand
+Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
+Dokumenten.
+
+* Verteilung der Issues (noch nicht alle Muss-Kriterien verteilt):
+** FA01: Mirek, Song
+** FA02: Sophie
+** FA03: Sophie
+** FA04: Sophie
+** FA05 / FA15: Mirek, Song, Yuju
+** FA09: Mirek, Song
+** FA11: Sophie
+** FA12: Mirek, Song
+** FA13: Mirek, Song
+** FA14: Sophie
+
+* bereits vorhandene Funktionalität (Muss-Kriterien):
+** Registrierung
+** Login/Logout
+** Authentifizierung
+** Nutzerprofil ansehen
+** abgegebene Wetten anschauen, Warenkorb ansehen
+** Fußballkatalog ansehen
+** Fußballwette abgeben
+** Lottoschein ausfüllen
+** Lottoschein Dauerauftrag
+** Auswertung der Wetten (noch ohne Zeitgrenzen)
+** Item hinzufügen
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|08     
+|Zwischenpräsentation vorbereiten   
+a| 
+* Folienpräsentation
+* Design- und Analyseergebnisse
+* Szenarien vorbereiten
+* aufgetretene Probleme            
+|alle                
+|in Arbeit
+
+|09     
+|Basisfunktionalität schaffen   
+|das System soll die Anforderungen der Muss-Kriterien (außer FA10 & FA11) erfüllen            
+|alle, Verteilung siehe github-issues                
+|fast fertig
+
+|10     
+|Issues verteilen     
+|die fehlenden Issues für FA6, FA7, FA8, FA10, FA15 erstellen            
+|alle               
+|in Arbeit
+
+|11     
+|Klassendiagramme erweitern     
+|die Entwurfsklassendiagramme in developer_documentation an Code anpassen und erweitern          
+a|
+* Lotterie & Kunde: Mirek, Song
+* Order: Yuju
+* Statistik: Yutian
+* Katalog: Sophie
+|in Arbeit
+|===

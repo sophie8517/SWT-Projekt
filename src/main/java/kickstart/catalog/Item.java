@@ -2,14 +2,12 @@ package kickstart.catalog;
 
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
-import org.salespointframework.catalog.ProductIdentifier;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 public class Item extends Product{
@@ -19,31 +17,31 @@ public class Item extends Product{
 		TICKET, FOOTBALL, NONE;
 	}
 
-	private LocalDate date;
-	private double price2;
+
+	private LocalDateTime timeLimit; //date and time of the drawing
+	//private double price2;
 	private ItemType type = ItemType.NONE;
 	private String name;
 
 	public Item(){}
 
-	public Item(String name, LocalDate date, Money price, ItemType type){
+	public Item(String name, LocalDateTime timeLimit, Money price, ItemType type){
 		//this.id = new Long(id);
 		super(name, price);
-		this.date = date;
-
+		this.timeLimit = timeLimit;
+		//time_limit später anpassen
 		this.type = type;
 		//bits = new ArrayList<Bet>();
 	}
 
 
-	protected void setType(ItemType type){
-		this.type = type;
+	public LocalDateTime getTimeLimit() {
+		return timeLimit;
 	}
 
-	public LocalDate getDate() {
-		return date;
+	public void setTimeLimit(LocalDateTime timeLimit) {
+		this.timeLimit = timeLimit;
 	}
-
 
 	public ItemType getType() {
 		return type;
@@ -52,4 +50,13 @@ public class Item extends Product{
 	public double getPrice2() {
 		return getPrice().getNumber().doubleValue();
 	}
+
+	public String getFormatDate(){
+		DateTimeFormatter date = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+		String formatdate = date.format(timeLimit.toLocalDate());
+		DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm");
+		String formattime = time.format(timeLimit.toLocalTime());
+		return formatdate + "  " + formattime;
+	}
+
 }

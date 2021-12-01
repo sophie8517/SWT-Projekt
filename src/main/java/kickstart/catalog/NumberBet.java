@@ -14,13 +14,15 @@ public class NumberBet extends Bet {
 
 	@ElementCollection
 	private List<Integer> numbers;
+	private int additionalNum;
 
-	private LocalDate expiration = LocalDate.of(2000,1,1);
 
-
-	public NumberBet(Item item, LocalDateTime date, Money inset, Customer customer, LocalDate expiration, List<Integer> numbers){
+	public NumberBet(Item item, LocalDateTime date, Money inset, Customer customer, LocalDateTime expiration,
+					 List<Integer> numbers, int additionalNum){
 		super(item, date, inset,customer, expiration);
-		this.numbers = numbers;}
+		this.numbers = numbers;
+		this.additionalNum = additionalNum;
+	}
 
 	public NumberBet() {
 
@@ -31,8 +33,23 @@ public class NumberBet extends Bet {
 		return numbers;
 	}
 
+	/*
 	public void setNumbers(List<Integer> numbers) {
 		this.numbers = numbers;
+	}
+
+	 */
+
+	public int getAdditionalNum() {
+		return additionalNum;
+	}
+
+	public void setNumbers(List<Integer> numbers) {
+		this.numbers = numbers;
+	}
+
+	public void setAdditionalNum(int additionalNum) {
+		this.additionalNum = additionalNum;
 	}
 
 	@Override
@@ -42,11 +59,4 @@ public class NumberBet extends Bet {
 				'}';
 	}
 
-	public LocalDate getExpiration() {
-		return expiration;
-	}
-
-	public void setExpiration(LocalDate expiration) {
-		this.expiration = expiration;
-	}
 }

@@ -13,6 +13,8 @@ import org.springframework.util.Assert;
 import java.security.SecureRandom;
 import java.util.Optional;
 
+import static org.salespointframework.core.Currencies.EURO;
+
 
 @Service
 @Transactional
@@ -52,8 +54,7 @@ public class CustomerManagement {
 			SecureRandom random = new SecureRandom();
 			StringBuilder sb = new StringBuilder();
 
-			for (int i = 0; i < length; i++)
-			{
+			for (int i = 0; i < length; i++) {
 				int randomIndex = random.nextInt(chars.length());
 				sb.append(chars.charAt(randomIndex));
 			}
@@ -98,10 +99,8 @@ public class CustomerManagement {
 	}
 
 
-	public Customer charge(Money money,  Customer customer){
-		Money balance = customer.getBalance();
-		balance.subtract(money);
-		return customer;
+	public void charge(Money money,  Customer customer){
+		customer.setBalance(customer.getBalance().add(money));
 	}
 
 	public Customer findByCustomerId(long customerId){
