@@ -35,6 +35,9 @@ public class Bet implements Serializable {
 
 
 	public Bet(Item item, LocalDateTime date, Money einsatz, Customer customer, LocalDateTime expiration){
+		if(einsatz.isLessThan(item.getPrice())){
+			throw new IllegalArgumentException("der Wetteinsatz darf nicht kleiner als der Mindesteinsatz sein");
+		}
 		this.item = item;
 		this.date = date;
 		this.inset = einsatz;
@@ -93,7 +96,12 @@ public class Bet implements Serializable {
 		return id;
 	}
 
-	public void setInset(Money money){ this.inset = money; }
+	public void setInset(Money money){
+		if(money.isLessThan(inset)){
+			throw new IllegalArgumentException("der neue Einsatz darf nicht kleiner als der alte Einsatz sein");
+		}
+		this.inset = money;
+	}
 
 	public Customer getCustomer() {	return customer;}
 

@@ -35,7 +35,6 @@ public class CatalogControllerIntegrationTest  extends AbstractIntegrationTest {
 
 	private Ticket t;
 	private Football f_timeup,f_success;
-	private CatalogDataInitializer cd;
 	private ProductIdentifier id, id_f_timeup,id_f_success;
 	private Customer c;
 	private UserAccount ua;
@@ -168,16 +167,44 @@ public class CatalogControllerIntegrationTest  extends AbstractIntegrationTest {
 
 	}
 
+	@Test
+	public void CheckInsetFoot(){
+
+		c.setBalance(Money.of(40,EURO));
+
+		try {
+			f_success.addBet(new FootballBet(f_success,LocalDateTime.now(),Money.of(8,EURO),c,LocalDateTime.now().plusDays(7),Ergebnis.GASTSIEG));
+		}
+		catch (IllegalArgumentException e){
+			assertThat(true).isTrue();
+		}
+
+	}
+
+	@Test
+	public void CheckUpdatedBalance(){
+		lotteryCatalog.save(f_success);
+		c.setBalance(Money.of(40,EURO));
+		Money newBalance = c.getBalance().subtract(Money.of(12,EURO));
+		String returnView = catalogController.bet_foot(id_f_success,1,12.0,Optional.of(ua));
+
+		assertThat(c.getBalance()).isEqualTo(newBalance);
+
+
+
+		lotteryCatalog.delete(f_success);
+
+	}
+
 	@AfterEach
 	void breakDown(){
 		List<NumberBet> nbs = t.getNumberBetsbyCustomer(c);
 		for(NumberBet n:nbs){
 			t.removeBet(n);
 		}
-		c.setBalance(Money.of(0,EURO));
 		lotteryCatalog.save(t);
 
-
+		c.setBalance(Money.of(0,EURO));
 		customerRepository.save(c);
 	}
 
