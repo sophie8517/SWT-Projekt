@@ -11,7 +11,7 @@ public interface LotteryCatalog extends Catalog<Item> {
 
 	public Sort mysort = Sort.by("productIdentifier").ascending();
 
-	public Sort date_sort = Sort.by("date").ascending();
+	public Sort date_sort = Sort.by("timeLimit").ascending();
 
 	public List<Item> findByType(Item.ItemType type, Sort sort);
 

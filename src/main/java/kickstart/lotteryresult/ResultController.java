@@ -22,14 +22,22 @@ public class ResultController {
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
-	@PostMapping("/eval/num")
+	@PostMapping("/evalnum")
 	public String evalNumberBets(@RequestParam("pid") ProductIdentifier id){
+		LocalDate today = LocalDate.now();
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
-		List<NumberBet> wetten = t.getNumberBits();
-		List<NumberBet> wetten_valid = new ArrayList<>();
+		if(today.equals(t.getTimeLimit().toLocalDate())) {
 
-		NumberLottery numlot = new NumberLottery();
-		//List<Integer> gewinnzahlen = numlot.getWinNumbers();
+
+			List<NumberBet> wetten = t.getNumberBits();
+			List<NumberBet> wetten_valid = new ArrayList<>();
+
+			NumberLottery numlot = new NumberLottery();
+			List<Integer> gewinnzahlen = numlot.generate_nums();
+			int zusatzzahl = numlot.generateAdditionalNumber();
+			t.setWinNumbers(gewinnzahlen);
+			t.setAdditionalNumber(zusatzzahl);
+		/*
 		List<Integer> gewinnzahlen = new ArrayList<>();
 		gewinnzahlen.add(1);
 		gewinnzahlen.add(2);
@@ -38,26 +46,33 @@ public class ResultController {
 		gewinnzahlen.add(5);
 		gewinnzahlen.add(6);
 
-		for(NumberBet nb: wetten){
-			if(!nb.getExpiration().isBefore(LocalDate.now())){
-				wetten_valid.add(nb);
-			}
-		}
-		for(NumberBet nb: wetten_valid){
-			if(nb.getNumbers().containsAll(gewinnzahlen)){
-				nb.changeStatus(Status.WIN);
-			} else{
-				nb.changeStatus(Status.LOSS);
-			}
-		}
-		lotteryCatalog.save(t);
+		 */
 
-		return "redirect:/";
+			for (NumberBet nb : wetten) {
+				if (!nb.getExpiration().isBefore(t.getTimeLimit()) && !nb.getDate().toLocalDate().equals(today)) {
+
+						wetten_valid.add(nb);
+				}else{
+					nb.changeStatus(Status.EXPIRED);
+				}
+			}
+			for (NumberBet nb : wetten_valid) {
+				if (nb.getNumbers().containsAll(gewinnzahlen) && nb.getAdditionalNum() == zusatzzahl) {
+					nb.changeStatus(Status.WIN);
+				} else {
+					nb.changeStatus(Status.LOSS);
+				}
+			}
+			lotteryCatalog.save(t);
+
+			return "redirect:/";
+		}
+		return "time_up.html"; //noch ändern zu noch keine Auswertung möglich
 
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
-	@PostMapping("/eval/foot")
+	@PostMapping("/evalfoot")
 	String evalFootballBets(@RequestParam("pid") ProductIdentifier id, @RequestParam("ergebnis") int number){
 		Football f = (Football) lotteryCatalog.findById(id).get();
 		List<FootballBet> wetten = f.getFootballBets();
@@ -78,7 +93,8 @@ public class ResultController {
 		f.setErgebnis(erg);
 
 		for(FootballBet fb: wetten){
-			if(!fb.getExpiration().isBefore(LocalDate.now())){
+			//ist das jetzt überflüssig, weil die zeitgrenze beim abgeben der wetten eingestellt ist
+			if(!fb.getExpiration().isBefore(fb.getItem().getTimeLimit())){
 				wetten_valid.add(fb);
 			} else{
 				fb.changeStatus(Status.EXPIRED);

@@ -10,16 +10,16 @@ import java.time.LocalDateTime;
 @Entity
 public class FootballBet extends Bet {
 	private Ergebnis tippedStatus;
-	@OneToOne (cascade = CascadeType.ALL)
-	private Team host, guest;
+	//@OneToOne (cascade = CascadeType.ALL)
+	//private Team host, guest;
 
-	public FootballBet(Item item, LocalDateTime date, Money einsatz, Customer customer, LocalDate expiration,
+	public FootballBet(Item item, LocalDateTime date, Money einsatz, Customer customer, LocalDateTime expiration,
 					   Ergebnis tippedStatus){
 		super(item, date, einsatz, customer, expiration);
 		this.tippedStatus = tippedStatus;
 		Football f = (Football) item;
-		this.host = f.getHost();
-		this.guest = f.getGuest();
+		//this.host = f.getHost();
+		//this.guest = f.getGuest();
 	}
 
 	public FootballBet() {
@@ -33,19 +33,29 @@ public class FootballBet extends Bet {
 		return tippedStatus;
 	}
 
+	public void setTippedStatus(Ergebnis tippedStatus) {
+		this.tippedStatus = tippedStatus;
+	}
+
 	@Override
 	public String toString(){
 		Football f = (Football) getItem();
 		return "Heim: " + f.getHost() +"\n Gast: " + f.getGuest() + "\nDatum: " + getDate() + "\nTipp: "+ getTip() + "\n";
 	}
 
+
 	public Team getHost(){
-		return host;
+		Football f = (Football) getItem();
+		return f.getHost();
 
 	}
 	public Team getGuest(){
-		return guest;
+		Football f = (Football) getItem();
+		return f.getGuest();
 	}
-
+	public String getMatchDay(){
+		Football f = (Football) getItem();
+		return f.getFormatDate();
+	}
 
 }
