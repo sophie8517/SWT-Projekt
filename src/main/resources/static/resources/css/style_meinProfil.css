@@ -3,14 +3,27 @@ html {
 }
 
 body {
+<<<<<<< HEAD
+    background-color: grey;
+    /*background-image: url(background2.jpg),url(background3.jpg);*/
+    background-size: cover;
+    background-repeat: no-repeat;
+=======
     /*background-color: grey;*/
     background-image: url('../images/lotto1.jpg');
     background-size: cover;
     background-repeat: repeat;
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
     background-position: center;
 }
 
 .backgrounds {
+<<<<<<< HEAD
+    background: url(../image/ltr.jpg),url(../image/ltr.jpg);
+    background-size: cover,cover;
+    background-repeat:  repeat-x,repeat-y;
+    background-position: center top, center bottom;
+=======
     background-image: url('../images/lotto1.jpg');
     background-size: cover;
     background-repeat: repeat;
@@ -19,18 +32,22 @@ body {
     min-height: 100%;
     min-width: 100%;
 
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
 }
 
 .container {
     margin-left: auto;
     margin-right: auto;
-    width: 745px;
+    width: 780px;
 }
+<<<<<<< HEAD
+=======
 .navcontainer{
     margin-left: 20px;
     margin-right: 20px;
     width: auto;
 }
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
 
 .box-one {
     padding-top: 1px;
@@ -38,12 +55,21 @@ body {
     padding-left: 100px;
     font-size: 16px;
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
     text-align: left;
     background-color: rgba(0, 0, 0, 0.75);
     color: white;
     font-family: Arial, Helvetica, sans-serif;
-
-    height: 665px;
+    
+    
+<<<<<<< HEAD
+    height: 1030px;
+=======
+    height: 670px;
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
 }
 
 .box-two {
@@ -178,4 +204,12 @@ a {
 
 .yt {
     padding-bottom: 50px;
+<<<<<<< HEAD
+}
+
+.box-four{
+    margin-right: auto;
+    margin-left: auto;
+=======
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
 }

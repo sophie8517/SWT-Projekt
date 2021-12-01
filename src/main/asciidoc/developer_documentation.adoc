@@ -314,13 +314,14 @@ image::./models/design/block_customer.svg[Location, 100%, 100%, pdfwidth=100%, t
 [options="header"]
 |=== 
 |Klasse/Enumeration |Description
-|Customer|Eine Klasse, die von Salespoint-Useraccount erbt. Beschreibt Verhältnis eines Kunden, der ein Guthaben hat sowie wettet.
+|Customer|Eine Klasse, die von Salespoint-Useraccount erbt. Beschreibt einen Kunden, der ein Guthaben hat.
 |CustomerController|Ein Spring MVC Controller, der sich um die Registierung, Gruppenerstellung, Kontoaufladung, Kundenansicht usw. kümmert.
 |CustomerDataInitializer|Eine Implementierung für DataInitializer, sodass die Applikation schon Kunden gespeichert hat wenn die startet.
 |CustomerManagement|Verwaltet Kunden und Gruppen
 |CustomerRepository|Ein Interface, das Kunden-Instanz verwaltet und Kunden speichert.
 |Group|Eine Klasse, die von Salespoint-Useraccount erbt. Sie beschreibt die Gruppe bzw. Gewinngemeinschaft.
 |GroupRepository|Ein Interface, das Gruppe-Instanz verwaltet und Gruppen speichert.
+|Profile|Eine Klasse, die das Profil eines Customers verwaltet.
 |RegistrationFrom|Ein Interface, das sich um Validierung der Eingaben von Kunden bei der Registierung kümmert.
 |===
 

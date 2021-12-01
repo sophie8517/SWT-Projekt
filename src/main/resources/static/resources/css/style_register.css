@@ -3,22 +3,37 @@ html {
 }
 
 body {
+<<<<<<< HEAD
+    background-color: grey;
+    /*background-image: url(background2.jpg),url(background3.jpg);*/
+    background-size: cover;
+    background-repeat: no-repeat;
+=======
     /*background-color: grey;*/
     background-image: url('../images/lotto1.jpg');
     background-size: cover;
     background-repeat: repeat;
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
     background-position: center;
 }
 
 .backgrounds {
+<<<<<<< HEAD
+    background-image: url('../image/ltr.jpg');
+    color: red;
+=======
     background-image: url('../images/lotto1.jpg');
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
     background-size: cover;
     background-repeat: repeat;
     background-position: center top;
     display: block;
     min-height: 100%;
     min-width: 100%;
+<<<<<<< HEAD
+=======
 
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
 }
 
 .container {
@@ -26,11 +41,14 @@ body {
     margin-right: auto;
     width: 780px;
 }
+<<<<<<< HEAD
+=======
 .navcontainer{
     margin-left: 20px;
     margin-right: 20px;
     width: auto;
 }
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
 
 .box-one {
     margin-top: 40px;
@@ -107,7 +125,11 @@ nav a{
 
 main {
     background-color: rgba(0, 0, 0, 0.75);
-    height: 530px;
+<<<<<<< HEAD
+    height: 480px;
+=======
+    height: 510px;
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
     text-align: center;
     padding-top: 1px;
     margin-top: 30px;
@@ -175,6 +197,10 @@ a {
     color: white;
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
+<<<<<<< HEAD
+    text-align: left;
+    padding-left: 160px;
+=======
 
 
     /*display: inline-block;*/
@@ -186,6 +212,7 @@ label{
 }
 input{
     margin-left: 80px;
+>>>>>>> 0ebb8938ea532b3399d79cf918310f224fe37183
 }
 
 .maps {

@@ -6,9 +6,6 @@ import org.javamoney.moneta.Money;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import kickstart.customer.Customer;
@@ -21,13 +18,11 @@ public class Football extends Item {
 	@OneToOne (cascade = CascadeType.ALL)
 	private Team host, guest;
 	private String league, logoHost, logoGuest;
-	//private int score;
+	private int score;
 	private Ergebnis ergebnis = Ergebnis.LEER;
 
-	//private boolean check = true;
 
-
-	public Football(String name, LocalDateTime date, Money price, ItemType type, Team host, Team guest, String league,
+	public Football(String name, LocalDate date, Money price, ItemType type, Team host, Team guest, String league,
 					String logoHost, String logoGuest){
 		super(name, date, price, type);
 		this.host = host;
@@ -36,8 +31,6 @@ public class Football extends Item {
 		this.logoHost = logoHost;
 		this.logoGuest = logoGuest;
 		footballBets = new ArrayList<>();
-
-
 	}
 
 	public Football() {
@@ -70,7 +63,6 @@ public class Football extends Item {
 	public String getLogoGuest() {
 		return logoGuest;
 	}
-
 
 	public List<FootballBet> getFootballBets() {
 		return footballBets;
@@ -109,6 +101,4 @@ public class Football extends Item {
 		}
 		return result;
 	}
-
-
 }

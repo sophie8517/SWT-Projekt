@@ -27,35 +27,71 @@
             <h4 class="box-two">"6 aus 49"</h4>
         </main>
 
-            <div class="ticket" th:each="ticket : ${ticketcatalog}"  >
-                <div class="box-three">
-                    <table>
-                        <tr>
-                            <td>Preis: </td>
-                            <td><div th:text="${ticket.price}">preis</div></td>
-                        </tr>
-                        <tr>
-                            <td><br></td>
-                            <td><br></td>
-                        </tr>
-                        <tr>
-                            <td>letzten Gewinnzahlen: </td>
-                            <td><div th:text="${ticket.winNumbers}">liste</div></td>
-                        </tr>
-                        <tr>
-                            <td><br></td>
-                            <td><br></td>
-                        </tr>
-                        <tr>
-                            <td>nächste Ziehung: </td>
-                            <td><div th:text="${ticket.FormatDate}">datum</div></td>
-                        </tr>
-                    </table>
-                </div>
+        <div class="box-three">
+             <div class="ticket" th:each="ticket : ${ticketcatalog}"  >
+                <!--form >
+                    <fieldset class="ticket" style="width: 360px; position: center">
+                        <input type="checkbox" id="1" value="1" ><label for="1">01</label>
+                        <input type="checkbox" id="2" value="2"><label for="2">02</label>
+                        <input type="checkbox" id="3" value="3"><label for="3">03</label>
+                        <input type="checkbox" id="4" value="4"><label for="4">04</label>
+                        <input type="checkbox" id="5" value="5"><label for="5">05</label>
+                        <input type="checkbox" id="6" value="6"><label for="6">06</label>
+                        <input type="checkbox" id="7" value="7"><label for="7">07</label>
+                        </br>
+                        <input type="checkbox" id="8" value="8"><label for="8">08</label>
+                        <input type="checkbox" id="9" value="9"><label for="9">09</label>
+                        <input type="checkbox" id="10" value="10"><label for="10">10</label>
 
-                <div class="box-three">
+                        <input type="checkbox" id="11" value="11"><label for="11">11</label>
+                        <input type="checkbox" id="12" value="12"><label for="12">12</label>
+                        <input type="checkbox" id="13" value="13"><label for="13">13</label>
+                        <input type="checkbox" id="14" value="14"><label for="14">14</label>
+                        </br>
+                        <input type="checkbox" id="15" value="15"><label for="15">15</label>
+                        <input type="checkbox" id="16" value="16"><label for="16">16</label>
+                        <input type="checkbox" id="17" value="17"><label for="17">17</label>
+                        <input type="checkbox" id="18" value="18"><label for="18">18</label>
+                        <input type="checkbox" id="19" value="19"><label for="19">19</label>
+                        <input type="checkbox" id="20" value="20"><label for="20">20</label>
 
-                 <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center" style="margin: auto; border-color: white">
+                        <input type="checkbox" id="21" value="21"><label for="21">21</label>
+                        </br>
+                        <input type="checkbox" id="22"><label for="22">22</label>
+                        <input type="checkbox" id="23"><label for="23">23</label>
+                        <input type="checkbox" id="24"><label for="24">24</label>
+                        <input type="checkbox" id="25"><label for="25">25</label>
+                        <input type="checkbox" id="26"><label for="26">26</label>
+                        <input type="checkbox" id="27"><label for="27">27</label>
+                        <input type="checkbox" id="28"><label for="28">28</label>
+                        </br>
+                        <input type="checkbox" id="29"><label for="29">29</label>
+                        <input type="checkbox" id="30"><label for="30">30</label>
+
+                        <input type="checkbox" id="31"><label for="31">31</label>
+                        <input type="checkbox" id="32"><label for="32">32</label>
+                        <input type="checkbox" id="33"><label for="33">33</label>
+                        <input type="checkbox" id="34"><label for="34">34</label>
+                        <input type="checkbox" id="35"><label for="35">35</label>
+                        </br>
+                        <input type="checkbox" id="36"><label for="36">36</label>
+                        <input type="checkbox" id="37"><label for="37">37</label>
+                        <input type="checkbox" id="38"><label for="38">38</label>
+                        <input type="checkbox" id="39"><label for="39">39</label>
+                        <input type="checkbox" id="40"><label for="40">40</label>
+                        <input type="checkbox" id="41"><label for="41">41</label>
+                        <input type="checkbox" id="42"><label for="42">42</label>
+                        </br>
+                        <input type="checkbox" id="43"><label for="43">43</label>
+                        <input type="checkbox" id="44"><label for="44">44</label>
+                        <input type="checkbox" id="45"><label for="45">45</label>
+                        <input type="checkbox" id="46"><label for="46">46</label>
+                        <input type="checkbox" id="47"><label for="47">47</label>
+                        <input type="checkbox" id="48"><label for="48">48</label>
+                        <input type="checkbox" id="49"><label for="49">49</label>
+                    </fieldset>
+                </form-->
+                 <table>
                      <tr>
                          <td>Dauer</td>
                          <td>Nummer</td>
@@ -79,59 +115,48 @@
                  </table>
                 <br>
 
-                <form th:method="post"  th:action="@{/numbit}" style="font-size: 20px">
+                <form th:method="post"  th:action="@{/lottery/numbit}" style="font-size: 20px">
                     <input type="hidden" name="pid" value="0" th:value="${ticket.id}"/>
                     <div class="ticket2">
-                        <table>
-                            <tr>
-                                <td><label th:text="#{ticket.zahl1}">1. Zahl: </label></td>
-                                <td><input field="*{zahl1}" id="zahl1" type="number" name="zahl1" min="1" max="49" required="required"/></td>
-                            </tr>
-                            <tr>
-                                <td><label th:text="#{ticket.zahl2}">2. Zahl: </label></td>
-                                <td><input field="*{zahl2}" id="zahl2" type="number" name="zahl2" min="1" max="49" required="required"/></td>
-                            </tr>
-                            <tr>
-                                <td><label th:text="#{ticket.zahl3}" >3. Zahl: </label></td>
-                                <td><input field="*{zahl3}" id="zahl3" type="number" name="zahl3" min="1" max="49" required="required"/></td>
-                            </tr>
-                            <tr>
-                                <td><label th:text="#{ticket.zahl4}">4. Zahl: </label></td>
-                                <td><input field="*{zahl4}" id="zahl4" type="number" name="zahl4" min="1" max="49" required="required"/></td>
-                            </tr>
-                            <tr>
-                                <td><label th:text="#{ticket.zahl5}" >5. Zahl: </label></td>
-                                <td><input field="*{zahl5}" id="zahl5" type="number" name="zahl5" min="1" max="49" required="required"/></td>
-                            </tr>
-                            <tr>
-                                <td><label th:text="#{ticket.zahl6}" >6. Zahl: </label></td>
-                                <td><input field="*{zahl6}" id="zahl6" type="number" name="zahl6" min="1" max="49" required="required"/></td>
-                            </tr>
-                            <tr>
-                                <td><label th:text="#{ticket.zusatz}" >Superzahl: </label></td>
-                                <td><input field="*{zusatz}" id="zusatz" type="number" name="zusatz" min="0" max="9" required="required"/></td>
-                            </tr>
-                            <tr>
-                                <td><br></td>
-                                <td><br></td>
-                            </tr>
-                            <tr>
-                                <td><label th:text="#{ticket.dauer}">Dauer: </label></td>
-                                <td><input field="*{dauer}" id="dauer" type="number" name="dauer" min="1" max="4" required="required"></td>
-                            </tr>
-                        </table>
-
+                <div class="field">
+                    <label th:text="#{ticket.zahl1}">1. Zahl: </label>
+                    <input field="*{zahl1}" id="zahl1" type="number" name="zahl1" min="1" max="49" required="required"/><br/>
+                </div>
+                <div class="field" >
+                    <label th:text="#{ticket.zahl2}">2. Zahl: </label>
+                    <input field="*{zahl2}" id="zahl2" type="number" name="zahl2" min="1" max="49" required="required"/><br/>
+                </div>
+                <div class="field" >
+                    <label th:text="#{ticket.zahl3}" >3. Zahl: </label>
+                    <input field="*{zahl3}" id="zahl3" type="number" name="zahl3" min="1" max="49" required="required"/><br/>
+                </div>
+                <div class="field" >
+                    <label th:text="#{ticket.zahl4}">4. Zahl: </label>
+                    <input field="*{zahl4}" id="zahl4" type="number" name="zahl4" min="1" max="49" required="required"/><br/>
+                </div>
+                <div class="field" >
+                    <label th:text="#{ticket.zahl5}" >5. Zahl: </label>
+                    <input field="*{zahl5}" id="zahl5" type="number" name="zahl5" min="1" max="49" required="required"/><br/>
+                </div>
+                <div class="field" >
+                    <label th:text="#{ticket.zahl6}" >6. Zahl: </label>
+                    <input field="*{zahl6}" id="zahl6" type="number" name="zahl6" min="1" max="49" required="required"/><br/>
+                </div></div>
                     <br>
+                    <div>
+                        <label th:text="#{ticket.dauer}">Dauer(1,2,3,oder 4)</label>
+                        <input field="*{dauer}" id="dauer" type="number" name="dauer" min="1" max="4" required="required">
                     </div>
-                <button sec:authorize="hasRole('CUSTOMER')" class="button" type="submit" th:text="#{ticket.addBet}" >Tippschein Abgeben</button>
+                    <br>
+                <button sec:authorize="hasRole('CUSTOMER')" class="button" type="submit" th:text="#{ticket.addBet}">Tippschein Abgeben</button>
 
                 </form>
-                 <form th:method="post"  th:action="@{/evalnum}">
+                 <form th:method="post"  th:action="@{/eval/num}">
                      <input type="hidden" name="pid" value="0" th:value="${ticket.id}"/>
                      <button sec:authorize="hasRole('ADMIN')" class="button" type="submit" th:text="#{ticket.eval}">Tippschein Auswerten</button>
                  </form>
 
-
+             </div>
         </div>
 
        

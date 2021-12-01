@@ -15,7 +15,6 @@ import static org.salespointframework.core.Currencies.*;
 
 import java.time.LocalDateTime;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.*;
 
 import kickstart.catalog.Item.ItemType;
@@ -43,14 +42,10 @@ public class CatalogController {
 
 		//ziehungsdatum in ticket speichern
 		//wenn heute uhrzeit und datum nach ziehungsdatum -> ziehungsdatum neu setzen
-		LocalDate now = LocalDate.now();
-		//wenn heute nicht der Tag der Ziehung ist
-		if(!now.equals(t.getTimeLimit().toLocalDate())){
-			while(t.getTimeLimit().toLocalDate().isBefore(now)){
-				t.setTimeLimit(t.getTimeLimit().plusDays(7));
-			}
+		LocalDateTime now = LocalDateTime.now();
+		while(now.isAfter(t.getTimeLimit())){
+			t.setTimeLimit(t.getTimeLimit().plusDays(7));
 		}
-		lotteryCatalog.save(t);
 
 		model.addAttribute("ticketcatalog", result);
 		model.addAttribute("title", "catalog.ticket.title");
@@ -64,25 +59,17 @@ public class CatalogController {
 
 		List<Item> foots = lotteryCatalog.findByType(ItemType.FOOTBALL);
 		List<Item> result = new ArrayList<>();
-		LocalDateTime now = LocalDateTime.now();
-		//ein user kann auf ein fussballspiel nur eine wette abgeben
 
 		if(!userAccount.isEmpty()){
 			Customer c = customerRepository.findCustomerByUserAccount(userAccount.get());
 			for(Item i:foots){
 				Football f = (Football) i;
-				LocalDateTime spieltag_minus24h = LocalDateTime.of(f.getTimeLimit().toLocalDate().minusDays(1),LocalTime.of(0,0));
-				if(f.getFootballBetsbyCustomer(c).isEmpty() && !now.isAfter(spieltag_minus24h)){
+				if(f.getFootballBetsbyCustomer(c).isEmpty()){
 					result.add(i);
 				}
 			}
 		} else{
-
-			for(Item i: foots){
-				if(now.isBefore(i.getTimeLimit().minusMinutes(5))){
-					result.add(i);
-				}
-			}
+			result = foots;
 		}
 
 
@@ -99,12 +86,10 @@ public class CatalogController {
 
 		List<Item> foots = lotteryCatalog.findByType(ItemType.FOOTBALL);
 		List<Item> result = new ArrayList<>();
-		LocalDateTime now = LocalDateTime.now();
-
 
 		for(Item i: foots){
 			Football f = (Football) i;
-			if(f.getErgebnis() == Ergebnis.LEER && now.isAfter(i.getTimeLimit())){
+			if(f.getErgebnis() == Ergebnis.LEER){
 				result.add(i);
 			}
 		}
@@ -115,21 +100,21 @@ public class CatalogController {
 		return "2_catalog_foot";
 	}
 
+	@GetMapping("/contact")
+	String catalog(Model model){
+		model.addAttribute("title","kontakt.title");
 
+		return "contact";
+	}
 
-	@PostMapping("/numbit")
+	@PostMapping("/lottery/numbit")
 	String bet_num(@RequestParam("pid")ProductIdentifier id, @RequestParam("zahl1") int zahl1,
 				   @RequestParam("zahl2") int zahl2, @RequestParam("zahl3")int zahl3, @RequestParam("zahl4")int zahl4,
-				   @RequestParam("zahl5")int zahl5, @RequestParam("zahl6")int zahl6,@RequestParam("zusatz")int zusatz,
-				   @RequestParam("dauer")int dauer, @LoggedIn Optional<UserAccount> userAccount) {
-
-
-		LocalDateTime now = LocalDateTime.now();
+				   @RequestParam("zahl5")int zahl5, @RequestParam("zahl6")int zahl6,@RequestParam("dauer")int dauer,
+				   @LoggedIn Optional<UserAccount> userAccount){
 
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 		Customer c = customerRepository.findCustomerByUserAccount(userAccount.get());
-		Money money = c.getBalance();
-		Money price = Money.of(t.getPrice2(),EURO);
 
 		List<Integer> nums = new ArrayList<>();
 		Set<Integer> checker = new HashSet<>();
@@ -140,100 +125,80 @@ public class CatalogController {
 		checker.add(zahl5);
 		checker.add(zahl6);
 
-		if (checker.size() == 6 ) {
+		if(checker.size() == 6){
 			nums.addAll(checker);
+		} else{
 
-		} else {
-
-			return "wronginput.html";
+			return "wronginput";
 		}
 		LocalDate exp;
-
-		if (dauer == 1) {
-			exp = now.toLocalDate().plusDays(7);
-		}else if (dauer == 2) {
-			exp = now.toLocalDate().plusMonths(1);
-		}else if (dauer == 3) {
-			exp = now.toLocalDate().plusMonths(6);
-		}else {
-			exp = now.toLocalDate().plusYears(1);
+		if(dauer == 1){
+			exp = LocalDate.now().plusDays(7);
+		}
+		if(dauer == 2){
+			exp = LocalDate.now().plusMonths(1);
+		}
+		if(dauer == 3){
+			exp = LocalDate.now().plusMonths(6);
+		} else{
+			exp = LocalDate.now().plusYears(1);
 		}
 
+		//add: check if all numbers are different
+		NumberBet nb = new NumberBet(t, LocalDateTime.now(), Money.of(t.getPrice().getNumber(), EURO),c,exp, nums);
 
-		if (money.isLessThan(price)) {
-			return "error";
-		} else {
-			money = money.subtract(price);
-			c.setBalance(money);
-			customerRepository.save(c);
-			NumberBet nb = new NumberBet(t, now, price, c,
-					LocalDateTime.of(exp, t.getTimeLimit().toLocalTime()), nums, zusatz);
+		t.addBet(nb);
+		//c.addNumberBet(nb);
 
-			t.addBet(nb);
+		lotteryCatalog.save(t);
+		//customerRepository.save(c);
 
-			lotteryCatalog.save(t);
-			//customerRepository.save(c);
-
-			return "redirect:/";
-		}
-
-
+		return "redirect:/";
 
 	}
 
+	@PostMapping("/lottery/wronginput")
+	String wrong_input(@RequestParam("option1") int number){
+		if(number == 0){
+			return "redirect:/3_catalog_num.html";
+		} else{
+			return "redirect:/";
+		}
+	}
 
-
-	@PostMapping("/footbit")
+	@PostMapping("/lottery/footbit")
 	String bet_foot(@RequestParam("pid")ProductIdentifier id, @RequestParam("fussballwette") int number,
 					@RequestParam("inset") double inset, @LoggedIn Optional<UserAccount> userAccount){
 
-		LocalDateTime now = LocalDateTime.now();
 		Football foot = (Football) lotteryCatalog.findById(id).get();
+
 		Customer customer = customerRepository.findCustomerByUserAccount(userAccount.get());
-		LocalDateTime spieltag_minus24h = LocalDateTime.of(foot.getTimeLimit().toLocalDate().minusDays(1),LocalTime.of(0,0));
-		Money money = customer.getBalance();
-		Money insetMoney = Money.of(inset,EURO);
-		//System.out.println(inset);
-		if(!now.isAfter(spieltag_minus24h)){
-			Ergebnis  status;
-
-			if(number == 1){
-				status = Ergebnis.GASTSIEG;
-			} else if(number == 2){
-				status = Ergebnis.HEIMSIEG;
-			} else{
-				status = Ergebnis.UNENTSCHIEDEN;
-			}
+		System.out.println(inset);
 
 
+		Ergebnis  status;
 
-
-			if(money.isLessThan(insetMoney)){
-				return "error";
-			} else{
-				money = money.subtract(insetMoney);
-				customer.setBalance(money);
-				customerRepository.save(customer);
-				FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(inset, EURO), customer,
-						foot.getTimeLimit(), status);
-				foot.addBet(f);
-				lotteryCatalog.save(foot);
-				return "redirect:/";
-			}
-
+		if(number == 1){
+			status = Ergebnis.GASTSIEG;
+		} else if(number == 2){
+			status = Ergebnis.HEIMSIEG;
+		} else{
+			status = Ergebnis.UNENTSCHIEDEN;
 		}
-		return "time_up.html";
 
-	}
-	@PostMapping("/wronginput")
-	String wrong_input(){
+
+		FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(inset, EURO), customer, foot.getDate(),
+				status);
+		foot.addBet(f);
+		//customer.addFootballBet(f);
+		System.out.println(foot.getFootballBets());
+		lotteryCatalog.save(foot);
+		//customerRepository.save(customer);
+
+
 
 		return "redirect:/";
-	}
-	@PostMapping("/timeup")
-	String timeup(){
 
-		return "redirect:/";
 	}
 
 

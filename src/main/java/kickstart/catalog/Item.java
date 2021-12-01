@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 @Entity
 public class Item extends Product{
@@ -17,23 +16,32 @@ public class Item extends Product{
 		TICKET, FOOTBALL, NONE;
 	}
 
-
-	private LocalDateTime timeLimit; //date and time of the drawing
-	//private double price2;
+	private LocalDate date;
+	private LocalDateTime timeLimit;
+	private double price2;
 	private ItemType type = ItemType.NONE;
 	private String name;
 
 	public Item(){}
 
-	public Item(String name, LocalDateTime timeLimit, Money price, ItemType type){
+	public Item(String name, LocalDate date, Money price, ItemType type){
 		//this.id = new Long(id);
 		super(name, price);
-		this.timeLimit = timeLimit;
+		this.date = date;
 		//time_limit später anpassen
+		this.timeLimit = LocalDateTime.of(date, LocalTime.of(15,00));
 		this.type = type;
 		//bits = new ArrayList<Bet>();
 	}
 
+
+	protected void setType(ItemType type){
+		this.type = type;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
 
 	public LocalDateTime getTimeLimit() {
 		return timeLimit;
@@ -50,13 +58,4 @@ public class Item extends Product{
 	public double getPrice2() {
 		return getPrice().getNumber().doubleValue();
 	}
-
-	public String getFormatDate(){
-		DateTimeFormatter date = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-		String formatdate = date.format(timeLimit.toLocalDate());
-		DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm");
-		String formattime = time.format(timeLimit.toLocalTime());
-		return formatdate + "  " + formattime;
-	}
-
 }
