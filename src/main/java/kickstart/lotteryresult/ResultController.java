@@ -35,10 +35,16 @@ public class ResultController {
 		LocalDate today = todaytime.toLocalDate();
 
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
+
+
 		if(todaytime.isAfter(t.getTimeLimit().minusSeconds(1)) && todaytime.isBefore(t.getTimeLimit().plusMinutes(30))) {
 
+			if(t.getCheckEvaluation().containsKey(t.getTimeLimit().toLocalDate())){
+				return "schon_ausgewertet";
+			}
 
 			evaluateNum(t,today);
+			return "redirect:/";
 
 
 		}
@@ -58,7 +64,7 @@ public class ResultController {
 
 
 		for (NumberBet nb : wetten) {
-			if (!nb.getExpiration().isBefore(t.getTimeLimit()) && !nb.getDate().toLocalDate().equals(today) && nb.getStatus().equals(Status.OPEN)) {
+			if (!nb.getExpiration().isBefore(t.getTimeLimit()) && !nb.getDate().toLocalDate().equals(today)) {
 
 				wetten_valid.add(nb);
 			}else{
@@ -77,6 +83,8 @@ public class ResultController {
 			}
 		}
 
+		t.addCheck(t.getTimeLimit().toLocalDate());
+
 		lotteryCatalog.save(t);
 	}
 
@@ -85,48 +93,54 @@ public class ResultController {
 	@PostMapping("/evalfoot")
 	String evalFootballBets(@RequestParam("pid") ProductIdentifier id, @RequestParam("ergebnis") int number){
 		Football f = (Football) lotteryCatalog.findById(id).get();
-		List<FootballBet> wetten = f.getFootballBets();
-		List<FootballBet> wetten_valid = new ArrayList<>();
+
+		if(LocalDateTime.now().isAfter(f.getTimeLimit()) && f.getErgebnis().equals(Ergebnis.LEER)){
+			List<FootballBet> wetten = f.getFootballBets();
+			List<FootballBet> wetten_valid = new ArrayList<>();
 
 
-		Ergebnis erg;
-		if(number == 1){
+			Ergebnis erg;
+			if(number == 1){
 
-			erg = Ergebnis.GASTSIEG;
-		} else if(number == 2){
+				erg = Ergebnis.GASTSIEG;
+			} else if(number == 2){
 
-			erg = Ergebnis.HEIMSIEG;
-		} else{
-
-			erg = Ergebnis.UNENTSCHIEDEN;
-		}
-		f.setErgebnis(erg);
-
-		for(FootballBet fb: wetten){
-			//ist das jetzt überflüssig, weil die zeitgrenze beim abgeben der wetten eingestellt ist
-			if(!fb.getExpiration().isBefore(fb.getItem().getTimeLimit())){
-				wetten_valid.add(fb);
+				erg = Ergebnis.HEIMSIEG;
 			} else{
-				fb.changeStatus(Status.EXPIRED);
+
+				erg = Ergebnis.UNENTSCHIEDEN;
+			}
+			f.setErgebnis(erg);
+
+			for(FootballBet fb: wetten){
+				//ist das jetzt überflüssig, weil die zeitgrenze beim abgeben der wetten eingestellt ist
+				if(!fb.getExpiration().isBefore(fb.getItem().getTimeLimit())){
+					wetten_valid.add(fb);
+				} else{
+					fb.changeStatus(Status.EXPIRED);
+
+				}
+			}
+			for(FootballBet fb: wetten_valid){
+				if(fb.getTip().equals(erg)){
+					fb.changeStatus(Status.WIN);
+					Customer c = fb.getCustomer();
+					Money bal = c.getBalance().add(fb.getInset());
+					c.setBalance(bal);
+					customerRepository.save(c);
+				} else{
+					fb.changeStatus(Status.LOSS);
+				}
 
 			}
-		}
-		for(FootballBet fb: wetten_valid){
-			if(fb.getTip().equals(erg)){
-				fb.changeStatus(Status.WIN);
-				Customer c = fb.getCustomer();
-				Money bal = c.getBalance().add(fb.getInset());
-				c.setBalance(bal);
-				customerRepository.save(c);
-			} else{
-				fb.changeStatus(Status.LOSS);
-			}
+
+
+			lotteryCatalog.save(f);
+
+			return "redirect:/";
 
 		}
+		return "noFootEval";
 
-
-		lotteryCatalog.save(f);
-
-		return "redirect:/";
 	}
 }
