@@ -37,7 +37,6 @@
     <!--<form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
         <button type="submit" class="ui button" th:text="#{nav.logout}">Logout</button>
     </form>-->
-    <a  href="meinProfil.html" th:href="@{/profile}" sec:authorize="hasRole('CUSTOMER')" th:text="#{nav.group}">MEINE GRUPPE</a>
     <a  href="customer_bets.html" th:href="@{/customer_bets}" sec:authorize="hasRole('CUSTOMER')" th:text="#{nav.wetten}">WETTEN</a>
     <a  href="statistic.html" th:href="@{/statistic}" sec:authorize="hasRole('ADMIN')" th:text="#{nav.statistic}">STATISTIK</a>
     <a th:href="@{/logout}" sec:authorize="isAuthenticated()" th:text="#{nav.logout}" >Logout</a>

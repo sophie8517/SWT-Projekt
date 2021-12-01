@@ -24,7 +24,7 @@
         <h3 class="box-two" th:text="#{myProfile.title}">Mein Profil</h3>
         <h2 class="box-two">Persönliche Daten</h2>
 
-        <table border = "5" cellpadding = "5" cellspacing = "0" align="left" style="border-color: white">
+        <table border = "5" cellpadding = "5" cellspacing = "0" align="left" class="box-four" style="border-color: white">
             <tr>
                 <td><div th:text="#{myProfile.firstname}"></div></td>
                 <td><div th:text="#{myProfile.lastname}"></div></td>
@@ -57,11 +57,6 @@
 
 
         <a href="" target="_blank"> Gewinngemeinschaft erstellen</a>
-
-        <br>
-        <br>
-
-        <a href="meineGruppe.html" th:href="@{/meineGruppe}" sec:authorize="hasRole('CUSTOMER')"> Gewinngemeinschaft betreten</a>
 
         <br>
         <br>
