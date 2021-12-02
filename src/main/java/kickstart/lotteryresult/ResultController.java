@@ -89,7 +89,7 @@ public class ResultController {
 	}
 
 
-	//@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/evalfoot")
 	String evalFootballBets(@RequestParam("pid") ProductIdentifier id, @RequestParam("ergebnis") int number){
 		Football f = (Football) lotteryCatalog.findById(id).get();
