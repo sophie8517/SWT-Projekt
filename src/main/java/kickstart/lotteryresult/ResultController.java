@@ -39,7 +39,7 @@ public class ResultController {
 
 		if(todaytime.isAfter(t.getTimeLimit().minusSeconds(1)) && todaytime.isBefore(t.getTimeLimit().plusMinutes(30))) {
 
-			if(t.getCheckEvaluation().containsKey(t.getTimeLimit().toLocalDate())){
+			if(t.getCheckEvaluation().contains(t.getTimeLimit().toLocalDate())){
 				return "schon_ausgewertet";
 			}
 
@@ -89,7 +89,7 @@ public class ResultController {
 	}
 
 
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/evalfoot")
 	String evalFootballBets(@RequestParam("pid") ProductIdentifier id, @RequestParam("ergebnis") int number){
 		Football f = (Football) lotteryCatalog.findById(id).get();

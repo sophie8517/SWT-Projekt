@@ -4,10 +4,7 @@ package kickstart.catalog;
 import kickstart.customer.Customer;
 import org.javamoney.moneta.Money;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -27,7 +24,8 @@ public class Ticket extends Item {
 
 	private int additionalNumber;
 
-	private Map<LocalDate,Boolean> checkEvaluation = new HashMap<>();
+	@ElementCollection
+	private List<LocalDate> checkEvaluation = new ArrayList<>();
 
 
 	public Ticket(String name, LocalDateTime timeLimit, Money price, ItemType type){
@@ -107,11 +105,11 @@ public class Ticket extends Item {
 		this.additionalNumber = additionalNumber;
 	}
 
-	public Map<LocalDate, Boolean> getCheckEvaluation() {
+	public List<LocalDate> getCheckEvaluation() {
 		return checkEvaluation;
 	}
 	public void addCheck(LocalDate date){
 		checkEvaluation.clear();
-		checkEvaluation.put(date,true);
+		checkEvaluation.add(date);
 	}
 }

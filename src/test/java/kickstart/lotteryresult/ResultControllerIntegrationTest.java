@@ -55,6 +55,7 @@ public class ResultControllerIntegrationTest extends AbstractIntegrationTest {
 
 	@Test
 	public void EvalFootballBetsTestNotPossible(){
+
 		String returnView = resultController.evalFootballBets(f2id,1);
 		assertThat(returnView).isEqualTo("noFootEval");
 	}
