@@ -61,7 +61,8 @@ public class CustomerManagement {
 
 			System.out.println(sb);
 
-		var password = Password.UnencryptedPassword.of(sb.toString());
+		var password = sb.toString();
+		customer.addGroup(groupName);
 
 
 //		var userAccount = userAccounts.create(form.getEmail(), password, CUSTOMER_ROLE);
@@ -69,7 +70,7 @@ public class CustomerManagement {
 //		userAccount.setFirstname(form.getFirstname());
 //		userAccount.setLastname(form.getLastname());
 
-		return groups.save(new Group(groupName, customer, password.toString()));
+		return groups.save(new Group(groupName, customer, password));
 	}
 
 //	public Group deleteGroup(Group group){
@@ -86,18 +87,24 @@ public class CustomerManagement {
 		return groups.findAll();
 	}
 
-//	public Group addMemberToGroup(Customer customer, Group group, String password){
-//		if (group.getUserAccount().getPassword().toString().equals(password)){
-//			userAccounts.save(group.getUserAccount());
-//			group.add(customer);
-//			return group;
-//		}
-//		throw new NullPointerException("Password doesn't match!");
-//	}
+	public Group addMemberToGroup(Customer customer, Group group, String password){
+		System.out.println(group.getPassword() + " and " + password);
+		if(!group.getPassword().equals(password))
+			throw new IllegalStateException("password doesn't match!");
+
+		if(group.contains(customer))
+			throw new IllegalArgumentException("Customer is already in the Group!");
+
+		group.add(customer);
+
+		return groups.save(group);
+	}
 
 	public Group removeMemberOfGroup(Customer customer, Group group){
+		if (!group.contains(customer))
+			throw new IllegalArgumentException("Customer doesn't exist!");
 		group.remove(customer);
-		return group;
+		return groups.save(group);
 	}
 
 
@@ -110,8 +117,8 @@ public class CustomerManagement {
 		return customer;
 	}
 
-	public Group findByGroupId(long groupId){
-		var group = groups.findById(groupId).orElse(null);
+	public Group findByGroupName(String name){
+		var group = groups.findById(name).orElse(null);
 		return group;
 	}
 	public Customer findByUserAccount(UserAccount userAccount){

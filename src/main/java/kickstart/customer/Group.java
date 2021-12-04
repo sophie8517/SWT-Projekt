@@ -1,12 +1,15 @@
 package kickstart.customer;
 
+import org.hibernate.annotations.CollectionType;
 import org.salespointframework.useraccount.UserAccount;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 @Entity
+@Table(name = "BETGROUP")
 public class Group {
 
 	//private @Id @GeneratedValue long id;
@@ -14,26 +17,24 @@ public class Group {
 //	private UserAccount userAccount;
 	@Id
 	private String groupName;
-	@OneToMany
-	private Set<Customer> customers;
-	@ManyToOne
+
+	@Transient
+	private Set<Customer> customers = new TreeSet<>();
+	@Transient
 	private Customer leader;
-	private String pwd;
+
+	private String password;
 
 	public Group(){}
 
-	public Group(String groupName, Customer leader, String pwd){
+	public Group(String groupName, Customer leader, String password){
 		//this.userAccount = userAccount;
 		this.leader = leader;
 		this.groupName = groupName;
-		this.pwd = pwd;
-		customers =  new HashSet<>();
+		this.password = password;
 		customers.add(leader);
 	}
 
-//	public long getId() {
-//		return id;
-//	}
 
 	public String getGroupName() {
 		return groupName;
@@ -54,5 +55,22 @@ public class Group {
 
 	public Set<Customer> getMembers(){
 		return customers;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public Customer getLeader() {
+		return leader;
+	}
+
+	public boolean contains(Customer customer) {
+		return customers.contains(customer);
+	}
+
+	@Override
+	public String toString() {
+		return this.groupName;
 	}
 }

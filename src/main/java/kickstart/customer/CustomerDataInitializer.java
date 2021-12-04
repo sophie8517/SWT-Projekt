@@ -50,6 +50,14 @@ class CustomerDataInitializer implements DataInitializer {
 				new RegistrationForm("Sophie", "Schulze", "sophie@tu-dresden.de", password, passwordCheck),
 				new RegistrationForm("Lukas", "Lei", "lukas@tu-dresden.de", password, passwordCheck)
 		).forEach(customerManagement::createCustomer);
+
+		LOG.info("Creating default groups");
+		var leader = customerManagement.createCustomer(
+				new RegistrationForm("test", "leader", "test@leader.de", "123", "123")
+		);
+
+		var groupA = customerManagement.createGroup("groupA", leader);
+		var groupB = customerManagement.createGroup("groupB", leader);
 	}
 }
 

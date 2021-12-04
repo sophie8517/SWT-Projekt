@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -135,12 +137,12 @@ public class CustomerController{
 //		 return "redirect:/";
 //	}
 
-	@PostMapping("/removeMember")
-	public String removeMember(long customerId, long groupId){
-		customerManagement.removeMemberOfGroup(
-				customerManagement.findByCustomerId(customerId), customerManagement.findByGroupId(groupId));
-		return "redirect:/";
-	}
+//	@PostMapping("/removeMember")
+//	public String removeMember(long customerId, long groupId){
+//		customerManagement.removeMemberOfGroup(
+//				customerManagement.findByCustomerId(customerId), customerManagement.findByGroupId(groupId));
+//		return "redirect:/";
+//	}
 
 //	@PostMapping("/deleteGroup")
 //	public String deleteGroup(Model model, long groupId){
@@ -150,17 +152,42 @@ public class CustomerController{
 //	}
 
 	@GetMapping("/group")
-	public String Group(){
+	public String Group(Model model, @LoggedIn Optional<UserAccount> userAccount){
+
+		var customer = customerManagement.findByUserAccount(userAccount.get());
+		List<String> gName = customer.getGroup();
+		System.out.println(gName);
+		List<Group> groups = new ArrayList<>();
+		for (String groupName : gName){
+			groups.add(customerManagement.findByGroupName(groupName));
+		}
+
+		//model.addAttribute("groupNames", gName);
+		//model.addAttribute("groupMems", groups);
+		model.addAttribute("groups", groups);
+		model.addAttribute("groupList", customerManagement.findAllGroups());
+
 		return "group";
 	}
 
 	@GetMapping("/group_join")
-	public String joinGroup(){
+	public String join(){
 		return "group_join";
 	}
 
-	@GetMapping("/group_create_page")
-	public String createGroupPage(){
+	@PostMapping("/group_join")
+	public String joinGroup(@RequestParam("name") String name, @RequestParam("password") String password,
+							@LoggedIn Optional<UserAccount> userAccount){
+		var customer = customerManagement.findByUserAccount(userAccount.get());
+		var group = customerManagement.findByGroupName(name);
+		System.out.println(group);
+		customerManagement.addMemberToGroup(customer, group, password);
+
+		return "redirect:/group";
+	}
+
+	@GetMapping("/group_create")
+	public String createGroupPage(Model model){
 		return "group_create";
 	}
 
@@ -169,7 +196,7 @@ public class CustomerController{
 
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 		customerManagement.createGroup(groupName, customer);
-		return "group_create";
+		return "redirect:/group";
 	}
 
 	@PostMapping("/close")

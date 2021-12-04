@@ -21,23 +21,32 @@
         <h3>Gewinngemeinschaft</h3>
 
 
-
-
-
+        <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center" style="margin: auto; border-color: white">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tr th:each="group : ${groupList}">
+                <td th:text="${group.groupName}">group1</td>
+            </tr>
+        </table>
 
 
         <div class="ui two column centered grid">
             <div class="four column centered row">
-                <div class="column">
-                    <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/group_create_page}">
-                        <button type="submit" class="ui button" th:text="#{group.create}">create</button>
-                    </form>
-                </div>
-                <div class="column">
-                    <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/group_join}">
-                        <button type="submit" class="ui button" th:text="#{group.join}">join</button>
-                    </form>
-                </div>
+<!--                <div class="column">-->
+<!--                    <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/group_create}">-->
+<!--                        <button type="submit" class="ui button" th:text="#{group.create}">create</button>-->
+<!--                    </form>-->
+<!--                </div>-->
+                <a  href="group_create.html" th:href="@{/group_create}" sec:authorize="hasRole('CUSTOMER')">Gruppe Einrichten</a>
+                <a  href="group_join.html" th:href="@{/group_join}" sec:authorize="hasRole('CUSTOMER')">Gruppe teilnehmen</a>
+<!--                <div class="column">-->
+<!--                    <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/group_join}">-->
+<!--                        <button type="submit" class="ui button" th:text="#{group.join}">join</button>-->
+<!--                    </form>-->
+<!--                </div>-->
             </div>
         </div>
 

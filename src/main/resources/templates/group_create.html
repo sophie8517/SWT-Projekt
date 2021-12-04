@@ -25,10 +25,10 @@
         <section>
             <form method="post" th:action="@{/group_create}">
                 <div class="style">
-                    <label for="groupName">Gruppe Name:</label>
-                    <input id="groupName" name="groupName" field="*{groupName}" th:errorclass="fieldError" type="text" required="required"/><br/>
+                    <label>Gruppe Name:</label>
+                    <input id="groupName" name="groupName" field="*{groupName}" type="text" required="required"/><br/>
                 </div>
-                <button type="submit" th:text="#{group.create}">Einrichten</button>
+                <button type="submit" class="ui button" th:text="#{group.create}">Einrichten</button>
             </form>
         </section>
 

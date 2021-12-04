@@ -20,6 +20,36 @@
 
         <h3>Gewinngemeinschaft</h3>
 
+        <h4>Gruppe teilnehmen</h4>
+
+        <form method="post" th:action="@{/group_join}">
+            <!--                <div class="style">-->
+            <!--                    <label for="groupName">Gruppe Name:</label>-->
+            <!--                    <input id="groupName" name="groupName" field="*{groupName}" th:errorclass="fieldError" type="text" required="required"/><br/>-->
+            <!--                </div>-->
+            <div>
+                <label>Group Name</label>
+                <input type="text" field="*{name}" id="name" name="name" required="required" />
+            </div>
+
+            <br>
+
+            <div>
+                <label>Password</label>
+                <input type="text" field="*{password}" id="password" name="password" required="required" />
+            </div>
+
+
+            <button type="submit" class="ui button">Teilnehmen</button>
+        </form>
+
+        <div>
+            <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="post" th:action="@{/close}">
+                <button type="submit" class="ui button" th:text="#{group.close}">schließen</button>
+            </form>
+        </div>
+
+
 
 
     </main>
