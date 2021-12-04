@@ -136,6 +136,7 @@ public class CatalogControllerIntegrationTest  extends AbstractIntegrationTest {
 		dauer = 1;
 		String returnView = catalogController.bet_num(id,z1,z2,z3,z4,z5,z6,z7,dauer,Optional.of(ua));
 		assertThat(returnView).isEqualTo("redirect:/");
+		assertThat(c.getBalance()).isEqualTo(Money.of(43,EURO));
 	}
 
 	@Test
@@ -155,6 +156,7 @@ public class CatalogControllerIntegrationTest  extends AbstractIntegrationTest {
 		c.setBalance(Money.of(40,EURO));
 		String returnView = catalogController.bet_foot(id_f_success,1,12.0,Optional.of(ua));
 		assertThat(returnView).isEqualTo("redirect:/");
+		assertThat(c.getBalance()).isEqualTo(Money.of(28,EURO));
 		lotteryCatalog.delete(f_success);
 	}
 
@@ -176,7 +178,7 @@ public class CatalogControllerIntegrationTest  extends AbstractIntegrationTest {
 			f_success.addBet(new FootballBet(f_success,LocalDateTime.now(),Money.of(8,EURO),c,LocalDateTime.now().plusDays(7),Ergebnis.GASTSIEG));
 		}
 		catch (IllegalArgumentException e){
-			assertThat(true).isTrue();
+			assertThat(e.getMessage()).isEqualTo("der Wetteinsatz darf nicht kleiner als der Mindesteinsatz sein");
 		}
 
 	}
