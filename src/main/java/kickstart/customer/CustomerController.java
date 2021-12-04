@@ -4,12 +4,11 @@ import com.mysema.commons.lang.Assert;
 import static org.salespointframework.core.Currencies.*;
 
 
+import org.h2.engine.User;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -93,21 +92,21 @@ public class CustomerController{
 		return "customers";
 	}
 
-	@PostMapping("/registerGroup")
-	String createNewGroup(@Valid RegistrationForm form, Errors result) {
-
-		if (result.hasErrors()) {
-			return "register";
-		}
-
-		customerManagement.createCustomer(form);
-		return "redirect:/";
-	}
-
-	@GetMapping("/registerGroup")
-	public String create(Model model, RegistrationForm form){
-		return "redirect:/";
-	}
+//	@PostMapping("/registerGroup")
+//	String createNewGroup(@Valid RegistrationForm form, Errors result) {
+//
+//		if (result.hasErrors()) {
+//			return "register";
+//		}
+//
+//		customerManagement.createCustomer(form);
+//		return "redirect:/";
+//	}
+//
+//	@GetMapping("/registerGroup")
+//	public String create(){
+//		return "group_create";
+//	}
 
 	@PostMapping("/balance/charge")
 	public String charge(@RequestParam("money") double money, @LoggedIn Optional<UserAccount> userAccount){
@@ -129,12 +128,12 @@ public class CustomerController{
 		return "balance";
 	}
 
-	@PostMapping("/addMember")
-	public String addMember(long customerId, long groupId, String password){
-		 customerManagement.addMemberToGroup(
-		 		customerManagement.findByCustomerId(customerId), customerManagement.findByGroupId(groupId),password);
-		 return "redirect:/";
-	}
+//	@PostMapping("/addMember")
+//	public String addMember(long customerId, long groupId, String password){
+//		 customerManagement.addMemberToGroup(
+//		 		customerManagement.findByCustomerId(customerId), customerManagement.findByGroupId(groupId),password);
+//		 return "redirect:/";
+//	}
 
 	@PostMapping("/removeMember")
 	public String removeMember(long customerId, long groupId){
@@ -143,10 +142,40 @@ public class CustomerController{
 		return "redirect:/";
 	}
 
-	@PostMapping("/deleteGroup")
-	public String deleteGroup(Model model, long groupId){
-		customerManagement.deleteGroup(customerManagement.findByGroupId(groupId));
-		model.addAttribute("group",customerManagement.findAllGroups());
-		return "redirect:/";
+//	@PostMapping("/deleteGroup")
+//	public String deleteGroup(Model model, long groupId){
+//		customerManagement.deleteGroup(customerManagement.findByGroupId(groupId));
+//		model.addAttribute("group",customerManagement.findAllGroups());
+//		return "redirect:/";
+//	}
+
+	@GetMapping("/group")
+	public String Group(){
+		return "group";
 	}
+
+	@GetMapping("/group_join")
+	public String joinGroup(){
+		return "group_join";
+	}
+
+	@GetMapping("/group_create_page")
+	public String createGroupPage(){
+		return "group_create";
+	}
+
+	@PostMapping("/group_create")
+	public String createGroup(@RequestParam("groupName") String groupName, @LoggedIn Optional<UserAccount> userAccount){
+
+		var customer = customerManagement.findByUserAccount(userAccount.get());
+		customerManagement.createGroup(groupName, customer);
+		return "group_create";
+	}
+
+	@PostMapping("/close")
+	String close(){
+		return "redirect:/group";
+	}
+
+
 }

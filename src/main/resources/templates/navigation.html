@@ -24,6 +24,7 @@
     </form>-->
     <a  href="customer_bets.html" th:href="@{/customer_bets}" sec:authorize="hasRole('CUSTOMER')" th:text="#{nav.wetten}">WETTEN</a>
     <a  href="statistic.html" th:href="@{/statistic}" sec:authorize="hasRole('ADMIN')" th:text="#{nav.statistic}">STATISTIK</a>
+    <a  href="group.html" th:href="@{/group}" sec:authorize="hasRole('CUSTOMER')" th:text="#{nav.group}">Gewinngemeinschaft</a>
     <a th:href="@{/logout}" sec:authorize="isAuthenticated()" th:text="#{nav.logout}" >Logout</a>
 
 </nav>

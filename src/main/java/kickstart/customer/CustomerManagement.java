@@ -45,8 +45,8 @@ public class CustomerManagement {
 		return customers.save(new Customer(userAccount));
 	}
 
-	public Group createGroup(RegistrationForm form, Customer customer){
-		Assert.notNull(form, "Registration form must not be null!");
+	public Group createGroup(String groupName, Customer customer){
+		Assert.notNull(groupName, "Registration form must not be null!");
 
 			int length = 8;
 			final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -62,19 +62,21 @@ public class CustomerManagement {
 			System.out.println(sb);
 
 		var password = Password.UnencryptedPassword.of(sb.toString());
-		var userAccount = userAccounts.create(form.getEmail(), password, CUSTOMER_ROLE);
-		userAccount.setEmail(form.getEmail());
-		userAccount.setFirstname(form.getFirstname());
-		userAccount.setLastname(form.getLastname());
 
-		return groups.save(new Group(customer.getUserAccount(),customer));
+
+//		var userAccount = userAccounts.create(form.getEmail(), password, CUSTOMER_ROLE);
+//		userAccount.setEmail(form.getEmail());
+//		userAccount.setFirstname(form.getFirstname());
+//		userAccount.setLastname(form.getLastname());
+
+		return groups.save(new Group(groupName, customer, password.toString()));
 	}
 
-	public Group deleteGroup(Group group){
-		userAccounts.delete(group.getUserAccount());
-		groups.delete(group);
-		return group;
-	}
+//	public Group deleteGroup(Group group){
+//		userAccounts.delete(group.getUserAccount());
+//		groups.delete(group);
+//		return group;
+//	}
 
 	public Streamable<Customer> findAllCustomers() {
 		return customers.findAll();
@@ -84,14 +86,14 @@ public class CustomerManagement {
 		return groups.findAll();
 	}
 
-	public Group addMemberToGroup(Customer customer, Group group, String password){
-		if (group.getUserAccount().getPassword().toString().equals(password)){
-			userAccounts.save(group.getUserAccount());
-			group.add(customer);
-			return group;
-		}
-		throw new NullPointerException("Password doesn't match!");
-	}
+//	public Group addMemberToGroup(Customer customer, Group group, String password){
+//		if (group.getUserAccount().getPassword().toString().equals(password)){
+//			userAccounts.save(group.getUserAccount());
+//			group.add(customer);
+//			return group;
+//		}
+//		throw new NullPointerException("Password doesn't match!");
+//	}
 
 	public Group removeMemberOfGroup(Customer customer, Group group){
 		group.remove(customer);

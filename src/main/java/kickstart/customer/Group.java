@@ -8,26 +8,37 @@ import java.util.Set;
 
 @Entity
 public class Group {
-	private @Id @GeneratedValue long id;
-	@OneToOne
-	private UserAccount userAccount;
+
+	//private @Id @GeneratedValue long id;
+//	@OneToOne
+//	private UserAccount userAccount;
+	@Id
+	private String groupName;
 	@OneToMany
 	private Set<Customer> customers;
-	@OneToOne
+	@ManyToOne
 	private Customer leader;
+	private String pwd;
 
 	public Group(){}
 
-	public Group(UserAccount userAccount, Customer leader){
-		this.userAccount = userAccount;
+	public Group(String groupName, Customer leader, String pwd){
+		//this.userAccount = userAccount;
 		this.leader = leader;
+		this.groupName = groupName;
+		this.pwd = pwd;
 		customers =  new HashSet<>();
 		customers.add(leader);
 	}
 
-	public long getId() {
-		return id;
+//	public long getId() {
+//		return id;
+//	}
+
+	public String getGroupName() {
+		return groupName;
 	}
+
 
 	public void add(Customer customer){
 		customers.add(customer);
@@ -37,9 +48,9 @@ public class Group {
 		customers.remove(customer);
 	}
 
-	public UserAccount getUserAccount() {
-		return userAccount;
-	}
+//	public UserAccount getUserAccount() {
+//		return userAccount;
+//	}
 
 	public Set<Customer> getMembers(){
 		return customers;
