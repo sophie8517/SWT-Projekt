@@ -14,7 +14,6 @@ import java.security.SecureRandom;
 
 import static org.salespointframework.core.Currencies.EURO;
 
-
 @Service
 @Transactional
 public class CustomerManagement {

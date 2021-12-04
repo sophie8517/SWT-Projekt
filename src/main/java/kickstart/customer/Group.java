@@ -3,11 +3,10 @@ package kickstart.customer;
 import org.salespointframework.useraccount.UserAccount;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
-public class Group {
+public class Group implements Comparable<Customer> {
 	private @Id @GeneratedValue long id;
 	@OneToOne
 	private UserAccount userAccount;
@@ -61,5 +60,9 @@ public class Group {
 		if (!contains(leader) || isLeader(leader))
 			throw new IllegalArgumentException("Customer doesn't find or is already leader!");
 		this.leader = leader;
+	}
+	@Override
+	public int compareTo(Customer customer) {
+		return this.leader.toString().compareTo(customer.toString());
 	}
 }
