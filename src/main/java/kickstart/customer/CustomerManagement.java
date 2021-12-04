@@ -20,6 +20,7 @@ import static org.salespointframework.core.Currencies.EURO;
 public class CustomerManagement {
 
 	public static final Role CUSTOMER_ROLE = Role.of("CUSTOMER");
+	public static final Role GROUP_ROLE = Role.of("GROUP");
 
 	private GroupRepository groups;
 	private CustomerRepository customers;
@@ -44,7 +45,7 @@ public class CustomerManagement {
 		return customers.save(new Customer(userAccount));
 	}
 
-	public Group createGroup(RegistrationForm form, Customer customer){
+	public Group createGroup(GroupRegistrationForm form, Customer customer){
 		Assert.notNull(form, "Registration form must not be null!");
 
 			int length = 8;
@@ -61,12 +62,9 @@ public class CustomerManagement {
 			System.out.println(sb);
 
 		var password = Password.UnencryptedPassword.of(sb.toString());
-		var userAccount = userAccounts.create(form.getEmail(), password, CUSTOMER_ROLE);
-		userAccount.setEmail(form.getEmail());
-		userAccount.setFirstname(form.getFirstname());
-		userAccount.setLastname(form.getLastname());
+		var userAccount = userAccounts.create(form.getName(), password, GROUP_ROLE);
 
-		return groups.save(new Group(customer.getUserAccount(),customer));
+		return groups.save(new Group(userAccount,customer));
 	}
 
 	public Group deleteGroup(Group group){
@@ -99,6 +97,8 @@ public class CustomerManagement {
 
 
 	public void charge(Money money,  Customer customer){
+		if (money.isLessThanOrEqualTo(Money.of(0, EURO)))
+			throw new IllegalArgumentException("Invalid number");
 		customer.setBalance(customer.getBalance().add(money));
 	}
 

@@ -13,7 +13,7 @@ public class Group {
 	private UserAccount userAccount;
 	@OneToMany
 	private Set<Customer> customers;
-	@OneToOne
+	@ManyToOne
 	private Customer leader;
 
 	public Group(){}
@@ -43,5 +43,23 @@ public class Group {
 
 	public Set<Customer> getMembers(){
 		return customers;
+	}
+
+	public Customer getLeader() {
+		return leader;
+	}
+
+	public boolean contains(Customer customer) {
+		return customers.contains(customer);
+	}
+
+	public boolean isLeader(Customer customer) {
+		return customer.equals(leader);
+	}
+
+	public void setLeader(Customer leader) {
+		if (!contains(leader) || isLeader(leader))
+			throw new IllegalArgumentException("Customer doesn't find or is already leader!");
+		this.leader = leader;
 	}
 }
