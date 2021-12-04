@@ -49,7 +49,7 @@ public class CustomerController{
 	}
 
 	@GetMapping("/register")
-	String register(Model model, RegistrationForm form) {
+	String register() {
 		return "register";
 	}
 

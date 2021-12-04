@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 /*
  * Copyright 2013-2017 the original author or authors.
  *
@@ -15,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
->>>>>>> af999a0 (customerControllertests)
 package kickstart;
 
 import org.junit.jupiter.api.TestInstance;
@@ -23,10 +21,6 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> af999a0 (customerControllertests)
 @TestInstance(Lifecycle.PER_CLASS)
 @SpringBootTest
 @Transactional

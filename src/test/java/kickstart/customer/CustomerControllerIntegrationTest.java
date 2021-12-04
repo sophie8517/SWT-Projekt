@@ -1,6 +1,6 @@
 package kickstart.customer;
 
-import kickstart.AbstractIntegrationTest;
+import kickstart.AbstractIntegrationTests;
 import kickstart.customer.Customer;
 import kickstart.customer.CustomerRepository;
 import org.javamoney.moneta.Money;
@@ -31,7 +31,7 @@ import static org.salespointframework.core.Currencies.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CustomerControllerIntegrationTest extends AbstractIntegrationTest {
+public class CustomerControllerIntegrationTest extends AbstractIntegrationTests {
 	@Autowired
 	CustomerController customerController;
 
@@ -111,9 +111,9 @@ public class CustomerControllerIntegrationTest extends AbstractIntegrationTest {
 
 	@Test
 	public void CustomerControllerIntegrationTestCharge(){
-		Money money = Money.of(5, EURO);
+
 		try {
-			customerController.charge(money,optional);
+			customerController.charge(5,optional);
 			System.out.println(customer.getBalance());
 		}
 		catch (IllegalStateException exception){
@@ -123,10 +123,8 @@ public class CustomerControllerIntegrationTest extends AbstractIntegrationTest {
 
 	@Test
 	public void CustomerControllerIntegrationTestChargeFail(){
-		Money money = Money.of(-5, EURO);
-		System.out.println(customer.getBalance());
 		try {
-			customerController.charge(money,optional);
+			customerController.charge(-5,optional);
 			System.out.println(customer.getBalance());
 			fail("Not allowed to charge negative amount of money.");
 		}
