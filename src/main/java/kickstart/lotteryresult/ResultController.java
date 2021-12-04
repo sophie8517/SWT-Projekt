@@ -49,6 +49,7 @@ public class ResultController {
 			evaluateNum(t,today, gewinnzahlen,zusatzzahl);
 			return "redirect:/";
 
+			
 
 		}
 		return "keineZiehung"; //noch ändern zu noch keine Auswertung möglich
@@ -59,7 +60,6 @@ public class ResultController {
 	public void evaluateNum(Ticket t, LocalDate today, List<Integer> gewinnzahlen, int zusatzzahl){
 		List<NumberBet> wetten = t.getNumberBits();
 		List<NumberBet> wetten_valid = new ArrayList<>();
-
 
 
 		t.setWinNumbers(gewinnzahlen);
