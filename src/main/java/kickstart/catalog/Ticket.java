@@ -25,6 +25,8 @@ public class Ticket extends Item {
 
 	private int additionalNumber;
 
+	@ElementCollection
+	private List<LocalDate> checkEvaluation = new ArrayList<>();
 
 
 
@@ -103,5 +105,14 @@ public class Ticket extends Item {
 
 	public void setAdditionalNumber(int additionalNumber) {
 		this.additionalNumber = additionalNumber;
+	}
+
+	public List<LocalDate> getCheckEvaluation() {
+		return checkEvaluation;
+	}
+
+	public void addCheck(LocalDate date){
+		checkEvaluation.clear();
+		checkEvaluation.add(date);
 	}
 }

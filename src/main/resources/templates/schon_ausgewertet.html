@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device - width, initial - scale = 1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>🍀 Mach Dein Glück!! 🍀</title>
+    <link th:href="@{resources/css/style_foot.css}" rel="stylesheet" href="../static/resources/css/style_foot.css" type="text/css">
+
+
+
+</head>
+
+<body class="backgrounds" >
+<div class="container">
+    <main class="box-one">
+        <h2 class="box-two">Achtung! Lottoziehung nicht möglich.</h2>
+    </main>
+    <div class="box-three">
+       Dis Auswertung der Zahlenwetten ist heute schon erfolgt.
+        </br>
+        </br>
+        </br>
+        Wie möchten Sie fortfahren?
+        </br>
+        </br>
+        <form th:method="post" th:action="@{/timeup}">
+            <button class="button" type="submit" th:text="#{timeup}"><a style="color:black">Zur Homepage</a></button>
+        </form>
+        </br>
+        </br>
+
+
+
+    </div>
+    <footer>
+        <p>Mach Dein Glück!! ©Copyright 2021©</p>
+    </footer>
+</div>
+</body>
+</html>
