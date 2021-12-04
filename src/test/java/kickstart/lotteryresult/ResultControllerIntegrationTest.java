@@ -159,6 +159,7 @@ public class ResultControllerIntegrationTest extends AbstractIntegrationTest {
 	public void checkNumBetsStatusWIN(){
 		resultController.evaluateNum(t, LocalDate.now(), l, 0);
 		assertThat(nb.getStatus()).isEqualTo(Status.WIN);
+		assertThat(c.getBalance()).isEqualTo(balance.add(nb.getInset()));
 	}
 
 	@Test
@@ -166,6 +167,7 @@ public class ResultControllerIntegrationTest extends AbstractIntegrationTest {
 	public void checkNumBetsStatusLOSS(){
 		resultController.evaluateNum(t, LocalDate.now(), l, 1);
 		assertThat(nb.getStatus()).isEqualTo(Status.LOSS);
+		assertThat(c.getBalance()).isEqualTo(balance);
 	}
 
 	@Test
