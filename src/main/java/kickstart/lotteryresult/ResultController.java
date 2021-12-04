@@ -37,13 +37,16 @@ public class ResultController {
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 
 
-		if(todaytime.isAfter(t.getTimeLimit().minusSeconds(1)) && todaytime.isBefore(t.getTimeLimit().plusMinutes(30))) {
+		if(today.isEqual(t.getTimeLimit().toLocalDate())) {
 
 			if(t.getCheckEvaluation().contains(t.getTimeLimit().toLocalDate())){
 				return "schon_ausgewertet";
 			}
+			NumberLottery numlot = new NumberLottery();
+			List<Integer> gewinnzahlen = numlot.generate_nums();
+			int zusatzzahl = numlot.generateAdditionalNumber();
 
-			evaluateNum(t,today);
+			evaluateNum(t,today, gewinnzahlen,zusatzzahl);
 			return "redirect:/";
 
 
@@ -52,13 +55,13 @@ public class ResultController {
 
 	}
 
-	public void evaluateNum(Ticket t, LocalDate today){
+	@PreAuthorize("hasRole('ADMIN')")
+	public void evaluateNum(Ticket t, LocalDate today, List<Integer> gewinnzahlen, int zusatzzahl){
 		List<NumberBet> wetten = t.getNumberBits();
 		List<NumberBet> wetten_valid = new ArrayList<>();
 
-		NumberLottery numlot = new NumberLottery();
-		List<Integer> gewinnzahlen = numlot.generate_nums();
-		int zusatzzahl = numlot.generateAdditionalNumber();
+
+
 		t.setWinNumbers(gewinnzahlen);
 		t.setAdditionalNumber(zusatzzahl);
 
