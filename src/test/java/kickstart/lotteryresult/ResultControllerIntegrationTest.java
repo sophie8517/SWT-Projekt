@@ -177,6 +177,9 @@ public class ResultControllerIntegrationTest extends AbstractIntegrationTest {
 		assertThat(nb2.getStatus()).isEqualTo(Status.EXPIRED);
 	}
 
+	//TODO
+	//vielleicht Dauerauftrag testen
+
 	@AfterEach
 	void breakDown(){
 		lotteryCatalog.delete(f);
