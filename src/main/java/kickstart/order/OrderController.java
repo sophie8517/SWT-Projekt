@@ -60,8 +60,8 @@ public class OrderController {
 	}
 
 	@PostMapping("/raiseFootBet")
-	public String raiseFootBet(Model model, @RequestParam("pid") ProductIdentifier id,
-							   @RequestParam("betid")long bet_id, @RequestParam("newinsetfoot")double inset){
+	public String raiseFootBet(@RequestParam("pid") ProductIdentifier id,
+							   @RequestParam("betid")String bet_id, @RequestParam("newinsetfoot")double inset){
 		/*
 		LocalDateTime date = LocalDateTime.now();
 		LocalDateTime time = date.plusMinutes(5);
@@ -92,8 +92,6 @@ public class OrderController {
 					return "error";
 				}
 
-				//model.addAttribute("raisedMoney",bet.getInset());
-				//return "redirect:/";
 			}else{
 				return "time_up.html";
 			}
@@ -103,7 +101,7 @@ public class OrderController {
 	}
 
 	@GetMapping("/changeFoot")
-	public String changeFoot(Model model, @RequestParam("item")ProductIdentifier id, @RequestParam("betid")long bid){
+	public String changeFoot(Model model, @RequestParam("item")ProductIdentifier id, @RequestParam("betid")String bid){
 		Football f = (Football) lotteryCatalog.findById(id).get();
 		FootballBet bet = f.findbyBetId(bid);
 
@@ -113,7 +111,7 @@ public class OrderController {
 	}
 
 	@PostMapping("/changeFootTip")
-	public String changeFootbetTip(@RequestParam("pid")ProductIdentifier id,@RequestParam("betid")long bet_id,
+	public String changeFootbetTip(@RequestParam("pid")ProductIdentifier id,@RequestParam("betid")String bet_id,
 								   @RequestParam("newtip")int number){
 
 		LocalDateTime date = LocalDateTime.now();
@@ -145,7 +143,7 @@ public class OrderController {
 	}
 
 	@PostMapping("/raiseNumBet")
-	public String raiseNumBet(Model model, @RequestParam("pid") ProductIdentifier id,@RequestParam("betid")long bet_id,
+	public String raiseNumBet(Model model, @RequestParam("pid") ProductIdentifier id,@RequestParam("betid")String bet_id,
 							  @RequestParam("newinset")double inset){
 
 		Money money = Money.of(inset, EURO);
@@ -154,7 +152,12 @@ public class OrderController {
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 		NumberBet bet = t.findbyBetId(bet_id);
 		if(bet != null) {
-			if (date.isBefore(t.getTimeLimit().minusMinutes(5))) {
+			//erhöhen möglich, wenn:
+			// bis 5 Minuten vor der Ziehung
+			//die Ziehung dieser Woche abgeschlossen ist
+			//man am Ziehungstag den Lottoschein ausgefüllt hat -> d.h. er ist für diese Ziehung noch nicht gültig
+
+			if (date.isBefore(t.getTimeLimit().minusMinutes(5)) ||t.getCheckEvaluation().contains(t.getTimeLimit().toLocalDate()) || bet.getDate().toLocalDate().isEqual(t.getTimeLimit().toLocalDate())) {
 				var customer = bet.getCustomer();
 				Money diff = money.subtract(bet.getInset());
 				if(customer.getBalance().isGreaterThanOrEqualTo(diff)){
@@ -177,7 +180,7 @@ public class OrderController {
 	}
 
 	@GetMapping("/changeNums")
-	public String changeNums(Model model, @RequestParam("item")ProductIdentifier id, @RequestParam("betid")long bet_id){
+	public String changeNums(Model model, @RequestParam("item")ProductIdentifier id, @RequestParam("betid")String bet_id){
 
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 		NumberBet bet = t.findbyBetId(bet_id);
@@ -187,7 +190,7 @@ public class OrderController {
 	}
 
 	@PostMapping("/changeNumbetTip")
-	public String changeNumbetTip(@RequestParam("pid") ProductIdentifier id,@RequestParam("betid")long bet_id,
+	public String changeNumbetTip(@RequestParam("pid") ProductIdentifier id,@RequestParam("betid")String bet_id,
 								  @RequestParam("zahl1") int zahl1, @RequestParam("zahl2") int zahl2,
 								  @RequestParam("zahl3")int zahl3, @RequestParam("zahl4")int zahl4,
 								  @RequestParam("zahl5")int zahl5, @RequestParam("zahl6")int zahl6,

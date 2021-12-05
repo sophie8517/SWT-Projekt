@@ -25,8 +25,14 @@ public class Bet implements Serializable {
 
 	private Status status;
 
-	@Id@GeneratedValue
-	private Long id;
+	/*
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+
+	 */
+	@Id
+	private String idstring;
 
 	@ManyToOne
 	private Customer customer;
@@ -44,6 +50,7 @@ public class Bet implements Serializable {
 		this.status = Status.OPEN;
 		this.customer = customer;
 		this.expiration = expiration;
+		this.idstring = item.getId().toString() + item.getCounter();
 
 	}
 
@@ -92,8 +99,16 @@ public class Bet implements Serializable {
 		return inset.getNumber().doubleValue();
 	}
 
-	public Long getId() {
+	/*
+	public long getId() {
+
 		return id;
+	}
+
+	 */
+
+	public String getIdstring() {
+		return idstring;
 	}
 
 	public void setInset(Money money){

@@ -22,6 +22,7 @@ public class Item extends Product{
 	//private double price2;
 	private ItemType type = ItemType.NONE;
 	private String name;
+	private long counter;
 
 	public Item(){}
 
@@ -32,8 +33,15 @@ public class Item extends Product{
 		//time_limit später anpassen
 		this.type = type;
 		//bits = new ArrayList<Bet>();
+		this.counter = 0;
 	}
 
+	public long getCounter() {
+		return counter;
+	}
+	public void upCounter(){
+		counter++;
+	}
 
 	public LocalDateTime getTimeLimit() {
 		return timeLimit;

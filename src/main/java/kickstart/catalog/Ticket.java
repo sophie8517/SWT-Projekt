@@ -45,6 +45,7 @@ public class Ticket extends Item {
 
 	public void addBet(NumberBet numberBet){
 		numberBets.add(numberBet);
+		upCounter();
 	}
 
 	public void removeBet(NumberBet bet){
@@ -66,14 +67,14 @@ public class Ticket extends Item {
 		}
 		return result;
 	}
-	public NumberBet findbyBetId(long id){
+	public NumberBet findbyBetId(String id){
 		if(numberBets.isEmpty()){
 			return null;
 		}
 
 		NumberBet result = null;
 		for(NumberBet nb: numberBets){
-			if(nb.getId() == id){
+			if(nb.getIdstring().equals(id)){
 				result = nb;
 				break;
 			}

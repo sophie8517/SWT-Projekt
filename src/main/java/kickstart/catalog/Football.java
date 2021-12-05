@@ -45,6 +45,7 @@ public class Football extends Item {
 
 	public void addBet(FootballBet footballBet){
 		footballBets.add(footballBet);
+		upCounter();
 	}
 
 	public void removeBet(FootballBet footballBet){
@@ -95,14 +96,14 @@ public class Football extends Item {
 		this.ergebnis = ergebnis;
 	}
 
-	public FootballBet findbyBetId(long id){
+	public FootballBet findbyBetId(String id){
 		if(footballBets.isEmpty()){
 			return null;
 		}
 
 		FootballBet result = null;
 		for(FootballBet fb: footballBets){
-			if(fb.getId() == id){
+			if(fb.getIdstring().equals(id)){
 				result = fb;
 				break;
 			}
