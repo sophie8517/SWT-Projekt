@@ -116,11 +116,11 @@ class CatalogDataInitializer implements DataInitializer {
 				Money.of(10, EURO),ItemType.FOOTBALL,new Team("Hannover 96"), new Team("Hamburger SV"),
 				"2.Bundesliga","hannover", "hsv"));
 
-		lotteryCatalog.save(new Football("name20",LocalDateTime.of(LocalDate.of(2021,12,5), LocalTime.of(13,30)),
+		lotteryCatalog.save(new Football("name20",LocalDateTime.of(LocalDate.of(2022,12,5), LocalTime.of(13,30)),
 				Money.of(13, EURO),ItemType.FOOTBALL,new Team("Dynamo Dresden"), new Team("Karlsruher SC"),
 				"2.Bundesliga","dynamo", "ksc"));
 
-		lotteryCatalog.save(new Football("name21",LocalDateTime.of(LocalDate.of(2021,12,5), LocalTime.of(13,30)),
+		lotteryCatalog.save(new Football("name21",LocalDateTime.of(LocalDate.of(2022,12,5), LocalTime.of(13,30)),
 				Money.of(8, EURO),ItemType.FOOTBALL,new Team("1.FC Heidenheim"), new Team("SSV Jahn Regensburg"),
 				"2.Bundesliga","heidenheim", "regensburg"));
 
