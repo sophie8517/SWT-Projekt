@@ -37,7 +37,7 @@ public class ResultController {
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 
 
-		if(today.isEqual(t.getTimeLimit().toLocalDate())) {
+		if(todaytime.isAfter(t.getTimeLimit())) {
 
 			if(t.getCheckEvaluation().contains(t.getTimeLimit().toLocalDate())){
 				return "schon_ausgewertet";

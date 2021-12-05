@@ -65,7 +65,7 @@ public class ResultControllerIntegrationTest extends AbstractIntegrationTest {
 		lotteryCatalog.save(f2);
 
 		//------Ticket-------
-		t = new Ticket("A", LocalDateTime.now(), Money.of(10, EURO), Item.ItemType.TICKET);
+		t = new Ticket("A", LocalDateTime.now().minusMinutes(5), Money.of(10, EURO), Item.ItemType.TICKET);
 		t2 = new Ticket("B", LocalDateTime.now().plusDays(3), Money.of(10, EURO), Item.ItemType.TICKET);
 		tid = t.getId();
 		tid2 = t2.getId();
