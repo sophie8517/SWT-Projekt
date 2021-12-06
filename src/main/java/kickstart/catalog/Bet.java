@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 import kickstart.customer.Customer;
 
@@ -50,7 +51,7 @@ public class Bet implements Serializable {
 		this.status = Status.OPEN;
 		this.customer = customer;
 		this.expiration = expiration;
-		this.idstring = item.getId().toString() + item.getCounter();
+		this.idstring = UUID.randomUUID().toString();
 
 	}
 
