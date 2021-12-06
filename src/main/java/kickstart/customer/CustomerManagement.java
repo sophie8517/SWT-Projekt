@@ -99,6 +99,9 @@ public class CustomerManagement {
 	}
 
 	public Group removeMemberOfGroup(Customer customer, Group group){
+		if (group.getMembers().size() == 1){
+
+		}
 		group.remove(customer);
 		return groups.save(group);
 	}

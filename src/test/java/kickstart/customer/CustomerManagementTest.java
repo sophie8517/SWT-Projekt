@@ -1,5 +1,6 @@
 package kickstart.customer;
 
+
 import kickstart.AbstractIntegrationTest;
 import org.javamoney.moneta.Money;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.salespointframework.core.Currencies.EURO;
+
 
 class CustomerManagementTest extends AbstractIntegrationTest {
 	@Autowired
