@@ -1,6 +1,7 @@
 package kickstart.customer;
 
 import javax.persistence.*;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -52,6 +53,7 @@ public class Group {
 	public Set<Customer> getMembers(){
 		return customers;
 	}
+
 
 	public String getPassword() {
 		return password;

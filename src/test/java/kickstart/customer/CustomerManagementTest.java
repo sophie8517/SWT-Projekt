@@ -38,22 +38,20 @@ class CustomerManagementTest extends AbstractIntegrationTests {
 
 	@Test
 	void createGroup() {
-		Customer leader = customerManagement.createCustomer(new RegistrationForm(
+		Customer customer = customerManagement.createCustomer(new RegistrationForm(
 				"Test", "Leader", "test@leader.de", "123", "123"));
 		String name = "create group";
-		GroupRegistrationForm form = new GroupRegistrationForm(name);
-		Group group = customerManagement.createGroup(form, leader);
-		assertEquals(group, customerManagement.findByGroupId(group.getId()));
+		Group group = customerManagement.createGroup(name, customer);
+		assertEquals(group, customerManagement.findByGroupName(group.getGroupName()));
 	}
 
 	@Test
 	void deleteGroup() {
-		Customer leader = customerManagement.createCustomer(new RegistrationForm("Test", "Leader", "test@test.de", "123", "123"));
+		Customer customer = customerManagement.createCustomer(new RegistrationForm("Test", "Leader", "test@test.de", "123", "123"));
 		String name = "test group";
-		GroupRegistrationForm form = new GroupRegistrationForm(name);
-		Group group = customerManagement.createGroup(form, leader);
+		Group group = customerManagement.createGroup(name, customer);
 		customerManagement.deleteGroup(group);
-		assertNull(customerManagement.findByGroupId(group.getId()));
+		assertNull(customerManagement.findByGroupName(group.getGroupName()));
 	}
 
 	@Test
@@ -80,19 +78,60 @@ class CustomerManagementTest extends AbstractIntegrationTests {
 	void findAllGroups() {
 		Customer leader = customerManagement.createCustomer(
 				new RegistrationForm("test", "leader", "test@leader.de", "123", "123"));
-		Group a = customerManagement.createGroup(new GroupRegistrationForm("testA"), leader);
-		List<Group> groups = List.of(a);
-		List<Group> groups1 = customerManagement.findAllGroups().toList();
+		Group a = customerManagement.createGroup("testA", leader);
+		Group b = customerManagement.createGroup("testB", leader);
+		List<Group> groups = List.of(a, b);
+		List<Group> groups1 = customerManagement.findAllGroups().filter(group -> group.contains(leader)).toList();
 		System.out.println(groups);
 		System.out.println(groups1);
+		assertEquals(groups.size(), groups1.size());
+		assertEquals(groups, groups1);
 	}
 
 	@Test
 	void addMemberToGroup() {
+		Customer leader = customerManagement.createCustomer(
+				new RegistrationForm("test", "leader", "test@leader.de", "123", "123"));
+		Group testGroup = customerManagement.createGroup("testGroup", leader);
+		Customer customer = customerManagement.findAllCustomers().stream().findFirst().get();
+		Customer temp = new Customer();
+		assertTrue(testGroup.getMembers().size() == 1);
+
+		customerManagement.addMemberToGroup(customer, testGroup, testGroup.getPassword());
+
+		assertTrue(testGroup.getMembers().size() == 2);
+
+		try {
+			customerManagement.addMemberToGroup(customer, testGroup, testGroup.getPassword());
+			fail("Method addMemberToGroup should throw an IllegalStateException " +
+					"if customer is already exist in the group.");
+		} catch (IllegalArgumentException ignored) {}
+
+		try {
+			customerManagement.addMemberToGroup(temp, testGroup, "0");
+			fail("Method addMemberToGroup should throw an IllegalArgumentException" +
+					"if customer enter a incorrect password.");
+		} catch (IllegalStateException ignored) {}
 	}
 
 	@Test
 	void removeMemberOfGroup() {
+		Customer customerA = customerManagement.createCustomer(
+				new RegistrationForm("test", "alpha", "test@alpha.de", "123", "123"));
+		Customer leader = customerManagement.createCustomer(
+				new RegistrationForm("test", "leader", "test@leader.de", "123", "123"));
+		Group testGroup = customerManagement.createGroup("testGroup", leader);
+		customerManagement.addMemberToGroup(customerA, testGroup, testGroup.getPassword());
+		assertTrue(testGroup.getMembers().size() == 2);
+
+		customerManagement.removeMemberOfGroup(customerA, testGroup);
+		assertTrue(testGroup.getMembers().size() == 1);
+
+		try {
+			customerManagement.removeMemberOfGroup(customerA, testGroup);
+			fail("Method removeMemberOfGroup should throw an IllegalArgumentException" +
+					"if customer isn't in group.");
+		} catch (IllegalArgumentException ignored) {}
 	}
 
 	@Test

@@ -1,3 +1,4 @@
+/*
 package kickstart.customer;
 
 import kickstart.AbstractIntegrationTests;
@@ -194,5 +195,6 @@ public class CustomerControllerIntegrationTest extends AbstractIntegrationTests 
 
 
 
+*/
 
 

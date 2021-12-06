@@ -53,7 +53,7 @@ class CustomerDataInitializer implements DataInitializer {
 
 		LOG.info("Creating default groups");
 		var leader = customerManagement.createCustomer(
-				new RegistrationForm("test", "leader", "test@leader.de", "123", "123")
+				new RegistrationForm("init", "leader", "init@leader.de", "123", "123")
 		);
 
 		var groupA = customerManagement.createGroup("groupA", leader);

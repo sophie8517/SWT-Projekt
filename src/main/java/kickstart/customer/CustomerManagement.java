@@ -46,20 +46,18 @@ public class CustomerManagement {
 	}
 
 	public Group createGroup(String groupName, Customer customer){
-		Assert.notNull(groupName, "Registration form must not be null!");
+		int length = 8;
+		final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-			int length = 8;
-			final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		SecureRandom random = new SecureRandom();
+		StringBuilder sb = new StringBuilder();
 
-			SecureRandom random = new SecureRandom();
-			StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < length; i++) {
+			int randomIndex = random.nextInt(chars.length());
+			sb.append(chars.charAt(randomIndex));
+		}
 
-			for (int i = 0; i < length; i++) {
-				int randomIndex = random.nextInt(chars.length());
-				sb.append(chars.charAt(randomIndex));
-			}
-
-			System.out.println(sb);
+		System.out.println(sb);
 
 		var password = sb.toString();
 
@@ -77,11 +75,10 @@ public class CustomerManagement {
 		return groups.save(group);
 	}
 
-//	public Group deleteGroup(Group group){
-//		userAccounts.delete(group.getUserAccount());
-//		groups.delete(group);
-//		return group;
-//	}
+	public Group deleteGroup(Group group){
+		groups.delete(group);
+		return group;
+	}
 
 	public Streamable<Customer> findAllCustomers() {
 		return customers.findAll();
@@ -92,13 +89,6 @@ public class CustomerManagement {
 	}
 
 	public Group addMemberToGroup(Customer customer, Group group, String password){
-		System.out.println(group.getPassword() + " and " + password);
-		if(!group.getPassword().equals(password))
-			throw new IllegalStateException("password doesn't match!");
-
-		if(group.contains(customer))
-			throw new IllegalArgumentException("Customer is already in the Group!");
-
 		group.add(customer);
 		customer.addGroup(group);
 
@@ -106,8 +96,6 @@ public class CustomerManagement {
 	}
 
 	public Group removeMemberOfGroup(Customer customer, Group group){
-		if (!group.contains(customer))
-			throw new IllegalArgumentException("Customer doesn't exist!");
 		group.remove(customer);
 		return groups.save(group);
 	}
