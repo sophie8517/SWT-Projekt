@@ -99,14 +99,17 @@ public class ResultController {
 
 		if(LocalDateTime.now().isAfter(f.getTimeLimit()) && f.getErgebnis().equals(Ergebnis.LEER)){
 			List<FootballBet> wetten = f.getFootballBets();
-			List<FootballBet> wetten_valid = new ArrayList<>();
+			//List<FootballBet> wetten_valid = new ArrayList<>();
 
 
 			Ergebnis erg;
 			switch (number){
-				case 1:erg = Ergebnis.GASTSIEG;break;
-				case 2:erg = Ergebnis.HEIMSIEG;break;
-				case 3:erg = Ergebnis.UNENTSCHIEDEN;break;
+				case 1:erg = Ergebnis.GASTSIEG;
+				break;
+				case 2:erg = Ergebnis.HEIMSIEG;
+				break;
+				case 3:erg = Ergebnis.UNENTSCHIEDEN;
+				break;
 				default:throw new IllegalArgumentException("number must be 1,2 or 3");
 			}
 
@@ -115,24 +118,21 @@ public class ResultController {
 			for(FootballBet fb: wetten){
 				//ist das jetzt überflüssig, weil die zeitgrenze beim abgeben der wetten eingestellt ist
 				if(!fb.getExpiration().isBefore(fb.getItem().getTimeLimit())){
-					wetten_valid.add(fb);
+					if(fb.getTip().equals(erg)){
+						fb.changeStatus(Status.WIN);
+						Customer c = fb.getCustomer();
+						Money bal = c.getBalance().add(fb.getInset());
+						c.setBalance(bal);
+						customerRepository.save(c);
+					} else{
+						fb.changeStatus(Status.LOSS);
+					}
 				} else{
 					fb.changeStatus(Status.EXPIRED);
 
 				}
 			}
-			for(FootballBet fb: wetten_valid){
-				if(fb.getTip().equals(erg)){
-					fb.changeStatus(Status.WIN);
-					Customer c = fb.getCustomer();
-					Money bal = c.getBalance().add(fb.getInset());
-					c.setBalance(bal);
-					customerRepository.save(c);
-				} else{
-					fb.changeStatus(Status.LOSS);
-				}
 
-			}
 
 
 			lotteryCatalog.save(f);
