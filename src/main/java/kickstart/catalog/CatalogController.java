@@ -39,19 +39,23 @@ public class CatalogController {
 	String ticketCatalog(Model model){
 
 		List<Item> result = lotteryCatalog.findByType(ItemType.TICKET);
-		Ticket t = (Ticket) result.get(0);
+		//Ticket t = (Ticket) result.get(0);
 
 		//ziehungsdatum in ticket speichern
 		//wenn heute uhrzeit und datum nach ziehungsdatum -> ziehungsdatum neu setzen
 		LocalDate now = LocalDate.now();
 		//wenn heute nicht der Tag der Ziehung ist
-		if(!now.equals(t.getTimeLimit().toLocalDate())){
-			while(t.getTimeLimit().toLocalDate().isBefore(now)){
-				t.setTimeLimit(t.getTimeLimit().plusDays(7));
+		for(Item t: result){
+			if(!now.equals(t.getTimeLimit().toLocalDate())){
+				while(t.getTimeLimit().toLocalDate().isBefore(now)){
+					t.setTimeLimit(t.getTimeLimit().plusDays(7));
+				}
+				lotteryCatalog.save(t);
 			}
 		}
 
-		lotteryCatalog.save(t);
+
+
 
 		model.addAttribute("ticketcatalog", result);
 		model.addAttribute("title", "catalog.ticket.title");
