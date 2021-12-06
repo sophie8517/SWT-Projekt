@@ -56,8 +56,8 @@ class CustomerDataInitializer implements DataInitializer {
 				new RegistrationForm("test", "leader", "test@leader.de", "123", "123")
 		);
 
-		var groupA = customerManagement.createGroup("groupA", leader);
-		var groupB = customerManagement.createGroup("groupB", leader);
+//		var groupA = customerManagement.createGroup("groupA", leader);
+//		var groupB = customerManagement.createGroup("groupB", leader);
 	}
 }
 

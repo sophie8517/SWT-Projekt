@@ -4,6 +4,8 @@ import org.hibernate.annotations.CollectionType;
 import org.salespointframework.useraccount.UserAccount;
 
 import javax.persistence.*;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
@@ -12,22 +14,19 @@ import java.util.TreeSet;
 @Table(name = "BETGROUP")
 public class Group {
 
-	//private @Id @GeneratedValue long id;
-//	@OneToOne
-//	private UserAccount userAccount;
 	@Id
 	private String groupName;
 
-	@Transient
+	@ManyToMany
 	private Set<Customer> customers = new TreeSet<>();
-	@Transient
+	@ManyToOne
 	private Customer leader;
+
 	private String password;
 
 	public Group(){}
 
 	public Group(String groupName, Customer leader, String password){
-		//this.userAccount = userAccount;
 		this.leader = leader;
 		this.groupName = groupName;
 		this.password = password;
@@ -48,12 +47,14 @@ public class Group {
 		customers.remove(customer);
 	}
 
-//	public UserAccount getUserAccount() {
-//		return userAccount;
-//	}
 
-	public Set<Customer> getMembers(){
-		return customers;
+	//public Set<Customer> getMembers(){
+	//	return customers;
+	//}
+
+	public String getMembers(){
+		String list = Arrays.toString(customers.toArray()).replace("[","").replace("]","");
+		return list;
 	}
 
 	public String getPassword() {

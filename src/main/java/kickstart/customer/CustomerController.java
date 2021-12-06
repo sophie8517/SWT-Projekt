@@ -155,19 +155,10 @@ public class CustomerController{
 	public String Group(Model model, @LoggedIn Optional<UserAccount> userAccount){
 
 		var customer = customerManagement.findByUserAccount(userAccount.get());
-		System.out.println(customer);
-		System.out.println(customer.getGroup());
-		List<String> gName = customer.getGroup();
-		System.out.println(gName);
-		List<Group> groups = new ArrayList<>();
-		for (String groupName : gName){
-			groups.add(customerManagement.findByGroupName(groupName));
-		}
 
-		//model.addAttribute("groupNames", gName);
-		//model.addAttribute("groupMems", groups);
+		List<Group> groups = customer.getGroup();
+
 		model.addAttribute("groups", groups);
-		model.addAttribute("groupList", customerManagement.findAllGroups());
 
 		return "group";
 	}
@@ -194,7 +185,15 @@ public class CustomerController{
 	}
 
 	@PostMapping("/group_create")
-	public String createGroup(@RequestParam("groupName") String groupName, @LoggedIn Optional<UserAccount> userAccount){
+	public String createGroup(@RequestParam("groupName") String groupName, @LoggedIn Optional<UserAccount> userAccount,
+							  RedirectAttributes redirAttrs){
+
+		Assert.notNull(groupName, "Registration form must not be null!");
+
+		if (customerManagement.findByGroupName(groupName) != null) {
+			redirAttrs.addFlashAttribute("message", "Group name already exists, please give another name");
+			return "redirect:/group_create";
+		}
 
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 		customerManagement.createGroup(groupName, customer);

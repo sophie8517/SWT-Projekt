@@ -46,23 +46,25 @@ public class CustomerManagement {
 	}
 
 	public Group createGroup(String groupName, Customer customer){
-		Assert.notNull(groupName, "Registration form must not be null!");
 
-			int length = 8;
-			final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-			SecureRandom random = new SecureRandom();
-			StringBuilder sb = new StringBuilder();
+		int length = 8;
+		final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-			for (int i = 0; i < length; i++) {
-				int randomIndex = random.nextInt(chars.length());
-				sb.append(chars.charAt(randomIndex));
-			}
+		SecureRandom random = new SecureRandom();
+		StringBuilder sb = new StringBuilder();
 
-			System.out.println(sb);
+		for (int i = 0; i < length; i++) {
+			int randomIndex = random.nextInt(chars.length());
+			sb.append(chars.charAt(randomIndex));
+		}
+
+		System.out.println(sb);
 
 		var password = sb.toString();
-		customer.addGroup(groupName);
+
+		Group group = new Group(groupName, customer, password);
+		customer.addGroup(group);
 
 
 
@@ -70,8 +72,10 @@ public class CustomerManagement {
 //		userAccount.setEmail(form.getEmail());
 //		userAccount.setFirstname(form.getFirstname());
 //		userAccount.setLastname(form.getLastname());
+//		customer.getUserAccount().add(Role.of("LEADER"));
+//		customers.save(customer);
 
-		return groups.save(new Group(groupName, customer, password));
+		return groups.save(group);
 	}
 
 //	public Group deleteGroup(Group group){
@@ -97,6 +101,7 @@ public class CustomerManagement {
 			throw new IllegalArgumentException("Customer is already in the Group!");
 
 		group.add(customer);
+		customer.addGroup(group);
 
 		return groups.save(group);
 	}

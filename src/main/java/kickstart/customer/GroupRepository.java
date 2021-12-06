@@ -6,4 +6,6 @@ import org.springframework.data.util.Streamable;
 public interface GroupRepository extends CrudRepository<Group, String> {
 	@Override
 	Streamable<Group> findAll();
+
+
 }
