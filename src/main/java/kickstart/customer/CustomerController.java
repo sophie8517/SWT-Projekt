@@ -57,7 +57,7 @@ public class CustomerController{
 	}
 
 	@GetMapping("/register")
-	String register() {
+	String register(Model model, RegistrationForm form) {
 		return "register";
 	}
 
@@ -111,8 +111,11 @@ public class CustomerController{
 //	}
 
 	@PostMapping("/balance/charge")
-	public String charge(@RequestParam("money") double money, @LoggedIn Optional<UserAccount> userAccount){
-		//customerManagement.charge(Money.of(balance, EURO),customerManagement.findByCustomerId(customerId));
+	public String charge(@RequestParam("money") double money, @LoggedIn Optional<UserAccount> userAccount, RedirectAttributes redir){
+		if (Money.of(money, EURO).isLessThanOrEqualTo(Money.of(0, EURO))) {
+			redir.addFlashAttribute("message", "Invalid number");
+			return "redirect:/balance";
+		}
 
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 		customerManagement.charge(Money.of(money, EURO), customer);

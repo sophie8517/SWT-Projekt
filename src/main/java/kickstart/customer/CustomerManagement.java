@@ -105,8 +105,6 @@ public class CustomerManagement {
 
 
 	public void charge(Money money,  Customer customer){
-		if (money.isLessThanOrEqualTo(Money.of(0, EURO)))
-			throw new IllegalArgumentException("Invalid number");
 		customer.setBalance(customer.getBalance().add(money));
 	}
 

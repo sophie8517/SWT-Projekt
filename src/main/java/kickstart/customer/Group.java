@@ -44,12 +44,11 @@ public class Group {
 		customers.remove(customer);
 	}
 
+	public Set<Customer> getMembers(){
+		return customers;
+	}
 
-	//public Set<Customer> getMembers(){
-	//	return customers;
-	//}
-
-	public String getMembers(){
+	public String getMembersToString(){
 		String list = Arrays.toString(customers.toArray()).replace("[","").replace("]","");
 		return list;
 	}

@@ -100,18 +100,6 @@ class CustomerManagementTest extends AbstractIntegrationTests {
 		customerManagement.addMemberToGroup(customer, testGroup, testGroup.getPassword());
 
 		assertTrue(testGroup.getMembers().size() == 2);
-
-		try {
-			customerManagement.addMemberToGroup(customer, testGroup, testGroup.getPassword());
-			fail("Method addMemberToGroup should throw an IllegalStateException " +
-					"if customer is already exist in the group.");
-		} catch (IllegalArgumentException ignored) {}
-
-		try {
-			customerManagement.addMemberToGroup(temp, testGroup, "0");
-			fail("Method addMemberToGroup should throw an IllegalArgumentException" +
-					"if customer enter a incorrect password.");
-		} catch (IllegalStateException ignored) {}
 	}
 
 	@Test
@@ -126,12 +114,6 @@ class CustomerManagementTest extends AbstractIntegrationTests {
 
 		customerManagement.removeMemberOfGroup(customerA, testGroup);
 		assertTrue(testGroup.getMembers().size() == 1);
-
-		try {
-			customerManagement.removeMemberOfGroup(customerA, testGroup);
-			fail("Method removeMemberOfGroup should throw an IllegalArgumentException" +
-					"if customer isn't in group.");
-		} catch (IllegalArgumentException ignored) {}
 	}
 
 	@Test
@@ -142,9 +124,5 @@ class CustomerManagementTest extends AbstractIntegrationTests {
 
 		assertTrue(customer.getBalance().isEqualTo(Money.of(20, EURO)));
 
-		try {
-			customerManagement.charge(Money.of(0, EURO), customer);
-			fail("Method charge should throw an IllegalArgumentException if charge money not bigger than 0");
-		} catch (IllegalArgumentException ignored) {}
 	}
 }

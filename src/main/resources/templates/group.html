@@ -34,7 +34,7 @@
                 <td th:text="${group.groupName}">group1</td>
                 <td th:text="${group.getPassword}">pwd</td>
                 <td th:text="${group.getLeader}">Leader</td>
-                <td th:text="${group.getMembers}">members</td>
+                <td th:text="${group.getMembersToString}">members</td>
             </tr>
         </table>
 
@@ -46,8 +46,8 @@
 <!--                        <button type="submit" class="ui button" th:text="#{group.create}">create</button>-->
 <!--                    </form>-->
 <!--                </div>-->
-                <a  href="group_create.html" th:href="@{/group_create}" sec:authorize="hasRole('CUSTOMER')">Gruppe Einrichten</a>
-                <a  href="group_join.html" th:href="@{/group_join}" sec:authorize="hasRole('CUSTOMER')">Gruppe teilnehmen</a>
+                <a  href="group_create.html" th:href="@{/group_create}" sec:authorize="hasRole('CUSTOMER')">Gruppe erstellen</a>
+                <a  href="group_join.html" th:href="@{/group_join}" sec:authorize="hasRole('CUSTOMER')">Gruppe betretten</a>
 <!--                <div class="column">-->
 <!--                    <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/group_join}">-->
 <!--                        <button type="submit" class="ui button" th:text="#{group.join}">join</button>-->
