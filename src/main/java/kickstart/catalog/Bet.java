@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 import kickstart.customer.Customer;
 
@@ -25,8 +26,14 @@ public class Bet implements Serializable {
 
 	private Status status;
 
-	@Id@GeneratedValue
-	private Long id;
+	/*
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+
+	 */
+	@Id
+	private String idstring;
 
 	@ManyToOne
 	private Customer customer;
@@ -35,12 +42,16 @@ public class Bet implements Serializable {
 
 
 	public Bet(Item item, LocalDateTime date, Money einsatz, Customer customer, LocalDateTime expiration){
+		if(einsatz.isLessThan(item.getPrice())){
+			throw new IllegalArgumentException("der Wetteinsatz darf nicht kleiner als der Mindesteinsatz sein");
+		}
 		this.item = item;
 		this.date = date;
 		this.inset = einsatz;
 		this.status = Status.OPEN;
 		this.customer = customer;
 		this.expiration = expiration;
+		this.idstring = UUID.randomUUID().toString();
 
 	}
 
@@ -89,11 +100,24 @@ public class Bet implements Serializable {
 		return inset.getNumber().doubleValue();
 	}
 
-	public Long getId() {
+	/*
+	public long getId() {
+
 		return id;
 	}
 
-	public void setInset(Money money){ this.inset = money; }
+	 */
+
+	public String getIdstring() {
+		return idstring;
+	}
+
+	public void setInset(Money money){
+		if(money.isLessThan(inset)){
+			throw new IllegalArgumentException("der neue Einsatz darf nicht kleiner als der alte Einsatz sein");
+		}
+		this.inset = money;
+	}
 
 	public Customer getCustomer() {	return customer;}
 

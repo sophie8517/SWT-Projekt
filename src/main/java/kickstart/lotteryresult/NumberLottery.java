@@ -14,21 +14,26 @@ public class NumberLottery {
 	 */
 	public NumberLottery(){
 		this.winNumbers = generate_nums();
-		this.additionalN = winNumbers.get(6);
-		this.winNumbers.remove(additionalN);
+		this.additionalN = generateAdditionalNumber();
 	}
 
 	public List<Integer> generate_nums(){
 		List<Integer> result = new ArrayList<>();
 		Random random = new Random();
 
-		while(result.size() != 7){
+		while(result.size() != 6){
 			int num =Math.abs((random.nextInt() % 49)) + 1;
 			if(!result.contains(num)){
 				result.add(num);
 			}
 		}
 		return result;
+	}
+
+	public int generateAdditionalNumber(){
+		Random random = new Random();
+		int num = Math.abs(random.nextInt() % 10);
+		return num;
 	}
 
 	public List<Integer> getWinNumbers() {

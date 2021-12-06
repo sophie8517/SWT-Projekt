@@ -4,15 +4,14 @@ package kickstart.catalog;
 import kickstart.customer.Customer;
 import org.javamoney.moneta.Money;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 public class Ticket extends Item {
@@ -25,7 +24,8 @@ public class Ticket extends Item {
 
 	private int additionalNumber;
 
-
+	@ElementCollection
+	private List<LocalDate> checkEvaluation = new ArrayList<>();
 
 
 	public Ticket(String name, LocalDateTime timeLimit, Money price, ItemType type){
@@ -45,6 +45,7 @@ public class Ticket extends Item {
 
 	public void addBet(NumberBet numberBet){
 		numberBets.add(numberBet);
+
 	}
 
 	public void removeBet(NumberBet bet){
@@ -66,14 +67,14 @@ public class Ticket extends Item {
 		}
 		return result;
 	}
-	public NumberBet findbyBetId(long id){
+	public NumberBet findbyBetId(String id){
 		if(numberBets.isEmpty()){
 			return null;
 		}
 
 		NumberBet result = null;
 		for(NumberBet nb: numberBets){
-			if(nb.getId() == id){
+			if(nb.getIdstring().equals(id)){
 				result = nb;
 				break;
 			}
@@ -103,5 +104,13 @@ public class Ticket extends Item {
 
 	public void setAdditionalNumber(int additionalNumber) {
 		this.additionalNumber = additionalNumber;
+	}
+
+	public List<LocalDate> getCheckEvaluation() {
+		return checkEvaluation;
+	}
+	public void addCheck(LocalDate date){
+		checkEvaluation.clear();
+		checkEvaluation.add(date);
 	}
 }

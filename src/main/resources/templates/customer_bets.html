@@ -56,10 +56,10 @@
                 <br>
                 <form th:method="post" sec:authorize="hasRole('CUSTOMER')" th:action="@{/raiseNumBet}">
                     <input type="hidden" name="pid" value="0" th:value="${numbet.item.id}"/>
-                    <input type="hidden" name="betid" value="0" th:value="${numbet.id}"/>
+                    <input type="hidden" name="betid" value="0" th:value="${numbet.idstring}"/>
                     <table>
                         <tr>
-                            <td style="width:210px"><label th:text="#{numbet.newinset}" >Neuer Einsatz</label></td>
+                            <td style="width:210px">Neuer Einsatz: </td>
                             <td><input field="*{newinset}" id="newinset" type="number" step=".01" name="newinset" th:min="${numbet.einsatz2}" required="required"/></td>
                         </tr>
                     </table>
@@ -72,7 +72,7 @@
                 </form>
                 <form th:method="get" sec:authorize="hasRole('CUSTOMER')" th:action="@{/changeNums}">
                     <input type="hidden" name="item" value="0" th:value="${numbet.item.id}"/>
-                    <input type="hidden" name="betid" value="0" th:value="${numbet.id}"/>
+                    <input type="hidden" name="betid" value="0" th:value="${numbet.idstring}"/>
                     <button class="button" type="submit" th:text="#{numbet.changeTip}" >Tipp ändern</button>
 
                 </form>
@@ -111,7 +111,7 @@
                     </tr>
                     <tr>
                         <td>Einsatz: </td>
-                        <td th:text="${footbet.inset}" >10</td>
+                        <td th:text="${footbet.inset}" >offen</td>
                     </tr>
                     <tr>
                         <td>Status: </td>
@@ -121,10 +121,10 @@
                 <br>
                 <form th:method="post" sec:authorize="hasRole('CUSTOMER')" th:action="@{/raiseFootBet}">
                     <input type="hidden" name="pid" value="0" th:value="${footbet.item.id}"/>
-                    <input type="hidden" name="betid" value="0" th:value="${footbet.id}"/>
+                    <input type="hidden" name="betid" value="0" th:value="${footbet.idstring}"/>
                     <table>
                         <tr>
-                            <td style="width:210px"><label th:text="#{footbet.newinset}" >Neuer Einsatz</label></td>
+                            <td style="width:210px">Neuer Einsatz: </td>
                             <td><input field="*{newinsetfoot}" id="newinsetfoot" type="number" step=".01" name="newinsetfoot" th:min="${footbet.einsatz2}" required="required"/></td>
                         </tr>
                     </table>
@@ -137,7 +137,7 @@
                 </form>
                 <form th:method="get" sec:authorize="hasRole('CUSTOMER')" th:action="@{/changeFoot}">
                     <input type="hidden" name="item" value="0" th:value="${footbet.item.id}"/>
-                    <input type="hidden" name="betid" value="0" th:value="${footbet.id}"/>
+                    <input type="hidden" name="betid" value="0" th:value="${footbet.idstring}"/>
                     <button class="button" type="submit" th:text="#{footbet.changeTip}" >Tipp ändern</button>
 
                 </form>

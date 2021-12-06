@@ -3,6 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width = device - width, initial - scale = 1">
@@ -10,10 +11,12 @@
     <title>🍀 Mach Dein Glück!! 🍀</title>
     <link th:href="@{resources/css/style_balance.css}" rel="stylesheet" href="../static/resources/css/style_balance.css">
 </head>
-<body class="container">
 
-    <nav th:include="navigation :: navigation" class="navcontainer"></nav>
 
+
+<body class="backgrounds">
+<nav th:include="navigation :: navigation" class="navcontainer"></nav>
+<div class="container">
     <main class="box-one">
         <h3>Guthaben</h3>
 
@@ -51,6 +54,8 @@
         <p>Mach Dein Glück!! ©Copyright 2021©</p>
     </footer>
 
+</div>
 
 </body>
+
 </html>

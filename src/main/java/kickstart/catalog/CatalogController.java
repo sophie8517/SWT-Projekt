@@ -50,6 +50,7 @@ public class CatalogController {
 				t.setTimeLimit(t.getTimeLimit().plusDays(7));
 			}
 		}
+
 		lotteryCatalog.save(t);
 
 		model.addAttribute("ticketcatalog", result);
@@ -79,7 +80,7 @@ public class CatalogController {
 		} else{
 
 			for(Item i: foots){
-				if(now.isBefore(i.getTimeLimit().minusMinutes(5))){
+				if(now.isBefore(i.getTimeLimit())){
 					result.add(i);
 				}
 			}
@@ -121,72 +122,61 @@ public class CatalogController {
 	String bet_num(@RequestParam("pid")ProductIdentifier id, @RequestParam("zahl1") int zahl1,
 				   @RequestParam("zahl2") int zahl2, @RequestParam("zahl3")int zahl3, @RequestParam("zahl4")int zahl4,
 				   @RequestParam("zahl5")int zahl5, @RequestParam("zahl6")int zahl6,@RequestParam("zusatz")int zusatz,
-				   @RequestParam("dauer")int dauer, @LoggedIn Optional<UserAccount> userAccount){
+				   @RequestParam("dauer")int dauer, @LoggedIn Optional<UserAccount> userAccount) {
+
 
 		LocalDateTime now = LocalDateTime.now();
 
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 		Customer c = customerRepository.findCustomerByUserAccount(userAccount.get());
-		/*
-		LocalDate basisdate;
-		LocalDate dayofDraw;
+		Money money = c.getBalance();
+		Money price = Money.of(t.getPrice2(),EURO);
 
-		if(now.getDayOfWeek().getValue() == 7){
-			dayofDraw = now.toLocalDate().plusDays(7);
+		List<Integer> nums = new ArrayList<>();
+		Set<Integer> checker = new HashSet<>();
+		checker.add(zahl1);
+		checker.add(zahl2);
+		checker.add(zahl3);
+		checker.add(zahl4);
+		checker.add(zahl5);
+		checker.add(zahl6);
 
-		}else{
-			dayofDraw = t.getTimeLimit().toLocalDate();
+		if (checker.size() == 6 ) {
+			nums.addAll(checker);
+
+		} else {
+
+			return "wronginput.html";
+		}
+		LocalDate exp;
+
+		if (dauer == 1) {
+			exp = now.toLocalDate().plusDays(7);
+		}else if (dauer == 2) {
+			exp = now.toLocalDate().plusMonths(1);
+		}else if (dauer == 3) {
+			exp = now.toLocalDate().plusMonths(6);
+		}else {
+			exp = now.toLocalDate().plusYears(1);
 		}
 
-		 */
-			List<Integer> nums = new ArrayList<>();
-			Set<Integer> checker = new HashSet<>();
-			checker.add(zahl1);
-			checker.add(zahl2);
-			checker.add(zahl3);
-			checker.add(zahl4);
-			checker.add(zahl5);
-			checker.add(zahl6);
-			//checker.add(zusatz);
 
-			if(checker.size() == 6 && !checker.contains(zusatz)){
-				nums.addAll(checker);
-
-			} else{
-
-				return "wronginput.html";
-			}
-			LocalDate exp;
-
-			if(dauer == 1){
-				exp = now.toLocalDate().plusDays(7);
-			}
-			if(dauer == 2){
-				exp = now.toLocalDate().plusMonths(1);
-			}
-			if(dauer == 3){
-				exp = now.toLocalDate().plusMonths(6);
-			} else{
-				exp = now.toLocalDate().plusYears(1);
-			}
-
-			if(c.getBalance().isLessThan(t.getPrice())){
-				return "time_up.html"; //change to error page for not enough money
-			}
-
-			//add: check if all numbers are different
-			NumberBet nb = new NumberBet(t, now, Money.of(t.getPrice().getNumber(), EURO),c,
-					LocalDateTime.of(exp, t.getTimeLimit().toLocalTime()), nums,zusatz);
+		if (money.isLessThan(price)) {
+			return "error";
+		} else {
+			money = money.subtract(price);
+			c.setBalance(money);
+			customerRepository.save(c);
+			NumberBet nb = new NumberBet(t, now, price, c,
+					LocalDateTime.of(exp, t.getTimeLimit().toLocalTime()), nums, zusatz);
 
 			t.addBet(nb);
-
-			//c.addNumberBet(nb);
 
 			lotteryCatalog.save(t);
 			//customerRepository.save(c);
 
 			return "redirect:/";
-
+		}
 
 
 
@@ -202,8 +192,10 @@ public class CatalogController {
 		Football foot = (Football) lotteryCatalog.findById(id).get();
 		Customer customer = customerRepository.findCustomerByUserAccount(userAccount.get());
 		LocalDateTime spieltag_minus24h = LocalDateTime.of(foot.getTimeLimit().toLocalDate().minusDays(1),LocalTime.of(0,0));
+		Money money = customer.getBalance();
+		Money insetMoney = Money.of(inset,EURO);
 		//System.out.println(inset);
-		if(!now.isAfter(spieltag_minus24h)){
+		if(now.isBefore(spieltag_minus24h)){
 			Ergebnis  status;
 
 			if(number == 1){
@@ -215,17 +207,21 @@ public class CatalogController {
 			}
 
 
-			FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(inset, EURO), customer, foot.getTimeLimit(),
-					status);
-			foot.addBet(f);
-			//customer.addFootballBet(f);
-			System.out.println(foot.getFootballBets());
-			lotteryCatalog.save(foot);
-			//customerRepository.save(customer);
 
 
+			if(money.isLessThan(insetMoney)){
+				return "error";
+			} else{
+				money = money.subtract(insetMoney);
+				customer.setBalance(money);
+				customerRepository.save(customer);
+				FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(inset, EURO), customer,
+						foot.getTimeLimit(), status);
+				foot.addBet(f);
+				lotteryCatalog.save(foot);
+				return "redirect:/";
+			}
 
-			return "redirect:/";
 		}
 		return "time_up.html";
 
