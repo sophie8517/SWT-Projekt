@@ -33,7 +33,6 @@ public class StatisticController {
 		var customer = customerManagement.findByCustomerId(id);
 
 		Ticket t = (Ticket) lotteryCatalog.findByType(Item.ItemType.TICKET).get(0);
-
 		List<Item> foots = lotteryCatalog.findByType(Item.ItemType.FOOTBALL);
 		List<FootballBet> result = new ArrayList<>();
 		for(Item i: foots){
@@ -41,8 +40,16 @@ public class StatisticController {
 			result.addAll(f.getFootballBetsbyCustomer(customer));
 		}
 
-		model.addAttribute("football", result.toString());
-		model.addAttribute("number", t.getNumberBetsbyCustomer(customer).toString());
+		model.addAttribute("footballBets", result);
+		//status
+		//Einkommen or Verluste
+
+
+		model.addAttribute("numberBets", t.getNumberBetsbyCustomer(customer));
+		//model.addAttribute("customers", )
+
+		model.addAttribute("income", customer.getBalance());
+
 
 		return "statistic_bets";
 	}

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.security.SecureRandom;
+import java.util.Optional;
 
 import static org.salespointframework.core.Currencies.EURO;
 
@@ -44,8 +45,8 @@ public class CustomerManagement {
 		return customers.save(new Customer(userAccount));
 	}
 
-	public Group createGroup(GroupRegistrationForm form, Customer customer){
-		Assert.notNull(form, "Registration form must not be null!");
+	public Group createGroup(String groupName, Customer customer){
+		Assert.notNull(groupName, "Registration form must not be null!");
 
 			int length = 8;
 			final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -60,17 +61,27 @@ public class CustomerManagement {
 
 			System.out.println(sb);
 
-		var password = Password.UnencryptedPassword.of(sb.toString());
-		var userAccount = userAccounts.create(form.getName(), password, GROUP_ROLE);
+		var password = sb.toString();
 
-		return groups.save(new Group(userAccount,customer));
+		Group group = new Group(groupName, customer, password);
+		customer.addGroup(group);
+
+
+//		var userAccount = userAccounts.create(form.getEmail(), password, CUSTOMER_ROLE);
+//		userAccount.setEmail(form.getEmail());
+//		userAccount.setFirstname(form.getFirstname());
+//		userAccount.setLastname(form.getLastname());
+//		customer.getUserAccount().add(Role.of("LEADER"));
+//		customers.save(customer);
+
+		return groups.save(group);
 	}
 
-	public Group deleteGroup(Group group){
-		userAccounts.delete(group.getUserAccount());
-		groups.delete(group);
-		return group;
-	}
+//	public Group deleteGroup(Group group){
+//		userAccounts.delete(group.getUserAccount());
+//		groups.delete(group);
+//		return group;
+//	}
 
 	public Streamable<Customer> findAllCustomers() {
 		return customers.findAll();
@@ -81,17 +92,24 @@ public class CustomerManagement {
 	}
 
 	public Group addMemberToGroup(Customer customer, Group group, String password){
-		if (group.getUserAccount().getPassword().toString().equals(password)){
-			userAccounts.save(group.getUserAccount());
-			group.add(customer);
-			return group;
-		}
-		throw new NullPointerException("Password doesn't match!");
+		System.out.println(group.getPassword() + " and " + password);
+		if(!group.getPassword().equals(password))
+			throw new IllegalStateException("password doesn't match!");
+
+		if(group.contains(customer))
+			throw new IllegalArgumentException("Customer is already in the Group!");
+
+		group.add(customer);
+		customer.addGroup(group);
+
+		return groups.save(group);
 	}
 
 	public Group removeMemberOfGroup(Customer customer, Group group){
+		if (!group.contains(customer))
+			throw new IllegalArgumentException("Customer doesn't exist!");
 		group.remove(customer);
-		return group;
+		return groups.save(group);
 	}
 
 
@@ -106,13 +124,15 @@ public class CustomerManagement {
 		return customer;
 	}
 
-	public Group findByGroupId(long groupId){
-		var group = groups.findById(groupId).orElse(null);
+	public Group findByGroupName(String name){
+		var group = groups.findById(name).orElse(null);
 		return group;
 	}
 	public Customer findByUserAccount(UserAccount userAccount){
 		var customer = customers.findCustomerByUserAccount(userAccount);
 		return customer;
 	}
+
+	public Optional<UserAccount> findByEmail(String name){ return userAccounts.findByUsername(name); }
 
 }

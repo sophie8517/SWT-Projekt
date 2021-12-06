@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device - width, initial - scale = 1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>🍀 Mach Dein Glück!! 🍀</title>
+    <link th:href="@{resources/css/style_statistic.css}" rel="stylesheet" href="../static/resources/css/style_statistic.css">
+</head>
+
+
+
+<body class="backgrounds">
+<nav th:include="navigation :: navigation"></nav>
+<div class="container">
+    <main style="height: 1000px">
+
+        <h3>Gewinngemeinschaft</h3>
+
+        <h4>Gruppe einrichten</h4>
+
+        <section>
+            <form method="post" th:action="@{/group_create}">
+                <div class="style">
+                    <label>Gruppe Name:</label>
+                    <input id="groupName" name="groupName" field="*{groupName}" type="text" required="required"/><br/>
+                </div>
+                <button type="submit" class="ui button" th:text="#{group.create}">Einrichten</button>
+            </form>
+        </section>
+
+        <div>
+            <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="post" th:action="@{/close}">
+                <button type="submit" class="ui button" th:text="#{group.close}">schließen</button>
+            </form>
+        </div>
+
+
+
+
+    </main>
+
+    <footer>
+        <p>Mach Dein Glück!! ©Copyright 2021©</p>
+    </footer>
+
+</div>
+</body>
+</html>

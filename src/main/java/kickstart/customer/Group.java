@@ -1,32 +1,41 @@
 package kickstart.customer;
 
-import org.salespointframework.useraccount.UserAccount;
-
 import javax.persistence.*;
-import java.util.*;
+import java.util.Set;
+import java.util.TreeSet;
 
 @Entity
-public class Group implements Comparable<Customer> {
-	private @Id @GeneratedValue long id;
-	@OneToOne
-	private UserAccount userAccount;
-	@OneToMany
-	private Set<Customer> customers;
-	@ManyToOne
-	private Customer leader;
+@Table(name = "BETGROUP")
+public class Group {
+
+	//private @Id @GeneratedValue long id;
+//	@OneToOne
+//	private UserAccount userAccount;
+	@Id
+	private String groupName;
+
+	@ManyToMany
+	private Set<Customer> customers = new TreeSet<>();
+//	@Transient
+//	private Customer leader;
+
+	private String password;
 
 	public Group(){}
 
-	public Group(UserAccount userAccount, Customer leader){
-		this.userAccount = userAccount;
-		this.leader = leader;
-		customers =  new HashSet<>();
+	public Group(String groupName, Customer leader, String password){
+		//this.userAccount = userAccount;
+		//this.leader = leader;
+		this.groupName = groupName;
+		this.password = password;
 		customers.add(leader);
 	}
 
-	public long getId() {
-		return id;
+
+	public String getGroupName() {
+		return groupName;
 	}
+
 
 	public void add(Customer customer){
 		customers.add(customer);
@@ -36,33 +45,28 @@ public class Group implements Comparable<Customer> {
 		customers.remove(customer);
 	}
 
-	public UserAccount getUserAccount() {
-		return userAccount;
-	}
+//	public UserAccount getUserAccount() {
+//		return userAccount;
+//	}
 
 	public Set<Customer> getMembers(){
 		return customers;
 	}
 
-	public Customer getLeader() {
-		return leader;
+	public String getPassword() {
+		return password;
 	}
+
+//	public Customer getLeader() {
+//		return leader;
+//	}
 
 	public boolean contains(Customer customer) {
 		return customers.contains(customer);
 	}
 
-	public boolean isLeader(Customer customer) {
-		return customer.equals(leader);
-	}
-
-	public void setLeader(Customer leader) {
-		if (!contains(leader) || isLeader(leader))
-			throw new IllegalArgumentException("Customer doesn't find or is already leader!");
-		this.leader = leader;
-	}
 	@Override
-	public int compareTo(Customer customer) {
-		return this.leader.toString().compareTo(customer.toString());
+	public String toString() {
+		return this.groupName;
 	}
 }

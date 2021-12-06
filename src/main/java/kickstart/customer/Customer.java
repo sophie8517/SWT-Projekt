@@ -20,6 +20,16 @@ public class Customer implements Comparable<Customer>{
 	@OneToOne
 	private UserAccount userAccount;
 
+	@ManyToMany
+	private List<Group> groups = new ArrayList<>();
+	public List<Group> getGroup() {
+		return groups;
+	}
+
+
+	public void addGroup(Group group){
+		groups.add(group);
+	}
 
 	public Customer(){}
 	public Customer (UserAccount userAccount){

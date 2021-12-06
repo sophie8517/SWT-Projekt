@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
+import org.salespointframework.useraccount.UserAccountManagement;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -17,6 +18,9 @@ import static org.salespointframework.core.Currencies.EURO;
 class CustomerManagementTest extends AbstractIntegrationTests {
 	@Autowired
 	CustomerManagement customerManagement;
+
+	@Autowired
+	UserAccountManagement userAccountManagement;
 
 
 	@Test
@@ -74,6 +78,13 @@ class CustomerManagementTest extends AbstractIntegrationTests {
 
 	@Test
 	void findAllGroups() {
+		Customer leader = customerManagement.createCustomer(
+				new RegistrationForm("test", "leader", "test@leader.de", "123", "123"));
+		Group a = customerManagement.createGroup(new GroupRegistrationForm("testA"), leader);
+		List<Group> groups = List.of(a);
+		List<Group> groups1 = customerManagement.findAllGroups().toList();
+		System.out.println(groups);
+		System.out.println(groups1);
 	}
 
 	@Test
