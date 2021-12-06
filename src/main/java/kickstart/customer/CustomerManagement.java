@@ -15,12 +15,12 @@ import java.util.Optional;
 
 import static org.salespointframework.core.Currencies.EURO;
 
-
 @Service
 @Transactional
 public class CustomerManagement {
 
 	public static final Role CUSTOMER_ROLE = Role.of("CUSTOMER");
+	public static final Role GROUP_ROLE = Role.of("GROUP");
 
 	private GroupRepository groups;
 	private CustomerRepository customers;
@@ -78,11 +78,10 @@ public class CustomerManagement {
 		return groups.save(group);
 	}
 
-//	public Group deleteGroup(Group group){
-//		userAccounts.delete(group.getUserAccount());
-//		groups.delete(group);
-//		return group;
-//	}
+	public Group deleteGroup(Group group){
+		groups.delete(group);
+		return group;
+	}
 
 	public Streamable<Customer> findAllCustomers() {
 		return customers.findAll();
@@ -93,13 +92,6 @@ public class CustomerManagement {
 	}
 
 	public Group addMemberToGroup(Customer customer, Group group, String password){
-		System.out.println(group.getPassword() + " and " + password);
-		if(!group.getPassword().equals(password))
-			throw new IllegalStateException("password doesn't match!");
-
-		if(group.contains(customer))
-			throw new IllegalArgumentException("Customer is already in the Group!");
-
 		group.add(customer);
 		customer.addGroup(group);
 
@@ -107,14 +99,14 @@ public class CustomerManagement {
 	}
 
 	public Group removeMemberOfGroup(Customer customer, Group group){
-		if (!group.contains(customer))
-			throw new IllegalArgumentException("Customer doesn't exist!");
 		group.remove(customer);
 		return groups.save(group);
 	}
 
 
 	public void charge(Money money,  Customer customer){
+		if (money.isLessThanOrEqualTo(Money.of(0, EURO)))
+			throw new IllegalArgumentException("Invalid number");
 		customer.setBalance(customer.getBalance().add(money));
 	}
 

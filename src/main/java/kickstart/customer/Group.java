@@ -1,8 +1,5 @@
 package kickstart.customer;
 
-import org.hibernate.annotations.CollectionType;
-import org.salespointframework.useraccount.UserAccount;
-
 import javax.persistence.*;
 import java.lang.reflect.Array;
 import java.util.Arrays;
@@ -56,6 +53,7 @@ public class Group {
 		String list = Arrays.toString(customers.toArray()).replace("[","").replace("]","");
 		return list;
 	}
+
 
 	public String getPassword() {
 		return password;
