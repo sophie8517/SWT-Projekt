@@ -45,7 +45,7 @@ public class Football extends Item {
 
 	public void addBet(FootballBet footballBet){
 		footballBets.add(footballBet);
-		upCounter();
+
 	}
 
 	public void removeBet(FootballBet footballBet){

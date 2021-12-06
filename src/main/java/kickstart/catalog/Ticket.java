@@ -45,7 +45,7 @@ public class Ticket extends Item {
 
 	public void addBet(NumberBet numberBet){
 		numberBets.add(numberBet);
-		upCounter();
+
 	}
 
 	public void removeBet(NumberBet bet){
