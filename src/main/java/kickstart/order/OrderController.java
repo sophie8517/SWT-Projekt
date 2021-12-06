@@ -157,7 +157,9 @@ public class OrderController {
 			//die Ziehung dieser Woche abgeschlossen ist
 			//man am Ziehungstag den Lottoschein ausgefüllt hat -> d.h. er ist für diese Ziehung noch nicht gültig
 
-			if (date.isBefore(t.getTimeLimit().minusMinutes(5)) ||t.getCheckEvaluation().contains(t.getTimeLimit().toLocalDate()) || bet.getDate().toLocalDate().isEqual(t.getTimeLimit().toLocalDate())) {
+			if (date.isBefore(t.getTimeLimit().minusMinutes(5))
+					||t.getCheckEvaluation().contains(t.getTimeLimit().toLocalDate())
+					|| bet.getDate().toLocalDate().isEqual(t.getTimeLimit().toLocalDate())) {
 				var customer = bet.getCustomer();
 				Money diff = money.subtract(bet.getInset());
 				if(customer.getBalance().isGreaterThanOrEqualTo(diff)){
