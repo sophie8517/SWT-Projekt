@@ -103,16 +103,13 @@ public class ResultController {
 
 
 			Ergebnis erg;
-			if(number == 1){
-
-				erg = Ergebnis.GASTSIEG;
-			} else if(number == 2){
-
-				erg = Ergebnis.HEIMSIEG;
-			} else{
-
-				erg = Ergebnis.UNENTSCHIEDEN;
+			switch (number){
+				case 1:erg = Ergebnis.GASTSIEG;break;
+				case 2:erg = Ergebnis.HEIMSIEG;break;
+				case 3:erg = Ergebnis.UNENTSCHIEDEN;break;
+				default:throw new IllegalArgumentException("number must be 1,2 or 3");
 			}
+
 			f.setErgebnis(erg);
 
 			for(FootballBet fb: wetten){
