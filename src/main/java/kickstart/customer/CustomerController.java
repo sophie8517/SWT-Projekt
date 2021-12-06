@@ -155,11 +155,11 @@ public class CustomerController{
 	public String Group(Model model, @LoggedIn Optional<UserAccount> userAccount){
 
 		var customer = customerManagement.findByUserAccount(userAccount.get());
-		List<String> gName = customer.getGroup();
+		List<Group> gName = customer.getGroup();
 		System.out.println(gName);
 		List<Group> groups = new ArrayList<>();
-		for (String groupName : gName){
-			groups.add(customerManagement.findByGroupName(groupName));
+		for (Group groupName : gName){
+			groups.add(customerManagement.findByGroupName(groupName.getGroupName()));
 		}
 
 		//model.addAttribute("groupNames", gName);

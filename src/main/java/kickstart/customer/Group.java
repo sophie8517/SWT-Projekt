@@ -18,10 +18,10 @@ public class Group {
 	@Id
 	private String groupName;
 
-	@Transient
+	@ManyToMany
 	private Set<Customer> customers = new TreeSet<>();
-	@Transient
-	private Customer leader;
+//	@Transient
+//	private Customer leader;
 
 	private String password;
 
@@ -29,7 +29,7 @@ public class Group {
 
 	public Group(String groupName, Customer leader, String password){
 		//this.userAccount = userAccount;
-		this.leader = leader;
+		//this.leader = leader;
 		this.groupName = groupName;
 		this.password = password;
 		customers.add(leader);
@@ -61,9 +61,9 @@ public class Group {
 		return password;
 	}
 
-	public Customer getLeader() {
-		return leader;
-	}
+//	public Customer getLeader() {
+//		return leader;
+//	}
 
 	public boolean contains(Customer customer) {
 		return customers.contains(customer);

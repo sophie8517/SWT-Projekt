@@ -62,15 +62,19 @@ public class CustomerManagement {
 			System.out.println(sb);
 
 		var password = sb.toString();
-		customer.addGroup(groupName);
+
+		Group group = new Group(groupName, customer, password);
+		customer.addGroup(group);
 
 
 //		var userAccount = userAccounts.create(form.getEmail(), password, CUSTOMER_ROLE);
 //		userAccount.setEmail(form.getEmail());
 //		userAccount.setFirstname(form.getFirstname());
 //		userAccount.setLastname(form.getLastname());
+//		customer.getUserAccount().add(Role.of("LEADER"));
+//		customers.save(customer);
 
-		return groups.save(new Group(groupName, customer, password));
+		return groups.save(group);
 	}
 
 //	public Group deleteGroup(Group group){
@@ -96,6 +100,7 @@ public class CustomerManagement {
 			throw new IllegalArgumentException("Customer is already in the Group!");
 
 		group.add(customer);
+		customer.addGroup(group);
 
 		return groups.save(group);
 	}

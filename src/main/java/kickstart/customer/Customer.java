@@ -20,15 +20,15 @@ public class Customer implements Comparable<Customer> {
 	@OneToOne
 	private UserAccount userAccount;
 
-	@Transient
-	private List<String> group = new ArrayList<>();
-	public List<String> getGroup() {
-		return group;
+	@ManyToMany
+	private List<Group> groups = new ArrayList<>();
+	public List<Group> getGroup() {
+		return groups;
 	}
 
 
-	public void addGroup(String groupName){
-		group.add(groupName);
+	public void addGroup(Group group){
+		groups.add(group);
 	}
 
 	public Customer(){}
