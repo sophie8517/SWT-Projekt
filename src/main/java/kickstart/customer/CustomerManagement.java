@@ -65,6 +65,7 @@ public class CustomerManagement {
 		customer.addGroup(groupName);
 
 
+
 //		var userAccount = userAccounts.create(form.getEmail(), password, CUSTOMER_ROLE);
 //		userAccount.setEmail(form.getEmail());
 //		userAccount.setFirstname(form.getFirstname());

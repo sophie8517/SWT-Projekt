@@ -155,6 +155,8 @@ public class CustomerController{
 	public String Group(Model model, @LoggedIn Optional<UserAccount> userAccount){
 
 		var customer = customerManagement.findByUserAccount(userAccount.get());
+		System.out.println(customer);
+		System.out.println(customer.getGroup());
 		List<String> gName = customer.getGroup();
 		System.out.println(gName);
 		List<Group> groups = new ArrayList<>();
@@ -198,6 +200,7 @@ public class CustomerController{
 		customerManagement.createGroup(groupName, customer);
 		return "redirect:/group";
 	}
+
 
 	@PostMapping("/close")
 	String close(){

@@ -25,10 +25,16 @@
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Password</th>
+                    <th>Leader</th>
+                    <th>Members</th>
                 </tr>
             </thead>
             <tr th:each="group : ${groupList}">
                 <td th:text="${group.groupName}">group1</td>
+                <td th:text="${group.getPassword()}">pwd</td>
+                <td th:text="${group.getLeader()}">Leader</td>
+                <td th:text="${group.getMembers()}">Customer</td>
             </tr>
         </table>
 

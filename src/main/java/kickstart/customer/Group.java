@@ -22,7 +22,6 @@ public class Group {
 	private Set<Customer> customers = new TreeSet<>();
 	@Transient
 	private Customer leader;
-
 	private String password;
 
 	public Group(){}
