@@ -1,21 +1,17 @@
 package kickstart.customer;
 
-import kickstart.AbstractIntegrationTests;
+import kickstart.AbstractIntegrationTest;
 import org.javamoney.moneta.Money;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.salespointframework.useraccount.Role;
-import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManagement;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.salespointframework.core.Currencies.EURO;
 
-class CustomerManagementTest extends AbstractIntegrationTests {
+class CustomerManagementTest extends AbstractIntegrationTest {
 	@Autowired
 	CustomerManagement customerManagement;
 
