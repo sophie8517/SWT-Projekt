@@ -199,16 +199,6 @@ public class CustomerController{
 
 	@PostMapping("/group_create")
 	public String createGroup(@RequestParam("groupName") String groupName, @LoggedIn Optional<UserAccount> userAccount,
-<<<<<<< HEAD
-							  RedirectAttributes redirAttrs){
-
-		Assert.notNull(groupName, "Registration form must not be null!");
-
-		if (customerManagement.findByGroupName(groupName) != null) {
-			redirAttrs.addFlashAttribute("message", "Group name already exists, please give another name");
-			return "redirect:/group_create";
-		}
-=======
 							  RedirectAttributes redir){
 
 		Assert.notNull(groupName, "groupName must not be null!");
@@ -218,7 +208,6 @@ public class CustomerController{
 			return "redirect:/group_create";
 		}
 
->>>>>>> test
 
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 		customerManagement.createGroup(groupName, customer);
