@@ -78,8 +78,7 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 	@Test
 	@WithMockUser(username = "test", roles = "CUSTOMER")
 	public void RaiseFootBetTest(){
-		System.out.println(f.getFootballBets());
-		System.out.println(fb_id);
+
 		String returnView = orderController.raiseFootBet(fid,fb_id,12.0);
 		assertThat(returnView).isEqualTo("time_up.html");
 	}
