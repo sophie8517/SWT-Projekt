@@ -19,6 +19,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -119,9 +120,12 @@ public class CustomerControllerIntegrationTest extends AbstractIntegrationTest {
 		//mockMvc.perform(MockMvcRequestBuilders.get("/balance/charge"))
 		//		.andExpect(MockMvcResultMatchers.flash().attribute("message","Invalid number"));
 
+		RedirectAttributes redir = new RedirectAttributesModelMap();
+
 		try {
-			customerController.charge(0, optional);
+			customerController.charge(0, optional, redir);
 			System.out.println(customer.getBalance());
+			assertThat(redir.getFlashAttributes().containsKey("message"));
 		}
 		catch (IllegalStateException exception){
 			assertThat(true).isTrue();
