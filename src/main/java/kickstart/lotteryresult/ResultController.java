@@ -94,7 +94,7 @@ public class ResultController {
 
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/evalfoot")
-	String evalFootballBets(@RequestParam("pid") ProductIdentifier id, @RequestParam("ergebnis") int number){
+	public String evalFootballBets(@RequestParam("pid") ProductIdentifier id, @RequestParam("ergebnis") int number){
 		Football f = (Football) lotteryCatalog.findById(id).get();
 
 		if(LocalDateTime.now().isAfter(f.getTimeLimit()) && f.getErgebnis().equals(Ergebnis.LEER)){

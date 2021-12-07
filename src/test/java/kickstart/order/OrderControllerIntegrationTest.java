@@ -4,6 +4,7 @@ import kickstart.AbstractIntegrationTest;
 import kickstart.catalog.*;
 import kickstart.customer.Customer;
 import kickstart.customer.CustomerRepository;
+import kickstart.lotteryresult.ResultController;
 import org.javamoney.moneta.Money;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,15 +35,19 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 	@Autowired
 	private OrderController orderController;
 
+	@Autowired
+	ResultController resultController;
+
 	private Customer c;
 	private UserAccount ua;
 	private Ticket t;
 	private List<Integer> l;
-	private ProductIdentifier fid,f2id;
-	private Football f,f2;
-	private FootballBet fb,fb2;
-	private String fb_id, fb2_id;
+	private ProductIdentifier fid,f2id,f3id,f4id;
+	private Football f,f2,f3,f4;
+	private FootballBet fb,fb2,fb3,fb4;
+	private String fb_id, fb2_id,fb3_id,fb4_id;
 	private Money balance;
+
 
 	@BeforeEach
 	void setUp(){
@@ -70,11 +75,25 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 		lotteryCatalog.save(f);
 
 		f2 = new Football("def",LocalDateTime.now().plusDays(1),Money.of(10,EURO), Item.ItemType.FOOTBALL,new Team("team1"),new Team("team2"),"2. liga","img1","img2");
-		fb2 = new FootballBet(f2,LocalDateTime.now().minusDays(2),Money.of(12,EURO),c,f.getTimeLimit(),Ergebnis.UNENTSCHIEDEN);
+		fb2 = new FootballBet(f2,LocalDateTime.now().minusDays(2),Money.of(12,EURO),c,f2.getTimeLimit(),Ergebnis.UNENTSCHIEDEN);
 		f2.addBet(fb2);
 		f2id = f2.getId();
 		fb2_id = fb2.getIdstring();
 		lotteryCatalog.save(f2);
+
+		f3 = new Football("ghi",LocalDateTime.now().plusMinutes(5),Money.of(12,EURO), Item.ItemType.FOOTBALL,new Team("host"),new Team("guest"),"1. liga","imgh1","imgg2");
+		fb3 = new FootballBet(f3,LocalDateTime.now().minusDays(3),Money.of(14,EURO),c,f.getTimeLimit(),Ergebnis.UNENTSCHIEDEN);
+		f3.addBet(fb3);
+		f3id = f3.getId();
+		fb3_id = fb3.getIdstring();
+		lotteryCatalog.save(f3);
+
+		f4 = new Football("ghi",LocalDateTime.now().minusMinutes(90),Money.of(12,EURO), Item.ItemType.FOOTBALL,new Team("winner"),new Team("loser"),"1. liga","imgw","imgl");
+		fb4 = new FootballBet(f4,LocalDateTime.now().minusDays(3),Money.of(14,EURO),c,f4.getTimeLimit(),Ergebnis.UNENTSCHIEDEN);
+		f4.addBet(fb4);
+		f4id = f4.getId();
+		fb4_id = fb4.getIdstring();
+		lotteryCatalog.save(f4);
 
 	}
 
@@ -179,12 +198,43 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 
 	}
 
+	@Test
+	@WithMockUser(username = "test", roles = "CUSTOMER")
+	public void RemoveFootballBetsTestTimeUp5Minutes(){
+		String returnView = orderController.removeFootballBets(fb3);
+		assertThat(returnView).isEqualTo("time_up.html");
+		assertThat(f3.getFootballBets().contains(fb3)).isTrue();
+		assertThat(c.getBalance()).isEqualTo(balance);
+
+	}
+
+	@Test
+	@WithMockUser(roles={"ADMIN","CUSTOMER"})
+	public void RemoveFootballBetsTestAfterEvaluation(){
+
+		String returnView = orderController.removeFootballBets(fb4);
+		assertThat(returnView).isEqualTo("time_up.html");
+		assertThat(f4.getFootballBets().contains(fb4)).isTrue();
+		assertThat(c.getBalance()).isEqualTo(balance);
+
+		String myview = resultController.evalFootballBets(f4id,2);
+		//Ergebnis von f4 wurde auf 3 = UNENTSCHIEDEN gesetzt
+		//Status von fb4 ist nicht mehr OPEN
+		String resultView = orderController.removeFootballBets(fb4);
+		assertThat(resultView).isEqualTo("redirect:/customer_bets");
+		assertThat(f4.getFootballBets().contains(fb4)).isFalse();
+		assertThat(c.getBalance()).isEqualTo(balance);
+
+	}
+
 	@AfterEach
 	void breakDown(){
 
 		lotteryCatalog.delete(t);
 		lotteryCatalog.delete(f);
 		lotteryCatalog.delete(f2);
+		lotteryCatalog.delete(f3);
+		lotteryCatalog.delete(f4);
 		c.setBalance(balance);
 		customerRepository.save(c);
 	}
