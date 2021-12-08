@@ -76,6 +76,13 @@
                     <button class="button" type="submit" th:text="#{numbet.changeTip}" >Tipp ändern</button>
 
                 </form>
+                <br><br>
+                <form th:method="post" sec:authorize="hasRole('CUSTOMER')" th:action="@{/removeNumberBets}" >
+                    <input type="hidden" name="ticketid" value="0" th:value="${numbet.item.id}" />
+                    <input type="hidden" name="numbetid" value="0" th:value="${numbet.idstring}" />
+
+                    <button class="button" type="submit"  th:text="#{footbet.delete}" >Entfernen</button>
+                </form>
 
 
             </div>
@@ -140,6 +147,13 @@
                     <input type="hidden" name="betid" value="0" th:value="${footbet.idstring}"/>
                     <button class="button" type="submit" th:text="#{footbet.changeTip}" >Tipp ändern</button>
 
+                </form>
+                <br><br>
+                <form th:method="post" sec:authorize="hasRole('CUSTOMER')" th:action="@{/removeFootballBets}" >
+                    <input type="hidden" name="itemid" value="0" th:value="${footbet.item.id}" />
+                    <input type="hidden" name="betid" value="0" th:value="${footbet.idstring}" />
+
+                    <button class="button" type="submit"  th:text="#{footbet.delete}" >Entfernen</button>
                 </form>
 
 
