@@ -14,10 +14,7 @@ import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import static org.salespointframework.core.Currencies.EURO;
 
@@ -97,7 +94,7 @@ public class OrderController {
 					return "redirect:/customer_bets";
 
 				}else{
-					return "error";
+					return "keinGeld";
 				}
 
 			}else{
@@ -179,7 +176,7 @@ public class OrderController {
 					customerRepository.save(customer);
 					lotteryCatalog.save(t);
 				}else{
-					return "error";
+					return "keinGeld";
 				}
 
 			}else{
@@ -245,11 +242,14 @@ public class OrderController {
 
 	}
 
+	//TODO
+
 
 	@PostMapping("/removeNumberBets")
-	public String removeNumberBets(@RequestParam("mynumbet") NumberBet numberBetRemove){
+	public String removeNumberBets(@RequestParam("ticketid")ProductIdentifier id, @RequestParam("numbetid")String bid){
 		LocalDateTime date = LocalDateTime.now();
-		Ticket t = (Ticket) numberBetRemove.getItem();
+		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
+		NumberBet numberBetRemove = t.findbyBetId(bid);
 		Customer customer = numberBetRemove.getCustomer();
 		LocalDateTime time = t.getTimeLimit();
 		if (date.isBefore(time.minusMinutes(5))
@@ -274,9 +274,11 @@ public class OrderController {
 	}
 
 	@PostMapping("/removeFootballBets")
-	public String removeFootballBets(@RequestParam("myfootbet") FootballBet footballBetRemove){
+	public String removeFootballBets(@RequestParam("itemid")ProductIdentifier id, @RequestParam("betid")String bid){
+
 		LocalDateTime date = LocalDateTime.now();
-		Football football = (Football) footballBetRemove.getItem();
+		Football football = (Football) lotteryCatalog.findById(id).get();
+		FootballBet footballBetRemove = football.findbyBetId(bid);
 		LocalDateTime time = football.getTimeLimit().minusMinutes(5);
 		Customer customer = footballBetRemove.getCustomer();
 		if (date.isBefore(time) || !football.getErgebnis().equals(Ergebnis.LEER)){

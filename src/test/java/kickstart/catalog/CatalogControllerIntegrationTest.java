@@ -120,7 +120,7 @@ public class CatalogControllerIntegrationTest  extends AbstractIntegrationTest {
 		z7 = 0;
 		dauer = 1;
 		String returnView = catalogController.bet_num(id,z1,z2,z3,z4,z5,z6,z7,dauer,Optional.of(ua));
-		assertThat(returnView).isEqualTo("error");
+		assertThat(returnView).isEqualTo("keinGeld");
 	}
 
 	@Test
@@ -169,7 +169,7 @@ public class CatalogControllerIntegrationTest  extends AbstractIntegrationTest {
 	public void CatalogControllerFootError(){
 		lotteryCatalog.save(f_success);
 		String returnView = catalogController.bet_foot(id_f_success,1,12.0,Optional.of(ua));
-		assertThat(returnView).isEqualTo("error");
+		assertThat(returnView).isEqualTo("keinGeld");
 		lotteryCatalog.delete(f_success);
 
 	}

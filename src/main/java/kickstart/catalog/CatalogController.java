@@ -166,7 +166,7 @@ public class CatalogController {
 
 
 		if (money.isLessThan(price)) {
-			return "error";
+			return "keinGeld";
 		} else {
 			money = money.subtract(price);
 			c.setBalance(money);
@@ -214,7 +214,7 @@ public class CatalogController {
 
 
 			if(money.isLessThan(insetMoney)){
-				return "error";
+				return "keinGeld";
 			} else{
 				money = money.subtract(insetMoney);
 				customer.setBalance(money);
