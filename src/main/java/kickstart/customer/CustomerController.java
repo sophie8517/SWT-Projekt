@@ -4,7 +4,6 @@ import com.mysema.commons.lang.Assert;
 import static org.salespointframework.core.Currencies.*;
 
 
-import org.h2.engine.User;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
@@ -19,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 public class CustomerController{
@@ -63,23 +62,7 @@ public class CustomerController{
 
 	@GetMapping("/profile")
 	String getProfile(Model model, @LoggedIn Optional<UserAccount> userAccount) {
-	/*	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-		System.out.println("Authenticate " + authentication.getName());
-		String username = authentication.getName();
-		for (Customer customer : customerManagement.findAllCustomers()){
-			System.out.println(customer.getUserAccount().getUsername());
-			if (username.equals(customer.getUserAccount().getUsername())){
-				//model.addAttribute("profile", new Profile(customer.getUserAccount().getFirstname(),
-				 customer.getUserAccount().getLastname(),customer.getUserAccount().getEmail()));
-				model.addAttribute("profile", new Profile(customer.getUserAccount().getUsername(),
-				 customer.getUserAccount().getEmail(), customer.getUserAccount().getEmail()));
-				System.out.println(new Profile(customer.getUserAccount().getFirstname(),
-				customer.getUserAccount().getLastname(),customer.getUserAccount().getEmail()));
-			}
-		}
-
-	 */
 		model.addAttribute("firstname", userAccount.get().getFirstname());
 		model.addAttribute("lastname", userAccount.get().getLastname());
 		model.addAttribute("email", userAccount.get().getEmail());
@@ -93,22 +76,6 @@ public class CustomerController{
 		model.addAttribute("customerList", customerManagement.findAllCustomers());
 		return "customers";
 	}
-
-//	@PostMapping("/registerGroup")
-//	String createNewGroup(@Valid RegistrationForm form, Errors result) {
-//
-//		if (result.hasErrors()) {
-//			return "register";
-//		}
-//
-//		customerManagement.createCustomer(form);
-//		return "redirect:/";
-//	}
-//
-//	@GetMapping("/registerGroup")
-//	public String create(){
-//		return "group_create";
-//	}
 
 	@PostMapping("/balance/charge")
 	public String charge(@RequestParam("money") double money, @LoggedIn Optional<UserAccount> userAccount,
@@ -155,7 +122,7 @@ public class CustomerController{
 
 
 	@GetMapping("/group")
-	public String Group(Model model, @LoggedIn Optional<UserAccount> userAccount){
+	public String groups(Model model, @LoggedIn Optional<UserAccount> userAccount){
 
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 
@@ -164,6 +131,15 @@ public class CustomerController{
 		model.addAttribute("groups", groups);
 
 		return "group";
+	}
+
+	@GetMapping("/group_members")
+	public String showMembers(Model model, @RequestParam("name") String name) {
+		var group = customerManagement.findByGroupName(name);
+		Set<Customer> members = group.getMembers();
+
+		model.addAttribute("members", members);
+		return "group_members";
 	}
 
 	@GetMapping("/group_join")
@@ -224,5 +200,15 @@ public class CustomerController{
 		return "redirect:/group";
 	}
 
+	@PostMapping("/closeToMyProfile")
+	String closeToMyProfile(Model model, @LoggedIn Optional<UserAccount> userAccount){
+		model.addAttribute("firstname", userAccount.get().getFirstname());
+		model.addAttribute("lastname", userAccount.get().getLastname());
+		model.addAttribute("email", userAccount.get().getEmail());
+		return "meinProfil";
+	}
+
+	@GetMapping("/changePassword")
+	String toChPwdPage() { return "changePassword"; }
 
 }

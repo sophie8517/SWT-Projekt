@@ -10,10 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.util.Optional;
-
-import static org.salespointframework.core.Currencies.EURO;
 
 @Service
 @Transactional
@@ -66,15 +65,6 @@ public class CustomerManagement {
 		Group group = new Group(groupName, customer, password);
 		customer.addGroup(group);
 
-
-
-//		var userAccount = userAccounts.create(form.getEmail(), password, CUSTOMER_ROLE);
-//		userAccount.setEmail(form.getEmail());
-//		userAccount.setFirstname(form.getFirstname());
-//		userAccount.setLastname(form.getLastname());
-//		customer.getUserAccount().add(Role.of("LEADER"));
-//		customers.save(customer);
-
 		return groups.save(group);
 	}
 
@@ -99,9 +89,6 @@ public class CustomerManagement {
 	}
 
 	public Group removeMemberOfGroup(Customer customer, Group group){
-		if (group.getMembers().size() == 1){
-
-		}
 		group.remove(customer);
 		return groups.save(group);
 	}
@@ -120,6 +107,11 @@ public class CustomerManagement {
 		var group = groups.findById(name).orElse(null);
 		return group;
 	}
+
+	public void changePwd(Customer customer, String oldPassword, String newPassword, String newPassword1){
+		userAccounts.changePassword(customer.getUserAccount(), Password.UnencryptedPassword.of(newPassword));
+	}
+
 	public Customer findByUserAccount(UserAccount userAccount){
 		var customer = customers.findCustomerByUserAccount(userAccount);
 		return customer;

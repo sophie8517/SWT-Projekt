@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -48,6 +48,7 @@ public class CustomerControllerIntegrationTest extends AbstractIntegrationTest {
 	private MockMvc mockMvc;
 	private UserAccount userAccount;
 	private Customer customer;
+	private Customer leader;
 	private Optional<UserAccount> optional;
 	private List<Customer> customerList;
 	private Group group;
@@ -59,7 +60,10 @@ public class CustomerControllerIntegrationTest extends AbstractIntegrationTest {
 		userAccount = customer.getUserAccount();
 		optional = Optional.of(userAccount);
 		customerList = new ArrayList<>();
-		group = new Group();
+		leader = customerManagement.createCustomer(
+				new RegistrationForm("test", "leader", "test@leader.de", "123", "123"));
+		group = customerManagement.createGroup("testGroup", leader);
+		customerManagement.addMemberToGroup(customer, group, group.getPassword());
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.ctx).build();
 	}
 
@@ -116,7 +120,7 @@ public class CustomerControllerIntegrationTest extends AbstractIntegrationTest {
 
 
 	@Test
-	public void CustomerControllerIntegrationTestCharge() throws Exception{
+	public void CustomerControllerIntegrationTestCharge(){
 		//mockMvc.perform(MockMvcRequestBuilders.get("/balance/charge"))
 		//		.andExpect(MockMvcResultMatchers.flash().attribute("message","Invalid number"));
 
@@ -144,6 +148,93 @@ public class CustomerControllerIntegrationTest extends AbstractIntegrationTest {
 		Assertions.assertEquals(customer.getBalance(), model.getAttribute("balance"));
 
 		assertThat(returnedView).isEqualTo("balance");
+	}
+
+	@Test
+	public void customerControllerIntegrationTestExit(){
+		RedirectAttributes redir = new RedirectAttributesModelMap();
+
+		assertEquals(group.getMembers().size(), 2);
+
+		String returnedView = customerController.exit("testGroup", optional, redir);
+		assertEquals(group.getMembers().size(), 1);
+		assertThat(returnedView.equals("redirect:/group"));
+
+		returnedView = customerController.exit("testGroup", optional, redir);
+		assertEquals(group.getMembers().size(), 1);
+		assertThat(redir.getFlashAttributes().containsKey("message"));
+		assertThat(returnedView.equals("redirect:/group"));
+
+		returnedView = customerController.exit("testGroup", Optional.of(leader.getUserAccount()), redir);
+		assertThat(customerManagement.findByGroupName("testGroup") == null);
+		assertThat(returnedView.equals("redirect:/group"));
+	}
+
+	@Test
+	public void customerControllerIntegrationTestGroup(){
+		Model model = new ExtendedModelMap();
+
+		String returnedView = customerController.groups(model, Optional.of(leader.getUserAccount()));
+		assertEquals(leader.getGroup(), model.getAttribute("groups"));
+		assertEquals(returnedView, "group");
+	}
+
+	@Test
+	public void customerControllerIntegrationTestJoinGroup(){
+		Customer temp = customerManagement.createCustomer(
+				new RegistrationForm(
+						"temp",
+						"customer",
+						"temp@customer.de",
+						"123",
+						"123"
+				)
+		);
+
+		assertEquals(group.getMembers().size(), 2);
+
+		RedirectAttributes redir = new RedirectAttributesModelMap();
+		String returnedView = customerController.joinGroup(
+				"testGroup", "0", Optional.of(temp.getUserAccount()), redir
+		);
+
+		assertEquals(group.getMembers().size(), 2);
+		assertThat(redir.getFlashAttributes().containsKey("message"));
+		assertEquals(returnedView, "redirect:/group_join");
+
+		returnedView = customerController.joinGroup(
+				"testGroup", group.getPassword(), Optional.of(temp.getUserAccount()), redir
+		);
+
+		assertEquals(group.getMembers().size(), 3);
+		assertEquals(returnedView, "redirect:/group");
+
+		returnedView = customerController.joinGroup(
+				"testGroup", group.getPassword(), Optional.of(temp.getUserAccount()), redir
+		);
+
+		assertEquals(group.getMembers().size(), 3);
+		assertThat(redir.getFlashAttributes().containsKey("message"));
+		assertEquals(returnedView, "redirect:/group_join");
+	}
+
+	@Test
+	public void customerControllerIntegrationTestCreateGroup(){
+		RedirectAttributes redir = new RedirectAttributesModelMap();
+
+		String returnedView = customerController.createGroup(
+				"testGroup", Optional.of(leader.getUserAccount()), redir
+		);
+
+		assertThat(redir.getFlashAttributes().containsKey("message"));
+		assertEquals(returnedView, "redirect:/group_create");
+
+		returnedView = customerController.createGroup(
+				"testGroup2", Optional.of(leader.getUserAccount()), redir
+		);
+
+		assertTrue(customerManagement.findByGroupName("testGroup2") != null);
+		assertEquals(returnedView, "redirect:/group");
 	}
 
 }

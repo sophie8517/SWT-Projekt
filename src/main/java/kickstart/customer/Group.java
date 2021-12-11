@@ -1,11 +1,12 @@
 package kickstart.customer;
 
+import org.springframework.data.util.Streamable;
+
 import javax.persistence.*;
 import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Stream;
 
 @Entity
 @Table(name = "BETGROUP")
@@ -47,12 +48,6 @@ public class Group {
 	public Set<Customer> getMembers(){
 		return customers;
 	}
-
-	public String getMembersToString(){
-		String list = Arrays.toString(customers.toArray()).replace("[","").replace("]","");
-		return list;
-	}
-
 
 	public String getPassword() {
 		return password;

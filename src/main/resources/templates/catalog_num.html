@@ -8,7 +8,7 @@
     <meta name="viewport" content="width = device - width, initial - scale = 1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>🍀 Mach Dein Glück!! 🍀</title>
-    <link th:href="@{resources/css/style_num.css}" rel="stylesheet" href="../static/resources/css/style_num.css">
+    <link th:href="@{resources/css/style_statistic.css}" rel="stylesheet" href="../static/resources/css/style_statistic.css">
 </head>
 
 <body class="backgrounds">
@@ -23,11 +23,11 @@
         <nav th:include="navigation :: navigation" class="navcontainer"></nav>
         <div class="container">
         <main class="box-one">
-            <h2 class="box-two">Kreuze deine Glückszahlen!</h2>
-            <h4 class="box-two">"6 aus 49"</h4>
+            <h2>Kreuze deine Glückszahlen!</h2>
+            <h4>"6 aus 49"</h4>
         </main>
 
-        <div class="box-three">
+        <div class="box-six">
              <div class="ticket" th:each="ticket : ${ticketcatalog}"  >
                  <!--<form >
                     <fieldset class="ticket" style="width: 360px; position: center">
@@ -91,7 +91,7 @@
                          <input type="checkbox" id="49"><label for="49">49</label>
                      </fieldset>
                  </form>-->
-                 <table>
+                 <table style="margin-left: 155px ">
                      <tr>
                          <td>Dauer</td>
                          <td>Nummer</td>
@@ -115,7 +115,7 @@
                  </table>
                 <br>
 
-                <form th:method="post"  th:action="@{/lottery/numbit}" style="font-size: 20px">
+                <form th:method="post"  th:action="@{/lottery/numbit}" style="font-size: 20px;margin-left: 80px">
                     <input type="hidden" name="pid" value="0" th:value="${ticket.id}"/>
                     <div class="ticket2">
                 <div class="field">
@@ -123,35 +123,41 @@
                     <input field="*{zahl1}" id="zahl1" type="number" name="zahl1" min="1" max="49" required="required"/><br/>
                 </div>
                 <div class="field" >
+                    <br>
                     <label th:text="#{ticket.zahl2}">2. Zahl: </label>
                     <input field="*{zahl2}" id="zahl2" type="number" name="zahl2" min="1" max="49" required="required"/><br/>
                 </div>
                 <div class="field" >
+                    <br>
                     <label th:text="#{ticket.zahl3}" >3. Zahl: </label>
                     <input field="*{zahl3}" id="zahl3" type="number" name="zahl3" min="1" max="49" required="required"/><br/>
                 </div>
                 <div class="field" >
+                    <br>
                     <label th:text="#{ticket.zahl4}">4. Zahl: </label>
                     <input field="*{zahl4}" id="zahl4" type="number" name="zahl4" min="1" max="49" required="required"/><br/>
                 </div>
                 <div class="field" >
+                    <br>
                     <label th:text="#{ticket.zahl5}" >5. Zahl: </label>
                     <input field="*{zahl5}" id="zahl5" type="number" name="zahl5" min="1" max="49" required="required"/><br/>
                 </div>
                 <div class="field" >
+                    <br>
                     <label th:text="#{ticket.zahl6}" >6. Zahl: </label>
                     <input field="*{zahl6}" id="zahl6" type="number" name="zahl6" min="1" max="49" required="required"/><br/>
                 </div></div>
-                    <br>
-                    <div>
-                        <label th:text="#{ticket.dauer}">Dauer(1,2,3,oder 4)</label>
+                    <div class="field">
+                        <br>
+                        <label th:text="#{ticket.dauer}" style="margin-left: 5px">Dauer:</label>
                         <input field="*{dauer}" id="dauer" type="number" name="dauer" min="1" max="4" required="required">
                     </div>
                     <br>
 
-                <button sec:authorize="hasRole('CUSTOMER')" class="button" type="submit" th:text="#{ticket.addBet}">Tippschein Abgeben</button>
+                <button sec:authorize="hasRole('CUSTOMER')" class="button" type="submit" th:text="#{ticket.addBet}" style="margin-right: 82px">Tippschein Abgeben</button>
 
                 </form>
+                 <br>
                  <form th:method="post"  th:action="@{/eval/num}">
                      <input type="hidden" name="pid" value="0" th:value="${ticket.id}"/>
                      <button sec:authorize="hasRole('ADMIN')" class="button" type="submit" th:text="#{ticket.eval}">Tippschein Auswerten</button>

@@ -11,12 +11,12 @@
     <link th:href="@{resources/css/style_statistic.css}" rel="stylesheet" href="../static/resources/css/style_statistic.css">
 </head>
 
-
-
 <body class="backgrounds">
+
 <nav th:include="navigation :: navigation"></nav>
+
 <div class="container">
-    <main style="height: 1000px">
+    <main class="box-one">
 
         <h3>Gewinngemeinschaft</h3>
 
@@ -34,20 +34,29 @@
                 <td th:text="${group.groupName}">group1</td>
                 <td th:text="${group.getPassword}">pwd</td>
                 <td th:text="${group.getLeader}">Leader</td>
-                <td th:text="${group.getMembersToString}">members</td>
+                <td>
+                    <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{group_members}">
+                        <input type="hidden" name="name" th:value="${group.groupName}">
+                        <button type="submit" class="ui button"> Mitglieder zeigen</button>
+                    </form>
+                </td>
             </tr>
         </table>
 
+        <br>
+
 
         <div class="ui two column centered grid">
-            <div class="four column centered row">
+            <div class="four column centered row" style="padding-bottom: 10px">
 <!--                <div class="column">-->
 <!--                    <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/group_create}">-->
 <!--                        <button type="submit" class="ui button" th:text="#{group.create}">create</button>-->
 <!--                    </form>-->
 <!--                </div>-->
-                <a  href="group_create.html" th:href="@{/group_create}" sec:authorize="hasRole('CUSTOMER')">Gruppe erstellen</a>
-                <a  href="group_join.html" th:href="@{/group_join}" sec:authorize="hasRole('CUSTOMER')">Gruppe betretten</a>
+                <a  href="group_create.html" th:href="@{/group_create}" sec:authorize="hasRole('CUSTOMER')" style="text-decoration: none">Gruppe erstellen</a>
+                <br>
+                <br>
+                <a  href="group_join.html" th:href="@{/group_join}" sec:authorize="hasRole('CUSTOMER')" style="text-decoration: none">Gruppe betretten</a>
 <!--                <div class="column">-->
 <!--                    <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/group_join}">-->
 <!--                        <button type="submit" class="ui button" th:text="#{group.join}">join</button>-->
@@ -55,9 +64,7 @@
 <!--                </div>-->
             </div>
         </div>
-
     </main>
-
     <footer>
         <p>Mach Dein Glück!! ©Copyright 2021©</p>
     </footer>
