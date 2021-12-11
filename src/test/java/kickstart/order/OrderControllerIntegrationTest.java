@@ -5,6 +5,7 @@ import kickstart.catalog.*;
 import kickstart.customer.Customer;
 import kickstart.customer.CustomerRepository;
 import kickstart.lotteryresult.ResultController;
+
 import org.javamoney.moneta.Money;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,13 +17,12 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.salespointframework.core.Currencies.EURO;
+
 public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 	@Autowired
 	private LotteryCatalog lotteryCatalog;
