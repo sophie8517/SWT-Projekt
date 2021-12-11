@@ -263,7 +263,7 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 		Model model = new ExtendedModelMap();
 		c.setBalance(Money.of(2,EURO));
 		String returnView = orderController.raiseNumBet(model, tid2, nb2_id,15.0);
-		assertThat(returnView).isEqualTo("error");
+		assertThat(returnView).isEqualTo("keinGeld");
 
 		//balance doesn't change if customer has not enough money
 		assertThat(c.getBalance()).isEqualTo(Money.of(2,EURO));
