@@ -22,7 +22,12 @@
         <main class="box-one">
             <h2 class="box-two">Übersicht der Wetten</h2>
         </main>
-
+        <br>
+        <br>
+        <br>
+        <main class="box-one">
+            <h2 class="box-two">Zahlenwetten</h2>
+        </main>
 
         <div th:each="numbet : ${numberBets}">
             <div class="box-three">
@@ -76,11 +81,24 @@
                     <button class="button" type="submit" th:text="#{numbet.changeTip}" >Tipp ändern</button>
 
                 </form>
+                <br><br>
+                <form th:method="post" sec:authorize="hasRole('CUSTOMER')" th:action="@{/removeNumberBets}" >
+                    <input type="hidden" name="ticketid" value="0" th:value="${numbet.item.id}" />
+                    <input type="hidden" name="numbetid" value="0" th:value="${numbet.idstring}" />
+
+                    <button class="button" type="submit"  th:text="#{footbet.delete}" >Entfernen</button>
+                </form>
 
 
             </div>
 
         </div>
+        <br>
+        <br>
+        <br>
+        <main class="box-one">
+            <h2 class="box-two">Fußballwetten</h2>
+        </main>
         <div th:each="footbet : ${footballBets}">
             <div class="box-three">
 
@@ -141,11 +159,109 @@
                     <button class="button" type="submit" th:text="#{footbet.changeTip}" >Tipp ändern</button>
 
                 </form>
+                <br><br>
+                <form th:method="post" sec:authorize="hasRole('CUSTOMER')" th:action="@{/removeFootballBets}" >
+                    <input type="hidden" name="itemid" value="0" th:value="${footbet.item.id}" />
+                    <input type="hidden" name="betid" value="0" th:value="${footbet.idstring}" />
+
+                    <button class="button" type="submit"  th:text="#{footbet.delete}" >Entfernen</button>
+                </form>
 
 
             </div>
 
         </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <main class="box-one">
+            <h2 class="box-two">Gruppenwetten</h2>
+        </main>
+
+        <div th:each="footbet : ${groupBets}">
+            <div class="box-three">
+
+                <table>
+                    <tr>
+                        <td>Gruppe: </td>
+                        <td th:text="${footbet.groupName}">Gruppe1</td>
+                    </tr>
+                    <tr>
+                        <td>Heim: </td>
+                        <td th:text="${footbet.host}">FCB</td>
+                    </tr>
+                    <tr>
+                        <td>Gast: </td>
+                        <td th:text="${footbet.guest}">FCB</td>
+                    </tr>
+                    <tr>
+                        <td>Spieltag: </td>
+                        <td th:text="${footbet.MatchDay}">FCB</td>
+                    </tr>
+                    <tr>
+                        <td>Datum/Zeit der Abgabe: </td>
+                        <td th:text="${footbet.DateFormat}">FCB</td>
+                    </tr>
+                    <tr>
+                        <td>Gültig bis: </td>
+                        <td th:text="${footbet.FormatExp}">heute</td>
+                    </tr>
+                    <tr>
+                        <td>Tipp: </td>
+                        <td th:text="${footbet.tip}">FCB</td>
+                    </tr>
+                    <tr>
+                        <td>Einsatz: </td>
+                        <td th:text="${footbet.inset}" >offen</td>
+                    </tr>
+                    <tr>
+                        <td>Status: </td>
+                        <td th:text="${footbet.status}" style="color: cornflowerblue">offen</td>
+                    </tr>
+                </table>
+                <br>
+                <form th:method="post" sec:authorize="hasRole('CUSTOMER')" th:action="@{/raiseFootBet}">
+                    <input type="hidden" name="pid" value="0" th:value="${footbet.item.id}"/>
+                    <input type="hidden" name="betid" value="0" th:value="${footbet.idstring}"/>
+                    <table>
+                        <tr>
+                            <td style="width:210px">Neuer Einsatz: </td>
+                            <td><input field="*{newinsetfoot}" id="newinsetfoot" type="number" step=".01" name="newinsetfoot" th:min="${footbet.einsatz2}" required="required"/></td>
+                        </tr>
+                    </table>
+
+
+                    </br></br>
+
+                    <button class="button" type="submit" th:text="#{footbet.raisebet}" >Einsatz ändern</button>
+                    <br><br>
+                </form>
+                <form th:method="get" sec:authorize="hasRole('CUSTOMER')" th:action="@{/changeFoot}">
+                    <input type="hidden" name="item" value="0" th:value="${footbet.item.id}"/>
+                    <input type="hidden" name="betid" value="0" th:value="${footbet.idstring}"/>
+                    <button class="button" type="submit" th:text="#{footbet.changeTip}" >Tipp ändern</button>
+
+                </form>
+                <br><br>
+                <form th:method="post" sec:authorize="hasRole('CUSTOMER')" th:action="@{/removeFootballBets}" >
+                    <input type="hidden" name="itemid" value="0" th:value="${footbet.item.id}" />
+                    <input type="hidden" name="betid" value="0" th:value="${footbet.idstring}" />
+
+                    <button class="button" type="submit"  th:text="#{footbet.delete}" >Entfernen</button>
+                </form>
+
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+    <br>
 
 
         <br>

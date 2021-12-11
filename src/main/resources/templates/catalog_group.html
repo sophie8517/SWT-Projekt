@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device - width, initial - scale = 1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>🍀 Mach Dein Glück!! 🍀</title>
+    <link th:href="@{resources/css/style_foot.css}" rel="stylesheet"  type="text/css" href="../static/resources/css/style_foot.css">
+</head>
+
+<body class="backgrounds">
+
+<!--<nav>
+    <a href="home.html">HOME</a>
+    <a class="item" href="contact.html" th:href="@{/contact}" th:text="#{nav.contact}">KONTAKT</a>
+    <a href="meinProfil.html">MEIN PROFIL</a>
+    <a href="1_catalog.html">KATALOG</a>
+</nav>-->
+<nav th:include="navigation :: navigation" class="navcontainer"></nav>
+<div class="container">
+    <main class="box-one">
+        <h2 class="box-two">Übersicht der Fußballspiele</h2>
+    </main>
+
+
+    <div th:each="football : ${footballcatalog}">
+        <div class="box-three">
+
+            <table>
+                <tr>
+                    <th style="width: 300px">Liga: <div th:text="${football.league}">1. Bundesliga</div></th>
+                    <th style="width: 150px; text-align: center"> <img th:src="@{/resources/logos/{image}.png(image=${football.logoHost})}" src="../logos/fcb.png" style="width: 80px"></th>
+                    <th style="font-size: 30px">:</th>
+                    <th style="width: 150px; text-align: center"><img th:src="@{/resources/logos/{image}.png(image=${football.logoGuest})}" src="../logos/fcb.png" style="width: 80px"></th>
+                </tr>
+                <tr>
+                    <td>Spieltag: <div th:text="${football.FormatDate}">11.11.2021</div></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+            <br>
+            <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center" style="margin: auto; border-color: white">
+                <tr>
+                    <th>Heim</th>
+                    <th>Gast</th>
+                    <th>Spielstand</th>
+                    <th>Einsatz</th>
+                    <th>Wettoption</th>
+                </tr>
+                <tr>
+                    <td rowspan = "3"><div th:text="${football.host}">FC Bayern Muenchen</div></td>
+                    <td rowspan = "3"><div th:text="${football.guest}">BVB</div></td>
+                    <td>Gast gewinnt</td>
+                    <td><div th:text="${football.price}">30</div></td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Heim gewinnt</td>
+                    <td><div th:text="${football.price}">30</div></td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>Unentschieden</td>
+                    <td><div th:text="${football.price}">30</div></td>
+                    <td>3</td>
+                </tr>
+            </table>
+
+            <form th:method="post" sec:authorize="hasRole('CUSTOMER')" th:action="@{/footbitgroup}" >
+                <!--<input type="hidden" name="id" value="0" th:value="${football}"/>-->
+                <input type="hidden" name="pid" value="0" th:value="${football.id}"/>
+                </br>
+                <div >
+                    <table>
+                        <tr>
+                            <td><label th:text="#{football.bet}" >Wettoption:  </label></td>
+                            <td><input field="*{fussballwette}" id="fussballwette" type="number" name="fussballwette" min="1" max="3" required="required"/></td>
+                        </tr>
+                        <tr>
+                            <td><br></td>
+                            <td><br></td>
+                        </tr>
+                        <tr>
+                            <td><label th:text="#{football.einsatz}" >Dein Einsatz:  </label></td>
+                            <td><input field="*{inset}" id="inset" type="number" step=".01" name="inset" th:min="${football.price2}" required="required"/></td>
+                        </tr>
+                        <tr>
+                            <td><label th:text="#{football.group}">Gruppe: </label></td>
+                            <td><input field="*{groupfoot}" id="groupfoot" type="text" name="groupfoot" required="required"/></td>
+                        </tr>
+                    </table>
+                    <br>
+                    <br>
+
+
+                    <button class="button" type="submit" th:text="#{football.addBet}" >Jetzt wetten</button>
+
+                </div>
+            </form>
+            <div>
+                <h2 th:text="${message}"></h2>
+            </div>
+            <div>
+                <h2 th:text="${message1}"></h2>
+            </div>
+
+            <form th:method="post" sec:authorize="hasRole('ADMIN')" th:action="@{/evalfoot}">
+                <!--<input type="hidden" name="id" value="0" th:value="${football}"/>-->
+                <input type="hidden" name="pid" value="0" th:value="${football.id}"/>
+                </br>
+                <div >
+                    <label th:text="#{football.bet}" >Wettoption:  </label>
+                    <input field="*{ergebnis}" id="ergebnis" type="number" name="ergebnis" min="1" max="3" required="required"/>
+                    </br></br>
+                    <button class="button" type="submit" th:text="#{football.eval}" style="font-size:20px">Ergebnis eintragen</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<br>
+
+
+
+<br>
+
+<footer>
+    <p>Mach Dein Glück!! ©Copyright 2021©</p>
+</footer>
+
+</div>
+
+</body>
+
+</html>
+
+https://www.bundesliga.com/de/2bundesliga/tabelle
+
+https://www.bundesliga.com/de/bundesliga/tabelle

@@ -48,7 +48,8 @@ class CustomerDataInitializer implements DataInitializer {
 				new RegistrationForm("Nina", "Chen", "nina@tu-dresden.de", password, passwordCheck),
 				new RegistrationForm("Mirek", "Kral", "mirek@tu-dresden.de", password, passwordCheck),
 				new RegistrationForm("Sophie", "Schulze", "sophie@tu-dresden.de", password, passwordCheck),
-				new RegistrationForm("Lukas", "Lei", "lukas@tu-dresden.de", password, passwordCheck)
+				new RegistrationForm("Lukas", "Lei", "lukas@tu-dresden.de", password, passwordCheck),
+				new RegistrationForm("tester", "muster", "test@tu-dresden.de", password, passwordCheck)
 		).forEach(customerManagement::createCustomer);
 
 		LOG.info("Creating default groups");

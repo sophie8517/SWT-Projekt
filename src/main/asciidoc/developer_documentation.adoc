@@ -34,6 +34,7 @@
 • 5.6 Rückverfolgbarkeit
 • 4.3.2 Kontext
 |1.0	| In Arbeit	| Sophie Schulze	|13.11.2021	|Rechtschreibkorrektur
+|1.1	| In Arbeit	| Sophie Schulze	|08.12.2021	|Diagramm und Beschreibung für lotteryresult-package
 |===
 
 = Entwicklerdokumentation
@@ -318,7 +319,19 @@ image:models/design/block_order.svg[Location, 100%, 100%, pdfwidth=100%, title= 
 |BestellungController |Ein Spring MVC Controller zur Handhabung des Warenkorbs.
 |===
 
-=== 5.6 Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
+=== 5.6 Lotterieergebnis
+
+[[Lotteryresult]]
+image:models/design/block_result.svg[Location, 100%, 100%, pdfwidth=100%, title= "Lotteryresult", align=center] 
+
+[options="header"]
+|=== 
+|Class/Enumeration |Description
+|NumberLottery |Es ist eine Klasse, die eine "6 aus 49 mit Superzahl" Lottoziehung, anhand der Generierung von Zufallszahlen, simuliert.
+|ResultController	|Ein Spring MVC Controller zur Handhabung der Auswertung von Zahlen- und Fußballwetten
+|===
+
+=== 5.7 Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
 _Die folgende Tabelle zeigt die Rückverfolgbarkeit zwischen Entwurfs- und Analysemodell. Falls eine Klasse aus einem externen Framework im Entwurfsmodell eine Klasse des Analysemodells ersetzt,
 wird die Art der Verwendung dieser externen Klasse in der Spalte *Art der Verwendung* mithilfe der folgenden Begriffe definiert:_
 
