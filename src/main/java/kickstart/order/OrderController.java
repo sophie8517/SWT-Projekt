@@ -100,7 +100,7 @@ public class OrderController {
 					return "redirect:/customer_bets";
 
 				}else{
-					return "keinGeld";
+					return "error";
 				}
 
 			}else{
@@ -182,7 +182,7 @@ public class OrderController {
 					customerRepository.save(customer);
 					lotteryCatalog.save(t);
 				}else{
-					return "keinGeld";
+					return "error";
 				}
 
 			}else{
@@ -268,7 +268,6 @@ public class OrderController {
 				customer.setBalance(newbalance);
 				customerRepository.save(customer);
 			}
-
 			t.removeBet(numberBetRemove);
 			lotteryCatalog.save(t);
 
