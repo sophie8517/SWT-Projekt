@@ -4,21 +4,23 @@ import com.mysema.commons.lang.Assert;
 import static org.salespointframework.core.Currencies.*;
 
 
+import org.h2.engine.User;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -31,7 +33,7 @@ public class CustomerController{
 	}
 
 	@PostMapping("/register")
-	String registerNew(@Valid RegistrationForm form, Errors result) {
+	String registerNew(@Valid RegistrationForm form, Errors result, RedirectAttributes redirAttrs) {
 
 		System.out.println(form.getPassword());
 		System.out.println("passwort2:"+ form.getPasswordCheck());
@@ -44,6 +46,12 @@ public class CustomerController{
 		if(!form.check()){
 			return "register";
 		}
+
+		if(customerManagement.findByEmail(form.getEmail()).isPresent()){
+			redirAttrs.addFlashAttribute("message", "Name you entered is already exist!");
+			return "redirect:/register";
+		}
+
 		customerManagement.createCustomer(form);
 		return "redirect:/";
 	}
@@ -86,25 +94,29 @@ public class CustomerController{
 		return "customers";
 	}
 
-	@PostMapping("/registerGroup")
-	String createNewGroup(@Valid RegistrationForm form, Errors result) {
-
-		if (result.hasErrors()) {
-			return "register";
-		}
-
-		customerManagement.createCustomer(form);
-		return "redirect:/";
-	}
-
-	@GetMapping("/registerGroup")
-	public String create(Model model, RegistrationForm form){
-		return "redirect:/";
-	}
+//	@PostMapping("/registerGroup")
+//	String createNewGroup(@Valid RegistrationForm form, Errors result) {
+//
+//		if (result.hasErrors()) {
+//			return "register";
+//		}
+//
+//		customerManagement.createCustomer(form);
+//		return "redirect:/";
+//	}
+//
+//	@GetMapping("/registerGroup")
+//	public String create(){
+//		return "group_create";
+//	}
 
 	@PostMapping("/balance/charge")
-	public String charge(@RequestParam("money") double money, @LoggedIn Optional<UserAccount> userAccount){
-		//customerManagement.charge(Money.of(balance, EURO),customerManagement.findByCustomerId(customerId));
+	public String charge(@RequestParam("money") double money, @LoggedIn Optional<UserAccount> userAccount,
+						 RedirectAttributes redir){
+		if (Money.of(money, EURO).isLessThanOrEqualTo(Money.of(0, EURO))) {
+			redir.addFlashAttribute("message", "Invalid number");
+			return "redirect:/balance";
+		}
 
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 		customerManagement.charge(Money.of(money, EURO), customer);
@@ -122,24 +134,95 @@ public class CustomerController{
 		return "balance";
 	}
 
-	@PostMapping("/addMember")
-	public String addMember(long customerId, long groupId, String password){
-		 customerManagement.addMemberToGroup(
-		 		customerManagement.findByCustomerId(customerId), customerManagement.findByGroupId(groupId),password);
-		 return "redirect:/";
+	@PostMapping("/group/exit")
+	public String exit(@RequestParam("groupName") String groupName, @LoggedIn Optional<UserAccount> userAccount, RedirectAttributes redir){
+		var group = customerManagement.findByGroupName(groupName);
+		var customer = customerManagement.findByUserAccount(userAccount.get());
+
+		if (!group.contains(customer)) {
+			redir.addFlashAttribute("message", "Customer doesn't exist!");
+			return "redirect:/group";
+		}
+
+		customerManagement.removeMemberOfGroup(customer, group);
+
+		if (group.getMembers().isEmpty()) {
+			customerManagement.deleteGroup(group);
+		}
+
+		return "redirect:/group";
 	}
 
-	@PostMapping("/removeMember")
-	public String removeMember(long customerId, long groupId){
-		customerManagement.removeMemberOfGroup(
-				customerManagement.findByCustomerId(customerId), customerManagement.findByGroupId(groupId));
-		return "redirect:/";
+
+	@GetMapping("/group")
+	public String Group(Model model, @LoggedIn Optional<UserAccount> userAccount){
+
+		var customer = customerManagement.findByUserAccount(userAccount.get());
+
+		List<Group> groups = customer.getGroup();
+
+		model.addAttribute("groups", groups);
+
+		return "group";
 	}
 
-	@PostMapping("/deleteGroup")
-	public String deleteGroup(Model model, long groupId){
-		customerManagement.deleteGroup(customerManagement.findByGroupId(groupId));
-		model.addAttribute("group",customerManagement.findAllGroups());
-		return "redirect:/";
+	@GetMapping("/group_join")
+	public String join(){
+		return "group_join";
 	}
+
+	@PostMapping("/group_join")
+	public String joinGroup(@RequestParam("name") String name, @RequestParam("password") String password,
+							@LoggedIn Optional<UserAccount> userAccount, RedirectAttributes redir){
+		Assert.notNull(name, "name must not be null");
+		Assert.notNull(password, "password must not be null");
+		var customer = customerManagement.findByUserAccount(userAccount.get());
+		var group = customerManagement.findByGroupName(name);
+		System.out.println(group);
+
+		System.out.println(group.getPassword() + " and " + password);
+		if(!group.getPassword().equals(password)){
+			redir.addFlashAttribute("message", "Password doesn't match!");
+			return "redirect:/group_join";
+		}
+
+		if(group.contains(customer)) {
+			redir.addFlashAttribute("message", "Customer is already in the Group!");
+			return "redirect:/group_join";
+		}
+
+		customerManagement.addMemberToGroup(customer, group, password);
+
+		return "redirect:/group";
+	}
+
+	@GetMapping("/group_create")
+	public String createGroupPage(Model model){
+		return "group_create";
+	}
+
+	@PostMapping("/group_create")
+	public String createGroup(@RequestParam("groupName") String groupName, @LoggedIn Optional<UserAccount> userAccount,
+							  RedirectAttributes redir){
+
+		Assert.notNull(groupName, "groupName must not be null!");
+
+		if (customerManagement.findByGroupName(groupName) != null) {
+			redir.addFlashAttribute("message", "Group name already exists, please give an another name");
+			return "redirect:/group_create";
+		}
+
+
+		var customer = customerManagement.findByUserAccount(userAccount.get());
+		customerManagement.createGroup(groupName, customer);
+		return "redirect:/group";
+	}
+
+
+	@PostMapping("/close")
+	String close(){
+		return "redirect:/group";
+	}
+
+
 }

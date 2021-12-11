@@ -50,13 +50,19 @@ public class OrderController {
 		}
 		List<Item> foots = lotteryCatalog.findByType(Item.ItemType.FOOTBALL);
 		List<FootballBet> result = new ArrayList<>();
+		List<FootballBet> groupBets = new ArrayList<>();
+		List<Group> customergroups = customer.getGroup();
 		for(Item i: foots){
 			Football f = (Football) i;
 			result.addAll(f.getFootballBetsbyCustomer(customer));
+			for(Group g: customergroups){
+				groupBets.addAll(f.getGroupFootballBetsbyGroup(g.getGroupName()));
+			}
 		}
 
 		model.addAttribute("numberBets", nums);
 		model.addAttribute("footballBets", result);
+		model.addAttribute("groupBets",groupBets);
 
 		return "customer_bets";
 	}

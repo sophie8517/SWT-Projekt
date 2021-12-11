@@ -11,15 +11,16 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.security.SecureRandom;
+import java.util.Optional;
 
 import static org.salespointframework.core.Currencies.EURO;
-
 
 @Service
 @Transactional
 public class CustomerManagement {
 
 	public static final Role CUSTOMER_ROLE = Role.of("CUSTOMER");
+	public static final Role GROUP_ROLE = Role.of("GROUP");
 
 	private GroupRepository groups;
 	private CustomerRepository customers;
@@ -44,33 +45,40 @@ public class CustomerManagement {
 		return customers.save(new Customer(userAccount));
 	}
 
-	public Group createGroup(RegistrationForm form, Customer customer){
-		Assert.notNull(form, "Registration form must not be null!");
+	public Group createGroup(String groupName, Customer customer){
 
-			int length = 8;
-			final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-			SecureRandom random = new SecureRandom();
-			StringBuilder sb = new StringBuilder();
+		int length = 8;
+		final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-			for (int i = 0; i < length; i++) {
-				int randomIndex = random.nextInt(chars.length());
-				sb.append(chars.charAt(randomIndex));
-			}
+		SecureRandom random = new SecureRandom();
+		StringBuilder sb = new StringBuilder();
 
-			System.out.println(sb);
+		for (int i = 0; i < length; i++) {
+			int randomIndex = random.nextInt(chars.length());
+			sb.append(chars.charAt(randomIndex));
+		}
 
-		var password = Password.UnencryptedPassword.of(sb.toString());
-		var userAccount = userAccounts.create(form.getEmail(), password, CUSTOMER_ROLE);
-		userAccount.setEmail(form.getEmail());
-		userAccount.setFirstname(form.getFirstname());
-		userAccount.setLastname(form.getLastname());
+		System.out.println(sb);
 
-		return groups.save(new Group(customer.getUserAccount(),customer));
+		var password = sb.toString();
+
+		Group group = new Group(groupName, customer, password);
+		customer.addGroup(group);
+
+
+
+//		var userAccount = userAccounts.create(form.getEmail(), password, CUSTOMER_ROLE);
+//		userAccount.setEmail(form.getEmail());
+//		userAccount.setFirstname(form.getFirstname());
+//		userAccount.setLastname(form.getLastname());
+//		customer.getUserAccount().add(Role.of("LEADER"));
+//		customers.save(customer);
+
+		return groups.save(group);
 	}
 
 	public Group deleteGroup(Group group){
-		userAccounts.delete(group.getUserAccount());
 		groups.delete(group);
 		return group;
 	}
@@ -84,17 +92,18 @@ public class CustomerManagement {
 	}
 
 	public Group addMemberToGroup(Customer customer, Group group, String password){
-		if (group.getUserAccount().getPassword().toString().equals(password)){
-			userAccounts.save(group.getUserAccount());
-			group.add(customer);
-			return group;
-		}
-		throw new NullPointerException("Password doesn't match!");
+		group.add(customer);
+		customer.addGroup(group);
+
+		return groups.save(group);
 	}
 
 	public Group removeMemberOfGroup(Customer customer, Group group){
+		if (group.getMembers().size() == 1){
+
+		}
 		group.remove(customer);
-		return group;
+		return groups.save(group);
 	}
 
 
@@ -107,13 +116,15 @@ public class CustomerManagement {
 		return customer;
 	}
 
-	public Group findByGroupId(long groupId){
-		var group = groups.findById(groupId).orElse(null);
+	public Group findByGroupName(String name){
+		var group = groups.findById(name).orElse(null);
 		return group;
 	}
 	public Customer findByUserAccount(UserAccount userAccount){
 		var customer = customers.findCustomerByUserAccount(userAccount);
 		return customer;
 	}
+
+	public Optional<UserAccount> findByEmail(String name){ return userAccounts.findByUsername(name); }
 
 }

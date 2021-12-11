@@ -56,7 +56,12 @@
         <br>
 
 
-        <a href="" target="_blank"> Gewinngemeinschaft erstellen</a>
+        <a href="group_create.html" th:href="@{/group_create}" sec:authorize="hasRole('CUSTOMER')"> Gewinngemeinschaft erstellen</a>
+
+        <br>
+        <br>
+
+        <a href="group_join.html" th:href="@{/group_join}"> Gewinngemeinschaft betreten</a>
 
         <br>
         <br>

@@ -13,6 +13,8 @@ public class FootballBet extends Bet {
 	//@OneToOne (cascade = CascadeType.ALL)
 	//private Team host, guest;
 
+	private String groupName = "";
+
 	public FootballBet(Item item, LocalDateTime date, Money einsatz, Customer customer, LocalDateTime expiration,
 					   Ergebnis tippedStatus){
 		super(item, date, einsatz, customer, expiration);
@@ -28,6 +30,15 @@ public class FootballBet extends Bet {
 	//public void setTip(String tip){
 	//	this.tip = tip;
 	//}
+
+
+	public String getGroupName() {
+		return groupName;
+	}
+
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
+	}
 
 	public Ergebnis getTip() {
 		return tippedStatus;

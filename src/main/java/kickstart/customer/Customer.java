@@ -14,12 +14,22 @@ import java.util.List;
 import static org.salespointframework.core.Currencies.EURO;
 
 @Entity
-public class Customer {
+public class Customer implements Comparable<Customer>{
 	private @Id @GeneratedValue long id;
 	private Money balance;
 	@OneToOne
 	private UserAccount userAccount;
 
+	@ManyToMany
+	private List<Group> groups = new ArrayList<>();
+	public List<Group> getGroup() {
+		return groups;
+	}
+
+
+	public void addGroup(Group group){
+		groups.add(group);
+	}
 
 	public Customer(){}
 	public Customer (UserAccount userAccount){
@@ -69,5 +79,24 @@ public class Customer {
 
 	public void removeNumberBets(NumberBet nb) {numberBetList.remove(nb); }
 
+	@Override
+	public String toString() {
+		return userAccount.getFirstname() + " " + userAccount.getLastname();
+	}
 
+	@Override
+	public int compareTo(Customer customer) {
+		return this.toString().compareTo(customer.toString());
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+
+		if(!(obj instanceof Customer)) return false;
+
+		Customer customer = (Customer) obj;
+
+		return this.userAccount.getEmail().equals(customer.getUserAccount().getEmail());
+	}
 }
