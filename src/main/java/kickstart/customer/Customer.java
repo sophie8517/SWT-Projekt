@@ -22,26 +22,18 @@ public class Customer implements Comparable<Customer>{
 
 	@ManyToMany
 	private List<Group> groups = new ArrayList<>();
-	public List<Group> getGroup() {
-		return groups;
-	}
 
-
-	public void addGroup(Group group){
-		groups.add(group);
-	}
-
-	public Customer(){}
-	public Customer (UserAccount userAccount){
-		this.userAccount = userAccount;
-		balance = Money.of(0.0, EURO);
-	}
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<FootballBet> footballBetList = new ArrayList<>();
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<NumberBet> numberBetList = new ArrayList<>();
 
+	public Customer(){}
+	public Customer (UserAccount userAccount){
+		this.userAccount = userAccount;
+		balance = Money.of(0.0, EURO);
+	}
 
 	public long getId() {
 		return id;
@@ -57,6 +49,14 @@ public class Customer implements Comparable<Customer>{
 
 	public UserAccount getUserAccount() {
 		return userAccount;
+	}
+
+	public void addGroup(Group group){
+		groups.add(group);
+	}
+
+	public List<Group> getGroup() {
+		return groups;
 	}
 
 	public List<FootballBet> getAllFootballBetList() {

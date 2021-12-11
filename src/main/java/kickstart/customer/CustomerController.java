@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 public class CustomerController{
@@ -130,6 +131,15 @@ public class CustomerController{
 		model.addAttribute("groups", groups);
 
 		return "group";
+	}
+
+	@GetMapping("/group_members")
+	public String showMembers(Model model, @RequestParam("name") String name) {
+		var group = customerManagement.findByGroupName(name);
+		Set<Customer> members = group.getMembers();
+
+		model.addAttribute("members", members);
+		return "group_members";
 	}
 
 	@GetMapping("/group_join")
