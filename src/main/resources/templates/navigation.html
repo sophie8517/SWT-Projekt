@@ -10,9 +10,10 @@
 <nav th:fragment="navigation">
     <a  href="home.html" th:href="@{/}" th:text="#{nav.home}">HOME</a>
     <a  href="3_catalog_num.html" th:href="@{/zahlenlotterie}" th:text="#{nav.zahlkatalog}">ZAHLENLOTTERIE</a>
-    <a  href="2_catalog_foot.html" th:href="@{/football}" sec:authorize="!hasRole('ADMIN')"  th:text="#{nav.footballkatalog}">FUSSBALLTOTO</a>
+    <a  href="2_catalog_foot.html" th:href="@{/football}" sec:authorize="!hasAnyRole('ADMIN', 'CUSTOMER')"  th:text="#{nav.footballkatalog}">FUSSBALLTOTO</a>
     <a  href="2_catalog_foot.html" th:href="@{/footballadmin}" sec:authorize="hasRole('ADMIN')"  th:text="#{nav.footballkatalog.admin}">FUSSBALLTOTO</a>
-    <!--<a  href="catalog_foot_admin.html" th:href="@{/football/admin}" sec:authorize="hasRole('ADMIN')" th:text="#{nav.footballkatalog.admin}">FUSSBALLTOTO</a>-->
+    <a  href="catalog.html" th:href="@{/footballcatalog}" sec:authorize="hasRole('CUSTOMER')"  th:text="#{nav.footballkatalog.admin}">FUSSBALLTOTO</a>
+
     <a  href="contact.html" th:href="@{/contact}" th:text="#{nav.contact}">KONTAKT</a>
     <a  href="meinProfil.html" th:href="@{/profile}" sec:authorize="hasRole('CUSTOMER')" th:text="#{nav.profile}">MEIN PROFIL</a>
     <!--<a class="item" href="register.html" th:href="@{/register}" th:text="#{nav.register}">Registrierung</a>
