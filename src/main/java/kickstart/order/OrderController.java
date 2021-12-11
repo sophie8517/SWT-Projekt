@@ -295,7 +295,12 @@ public class OrderController {
 				customer.setBalance(newbalance);
 				customerRepository.save(customer);
 			}
-			football.removeBet(footballBetRemove);
+			if(footballBetRemove.getGroupName().equals("")){
+				football.removeBet(footballBetRemove);
+			}else{
+				football.removeGroupBet(footballBetRemove);
+			}
+
 
 			lotteryCatalog.save(football);
 

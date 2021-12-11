@@ -170,6 +170,7 @@ public class CatalogController {
 
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 		Customer c = customerRepository.findCustomerByUserAccount(userAccount.get());
+
 		Money money = c.getBalance();
 		Money price = Money.of(t.getPrice2(),EURO);
 
