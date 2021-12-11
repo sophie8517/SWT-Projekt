@@ -13,8 +13,6 @@ import org.springframework.util.Assert;
 import java.security.SecureRandom;
 import java.util.Optional;
 
-import static org.salespointframework.core.Currencies.EURO;
-
 @Service
 @Transactional
 public class CustomerManagement {
@@ -66,15 +64,6 @@ public class CustomerManagement {
 		Group group = new Group(groupName, customer, password);
 		customer.addGroup(group);
 
-
-
-//		var userAccount = userAccounts.create(form.getEmail(), password, CUSTOMER_ROLE);
-//		userAccount.setEmail(form.getEmail());
-//		userAccount.setFirstname(form.getFirstname());
-//		userAccount.setLastname(form.getLastname());
-//		customer.getUserAccount().add(Role.of("LEADER"));
-//		customers.save(customer);
-
 		return groups.save(group);
 	}
 
@@ -99,9 +88,6 @@ public class CustomerManagement {
 	}
 
 	public Group removeMemberOfGroup(Customer customer, Group group){
-		if (group.getMembers().size() == 1){
-
-		}
 		group.remove(customer);
 		return groups.save(group);
 	}
