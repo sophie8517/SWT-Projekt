@@ -19,9 +19,7 @@ import org.springframework.ui.Model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.salespointframework.core.Currencies.EURO;
@@ -40,12 +38,14 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 
 	private Customer c;
 	private UserAccount ua;
-	private Ticket t;
-	private List<Integer> l;
-	private ProductIdentifier fid,f2id,f3id,f4id;
+	private ProductIdentifier fid,f2id,f3id,f4id,tid,tid2,tid3;
 	private Football f,f2,f3,f4;
 	private FootballBet fb,fb2,fb3,fb4;
-	private String fb_id, fb2_id,fb3_id,fb4_id;
+	private String fb_id, fb2_id,fb3_id,fb4_id,nb_id,nb2_id,nb3_id;
+	private Ticket t, t2, t3;
+	private NumberBet nb,nb2, nb3;
+	private List<Integer> l;
+	private Set<Integer> s;
 	private Money balance;
 
 
@@ -54,19 +54,8 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 		c = customerRepository.findAll().get().findFirst().get();
 		ua = c.getUserAccount();
 		balance = c.getBalance();
-		t = new Ticket("name1", LocalDateTime.of(LocalDate.of(2021,12,5),
-				LocalTime.of(15,0)), Money.of(7,EURO), Item.ItemType.TICKET);
-		lotteryCatalog.save(t);
-		l = new ArrayList<>();
-		l.add(1);
-		l.add(2);
-		l.add(3);
-		l.add(4);
-		l.add(5);
-		l.add(6);
 
-
-		//------------
+		//------------footBet
 		f = new Football("abc",LocalDateTime.now().plusMinutes(2),Money.of(10,EURO), Item.ItemType.FOOTBALL,new Team("t1"),new Team("t2"),"liga","i1","i2");
 		fb = new FootballBet(f,LocalDateTime.now().minusDays(3),Money.of(10,EURO),c,f.getTimeLimit(),Ergebnis.UNENTSCHIEDEN);
 		f.addBet(fb);
@@ -95,6 +84,37 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 		fb4_id = fb4.getIdstring();
 		lotteryCatalog.save(f4);
 
+		//------------NumberBet
+		t = new Ticket("A", LocalDateTime.now().plusMinutes(2), Money.of(10, EURO), Item.ItemType.TICKET);
+		nb = new NumberBet(t, LocalDateTime.now().minusDays(3), Money.of(10, EURO), c, t.getTimeLimit(), l, 0);
+		t.addBet(nb);
+		tid = t.getId();
+		nb_id = nb.getIdstring();
+		lotteryCatalog.save(t);
+
+		l = new ArrayList<>();
+		l.add(1);
+		l.add(2);
+		l.add(3);
+		l.add(4);
+		l.add(5);
+		l.add(6);
+
+		//success
+		t2 = new Ticket("B", LocalDateTime.now().plusDays(1), Money.of(10, EURO), Item.ItemType.TICKET);
+		nb2 = new NumberBet(t2, LocalDateTime.now().minusDays(2), Money.of(10, EURO), c, t2.getTimeLimit(), l, 0);
+		t2.addBet(nb2);
+		tid2 = t2.getId();
+		nb2_id = nb2.getIdstring();
+		lotteryCatalog.save(t2);
+
+		//time_up
+		t3 = new Ticket("C",LocalDateTime.now().plusMinutes(5), Money.of(10, EURO), Item.ItemType.TICKET);
+		nb3 = new NumberBet(t3, LocalDateTime.now().minusDays(3), Money.of(12, EURO), c, t3.getTimeLimit(), l, 0);
+		t3.addBet(nb3);
+		tid3 = t3.getId();
+		nb3_id = nb3.getIdstring();
+		lotteryCatalog.save(t3);
 	}
 
 	@Test
@@ -108,8 +128,7 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 		String returnView = orderController.viewBets(model, Optional.of(ua));
 		assertThat(returnView).isEqualTo("customer_bets");
 		List<NumberBet> bets = (List<NumberBet>) model.getAttribute("numberBets");
-		assertThat(bets.size()).isEqualTo(1);
-
+		assertThat(bets.size()).isEqualTo(4);
 	}
 
 	@Test
@@ -227,14 +246,122 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 
 	}
 
+	@Test
+	@WithMockUser(username = "test", roles = "CUSTOMER")
+	public void RaiseNumBetTestSuccess(){
+		Model model = new ExtendedModelMap();
+		c.setBalance(Money.of(10,EURO));
+		String returnView = orderController.raiseNumBet(model, tid2,nb2_id,15.0);
+		assertThat(returnView).isEqualTo("redirect:/customer_bets");
+		assertThat(nb2.getInset()).isEqualTo(Money.of(15,EURO));
+		assertThat(c.getBalance()).isEqualTo(Money.of(5,EURO));
+	}
+
+	@Test
+	@WithMockUser(username = "test", roles = "CUSTOMER")
+	public void RaiseNumBetTestError(){
+		Model model = new ExtendedModelMap();
+		c.setBalance(Money.of(2,EURO));
+		String returnView = orderController.raiseNumBet(model, tid2, nb2_id,15.0);
+		assertThat(returnView).isEqualTo("error");
+
+		//balance doesn't change if customer has not enough money
+		assertThat(c.getBalance()).isEqualTo(Money.of(2,EURO));
+	}
+
+	@Test
+	@WithMockUser(username = "test", roles = "CUSTOMER")
+	public void RaiseNumBetTestTimeUp(){
+		Model model = new ExtendedModelMap();
+		String returnView = orderController.raiseNumBet(model, tid3, nb3_id, 12.0);
+		assertThat(returnView).isEqualTo("time_up.html");
+	}
+
+	@Test
+	@WithMockUser(username = "test", roles = "CUSTOMER")
+	public void ChangeNumsTest(){
+		Model model = new ExtendedModelMap();
+		String returnView = orderController.changeNums(model,tid2,nb2_id);
+		assertThat(returnView).isEqualTo("changeNumTip.html");
+		NumberBet numBet = (NumberBet) model.getAttribute("numbet");
+		assertThat(numBet).isEqualTo(nb2);
+	}
+
+	@Test
+	@WithMockUser(username = "test", roles = "CUSTOMER")
+	public void ChangeNumBetTipTestSuccess(){
+		String returnView = orderController.changeNumbetTip(tid2, nb2_id, 2, 3, 4, 5, 6, 7, 0);
+		assertThat(returnView).isEqualTo("redirect:/customer_bets");
+
+	}
+
+	@Test
+	@WithMockUser(username = "test", roles = "CUSTOMER")
+	public void ChangeNumBetTipTestWrongInput(){
+		Set<Integer> checker = new HashSet<>();
+		checker.add(1);
+		checker.add(2);
+		checker.add(3);
+		checker.add(4);
+		checker.add(5);
+		checker.add(6);
+		if(checker.size() != 6){
+			String returnView = orderController.changeNumbetTip(tid2, nb2_id, 2, 3, 4, 5, 6, 7, 0);
+			assertThat(returnView).isEqualTo("wronginput.html");
+		}
+	}
+
+	@Test
+	@WithMockUser(username = "test", roles = "CUSTOMER")
+	public void ChangeNumBetTipTestTimeUp(){
+		Model model = new ExtendedModelMap();
+		String returnView = orderController.changeNumbetTip(tid3, nb3_id, 1, 2, 3, 4, 5, 6, 7);
+		assertThat(returnView).isEqualTo("time_up.html");
+
+	}
+
+	@Test
+	@WithMockUser(username = "test", roles = "CUSTOMER")
+	public void RemoveNumberBetsTestStatusSuccess(){
+		nb2.changeStatus(Status.LOSS);
+		String returnView = orderController.removeNumberBets(tid2,nb2_id);
+		assertThat(returnView).isEqualTo("redirect:/customer_bets");
+		assertThat(c.getBalance()).isEqualTo(balance);
+		assertThat(t2.getNumberBits().contains(nb2)).isFalse();
+
+	}
+
+	@Test
+	@WithMockUser(username = "test", roles = "CUSTOMER")
+	public void RemoveNumberBetsTestStatusOPEN(){
+		String returnView = orderController.removeNumberBets(tid2,nb2_id);
+		assertThat(returnView).isEqualTo("redirect:/customer_bets");
+		assertThat(c.getBalance()).isEqualTo(balance.add(nb2.getInset()));
+		assertThat(t2.getNumberBits().contains(nb2)).isFalse();
+
+	}
+
+	@Test
+	@WithMockUser(username = "test", roles = "CUSTOMER")
+	public void RemoveNumberBetsTestTimeUp(){
+		String returnView = orderController.removeNumberBets(tid,nb_id);
+		assertThat(returnView).isEqualTo("time_up.html");
+		assertThat(t.getNumberBits().contains(nb)).isTrue();
+		assertThat(c.getBalance()).isEqualTo(balance);
+	}
+
+
+
+
 	@AfterEach
 	void breakDown(){
-
-		lotteryCatalog.delete(t);
 		lotteryCatalog.delete(f);
 		lotteryCatalog.delete(f2);
 		lotteryCatalog.delete(f3);
 		lotteryCatalog.delete(f4);
+		lotteryCatalog.delete(t);
+		lotteryCatalog.delete(t2);
+		lotteryCatalog.delete(t3);
 		c.setBalance(balance);
 		customerRepository.save(c);
 	}
