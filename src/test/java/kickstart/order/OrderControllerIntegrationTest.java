@@ -144,7 +144,7 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 	public void RaiseFootBetTestError(){
 		c.setBalance(Money.of(2,EURO));
 		String returnView = orderController.raiseFootBet(f2id,fb2_id,15.0);
-		assertThat(returnView).isEqualTo("keinGeld");
+		assertThat(returnView).isEqualTo("error");
 
 		//balance doesn't change if customer has not enough money
 		assertThat(c.getBalance()).isEqualTo(Money.of(2,EURO));
