@@ -14,10 +14,7 @@ import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import static org.salespointframework.core.Currencies.EURO;
 
@@ -45,7 +42,12 @@ public class OrderController {
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 
 
-		Ticket t = (Ticket) lotteryCatalog.findByType(Item.ItemType.TICKET).get(0);
+		List<Item> items= lotteryCatalog.findByType(Item.ItemType.TICKET);
+		List<NumberBet> nums = new ArrayList<>();
+		for(Item i: items){
+			Ticket t = (Ticket) i;
+			nums.addAll(t.getNumberBetsbyCustomer(customer));
+		}
 		List<Item> foots = lotteryCatalog.findByType(Item.ItemType.FOOTBALL);
 		List<FootballBet> result = new ArrayList<>();
 		for(Item i: foots){
@@ -53,7 +55,7 @@ public class OrderController {
 			result.addAll(f.getFootballBetsbyCustomer(customer));
 		}
 
-		model.addAttribute("numberBets", t.getNumberBetsbyCustomer(customer));
+		model.addAttribute("numberBets", nums);
 		model.addAttribute("footballBets", result);
 
 		return "customer_bets";
@@ -88,8 +90,11 @@ public class OrderController {
 					customer.setBalance(customer.getBalance().subtract(bet.getInset()));
 					customerRepository.save(customer);
 					lotteryCatalog.save(f);
+
+					return "redirect:/customer_bets";
+
 				}else{
-					return "error";
+					return "keinGeld";
 				}
 
 			}else{
@@ -133,6 +138,8 @@ public class OrderController {
 			if(date.isBefore(f.getTimeLimit().minusMinutes(5))) {
 				bet.setTippedStatus(status);
 				lotteryCatalog.save(f);
+
+				return "redirect:/customer_bets";
 			}else{
 				return "time_up.html";
 			}
@@ -169,7 +176,7 @@ public class OrderController {
 					customerRepository.save(customer);
 					lotteryCatalog.save(t);
 				}else{
-					return "error";
+					return "keinGeld";
 				}
 
 			}else{
@@ -235,44 +242,61 @@ public class OrderController {
 
 	}
 
+	//TODO
+
 
 	@PostMapping("/removeNumberBets")
-	public String removeNumberBets(Model model, Customer customer, Bet numberBetRemove, LocalDateTime date){
+	public String removeNumberBets(@RequestParam("ticketid")ProductIdentifier id, @RequestParam("numbetid")String bid){
+		LocalDateTime date = LocalDateTime.now();
+		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
+		NumberBet numberBetRemove = t.findbyBetId(bid);
+		Customer customer = numberBetRemove.getCustomer();
+		LocalDateTime time = t.getTimeLimit();
+		if (date.isBefore(time.minusMinutes(5))
+				||t.getCheckEvaluation().contains(time.toLocalDate())
+				|| numberBetRemove.getDate().toLocalDate().isEqual(time.toLocalDate())){
 
-		if (!date.getDayOfWeek().equals(DayOfWeek.SATURDAY)){
+			if(numberBetRemove.getStatus().equals(Status.OPEN)){
+				Money oldbalance = customer.getBalance();
+				Money newbalance =oldbalance.add(numberBetRemove.getInset());
+				customer.setBalance(newbalance);
+				customerRepository.save(customer);
+			}
 
-			Ticket t = (Ticket) numberBetRemove.getItem();
-			NumberBet b = (NumberBet) numberBetRemove;
-			t.removeBet(b);
+			t.removeBet(numberBetRemove);
 			lotteryCatalog.save(t);
 
-			model.addAttribute("removeNumberBets", t.getNumberBetsbyCustomer(customer));
-			return "redirect:/";
+
+			return "redirect:/customer_bets";
 		}
-		throw new IllegalStateException("Cancel possible at most 5 minutes before the draw.");
+		return "time_up.html";
 
 	}
 
 	@PostMapping("/removeFootballBets")
-	public String removeFootballBets(Model model, Customer customer, FootballBet footballBetRemove, LocalDateTime date){
-		LocalDateTime time = date.plusMinutes(5);
-		if (date.isBefore(time)){
+	public String removeFootballBets(@RequestParam("itemid")ProductIdentifier id, @RequestParam("betid")String bid){
 
-			Football football = (Football) footballBetRemove.getItem();
+		LocalDateTime date = LocalDateTime.now();
+		Football football = (Football) lotteryCatalog.findById(id).get();
+		FootballBet footballBetRemove = football.findbyBetId(bid);
+		LocalDateTime time = football.getTimeLimit().minusMinutes(5);
+		Customer customer = footballBetRemove.getCustomer();
+		if (date.isBefore(time) || !football.getErgebnis().equals(Ergebnis.LEER)){
+
+			if(footballBetRemove.getStatus().equals(Status.OPEN)){
+				Money oldbalance = customer.getBalance();
+				Money newbalance =oldbalance.add(footballBetRemove.getInset());
+				customer.setBalance(newbalance);
+				customerRepository.save(customer);
+			}
 			football.removeBet(footballBetRemove);
 
-			List<Item> foots = lotteryCatalog.findByType(Item.ItemType.FOOTBALL);
-			List<FootballBet> result = new ArrayList<>();
-			for(Item i: foots){
-				Football f = (Football) i;
-				result.addAll(f.getFootballBetsbyCustomer(customer));
-			}
 			lotteryCatalog.save(football);
 
-			model.addAttribute("removeFootballBets", result);
-			return "redirect:/";
+
+			return "redirect:/customer_bets";
 		}
-		throw new IllegalStateException("Cancel possible at most 5 minutes before the match.");
+		return "time_up.html";
 
 	}
 
@@ -297,8 +321,8 @@ public class OrderController {
 			for (FootballBet fakeBet : result) {
 				if (fakeBet.equals(footballBet) && fakeBet.getTip().equals(match.result())) {
 
-						Money income = customer.getBalance().add(Money.of(15, EURO));
-						customer.setBalance(income);
+					Money income = customer.getBalance().add(Money.of(15, EURO));
+					customer.setBalance(income);
 
 				}
 			}
