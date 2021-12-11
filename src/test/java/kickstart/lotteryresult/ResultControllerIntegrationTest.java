@@ -2,8 +2,7 @@ package kickstart.lotteryresult;
 
 import kickstart.AbstractIntegrationTest;
 import kickstart.catalog.*;
-import kickstart.customer.Customer;
-import kickstart.customer.CustomerRepository;
+import kickstart.customer.*;
 import org.javamoney.moneta.Money;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,30 +34,47 @@ public class ResultControllerIntegrationTest extends AbstractIntegrationTest {
 	@Autowired
 	private CustomerRepository customerRepository;
 
+	@Autowired
+	private CustomerManagement customerManagement;
+
+	@Autowired
+	private GroupRepository groupRepository;
+
 	private Ticket t, t2;
 	private Football f,f2;
 	private ProductIdentifier fid,f2id,tid, tid2;
-	private Customer c;
+	private Customer c,c2,ctest;
 	private UserAccount ua;
-	private FootballBet fb;
+	private FootballBet fb, fgroup;
 	private LocalDateTime now = LocalDateTime.now();
-	private Money balance;
+	private Money balance,balance_c2,balance_test;
 	
 	private NumberBet nb, nb2;
 	
 	private List <Integer> l;
+	private Group gruppe;
 
 	@BeforeEach
 	void setup(){
 		t = (Ticket) lotteryCatalog.findByType(Item.ItemType.TICKET).get(0);
+		gruppe = customerManagement.findByGroupName("groupA");
 		c = customerRepository.findAll().get().findFirst().get();
+		ctest = customerManagement.findByUserAccount(customerManagement.findByEmail("test@tu-dresden.de").get());
+		customerManagement.addMemberToGroup(ctest,gruppe,gruppe.getPassword());
+		c2 = customerManagement.findByUserAccount(customerManagement.findByEmail("init@leader.de").get());
 		ua = c.getUserAccount();
 		balance = c.getBalance();
+		balance_test = ctest.getBalance();
+		balance_c2 = c2.getBalance();
 		//----Football------
 		f = new Football("n", LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(15,0)), Money.of(10,EURO), Item.ItemType.FOOTBALL,new Team("t1"), new Team("t2"),"liga","i1","i2");
 		fid = f.getId();
 		fb = new FootballBet(f,LocalDateTime.now().minusDays(5),Money.of(15,EURO),c,f.getTimeLimit(),Ergebnis.UNENTSCHIEDEN);
 		f.addBet(fb);
+		fgroup = new FootballBet(f,LocalDateTime.now().minusDays(5),Money.of(16,EURO),c2,f.getTimeLimit(),Ergebnis.UNENTSCHIEDEN);
+		fgroup.setGroupName("groupA");
+		f.addGroupBet(fgroup);
+
 		f2 = new Football("n2", now.plusMinutes(10), Money.of(10,EURO), Item.ItemType.FOOTBALL,new Team("t1"), new Team("t2"),"liga","i1","i2");
 		f2id = f2.getId();
 		lotteryCatalog.save(f);
@@ -126,6 +142,8 @@ public class ResultControllerIntegrationTest extends AbstractIntegrationTest {
 	public void CheckBalanceHigher(){
 		String returnView = resultController.evalFootballBets(fid,3);
 		assertThat(c.getBalance()).isEqualTo(balance.add(fb.getInset()));
+		assertThat(ctest.getBalance()).isEqualTo(balance_test.add(Money.of(8,EURO)));
+
 	}
 
 
@@ -189,7 +207,12 @@ public class ResultControllerIntegrationTest extends AbstractIntegrationTest {
 		lotteryCatalog.delete(t2);
 		//fb.setTippedStatus(Ergebnis.LEER);
 		c.setBalance(balance); //reset balance to balance before executing test
+		ctest.setBalance(balance_test);
+		c2.setBalance(balance_c2);
+		customerManagement.removeMemberOfGroup(ctest,gruppe);
 		customerRepository.save(c);
+		customerRepository.save(ctest);
+		customerRepository.save(c2);
 	
 
 		

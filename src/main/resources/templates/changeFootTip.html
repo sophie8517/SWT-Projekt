@@ -85,7 +85,7 @@
             <br>
             <form th:method="post" sec:authorize="hasRole('CUSTOMER')" th:action="@{/changeFootTip}">
                 <input type="hidden" name="pid" value="0" th:value="${footbet.item.id}"/>
-                <input type="hidden" name="betid" value="0" th:value="${footbet.id}"/>
+                <input type="hidden" name="betid" value="0" th:value="${footbet.idstring}"/>
                 <table>
                     <tr>
                         <td style="width:210px">Dein Tipp: </td>

@@ -50,13 +50,19 @@ public class OrderController {
 		}
 		List<Item> foots = lotteryCatalog.findByType(Item.ItemType.FOOTBALL);
 		List<FootballBet> result = new ArrayList<>();
+		List<FootballBet> groupBets = new ArrayList<>();
+		List<Group> customergroups = customer.getGroup();
 		for(Item i: foots){
 			Football f = (Football) i;
 			result.addAll(f.getFootballBetsbyCustomer(customer));
+			for(Group g: customergroups){
+				groupBets.addAll(f.getGroupFootballBetsbyGroup(g.getGroupName()));
+			}
 		}
 
 		model.addAttribute("numberBets", nums);
 		model.addAttribute("footballBets", result);
+		model.addAttribute("groupBets",groupBets);
 
 		return "customer_bets";
 	}
@@ -289,7 +295,12 @@ public class OrderController {
 				customer.setBalance(newbalance);
 				customerRepository.save(customer);
 			}
-			football.removeBet(footballBetRemove);
+			if(footballBetRemove.getGroupName().equals("")){
+				football.removeBet(footballBetRemove);
+			}else{
+				football.removeGroupBet(footballBetRemove);
+			}
+
 
 			lotteryCatalog.save(football);
 
@@ -321,8 +332,8 @@ public class OrderController {
 			for (FootballBet fakeBet : result) {
 				if (fakeBet.equals(footballBet) && fakeBet.getTip().equals(match.result())) {
 
-					Money income = customer.getBalance().add(Money.of(15, EURO));
-					customer.setBalance(income);
+						Money income = customer.getBalance().add(Money.of(15, EURO));
+						customer.setBalance(income);
 
 				}
 			}

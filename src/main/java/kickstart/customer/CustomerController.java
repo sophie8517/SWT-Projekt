@@ -111,10 +111,10 @@ public class CustomerController{
 //	}
 
 	@PostMapping("/balance/charge")
-	public String charge(@RequestParam("money") double money, @LoggedIn Optional<UserAccount> userAccount){
-		//RedirectAttributes redir
+	public String charge(@RequestParam("money") double money, @LoggedIn Optional<UserAccount> userAccount,
+						 RedirectAttributes redir){
 		if (Money.of(money, EURO).isLessThanOrEqualTo(Money.of(0, EURO))) {
-			//redir.addFlashAttribute("message", "Invalid number");
+			redir.addFlashAttribute("message", "Invalid number");
 			return "redirect:/balance";
 		}
 
