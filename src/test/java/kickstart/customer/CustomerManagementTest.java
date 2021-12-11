@@ -123,4 +123,20 @@ class CustomerManagementTest extends AbstractIntegrationTest {
 		assertTrue(customer.getBalance().isEqualTo(Money.of(20, EURO)));
 
 	}
+
+	@Test
+	void changePassword(){
+		Customer customerA = customerManagement.createCustomer(
+				new RegistrationForm("test", "alpha", "test@alpha.de", "123", "123"));
+		customerManagement.changePwd(customerA,"123", "1234", "1234");
+	}
 }
+
+
+
+
+
+
+
+
+

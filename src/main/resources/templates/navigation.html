@@ -7,7 +7,7 @@
     <title>Title</title>
 </head>
 <body>
-<nav th:fragment="navigation">
+<nav th:fragment="navigation" style="color: white">
     <a  href="home.html" th:href="@{/}" th:text="#{nav.home}">HOME</a>
     <a  href="3_catalog_num.html" th:href="@{/zahlenlotterie}" th:text="#{nav.zahlkatalog}">ZAHLENLOTTERIE</a>
     <a  href="2_catalog_foot.html" th:href="@{/football}" sec:authorize="!hasRole('ADMIN')"  th:text="#{nav.footballkatalog}">FUSSBALLTOTO</a>
@@ -24,7 +24,7 @@
     </form>-->
     <a  href="customer_bets.html" th:href="@{/customer_bets}" sec:authorize="hasRole('CUSTOMER')" th:text="#{nav.wetten}">WETTEN</a>
     <a  href="statistic.html" th:href="@{/statistic}" sec:authorize="hasRole('ADMIN')" th:text="#{nav.statistic}">STATISTIK</a>
-    <a  href="group.html" th:href="@{/group}" sec:authorize="hasRole('CUSTOMER')" th:text="#{nav.group}">Gewinngemeinschaft</a>
+    <a  href="group.html" th:href="@{/group}" sec:authorize="hasRole('CUSTOMER')" th:text="#{nav.group}">GEWINNGEMEINSCHAFT</a>
     <a th:href="@{/logout}" sec:authorize="isAuthenticated()" th:text="#{nav.logout}" >Logout</a>
 
 </nav>

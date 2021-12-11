@@ -96,6 +96,7 @@
                         <button class="button" type="submit" th:text="#{football.addBet}" >Jetzt wetten</button>
 
                     </div>
+
                 </form>
                     <form th:method="post" sec:authorize="hasRole('ADMIN')" th:action="@{/evalfoot}">
                         <!--<input type="hidden" name="id" value="0" th:value="${football}"/>-->
@@ -112,27 +113,18 @@
             </div>
 
         </div>
+            <br>
 
 
+
+            <br>
+
+            <footer>
+                <p>Mach Dein Glück!! ©Copyright 2021©</p>
+            </footer>
     </div>
-
-
-    <br>
-
-
-
-    <br>
-
-    <footer>
-        <p>Mach Dein Glück!! ©Copyright 2021©</p>
-    </footer>
-
 </div>
 
 </body>
 
 </html>
-
-https://www.bundesliga.com/de/2bundesliga/tabelle
-
-https://www.bundesliga.com/de/bundesliga/tabelle

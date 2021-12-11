@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.util.Optional;
 
@@ -106,6 +107,11 @@ public class CustomerManagement {
 		var group = groups.findById(name).orElse(null);
 		return group;
 	}
+
+	public void changePwd(Customer customer, String oldPassword, String newPassword, String newPassword1){
+		userAccounts.changePassword(customer.getUserAccount(), Password.UnencryptedPassword.of(newPassword));
+	}
+
 	public Customer findByUserAccount(UserAccount userAccount){
 		var customer = customers.findCustomerByUserAccount(userAccount);
 		return customer;

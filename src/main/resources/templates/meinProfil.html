@@ -8,7 +8,7 @@
     <meta name="viewport" content="width = device - width, initial - scale = 1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>🍀 Mach Dein Glück!! 🍀</title>
-    <link th:href="@{resources/css/style_meinProfil.css}" rel="stylesheet" href="../static/resources/css/style_meinProfil.css">
+    <link th:href="@{resources/css/style_statistic.css}" rel="stylesheet" href="../static/resources/css/style_statistic.css">
 </head>
 
 <body class="backgrounds">
@@ -21,10 +21,10 @@
 <nav th:include="navigation :: navigation" class="navcontainer"></nav>
 <div class="container" >
     <main class="box-one">
-        <h3 class="box-two" th:text="#{myProfile.title}">Mein Profil</h3>
-        <h2 class="box-two">Persönliche Daten</h2>
-
-        <table border = "5" cellpadding = "5" cellspacing = "0" align="left" class="box-four" style="border-color: white">
+        <h3 th:text="#{myProfile.title}">Mein Profil</h3>
+        <h2>Persönliche Daten</h2>
+        <table border = "5" cellpadding = "5" cellspacing = "0" align="left" class="table-meinProfil">
+">
             <tr>
                 <td><div th:text="#{myProfile.firstname}"></div></td>
                 <td><div th:text="#{myProfile.lastname}"></div></td>
@@ -42,38 +42,37 @@
         <br>
         <br>
 
-        <h2 class="box-two">Mach Dein Glück!!</h2>
+        <h2>Mach Dein Glück!!</h2>
 
-        <a href="customer_bets.html" th:href="@{/customer_bets}" sec:authorize="isAuthenticated()"> Wette anzeigen</a>
-
-        <br>
-        <br>
-
-
-        <a href="balance.html" th:href="@{/balance}" sec:authorize="hasRole('CUSTOMER')"> Guthaben anzeigen</a>
+        <a href="customer_bets.html" th:href="@{/customer_bets}" sec:authorize="isAuthenticated()" style="text-decoration: none">Wetten anzeigen</a>
 
         <br>
         <br>
 
 
-        <a href="group_create.html" th:href="@{/group_create}" sec:authorize="hasRole('CUSTOMER')"> Gewinngemeinschaft erstellen</a>
+        <a href="balance.html" th:href="@{/balance}" sec:authorize="hasRole('CUSTOMER')"style="text-decoration: none"> Guthaben anzeigen</a>
 
         <br>
         <br>
 
-        <a href="group_join.html" th:href="@{/group_join}"> Gewinngemeinschaft betreten</a>
+
+        <a href="group_create.html" th:href="@{/group_create}" sec:authorize="hasRole('CUSTOMER')" style="text-decoration: none"> Gewinngemeinschaft erstellen</a>
 
         <br>
         <br>
 
-        <h2 class="box-two">Einstellungen</h2>
-        <a href="" target="_blank"> Passwort ändern</a>
+        <a href="group_join.html" th:href="@{/group_join}" style="text-decoration: none"> Gewinngemeinschaft betreten</a>
 
         <br>
         <br>
 
-        <a href="" target="_blank"> Profil löschen</a>
+        <h2>Einstellungen</h2>
+        <a href="" target="_blank" style="text-decoration: none"> Passwort ändern</a>
 
+        <br>
+        <br>
+
+        <a href="" target="_blank" style="text-decoration: none"> Profil löschen</a>
 
     </main>
 

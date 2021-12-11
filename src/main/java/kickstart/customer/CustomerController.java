@@ -200,5 +200,15 @@ public class CustomerController{
 		return "redirect:/group";
 	}
 
+	@PostMapping("/closeToMyProfile")
+	String closeToMyProfile(Model model, @LoggedIn Optional<UserAccount> userAccount){
+		model.addAttribute("firstname", userAccount.get().getFirstname());
+		model.addAttribute("lastname", userAccount.get().getLastname());
+		model.addAttribute("email", userAccount.get().getEmail());
+		return "meinProfil";
+	}
+
+	@GetMapping("/changePassword")
+	String toChPwdPage() { return "changePassword"; }
 
 }

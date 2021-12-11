@@ -11,26 +11,31 @@
     <link th:href="@{resources/css/style_statistic.css}" rel="stylesheet" href="../static/resources/css/style_statistic.css">
 </head>
 <body class="backgrounds">
-<nav th:include="navigation :: navigation"></nav>
-<section>
-    <table class="center">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each=" member : ${members}">
-            <td th:text="${member}">Name</td>
-            <td th:text="${member.userAccount.getEmail()}">Email</td>
-        </tr>
-        </tbody>
-    </table>
-</section>
 
-<footer>
-    <p>Mach Dein Glück!! ©Copyright 2021©</p>
-</footer>
+<nav th:include="navigation :: navigation"></nav>
+
+<div class="container">
+    <main class="box-one">
+
+        <h3>Mitglieder</h3>
+
+
+        <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center" style="margin: auto; border-color: white">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>E-mail</th>
+            </tr>
+            </thead>
+            <tr th:each="member : ${members}">
+                <td th:text="${member}">group1</td>
+                <td th:text="${member.userAccount.getEmail()}">pwd</td>
+            </tr>
+        </table>
+    </main>
+    <footer>
+        <p>Mach Dein Glück!! ©Copyright 2021©</p>
+    </footer>
+</div>
 </body>
 </html>
