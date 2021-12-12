@@ -31,7 +31,7 @@ body {
     margin-left: 20px;
     margin-right: 20px;
     width: auto;
-    text-decoration: none;
+    /*text-decoration: none;*/
 }
 
 .box-one {
@@ -162,6 +162,12 @@ nav {
     padding-top: 14px;
     padding-bottom: 14px;
     padding-right: -25px;
+}
+nav a{
+    text-decoration: none;
+    font-size: 22px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 main {
