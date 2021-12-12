@@ -102,7 +102,8 @@ public class CustomerController{
 	}
 
 	@PostMapping("/group/exit")
-	public String exit(@RequestParam("groupName") String groupName, @LoggedIn Optional<UserAccount> userAccount, RedirectAttributes redir){
+	public String exit(@RequestParam("groupName") String groupName, @LoggedIn Optional<UserAccount> userAccount,
+					   RedirectAttributes redir){
 		var group = customerManagement.findByGroupName(groupName);
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 

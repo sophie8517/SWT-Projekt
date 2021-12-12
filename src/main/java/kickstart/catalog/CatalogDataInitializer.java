@@ -41,7 +41,7 @@ class CatalogDataInitializer implements DataInitializer {
 		LOG.info("Creating default lotteryCatalog entries.");
 
 
-		lotteryCatalog.save(new Ticket("name1", LocalDateTime.of(LocalDate.of(2021,12,5),
+		lotteryCatalog.save(new Ticket("name1", LocalDateTime.of(LocalDate.of(2021,12,19),
 				LocalTime.of(15,00)), Money.of(7,EURO), ItemType.TICKET));
 
 		lotteryCatalog.save(new Football("name2",LocalDateTime.of(LocalDate.of(2021,11,26),LocalTime.of(17,30)),

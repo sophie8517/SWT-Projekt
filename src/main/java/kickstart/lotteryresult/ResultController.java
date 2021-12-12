@@ -28,7 +28,8 @@ public class ResultController {
 	private CustomerManagement customerManagement;
 
 
-	public ResultController(LotteryCatalog lotteryCatalog, CustomerRepository customerRepository, CustomerManagement customerManagement){
+	public ResultController(LotteryCatalog lotteryCatalog, CustomerRepository customerRepository,
+							CustomerManagement customerManagement){
 		this.lotteryCatalog = lotteryCatalog;
 		this.customerRepository = customerRepository;
 		this.customerManagement = customerManagement;
@@ -63,24 +64,32 @@ public class ResultController {
 
 	}
 
+	public List<NumberBet> validBets(Ticket t, LocalDate today){
+		List<NumberBet> result = new ArrayList<>();
+		List<NumberBet> allbets = t.getNumberBits();
+
+		for (NumberBet nb : allbets) {
+			if (!nb.getExpiration().isBefore(t.getTimeLimit())) {
+				if(!nb.getDate().toLocalDate().equals(today)) {
+					result.add(nb);
+				}
+			}else{
+				nb.changeStatus(Status.EXPIRED);
+			}
+		}
+		lotteryCatalog.save(t);
+		return result;
+	}
+
 	@PreAuthorize("hasRole('ADMIN')")
 	public void evaluateNum(Ticket t, LocalDate today, List<Integer> gewinnzahlen, int zusatzzahl){
-		List<NumberBet> wetten = t.getNumberBits();
-		List<NumberBet> wetten_valid = new ArrayList<>();
 
 
 		t.setWinNumbers(gewinnzahlen);
 		t.setAdditionalNumber(zusatzzahl);
 
+		List<NumberBet> wetten_valid = validBets(t,today);
 
-		for (NumberBet nb : wetten) {
-			if (!nb.getExpiration().isBefore(t.getTimeLimit()) && !nb.getDate().toLocalDate().equals(today)) {
-
-				wetten_valid.add(nb);
-			}else{
-				nb.changeStatus(Status.EXPIRED);
-			}
-		}
 		for (NumberBet nb : wetten_valid) {
 			if (nb.getNumbers().containsAll(gewinnzahlen) && nb.getAdditionalNum() == zusatzzahl) {
 				nb.changeStatus(Status.WIN);
@@ -98,7 +107,23 @@ public class ResultController {
 		lotteryCatalog.save(t);
 	}
 
+	public void changeStatusSingleBet(Football f, FootballBet fb, Ergebnis erg){
+		if(!fb.getExpiration().isBefore(f.getTimeLimit())){
+			if(fb.getTip().equals(erg)){
+				fb.changeStatus(Status.WIN);
+				Customer c = fb.getCustomer();
+				Money bal = c.getBalance().add(fb.getInset());
+				c.setBalance(bal);
+				customerRepository.save(c);
+			} else{
+				fb.changeStatus(Status.LOSS);
+			}
+		} else{
+			fb.changeStatus(Status.EXPIRED);
 
+		}
+		lotteryCatalog.save(f);
+	}
 
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/evalfoot")
@@ -126,20 +151,7 @@ public class ResultController {
 
 			for(FootballBet fb: wetten){
 				//ist das jetzt überflüssig, weil die zeitgrenze beim abgeben der wetten eingestellt ist
-				if(!fb.getExpiration().isBefore(f.getTimeLimit())){
-					if(fb.getTip().equals(erg)){
-						fb.changeStatus(Status.WIN);
-						Customer c = fb.getCustomer();
-						Money bal = c.getBalance().add(fb.getInset());
-						c.setBalance(bal);
-						customerRepository.save(c);
-					} else{
-						fb.changeStatus(Status.LOSS);
-					}
-				} else{
-					fb.changeStatus(Status.EXPIRED);
-
-				}
+				changeStatusSingleBet(f,fb,erg);
 			}
 
 			evalGroupBets(f,erg);
@@ -154,34 +166,38 @@ public class ResultController {
 		return "noFootEval";
 
 	}
+	public void changeStatusGroupBet(Football f, FootballBet fb, Ergebnis erg){
+		if(!fb.getExpiration().isBefore(f.getTimeLimit())){
+			Group gruppe = customerManagement.findByGroupName(fb.getGroupName());
+			Set<Customer> customers = gruppe.getMembers();
+			if(fb.getTip().equals(erg)){
+				fb.changeStatus(Status.WIN);
+
+				double value = fb.getEinsatz2()/customers.size();
+				value = Math.round((value * 100.0)/100.0);
+				for(Customer c :customers){
+					Money bal = c.getBalance().add(Money.of(value,EURO));
+
+					c.setBalance(bal);
+					customerRepository.save(c);
+				}
+
+			} else{
+				fb.changeStatus(Status.LOSS);
+			}
+		}else{
+			fb.changeStatus(Status.EXPIRED);
+
+		}
+		lotteryCatalog.save(f);
+	}
 
 	public void evalGroupBets(Football f, Ergebnis erg){
 		List<FootballBet> gruppenwetten = f.getGroupFootballBets();
 
 		for(FootballBet fb: gruppenwetten){
 			//ist das jetzt überflüssig, weil die zeitgrenze beim abgeben der wetten eingestellt ist
-			if(!fb.getExpiration().isBefore(f.getTimeLimit())){
-				Group gruppe = customerManagement.findByGroupName(fb.getGroupName());
-				Set<Customer> customers = gruppe.getMembers();
-				if(fb.getTip().equals(erg)){
-					fb.changeStatus(Status.WIN);
-
-					double value = fb.getEinsatz2()/customers.size();
-					value = Math.round((value * 100.0)/100.0);
-					for(Customer c :customers){
-						Money bal = c.getBalance().add(Money.of(value,EURO));
-
-						c.setBalance(bal);
-						customerRepository.save(c);
-					}
-
-				} else{
-					fb.changeStatus(Status.LOSS);
-				}
-			}else{
-				fb.changeStatus(Status.EXPIRED);
-
-			}
+			changeStatusGroupBet(f,fb,erg);
 		}
 		lotteryCatalog.save(f);
 	}

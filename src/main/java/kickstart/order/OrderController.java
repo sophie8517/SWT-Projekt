@@ -70,13 +70,7 @@ public class OrderController {
 	@PostMapping("/raiseFootBet")
 	public String raiseFootBet(@RequestParam("pid") ProductIdentifier id,
 							   @RequestParam("betid")String bet_id, @RequestParam("newinsetfoot")double inset){
-		/*
-		LocalDateTime date = LocalDateTime.now();
-		LocalDateTime time = date.plusMinutes(5);
-		if (date.isAfter(time) && money.isLessThan(bet.getInset())){
-			throw new IllegalStateException("Inset too low or change too late.");
-		}
-		 */
+
 		LocalDateTime date = LocalDateTime.now();
 
 
@@ -97,7 +91,6 @@ public class OrderController {
 					customerRepository.save(customer);
 					lotteryCatalog.save(f);
 
-					return "redirect:/customer_bets";
 
 				}else{
 					return "error";
@@ -247,8 +240,6 @@ public class OrderController {
 		return "redirect:/customer_bets";
 
 	}
-
-	//TODO
 
 
 	@PostMapping("/removeNumberBets")

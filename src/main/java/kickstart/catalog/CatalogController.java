@@ -272,10 +272,43 @@ public class CatalogController {
 
 	}
 
+	public String checkAddGroupBet(int number, Money money, Money insetMoney,Customer customer, Football foot,
+								   String groupName){
+		String result;
 
+		Ergebnis  status;
+
+		if(number == 1){
+			status = Ergebnis.GASTSIEG;
+		} else if(number == 2){
+			status = Ergebnis.HEIMSIEG;
+		} else{
+			status = Ergebnis.UNENTSCHIEDEN;
+		}
+
+
+
+
+		if(money.isLessThan(insetMoney)){
+			result = "error";
+		} else{
+			money = money.subtract(insetMoney);
+			customer.setBalance(money);
+			customerRepository.save(customer);
+			FootballBet f = new FootballBet(foot,LocalDateTime.now(), insetMoney, customer,
+					foot.getTimeLimit(), status);
+			f.setGroupName(groupName);
+			foot.addGroupBet(f);
+			lotteryCatalog.save(foot);
+			result = "redirect:/";
+		}
+
+
+		return result;
+	}
 
 	@PostMapping("/footbitgroup")
-	String bet_foot_group(@RequestParam("pid")ProductIdentifier id, @RequestParam("fussballwette") int number,
+	public String bet_foot_group(@RequestParam("pid")ProductIdentifier id, @RequestParam("fussballwette") int number,
 					@RequestParam("inset") double inset, @RequestParam("groupfoot")String groupName,
 					@LoggedIn Optional<UserAccount> userAccount, RedirectAttributes redirAttrs){
 
@@ -304,82 +337,18 @@ public class CatalogController {
 			return "redirect:/footballgroup";
 		}
 
+		String result;
+
 		if(now.isBefore(spieltag_minus24h)){
-			Ergebnis  status;
-
-			if(number == 1){
-				status = Ergebnis.GASTSIEG;
-			} else if(number == 2){
-				status = Ergebnis.HEIMSIEG;
-			} else{
-				status = Ergebnis.UNENTSCHIEDEN;
-			}
-
-
-
-
-			if(money.isLessThan(insetMoney)){
-				return "error";
-			} else{
-				money = money.subtract(insetMoney);
-				customer.setBalance(money);
-				customerRepository.save(customer);
-				FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(inset, EURO), customer,
-						foot.getTimeLimit(), status);
-				f.setGroupName(groupName);
-				foot.addGroupBet(f);
-				lotteryCatalog.save(foot);
-				return "redirect:/";
-			}
-
+			result = checkAddGroupBet(number,money,insetMoney,customer,foot,groupName);
+		}else {
+			result = "time_up.html";
 		}
-		return "time_up.html";
+		return result;
 
 	}
 
-	/*
-	@PostMapping("/footgroupbit")
-	public String bet_foot_group(@RequestParam("pid")ProductIdentifier id, @RequestParam("fussballwette") int number,
-								 @RequestParam("inset") double inset, @LoggedIn Optional<UserAccount> userAccount, String groupName){
 
-		LocalDateTime now = LocalDateTime.now();
-		Football foot = (Football) lotteryCatalog.findById(id).get();
-		Customer customer = customerRepository.findCustomerByUserAccount(userAccount.get());
-		LocalDateTime spieltag_minus24h = LocalDateTime.of(foot.getTimeLimit().toLocalDate().minusDays(1),LocalTime.of(0,0));
-		Money money = customer.getBalance();
-		Money insetMoney = Money.of(inset,EURO);
-		//System.out.println(inset);
-		if(now.isBefore(spieltag_minus24h)){
-			Ergebnis  status;
-
-			if(number == 1){
-				status = Ergebnis.GASTSIEG;
-			} else if(number == 2){
-				status = Ergebnis.HEIMSIEG;
-			} else{
-				status = Ergebnis.UNENTSCHIEDEN;
-			}
-
-			if(money.isLessThan(insetMoney)){
-				return "error";
-			} else{
-				money = money.subtract(insetMoney);
-				customer.setBalance(money);
-				customerRepository.save(customer);
-				FootballBet f = new FootballBet(foot,LocalDateTime.now(), Money.of(inset, EURO), customer,
-						foot.getTimeLimit(), status);
-				f.setGroupName(groupName);
-				foot.addBet(f);
-				lotteryCatalog.save(foot);
-				return "redirect:/";
-			}
-
-		}
-		return "time_up.html";
-
-	}
-
-	 */
 
 	@PostMapping("/wronginput")
 	String wrong_input(){
