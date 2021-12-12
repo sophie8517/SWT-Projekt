@@ -67,12 +67,12 @@
         <br>
 
         <h2 class="box-two">Einstellungen</h2>
-        <a href="" target="_blank"> Passwort ändern</a>
+        <a href="changePassword.html" th:href="@{/changePassword}" sec:authorize="hasRole('CUSTOMER')"> Passwort ändern</a>
 
         <br>
         <br>
 
-        <a href="" target="_blank"> Profil löschen</a>
+        <a href="accountDeactivate.html" th:href="@{/accountDeactivate}" sec:authorize="hasRole('CUSTOMER')">Konto deaktivieren</a>
 
 
     </main>

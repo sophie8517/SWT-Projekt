@@ -12,12 +12,12 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
+import javax.swing.*;
+import javax.swing.text.html.Option;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +60,65 @@ public class CustomerController{
 	String register(Model model, RegistrationForm form) {
 		return "register";
 	}
+
+	@GetMapping("/changePassword")
+	String toChPwdPage(Model model, RegistrationForm form) {
+		model.addAttribute("tempFirstname", "song");
+		model.addAttribute("tempLastname", "bai");
+		model.addAttribute("tempEmail", "song@bai.de");
+		return "changePassword";
+	}
+
+
+	@PostMapping("/changePassword")
+	String password(@Valid RegistrationForm form, Errors result, @LoggedIn Optional<UserAccount> userAccount, Model model,  RedirectAttributes redirAttrs){
+		var customer = customerManagement.findByUserAccount(userAccount.get());
+
+		System.out.println("123");
+
+		if (result.hasErrors()) {
+			System.out.println(form.getEmail());
+			System.out.println("Errors");
+			redirAttrs.addFlashAttribute("message", "Your password is invalid, please check the conditions again");
+			return "redirect:/changePassword";
+		}
+		else if(!form.check()){
+			System.out.println("pwd incorrect");
+			redirAttrs.addFlashAttribute("message", "Passwords do not match.");
+			return "redirect:/changePassword";
+		}
+
+
+		customerManagement.changePwd(customer, form);
+
+//		if (customerManagement.changePwd(userAccount, form)) {
+//			model.addAttribute("message1", "Password changed");
+//			System.out.println("1:success");
+//		} else if (!newPassword.equals(newPassword1)){
+//			model.addAttribute("message1", "password not match");
+//			System.out.println("2:fail");
+//		}
+
+		return "redirect:/";
+	}
+
+	@GetMapping("/accountDeactivate")
+	String toAccountDeactivatePage(){
+		return "accountDeactivate";
+	}
+
+	@PostMapping("/deactivate")
+	String accountDeactivate(@LoggedIn Optional<UserAccount> userAccount){
+		var customer = customerManagement.findByUserAccount(userAccount.get());
+
+		customerManagement.deleteCustomer(customer.getId());
+		return "redirect:/logout";
+	}
+
+	@PostMapping("/back")
+	String back(){ return "redirect:/profile"; }
+
+
 
 	@GetMapping("/profile")
 	String getProfile(Model model, @LoggedIn Optional<UserAccount> userAccount) {
@@ -205,6 +264,8 @@ public class CustomerController{
 	String close(){
 		return "redirect:/group";
 	}
+
+
 
 
 }

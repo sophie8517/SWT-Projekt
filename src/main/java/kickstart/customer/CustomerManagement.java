@@ -1,10 +1,8 @@
 package kickstart.customer;
 
 import org.javamoney.moneta.Money;
-import org.salespointframework.useraccount.Password;
-import org.salespointframework.useraccount.Role;
-import org.salespointframework.useraccount.UserAccount;
-import org.salespointframework.useraccount.UserAccountManagement;
+import org.salespointframework.useraccount.*;
+import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +23,7 @@ public class CustomerManagement {
 	private GroupRepository groups;
 	private CustomerRepository customers;
 	private UserAccountManagement userAccounts;
+
 
 	public CustomerManagement(CustomerRepository customers, GroupRepository groups, UserAccountManagement userAccounts){
 		this.customers = customers;
@@ -134,4 +133,36 @@ public class CustomerManagement {
 
 	public Optional<UserAccount> findByEmail(String name){ return userAccounts.findByUsername(name); }
 
+
+	//public boolean changePwd(Optional<UserAccount> userAccount, String oldPassword, String newPassword, String newPassword1){
+	public Customer changePwd(Customer customer, RegistrationForm form){
+
+		var password = Password.UnencryptedPassword.of(form.getPassword());
+		userAccounts.changePassword(customer.getUserAccount(), password);
+
+		return customers.save(customer);
+
+
+
+		//var customer = findByUserAccount(userAccount.get());
+
+//		if(newPassword.equals(newPassword1) ){
+//			var newUnencryptedPassword = Password.UnencryptedPassword.of(newPassword);
+//			userAccounts.changePassword(customer.getUserAccount(), newUnencryptedPassword);
+//			//customers.save(customer);
+//			System.out.println("changed");
+//			return true;
+//		} else {
+//			System.out.println("failed");
+//			return false;
+//		}
+
+		//return customer;
+	}
+
+	public void deleteCustomer(Long id){
+		userAccounts.delete(customers.findById(id).get().getUserAccount());
+		customers.deleteById(id);
+		System.out.println("deleted");
+	}
 }
