@@ -11,13 +11,53 @@ Welche Aufgabe/Problemstellung löst die Anwendung.
 [options="header"]
 |===
 |Pfad |Parameter |Beschreibung |Rückgabe
-| … | … | … | … |
+|
+|
+|Fehler Registrierung
+|
+
+|
+|
+|Fehler Regstrierung Geburtsdatum in Zukunft
+|
+
+|
+|
+|mehrere Lottoziehungen für dasselbe Datum erstellbar
+|
+
+|
+|
+|Kunde hat Lottowette auf Ziehung von 18.12.2021 abgegeben, Admin erstellt neue Ziehung für den 18.12.2021 , Anzhal der abgegebenen Wetten des Kunden erhöht sich
+|
+
+|
+|
+|Das Spieldatum eines Spiels wird bei der Finanzenübersicht des Admin auf das Abgabedatum der Fußballwette gesetzt.
+|
+
+|
+|
+|Auswertung einer Lottoziehung bzw. eines Fußballspiels ist schon vor dem Ziehungstag bzw. dem Spieltag möglich
+|
 |===
 
 == Sonstiges
 * Optik der Anwendung
-* Fehlende Features
+* Fehlende Features:
+** Einsatz ändern
 * Interaktion mit der Anwendung (Usability)
 
 == Verbesserungsvorschläge
 * Was kann noch weiter verbessert werden?
+
+[options="header"]
+|===
+|Pfad  |Beschreibung |Verbesserung
+|Fußballwetten
+|Spielatum
+|zu Spieldatum
+
+|Admin anmelden -> Admin-> Fußballtoto erstellen
+|Es kann nur ein Spieltag, aber keine Spielzeit eingegeben werden
+|Es wird der Spieltag und die Zeit eingegeben.
