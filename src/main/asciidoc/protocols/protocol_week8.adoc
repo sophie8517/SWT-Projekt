@@ -115,10 +115,4 @@ a|
 * Order: Yuju, Sophie
 * lotteryresult: noch nicht entschieden
 |in Arbeit
-
-|15     
-|Cross-Testing Feedback     
-|das Dokument Cross-Testing Feedback ausfüllen            
-|alle                
-|in Arbeit
 |===
