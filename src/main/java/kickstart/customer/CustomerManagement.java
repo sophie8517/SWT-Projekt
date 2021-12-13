@@ -8,17 +8,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.util.Optional;
-
-import static org.salespointframework.core.Currencies.EURO;
-
 
 @Service
 @Transactional
 public class CustomerManagement {
 
 	public static final Role CUSTOMER_ROLE = Role.of("CUSTOMER");
+	public static final Role GROUP_ROLE = Role.of("GROUP");
 
 	private GroupRepository groups;
 	private CustomerRepository customers;
@@ -65,23 +64,13 @@ public class CustomerManagement {
 		Group group = new Group(groupName, customer, password);
 		customer.addGroup(group);
 
-
-
-//		var userAccount = userAccounts.create(form.getEmail(), password, CUSTOMER_ROLE);
-//		userAccount.setEmail(form.getEmail());
-//		userAccount.setFirstname(form.getFirstname());
-//		userAccount.setLastname(form.getLastname());
-//		customer.getUserAccount().add(Role.of("LEADER"));
-//		customers.save(customer);
-
 		return groups.save(group);
 	}
 
-//	public Group deleteGroup(Group group){
-//		userAccounts.delete(group.getUserAccount());
-//		groups.delete(group);
-//		return group;
-//	}
+	public Group deleteGroup(Group group){
+		groups.delete(group);
+		return group;
+	}
 
 	public Streamable<Customer> findAllCustomers() {
 		return customers.findAll();
@@ -92,13 +81,6 @@ public class CustomerManagement {
 	}
 
 	public Group addMemberToGroup(Customer customer, Group group, String password){
-		System.out.println(group.getPassword() + " and " + password);
-		if(!group.getPassword().equals(password))
-			throw new IllegalStateException("password doesn't match!");
-
-		if(group.contains(customer))
-			throw new IllegalArgumentException("Customer is already in the Group!");
-
 		group.add(customer);
 		customer.addGroup(group);
 
@@ -106,8 +88,6 @@ public class CustomerManagement {
 	}
 
 	public Group removeMemberOfGroup(Customer customer, Group group){
-		if (!group.contains(customer))
-			throw new IllegalArgumentException("Customer doesn't exist!");
 		group.remove(customer);
 		return groups.save(group);
 	}
@@ -126,6 +106,11 @@ public class CustomerManagement {
 		var group = groups.findById(name).orElse(null);
 		return group;
 	}
+
+	public void changePwd(Customer customer, String oldPassword, String newPassword, String newPassword1){
+		userAccounts.changePassword(customer.getUserAccount(), Password.UnencryptedPassword.of(newPassword));
+	}
+
 	public Customer findByUserAccount(UserAccount userAccount){
 		var customer = customers.findCustomerByUserAccount(userAccount);
 		return customer;

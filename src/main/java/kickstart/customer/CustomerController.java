@@ -4,7 +4,6 @@ import com.mysema.commons.lang.Assert;
 import static org.salespointframework.core.Currencies.*;
 
 
-import org.h2.engine.User;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
@@ -19,9 +18,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.swing.*;
 import javax.swing.text.html.Option;
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 public class CustomerController{
@@ -48,7 +47,7 @@ public class CustomerController{
 		}
 
 		if(customerManagement.findByEmail(form.getEmail()).isPresent()){
-			redirAttrs.addFlashAttribute("message", "Name you entered is already exist!");
+			redirAttrs.addFlashAttribute("message", "E-mail address does already exist!");
 			return "redirect:/register";
 		}
 
@@ -122,23 +121,7 @@ public class CustomerController{
 
 	@GetMapping("/profile")
 	String getProfile(Model model, @LoggedIn Optional<UserAccount> userAccount) {
-	/*	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-		System.out.println("Authenticate " + authentication.getName());
-		String username = authentication.getName();
-		for (Customer customer : customerManagement.findAllCustomers()){
-			System.out.println(customer.getUserAccount().getUsername());
-			if (username.equals(customer.getUserAccount().getUsername())){
-				//model.addAttribute("profile", new Profile(customer.getUserAccount().getFirstname(),
-				 customer.getUserAccount().getLastname(),customer.getUserAccount().getEmail()));
-				model.addAttribute("profile", new Profile(customer.getUserAccount().getUsername(),
-				 customer.getUserAccount().getEmail(), customer.getUserAccount().getEmail()));
-				System.out.println(new Profile(customer.getUserAccount().getFirstname(),
-				customer.getUserAccount().getLastname(),customer.getUserAccount().getEmail()));
-			}
-		}
-
-	 */
 		model.addAttribute("firstname", userAccount.get().getFirstname());
 		model.addAttribute("lastname", userAccount.get().getLastname());
 		model.addAttribute("email", userAccount.get().getEmail());
@@ -153,25 +136,13 @@ public class CustomerController{
 		return "customers";
 	}
 
-//	@PostMapping("/registerGroup")
-//	String createNewGroup(@Valid RegistrationForm form, Errors result) {
-//
-//		if (result.hasErrors()) {
-//			return "register";
-//		}
-//
-//		customerManagement.createCustomer(form);
-//		return "redirect:/";
-//	}
-//
-//	@GetMapping("/registerGroup")
-//	public String create(){
-//		return "group_create";
-//	}
-
 	@PostMapping("/balance/charge")
-	public String charge(@RequestParam("money") double money, @LoggedIn Optional<UserAccount> userAccount){
-		//customerManagement.charge(Money.of(balance, EURO),customerManagement.findByCustomerId(customerId));
+	public String charge(@RequestParam("money") double money, @LoggedIn Optional<UserAccount> userAccount,
+						 RedirectAttributes redir){
+		if (Money.of(money, EURO).isLessThanOrEqualTo(Money.of(0, EURO))) {
+			redir.addFlashAttribute("message", "Invalid number");
+			return "redirect:/balance";
+		}
 
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 		customerManagement.charge(Money.of(money, EURO), customer);
@@ -189,29 +160,29 @@ public class CustomerController{
 		return "balance";
 	}
 
-//	@PostMapping("/addMember")
-//	public String addMember(long customerId, long groupId, String password){
-//		 customerManagement.addMemberToGroup(
-//		 		customerManagement.findByCustomerId(customerId), customerManagement.findByGroupId(groupId),password);
-//		 return "redirect:/";
-//	}
+	@PostMapping("/group/exit")
+	public String exit(@RequestParam("groupName") String groupName, @LoggedIn Optional<UserAccount> userAccount,
+					   RedirectAttributes redir){
+		var group = customerManagement.findByGroupName(groupName);
+		var customer = customerManagement.findByUserAccount(userAccount.get());
 
-//	@PostMapping("/removeMember")
-//	public String removeMember(long customerId, long groupId){
-//		customerManagement.removeMemberOfGroup(
-//				customerManagement.findByCustomerId(customerId), customerManagement.findByGroupId(groupId));
-//		return "redirect:/";
-//	}
+		if (!group.contains(customer)) {
+			redir.addFlashAttribute("message", "Customer doesn't exist!");
+			return "redirect:/group";
+		}
 
-//	@PostMapping("/deleteGroup")
-//	public String deleteGroup(Model model, long groupId){
-//		customerManagement.deleteGroup(customerManagement.findByGroupId(groupId));
-//		model.addAttribute("group",customerManagement.findAllGroups());
-//		return "redirect:/";
-//	}
+		customerManagement.removeMemberOfGroup(customer, group);
+
+		if (group.getMembers().isEmpty()) {
+			customerManagement.deleteGroup(group);
+		}
+
+		return "redirect:/group";
+	}
+
 
 	@GetMapping("/group")
-	public String Group(Model model, @LoggedIn Optional<UserAccount> userAccount){
+	public String groups(Model model, @LoggedIn Optional<UserAccount> userAccount){
 
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 
@@ -222,6 +193,15 @@ public class CustomerController{
 		return "group";
 	}
 
+	@GetMapping("/group_members")
+	public String showMembers(Model model, @RequestParam("name") String name) {
+		var group = customerManagement.findByGroupName(name);
+		Set<Customer> members = group.getMembers();
+
+		model.addAttribute("members", members);
+		return "group_members";
+	}
+
 	@GetMapping("/group_join")
 	public String join(){
 		return "group_join";
@@ -229,10 +209,28 @@ public class CustomerController{
 
 	@PostMapping("/group_join")
 	public String joinGroup(@RequestParam("name") String name, @RequestParam("password") String password,
-							@LoggedIn Optional<UserAccount> userAccount){
+							@LoggedIn Optional<UserAccount> userAccount, RedirectAttributes redir){
+		Assert.notNull(name, "name must not be null");
+		Assert.notNull(password, "password must not be null");
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 		var group = customerManagement.findByGroupName(name);
+		if(group == null) {
+			redir.addFlashAttribute("message", "Group doesn't exist!");
+			return "redirect:/group_join";
+		}
 		System.out.println(group);
+
+		System.out.println(group.getPassword() + " and " + password);
+		if(!group.getPassword().equals(password)){
+			redir.addFlashAttribute("message", "Password doesn't match!");
+			return "redirect:/group_join";
+		}
+
+		if(group.contains(customer)) {
+			redir.addFlashAttribute("message", "Customer is already in the Group!");
+			return "redirect:/group_join";
+		}
+
 		customerManagement.addMemberToGroup(customer, group, password);
 
 		return "redirect:/group";
@@ -245,14 +243,15 @@ public class CustomerController{
 
 	@PostMapping("/group_create")
 	public String createGroup(@RequestParam("groupName") String groupName, @LoggedIn Optional<UserAccount> userAccount,
-							  RedirectAttributes redirAttrs){
+							  RedirectAttributes redir){
 
-		Assert.notNull(groupName, "Registration form must not be null!");
+		Assert.notNull(groupName, "groupName must not be null!");
 
 		if (customerManagement.findByGroupName(groupName) != null) {
-			redirAttrs.addFlashAttribute("message", "Group name already exists, please give another name");
+			redir.addFlashAttribute("message", "Group name already exists, please give an another name");
 			return "redirect:/group_create";
 		}
+
 
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 		customerManagement.createGroup(groupName, customer);
@@ -265,6 +264,16 @@ public class CustomerController{
 		return "redirect:/group";
 	}
 
+	@PostMapping("/closeToMyProfile")
+	String closeToMyProfile(Model model, @LoggedIn Optional<UserAccount> userAccount){
+		model.addAttribute("firstname", userAccount.get().getFirstname());
+		model.addAttribute("lastname", userAccount.get().getLastname());
+		model.addAttribute("email", userAccount.get().getEmail());
+		return "meinProfil";
+	}
+
+	@GetMapping("/changePassword")
+	String toChPwdPage() { return "changePassword"; }
 
 
 

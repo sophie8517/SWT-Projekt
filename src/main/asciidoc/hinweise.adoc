@@ -1,0 +1,54 @@
+= Hinweise
+
+== *Anmelden*
+
+* Benutzername : E-Mail (Registrierung)
+* Passwort: das selbstgewählte Passwort (Registrierung)
+
+== *Angelegte Nutzer*
+
+
+
+[option="headers"]
+|===
+|Benutzername |Passwort
+|song@tu-dresden.de
+|123
+
+|nina@tu-dresden.de
+|123
+
+|mirek@tu-dresden.de
+|123
+
+|sophie@tu-dresden.de
+|123
+
+|lukas@tu-dresden.de
+|123
+
+|test@tu-dresden.de
+|123
+
+|admin
+|123
+|===
+
+
+== *Guthaben aufladen*
+
+1. Anmelden
+2. MEIN PROFIL
+3. Guthaben anzeigen
+4. Betrag eingeben
+5. Aufladen
+
+== *Wetteinsatz ändern*
+
+* der eingegebene Einsatz wird als neuer Einsatz der Wette gesetzt
+* Bedingungen für den neuen Einsatz:
+** darf nicht kleiner als der aktuelle Einsatz sein
+* z.B.:
+** aktueller Einsatz: 10 €
+** neuer Einsatz: 12 €
+** -> aktualisierter Einsatz: 12 €

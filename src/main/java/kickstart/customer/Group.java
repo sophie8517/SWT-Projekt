@@ -1,14 +1,12 @@
 package kickstart.customer;
 
-import org.hibernate.annotations.CollectionType;
-import org.salespointframework.useraccount.UserAccount;
+import org.springframework.data.util.Streamable;
 
 import javax.persistence.*;
 import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Stream;
 
 @Entity
 @Table(name = "BETGROUP")
@@ -47,14 +45,8 @@ public class Group {
 		customers.remove(customer);
 	}
 
-
-	//public Set<Customer> getMembers(){
-	//	return customers;
-	//}
-
-	public String getMembers(){
-		String list = Arrays.toString(customers.toArray()).replace("[","").replace("]","");
-		return list;
+	public Set<Customer> getMembers(){
+		return customers;
 	}
 
 	public String getPassword() {

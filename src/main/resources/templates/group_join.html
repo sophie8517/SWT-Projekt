@@ -16,7 +16,7 @@
 <body class="backgrounds">
 <nav th:include="navigation :: navigation"></nav>
 <div class="container">
-    <main style="height: 1000px">
+    <main class="box-one">
 
         <h3>Gewinngemeinschaft</h3>
 
@@ -28,32 +28,34 @@
             <!--                    <input id="groupName" name="groupName" field="*{groupName}" th:errorclass="fieldError" type="text" required="required"/><br/>-->
             <!--                </div>-->
             <div>
-                <label>Group Name</label>
+                <label style="padding-right: 2px">Gruppenname:</label>
                 <input type="text" field="*{name}" id="name" name="name" required="required" />
             </div>
 
             <br>
 
             <div>
-                <label>Password</label>
+                <label style="padding-right: 30px">Password:</label>
                 <input type="text" field="*{password}" id="password" name="password" required="required" />
             </div>
 
+            <br>
 
-            <button type="submit" class="ui button">Teilnehmen</button>
+            <button type="submit" class="ui button">Gruppe betreten</button>
+
+            <br>
+            <div>
+                <h2 style="color: red" th:text="${message}"></h2>
+            </div>
         </form>
 
-        <div>
+        <div style="padding-bottom: 10px">
             <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="post" th:action="@{/close}">
-                <button type="submit" class="ui button" th:text="#{group.close}">schließen</button>
+                <button type="submit" class="ui button" th:text="#{group.close}">Erstellung abrechen</button>
             </form>
         </div>
 
-
-
-
     </main>
-
     <footer>
         <p>Mach Dein Glück!! ©Copyright 2021©</p>
     </footer>

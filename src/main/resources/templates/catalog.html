@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device - width, initial - scale = 1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>🍀 Mach Dein Glück!! 🍀</title>
+    <link th:href="@{resources/css/style_foot.css}" rel="stylesheet" href="../static/resources/css/style_foot.css" type="text/css">
+
+
+</head>
+
+<body class="backgrounds" >
+<nav th:include="navigation :: navigation" class="navcontainer"></nav>
+<div class="container">
+    <main class="box-one">
+        <h2 class="box-two">Fußballkatalog</h2>
+    </main>
+    <div class="box-three">
+
+        Wie möchten Sie fortfahren?
+        <br><br>
+
+        <!--
+        <nav>
+            <a href="home.html">Zur Homepage zurueckkehren</a>
+            <a href="3_catalog_num.html">Den Tippschein nochmal neu ausfuellen</a>
+        </nav>
+        -->
+
+        <button class="button"><a class="item" href="2_catalog_foot.html" th:href="@{/football}" th:text="#{nav.einzel}" style="text-decoration: none; color: black">Einzelwette</a></button>
+        &ensp;
+        &ensp;
+        &ensp;
+        &ensp;
+        &ensp;
+        &ensp;
+        &ensp;
+        &ensp;
+        &ensp;
+        &ensp;
+        &ensp;
+        &ensp;
+        &ensp;
+        &ensp;
+        &ensp;
+        &ensp;
+        <button class="button"><a class="item" href="catalog_group.html" th:href="@{/footballgroup}" th:text="#{nav.gruppe}" style="text-decoration: none; color: black">Gruppenwette</a></button>
+
+    </div>
+    <footer>
+        <p>Mach Dein Glück!! ©Copyright 2021©</p>
+    </footer>
+</div>
+</body>
+</html>

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width = device - width, initial - scale = 1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>🍀 Mach Dein Glück!! 🍀</title>
-    <link th:href="@{resources/css/style_register.css}" rel="stylesheet" href="../static/resources/css/style_register.css">
+    <link th:href="@{resources/css/style_statistic.css}" rel="stylesheet" href="../static/resources/css/style_statistic.css">
 </head>
 
 <body class="backgrounds">
@@ -20,8 +20,9 @@
             <a href="">REGISTRIEREN</a>
         </nav>-->
         <nav th:include="navigation :: navigation" class="navcontainer"></nav>
+        
         <div class="container">
-        <main>
+        <main class="box-one">
             <section>
                 <form method="post" role="form" class="ui form" id="form" th:action="@{/register}" th:object="${registrationForm}">
                     <h3 th:text="#{register.userdata}">Registrieren</h3>
@@ -40,35 +41,35 @@
     
                     <div class="style">
 
-                        <label for="firstname">Vorname:</label>
+                        <label for="firstname" style="margin-right: 30px">Vorname:</label>
                         <input id="firstname" name="firstname" th:field="*{firstname}" th:errorclass="fieldError" type="text" required="required"/><br/>
-                        <div class="ui negative message" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></div>
+                        <div class="ui negative message" style="color: white" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></div>
                     </div>
 
                     <br>
 
                     <div class="style">
 
-                        <label for="lastname">Nachname:</label>
+                        <label for="lastname" style="margin-right: 19px">Nachname:</label>
                         <input id="lastname" name="lastname" th:field="*{lastname}" th:errorclass="fieldError" type="text" required="required"/><br/>
-                        <div class="ui negative message" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></div>
+                        <div class="ui negative message" style="color: white" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></div>
                     </div>
 
                     <br>
 
                     <div class="style">
 
-                        <label for="email">Email:</label>
+                        <label for="email" style="margin-right: 48px">E-mail:</label>
                         <input id="email" name="email" th:field="*{email}" th:errorclass="fieldError" type="text" required="required"/><br/>
-                        <div class="ui negative message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                        <div class="ui negative message" style="color: white" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
                     </div>
 
                     <br>
     
                     <div class="style">
-                        <label th:text="#{register.password}" for="password" style="width: 50px">Passwort:</label>
+                        <label th:text="#{register.password}" for="password" style="margin-right: 30px">Passwort:</label>
                         <input id="password" name="password" th:field="*{password}" th:errorclass="fieldError"  type="password" required="required" />
-                        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+                        <p th:if="${#fields.hasErrors('password')}" style="color: white" th:errors="*{password}"></p>
                     </div>
 
                     <br>
@@ -76,19 +77,18 @@
                     <div class="style">
                         <label th:text="#{register.password2}" for="password">Wiederholung:</label>
                         <input id="passwordCheck" name="passwordCheck" th:field="*{passwordCheck}" th:errorclass="fieldError" type="password" required="required"/><br/>
-                        <p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}"></p>
+                        <p th:if="${#fields.hasErrors('passwordCheck')}" style="color: white" th:errors="*{passwordCheck}"></p>
                     </div>
 
-                    <br>
+                    <br><br>
 
                     <button type="submit" th:text="#{register.submit}">Registrieren</button>
 
                 </form>
             </section>
 
-
             <div>
-                <h2 th:text="${message}"></h2>
+                <h2 style="color: white" th:text="${message}"></h2>
             </div>
         </main>
 

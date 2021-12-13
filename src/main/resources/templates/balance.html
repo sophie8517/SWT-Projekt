@@ -9,7 +9,7 @@
     <meta name="viewport" content="width = device - width, initial - scale = 1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>🍀 Mach Dein Glück!! 🍀</title>
-    <link th:href="@{resources/css/style_balance.css}" rel="stylesheet" href="../static/resources/css/style_balance.css">
+    <link th:href="@{resources/css/style_statistic.css}" rel="stylesheet" href="../static/resources/css/style_statistic.css">
 </head>
 
 
@@ -39,13 +39,17 @@
 
         <form method="post" sec:authorize="hasRole('CUSTOMER')" th:action="@{/balance/charge}">
             <br>
-            <div class="box-two">
+            <div>
                 <label th:text="#{charge.input}" >Wie viel Geld?  </label>
                 <input field="*{money}" id="money" name="money" type="number" step=".01" required="required"/>
                 </br></br>
 
                 <button class="button" type="submit" th:text="#{charge.charge}" >Aufladen</button>
 
+            </div>
+
+            <div>
+                <h2 style="color: white" th:text="${message}"></h2>
             </div>
         </form>
     </main>

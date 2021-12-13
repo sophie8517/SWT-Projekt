@@ -18,6 +18,10 @@ public class Football extends Item {
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<FootballBet> footballBets;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<FootballBet> groupFootballBets;
+
 	@OneToOne (cascade = CascadeType.ALL)
 	private Team host, guest;
 	private String league, logoHost, logoGuest;
@@ -36,7 +40,7 @@ public class Football extends Item {
 		this.logoHost = logoHost;
 		this.logoGuest = logoGuest;
 		footballBets = new ArrayList<>();
-
+		groupFootballBets = new ArrayList<>();
 
 	}
 
@@ -50,6 +54,14 @@ public class Football extends Item {
 
 	public void removeBet(FootballBet footballBet){
 		footballBets.remove(footballBet);
+	}
+
+	public void addGroupBet(FootballBet bet){
+		groupFootballBets.add(bet);
+	}
+
+	public void removeGroupBet(FootballBet bet){
+		groupFootballBets.remove(bet);
 	}
 
 	public Team getHost() {
@@ -88,6 +100,21 @@ public class Football extends Item {
 		return result;
 	}
 
+	public List<FootballBet> getGroupFootballBets() {
+		return groupFootballBets;
+	}
+	public List<FootballBet> getGroupFootballBetsbyGroup(String groupName){
+		List<FootballBet> result = new ArrayList<>();
+
+		for(FootballBet fb: groupFootballBets){
+			if(fb.getGroupName().equals(groupName)){
+				result.add(fb);
+			}
+
+		}
+		return result;
+	}
+
 	public Ergebnis getErgebnis() {
 		return ergebnis;
 	}
@@ -97,7 +124,7 @@ public class Football extends Item {
 	}
 
 	public FootballBet findbyBetId(String id){
-		if(footballBets.isEmpty()){
+		if(footballBets.isEmpty() && groupFootballBets.isEmpty()){
 			return null;
 		}
 
@@ -105,6 +132,12 @@ public class Football extends Item {
 		for(FootballBet fb: footballBets){
 			if(fb.getIdstring().equals(id)){
 				result = fb;
+				break;
+			}
+		}
+		for(FootballBet fb2: groupFootballBets){
+			if(fb2.getIdstring().equals(id)){
+				result = fb2;
 				break;
 			}
 		}

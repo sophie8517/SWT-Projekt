@@ -13,8 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,7 +44,9 @@ public class CatalogControllerIntegrationTest  extends AbstractIntegrationTest {
 	@BeforeEach
 	void setUp() {
 
-		t = (Ticket) lotteryCatalog.findByType(Item.ItemType.TICKET).get(0);
+		t = new Ticket("name1", LocalDateTime.now().plusDays(4), Money.of(7,EURO), Item.ItemType.TICKET);
+
+		lotteryCatalog.save(t);
 		f_timeup = new Football("n", LocalDateTime.of(LocalDateTime.now().toLocalDate().plusDays(1),
 				LocalTime.of(15,0)),Money.of(10,EURO), Item.ItemType.FOOTBALL,
 				new Team("team1"),new Team("team2"),"liga","img1","img2");
@@ -67,7 +71,10 @@ public class CatalogControllerIntegrationTest  extends AbstractIntegrationTest {
 
 		List<Item> items = lotteryCatalog.findByType(Item.ItemType.TICKET);
 
-		assertThat(items).hasSize(1);
+		assertThat(items).hasSize(2);
+
+		items = (List<Item>) model.getAttribute("ticketcatalog");
+		assertThat(items).hasSize(2);
 	}
 
 	@Test
@@ -79,9 +86,6 @@ public class CatalogControllerIntegrationTest  extends AbstractIntegrationTest {
 
 		assertThat(returnedView).isEqualTo("2_catalog_foot");
 
-		//List<Item> items = lotteryCatalog.findByType(Item.ItemType.FOOTBALL);
-
-		//assertThat(items).hasSize(20);
 	}
 
 	@Test
@@ -99,6 +103,7 @@ public class CatalogControllerIntegrationTest  extends AbstractIntegrationTest {
 		dauer = 1;
 		String returnView = catalogController.bet_num(id,z1,z2,z3,z4,z5,z6,z7,dauer,Optional.of(ua));
 		assertThat(returnView).isEqualTo("wronginput.html");
+		System.out.println(t.getNumberBetsbyCustomer(c));
 	}
 
 	@Test
@@ -200,11 +205,8 @@ public class CatalogControllerIntegrationTest  extends AbstractIntegrationTest {
 
 	@AfterEach
 	void breakDown(){
-		List<NumberBet> nbs = t.getNumberBetsbyCustomer(c);
-		for(NumberBet n:nbs){
-			t.removeBet(n);
-		}
-		lotteryCatalog.save(t);
+
+		lotteryCatalog.delete(t);
 
 		c.setBalance(Money.of(0,EURO));
 		customerRepository.save(c);

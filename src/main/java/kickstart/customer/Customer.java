@@ -14,7 +14,7 @@ import java.util.List;
 import static org.salespointframework.core.Currencies.EURO;
 
 @Entity
-public class Customer implements Comparable<Customer> {
+public class Customer implements Comparable<Customer>{
 	private @Id @GeneratedValue long id;
 	private Money balance;
 	@OneToOne
@@ -22,26 +22,18 @@ public class Customer implements Comparable<Customer> {
 
 	@ManyToMany
 	private List<Group> groups = new ArrayList<>();
-	public List<Group> getGroup() {
-		return groups;
-	}
 
-
-	public void addGroup(Group group){
-		groups.add(group);
-	}
-
-	public Customer(){}
-	public Customer (UserAccount userAccount){
-		this.userAccount = userAccount;
-		balance = Money.of(0.0, EURO);
-	}
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<FootballBet> footballBetList = new ArrayList<>();
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<NumberBet> numberBetList = new ArrayList<>();
 
+	public Customer(){}
+	public Customer (UserAccount userAccount){
+		this.userAccount = userAccount;
+		balance = Money.of(0.0, EURO);
+	}
 
 	public long getId() {
 		return id;
@@ -57,6 +49,14 @@ public class Customer implements Comparable<Customer> {
 
 	public UserAccount getUserAccount() {
 		return userAccount;
+	}
+
+	public void addGroup(Group group){
+		groups.add(group);
+	}
+
+	public List<Group> getGroup() {
+		return groups;
 	}
 
 	public List<FootballBet> getAllFootballBetList() {
@@ -79,18 +79,6 @@ public class Customer implements Comparable<Customer> {
 
 	public void removeNumberBets(NumberBet nb) {numberBetList.remove(nb); }
 
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) return true;
-
-		if (!(obj instanceof Customer)) return false;
-
-		Customer customer = (Customer) obj;
-
-		return this.userAccount.getEmail().equals(customer.getUserAccount().getEmail());
-	}
-
 	@Override
 	public String toString() {
 		return userAccount.getFirstname() + " " + userAccount.getLastname();
@@ -99,5 +87,20 @@ public class Customer implements Comparable<Customer> {
 	@Override
 	public int compareTo(Customer customer) {
 		return this.toString().compareTo(customer.toString());
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj){
+			return true;
+		}
+
+		if(!(obj instanceof Customer)){
+			return false;
+		}
+
+		Customer customer = (Customer) obj;
+
+		return this.userAccount.getEmail().equals(customer.getUserAccount().getEmail());
 	}
 }
