@@ -60,11 +60,6 @@ a|
 ** OrderController
 ** CustomerController
 ** CustomerManagement
-
-|15    
-|Cross-Testing Feedback      
-|in Arbeit     
-|noch nicht begonnen
 |===
 
 
@@ -111,11 +106,5 @@ a|
 * Katalog: Yuju, Sophie
 * Order: Yuju, Sophie
 * lotteryresult: noch nicht entschieden
-|in Arbeit
-
-|15     
-|Cross-Testing Feedback     
-|das Dokument Cross-Testing Feedback ausfüllen (Fortsetzung von letzter Woche)       
-|alle                
 |in Arbeit
 |===
