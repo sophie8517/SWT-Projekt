@@ -1,11 +1,11 @@
 = Hinweise
 
-*Anmelden*
+== *Anmelden*
 
-* Benutzername : E-Mail (von der Registrierung)
+* Benutzername : E-Mail (Registrierung)
 * Passwort: das selbstgewählte Passwort (Registrierung)
 
-*angelegte Nutzer*
+== *Angelegte Nutzer*
 
 
 
@@ -35,7 +35,7 @@
 |===
 
 
-*Guthaben aufladen*
+== *Guthaben aufladen*
 
 1. Anmelden
 2. MEIN PROFIL
@@ -43,4 +43,12 @@
 4. Betrag eingeben
 5. Aufladen
 
+== *Wetteinsatz ändern*
 
+* der eingegebene Einsatz wird als neuer Einsatz der Wette gesetzt
+* Bedingungen für den neuen Einsatz:
+** darf nicht kleiner als der aktuelle Einsatz sein
+* z.B.:
+** aktueller Einsatz: 10 €
+** neuer Einsatz: 12 €
+** -> aktualisierter Einsatz: 12 €
