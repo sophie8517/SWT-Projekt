@@ -16,21 +16,23 @@
 <body class="backgrounds">
 <nav th:include="navigation :: navigation"></nav>
 <div class="container">
-    <main style="height: 1000px">
+    <main style="height: auto; padding-bottom: 30px">
         <h3>Löschung von Konten</h3>
-        <p>Möchten Sie dein Konto löschen?</p>
+        <h4 style="color: white">Möchten Sie Ihr Profil löschen?</h4>
 
 <!--        <button type="submit" class="button">confirm</button>-->
 
         <div>
             <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="post" th:action="@{/deactivate}">
-                <button type="submit" class="ui button" th:text="#{account.deactive}">Profil loeschen</button>
+                <button type="submit" class="ui button" th:text="#{account.deactive}">Profil löschen</button>
             </form>
         </div>
 
+        <br>
+
         <div>
             <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="post" th:action="@{/back}">
-                <button type="submit" class="ui button" th:text="#{account.back}">schließen</button>
+                <button type="submit" class="ui button" th:text="#{account.back}">Zurück zum Profil</button>
             </form>
         </div>
 

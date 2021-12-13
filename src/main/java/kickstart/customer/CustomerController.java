@@ -272,9 +272,6 @@ public class CustomerController{
 		return "meinProfil";
 	}
 
-	@GetMapping("/changePassword")
-	String toChPwdPage() { return "changePassword"; }
-
 
 
 }

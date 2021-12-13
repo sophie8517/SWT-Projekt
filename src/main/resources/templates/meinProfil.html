@@ -66,17 +66,18 @@
         <br>
         <br>
 
-        <h2 class="box-two">Einstellungen</h2>
-        <a href="changePassword.html" th:href="@{/changePassword}" sec:authorize="hasRole('CUSTOMER')"> Passwort ändern</a>
+        <h2>Einstellungen</h2>
+        <a href="changePassword.html" th:href="@{/changePassword}" sec:authorize="hasRole('CUSTOMER')" style="text-decoration: none">Passwort ändern</a>
 
 
         <br>
         <br>
 
-        <a href="accountDeactivate.html" th:href="@{/accountDeactivate}" sec:authorize="hasRole('CUSTOMER')">Konto deaktivieren</a>
+        <a href="accountDeactivate.html" th:href="@{/accountDeactivate}" sec:authorize="hasRole('CUSTOMER')" style="text-decoration: none">Profil löschen</a>
 
 
     </main>
+
 
     <footer>
         <p>Mach Dein Glück!! ©Copyright 2021©</p>
