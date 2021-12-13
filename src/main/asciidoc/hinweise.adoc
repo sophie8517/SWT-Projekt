@@ -1,0 +1,46 @@
+= Hinweise
+
+*Anmelden*
+
+* Benutzername : E-Mail (von der Registrierung)
+* Passwort: das selbstgewählte Passwort (Registrierung)
+
+*angelegte Nutzer*
+
+
+
+[option="headers"]
+|===
+|Benutzername |Passwort
+|song@tu-dresden.de
+|123
+
+|nina@tu-dresden.de
+|123
+
+|mirek@tu-dresden.de
+|123
+
+|sophie@tu-dresden.de
+|123
+
+|lukas@tu-dresden.de
+|123
+
+|test@tu-dresden.de
+|123
+
+|admin
+|123
+|===
+
+
+*Guthaben aufladen*
+
+1. Anmelden
+2. MEIN PROFIL
+3. Guthaben anzeigen
+4. Betrag eingeben
+5. Aufladen
+
+
