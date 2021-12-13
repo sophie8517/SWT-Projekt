@@ -42,9 +42,12 @@
             <br>
 
             <button type="submit" class="ui button">Gruppe betreten</button>
-        </form>
 
-        <br>
+            <br>
+            <div>
+                <h2 style="color: red" th:text="${message}"></h2>
+            </div>
+        </form>
 
         <div style="padding-bottom: 10px">
             <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="post" th:action="@{/close}">

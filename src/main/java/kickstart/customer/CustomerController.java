@@ -47,7 +47,7 @@ public class CustomerController{
 		}
 
 		if(customerManagement.findByEmail(form.getEmail()).isPresent()){
-			redirAttrs.addFlashAttribute("message", "Name you entered is already exist!");
+			redirAttrs.addFlashAttribute("message", "E-mail address does already exist!");
 			return "redirect:/register";
 		}
 
@@ -155,6 +155,10 @@ public class CustomerController{
 		Assert.notNull(password, "password must not be null");
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 		var group = customerManagement.findByGroupName(name);
+		if(group == null) {
+			redir.addFlashAttribute("message", "Group doesn't exist!");
+			return "redirect:/group_join";
+		}
 		System.out.println(group);
 
 		System.out.println(group.getPassword() + " and " + password);
