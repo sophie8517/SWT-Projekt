@@ -1,26 +1,29 @@
-= Protokoll Gruppe XX
+= Protokoll Gruppe 09
 
 
-Treffen am XX.XX.20XX
+Treffen am 06.12.2021
 
-Ort:      Ort des Treffens +
-Beginn:   xx:xx Uhr +
-Ende:     xx:xx Uhr
+Ort:      Discord
+Beginn:   14:50 Uhr +
+Ende:     15:05 Uhr
 
-__Schriftführer:__
+__Schriftführer:__ Sophie Schulze
 
 *Nächstes Treffen:* +
-XX.XX.20XX, xx:xx Uhr, Ort des nächsten Treffens
+10.01.2022, 14:50 Uhr, Discord
 
 __Teilnehmer:__
 //Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
 
-- Teilnehmer 1
-- Teilnehmer 2
-- ...
+- Andre Schmidt (Kunde)
+- Yu-Ju Chen
+- Song Bai
+- Yutian Lei
+- Mirek Král
+- Sophie Schulze
 
 == Bemerkungen
-Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+-
 
 == Retrospektive des letzten Sprints
 *Issue referenziert die Issue ID von GitHub*
@@ -30,13 +33,30 @@ Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entsch
 [option="headers"]
 |===
 |Issue |Aufgabe |Status |Bemerkung
-|…     |…       |…      |…
+|11    
+|Klassendiagramme erweitern      
+|in Arbeit     
+a|
+* Package lotteryresult wurde hinzugefügt
+
+|12    
+|Gewinngemeinschaft erstellen    
+|fertig      
+|-
+
+|14    
+|Testfälle      
+|in Arbeit      
+a|
+* fehlende Tests:
+** Abgabe von Gruppenwetten im Catalog Controller
+** Auswertung von Gruppenwetten im ResultController
 |===
 
 
 == Aktueller Stand
-Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
-Dokumenten.
+
+* Anwendung erfüllt die Muss-Kriterien
 
 == Planung des nächsten Sprints
 *Issue referenziert die Issue ID von GitHub*
@@ -45,5 +65,35 @@ Dokumenten.
 [option="headers"]
 |===
 |Issue |Titel |Beschreibung |Verantwortlicher |Status
-|…     |…     |…            |…                |…
+|11     
+|Klassendiagramme erweitern     
+|Klassendiagramme an Änderungen im Code anpassen            
+a|
+* Order: Yuju
+* Kunde: Mirek, Song
+* Statistik: Yutian
+* Katalog: Sophie
+|noch nicht angepasst an die Funktionalitäten Gewinngemeinschat erstellen, Wetten in der Gruppe, Ausweertung von Gruppenwetten
+
+|14     
+|Testfälle     
+|Tests implementieren (Fortsetzung von letzter Woche)            
+a|
+* Katalog: Yuju, Sophie
+* lotteryresult: noch nicht entschieden
+a|es fehlen noch die Tests für:
+* Abgabe von Gruppenwetten im Catalog Controller
+* Auswertung von Gruppenwetten im ResultController
+
+|15     
+|Cross-Testing Feedback     
+|das Dokument Cross-Testing Feedback ausfüllen            
+|alle                
+|in Arbeit
+
+|16
+|Auswahl von Kann-Kriterien
+|es ist zu entscheiden, welche Kann-Kriterien unsere Anwendung noch erfüllen soll
+|alle
+|in Arbeit
 |===
