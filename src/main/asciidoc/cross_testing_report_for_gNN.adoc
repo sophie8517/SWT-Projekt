@@ -59,7 +59,7 @@ a|
 * Geburtsdatum: 01.01.1988
 * Passwort: bbb
 * Passwort wiederholen: bbb
-|Bei der Registrierung kan ein bereits vorhandener Nutzername eingegeben werden, ohne dass eine Fehlermeldung angezeigt wird. Die Registrierung war aber nicht erfolgreich, da die Anmeldung mit diesen Registrierdaten fehlschlägt.
+|Bei der Registrierung kann ein bereits vorhandener Nutzername eingegeben werden, ohne dass eine Fehlermeldung angezeigt wird. Die Registrierung war aber nicht erfolgreich, da die Anmeldung mit diesen Registrierdaten fehlschlägt.
 |Whitelabel Error Page
 
 
@@ -98,7 +98,12 @@ a|
 
 == Sonstiges
 * Optik der Anwendung:
-** übersichtliches Layout/Design
+** übersichtliches Layout
+** einladendes und angenehmes ("angenehm für das Auge") Design
+** evtl. Schriftgröße etwas erhöhen
+** Verwendung der typischen "Lottofarbe" gelb für Menü und Buttons
+**  => schön gestaltet
+
 * Fehlende Features:
 ** Einsatz einer Wette ändern
 ** Tipp einer Wette ändern
