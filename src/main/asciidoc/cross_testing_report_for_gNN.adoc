@@ -71,12 +71,12 @@ a|
 |Lotto erfolgreich erstellt.
 
 |Startseite -> Login als Admin -> Admin -> Finanzen
-|-
+|- Übersicht Toto ansehen -
 a|
-*Spieldaten in Fußballwetten:
+* Spieldaten in Fußballwetten:
 ** 15.12.2021, 15:09, Union Berlin - RB Leipzig
 * Abgabe einer Wette auf das obige Spiel am 13.12.2021
-* Spieldatum in Finanzübersicht: 13.12.2021
+* Spieldatum in Finanzübersicht nach Auswertung des Spiels: 13.12.2021 -> Spieldatum falsch
 |-
 
 |Startseite -> Login als Admin -> Admin -> Lotto auflösen
@@ -97,16 +97,20 @@ a|
 |===
 
 == Sonstiges
-* Optik der Anwendung
+* Optik der Anwendung:
+** übersichtliches Layout/Design
 * Fehlende Features:
-** Einsatz ändern
-** Tipp der Wette ändern
+** Einsatz einer Wette ändern
+** Tipp einer Wette ändern
 
 * Interaktion mit der Anwendung (Usability):
-** dem Nutzer wird Feedback bzgl. der Eingaben oder Aktionen gegeben bei:
+** (+) Anwendung leicht zu bedienen
+** (+) dem Nutzer wird Feedback bzgl. den Eingaben oder Aktionen gegeben bei z.B.:
 *** Auswahl der Lottozahlen: bzgl. der Anzahl, fehlenden Eingaben
 *** allgemein bei nicht ausgefüllten Feldern
-***
+** (+) Erklärungen zum richtigen Ausfüllen von Lottoschein und Toto
+** (+) Tabelle mit Preisen und Gewinnen wird angezeigt
+** (-) fehlendes Feedback bei fehlerhafter Registrierung oder Login
 
 == Verbesserungsvorschläge
 * Was kann noch weiter verbessert werden?
@@ -126,10 +130,9 @@ a|
 |Es kann nur ein Ziehungsdatum, aber keine Zeit eingegeben werden
 |Es wird der Ziehungstag und die Zeit eingegeben.
 
-
-|
-|Superzahl von 0 bis 9
-|
+|Startseite -> Login -> Lotto spielen
+|Für die Superzahl kann man eine Zahl zwischen 1 und 9 auswählen.
+|Als Superzahl ist eine Zahl von 0 bis 9 auswählbar.
 
 |Startseite -> Registrierung
 |Bei einer fehlerhaften Registrierung, z.B. ungültiges Geburtsdatum, schon vorhandener Nutzername, ungleiche Passwörter etc., wird kein Feedback zur falschen Eingabe gegeben.
