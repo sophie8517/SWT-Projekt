@@ -5,6 +5,7 @@ __Anwendung von Gruppe:__ 10
 
 == Getestetes System
 Welche Aufgabe/Problemstellung löst die Anwendung.
+Die Anwendung stellt eine Online-Lotterie mit zugehöriger Webseite dar.
 
 == Fehler-Report
 // See http://asciidoctor.org/docs/user-manual/#tables
@@ -64,15 +65,10 @@ a|
 
 |Startseite -> Login als Admin -> Admin -> Lotto erstellen
 a|
-2 x Lottoziehung erstellen mit:
-* Datum: 18.12.2021 (heute ist: 13.12.2021)
+* 2 x Lottoziehung erstellen mit:
+** Datum: 18.12.2021 (heute ist: 13.12.2021)
 |Es können mehrere Lottoziehungen für dasselbe Datum erstellt werden.
 |Lotto erfolgreich erstellt.
-
-|
-|
-|Kunde hat Lottowette auf Ziehung von 18.12.2021 abgegeben, Admin erstellt neue Ziehung für den 18.12.2021 , Anzhal der abgegebenen Wetten des Kunden erhöht sich
-|
 
 |Startseite -> Login als Admin -> Admin -> Finanzen
 |-
@@ -83,12 +79,20 @@ a|
 * Spieldatum in Finanzübersicht: 13.12.2021
 |-
 
+|Startseite -> Login als Admin -> Admin -> Lotto auflösen
+a|
+* Auflösen von: 
+** Lottoziehung: 21.12.2021, 23:59
+* heute/aktuelles Datum: 13.12.2021
+|Auswertung eines Fußballspiels ist schon vor dem Spieltag möglich
+|Fußballspiel erolgreich aufgelöst.
+
 |Startseite -> Login als Admin -> Admin -> Fußballspiel auflösen
 a|
 * Auflösen von: 
 ** 15.12.2021, 15:09, Union Berlin - RB Leipzig
 * heute/aktuelles Datum: 13.12.2021
-|Auswertung einer Lottoziehung bzw. eines Fußballspiels ist schon vor dem Ziehungstag bzw. dem Spieltag möglich
+|Auswertung eines Fußballspiels ist schon vor dem Spieltag möglich
 |Fußballspiel erolgreich aufgelöst.
 |===
 
@@ -104,13 +108,18 @@ a|
 [options="header"]
 |===
 |Pfad  |Beschreibung |Verbesserung
-|Fußballwetten
-|Spielatum
-|zu Spieldatum
+|Startseite -> Login -> Fußballwetten
+|Im Tabellenkopf von der 1. Spalte steht "Spielatum" (kleiner Rechtschreibfehler).
+|Korrektur zu "Spieldatum"
 
 |Admin anmelden -> Admin-> Fußballtoto erstellen
 |Es kann nur ein Spieltag, aber keine Spielzeit eingegeben werden
 |Es wird der Spieltag und die Zeit eingegeben.
+
+|Admin anmelden -> Admin-> Lotto erstellen
+|Es kann nur ein Ziehungsdatum, aber keine Zeit eingegeben werden
+|Es wird der Ziehungstag und die Zeit eingegeben.
+
 
 |
 |Superzahl von 0 bis 9
