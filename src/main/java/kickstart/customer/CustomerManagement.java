@@ -2,13 +2,11 @@ package kickstart.customer;
 
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.*;
-import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
-
-import java.security.MessageDigest;
+import kickstart.catalog.*;
 import java.security.SecureRandom;
 import java.util.Optional;
 
@@ -145,9 +143,11 @@ public class CustomerManagement {
 		//return customer;
 	}
 
-	public void deleteCustomer(Long id){
-		userAccounts.delete(customers.findById(id).get().getUserAccount());
-		customers.deleteById(id);
+	public Customer deleteCustomer(Customer customer){
+		userAccounts.delete(customer.getUserAccount());
+		customers.delete(customer);
 		System.out.println("deleted");
+
+		return customer;
 	}
 }

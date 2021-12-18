@@ -26,6 +26,8 @@
             <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="post" th:action="@{/deactivate}">
                 <button type="submit" class="ui button" th:text="#{account.deactive}">Profil löschen</button>
             </form>
+
+            <h2 style="color: red" th:text="${message}"></h2>
         </div>
 
         <br>

@@ -15,6 +15,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import static org.salespointframework.core.Currencies.EURO;
 
@@ -349,6 +350,54 @@ public class OrderController {
 		return "redirect:/";
 	}
 
+	@GetMapping("/accountDeactivate")
+	String toAccountDeactivatePage(){
+		return "accountDeactivate";
+	}
 
+	@PostMapping("/deactivate")
+	String accountDeactivate(@LoggedIn Optional<UserAccount> userAccount, RedirectAttributes redir){
+
+		var customer = customerManagement.findByUserAccount(userAccount.get());
+
+		if(checkBetStatus(customer)) {
+			redir.addFlashAttribute("message", "Es gibt Wetten, die nicht abgeschlossen sind");
+			return "redirect:/accountDeactivate";
+		}
+
+
+		customerManagement.deleteCustomer(customer);
+		return "redirect:/logout";
+	}
+
+	boolean checkBetStatus(Customer customer) {
+		List<Item> tickets = lotteryCatalog.findByType(Item.ItemType.TICKET);
+		List<Item> footballs = lotteryCatalog.findByType(Item.ItemType.FOOTBALL);
+		List<Bet> bets = new ArrayList<>();
+		boolean found = false;
+
+		for(Item item: tickets) {
+			Ticket ticket = (Ticket) item;
+			bets.addAll(ticket.getNumberBetsbyCustomer(customer));
+		}
+
+		for(Item item: footballs) {
+			Football football = (Football) item;
+			bets.addAll(football.getFootballBetsbyCustomer(customer));
+
+			for(Group group: customer.getGroup()) {
+				bets.addAll(football.getGroupFootballBetsbyGroup(group.getGroupName()));
+			}
+		}
+
+		for(Bet bet: bets) {
+			if(bet.getStatus().equals(Status.OPEN)) {
+				found = true;
+				break;
+			}
+		}
+
+		return found;
+	}
 
 }
