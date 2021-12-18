@@ -19,8 +19,14 @@ a|
 * Geburtsdatum: 01.01.2000
 * Passwort: abc
 * Passwort wiederholen: abc
-|Man wird auf eine Fehlerseite weitergeleitet, obwohl die Registrierung erfolgreich war, d.h. man kann sich mit den Registrierdaten anmelden. Aber die Registrierung ist nur für 2 neue Nutzer erfolgreich, danach schlägt sie fehl (man kann sich mit den Registrierdaten *nicht* anmelden).
-|White Label Error Page
+
+hans hm66
+lisa123 haus44
+van55   bla
+erik  black
+
+|Man wird auf eine Fehlerseite weitergeleitet, obwohl die Registrierung erfolgreich war, d.h. man kann sich mit den Registrierdaten anmelden.
+|Whitelabel Error Page
 
 |Startseite -> Registrieren
 a|
@@ -30,8 +36,31 @@ a|
 * Geburtsdatum: 01.01.2022
 * Passwort: abcde
 * Passwort wiederholen: abcde
-|Bei der Registrierung kann ein, in der Zukunft liegendes, Geburtsdatum eingegeben werden, ohne das eine Fehlermeldung angezeigt wird.
-|White Label Error Page
+|Bei der Registrierung kann ein, in der Zukunft liegendes, Geburtsdatum eingegeben werden, ohne dass eine Fehlermeldung angezeigt wird. Die Registrierung war aber nicht erfolgreich, da die Anmeldung mit diesen Registrierdaten fehlschlägt.
+|Whitelabel Error Page
+
+|Startseite -> Registrieren
+a|
+* Vorname: Hans
+* Nachname: Müller
+* Benutzername: hans
+* Geburtsdatum: 01.01.1980
+* Passwort: abcde
+* Passwort wiederholen: aaa
+|Bei der Registrierung können 2 verschiedene Passwörter eingegeben werden, ohne dass eine Fehlermeldung angezeigt wird. Die Registrierung war aber nicht erfolgreich, da die Anmeldung mit diesen Registrierdaten fehlschlägt.
+|Whitelabel Error Page
+
+|Startseite -> Registrieren
+a|
+* Vorname: Hannah
+* Nachname: Müller
+* Benutzername: user
+* Geburtsdatum: 01.01.1988
+* Passwort: bbb
+* Passwort wiederholen: bbb
+|Bei der Registrierung kan ein bereits vorhandener Nutzername eingegeben werden, ohne dass eine Fehlermeldung angezeigt wird. Die Registrierung war aber nicht erfolgreich, da die Anmeldung mit diesen Registrierdaten fehlschlägt.
+|Whitelabel Error Page
+
 
 |Startseite -> Login als Admin -> Admin -> Lotto erstellen
 a|
@@ -56,8 +85,9 @@ a|
 
 |Startseite -> Login als Admin -> Admin -> Fußballspiel auflösen
 a|
-* Auflösen von: ** 15.12.2021, 15:09, Union Berlin - RB Leipzig
-* heute: 13.12.2021
+* Auflösen von: 
+** 15.12.2021, 15:09, Union Berlin - RB Leipzig
+* heute/aktuelles Datum: 13.12.2021
 |Auswertung einer Lottoziehung bzw. eines Fußballspiels ist schon vor dem Ziehungstag bzw. dem Spieltag möglich
 |Fußballspiel erolgreich aufgelöst.
 |===
@@ -81,3 +111,7 @@ a|
 |Admin anmelden -> Admin-> Fußballtoto erstellen
 |Es kann nur ein Spieltag, aber keine Spielzeit eingegeben werden
 |Es wird der Spieltag und die Zeit eingegeben.
+
+|
+|Superzahl von 0 bis 9
+|
