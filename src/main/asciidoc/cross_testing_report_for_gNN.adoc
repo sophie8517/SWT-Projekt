@@ -100,7 +100,13 @@ a|
 * Optik der Anwendung
 * Fehlende Features:
 ** Einsatz ändern
-* Interaktion mit der Anwendung (Usability)
+** Tipp der Wette ändern
+
+* Interaktion mit der Anwendung (Usability):
+** dem Nutzer wird Feedback bzgl. der Eingaben oder Aktionen gegeben bei:
+*** Auswahl der Lottozahlen: bzgl. der Anzahl, fehlenden Eingaben
+*** allgemein bei nicht ausgefüllten Feldern
+***
 
 == Verbesserungsvorschläge
 * Was kann noch weiter verbessert werden?
@@ -124,3 +130,8 @@ a|
 |
 |Superzahl von 0 bis 9
 |
+
+|Startseite -> Registrierung
+|Bei einer fehlerhaften Registrierung, z.B. ungültiges Geburtsdatum, schon vorhandener Nutzername, ungleiche Passwörter etc., wird kein Feedback zur falschen Eingabe gegeben.
+|Dem Nutzer anzeigen, welche Regsitrierdaten fehlerhaft sind.
+|===
