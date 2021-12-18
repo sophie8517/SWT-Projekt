@@ -49,7 +49,7 @@ class CustomerDataInitializer implements DataInitializer {
 				new RegistrationForm("Mirek", "Kral", "mirek@tu-dresden.de", password, passwordCheck),
 				new RegistrationForm("Sophie", "Schulze", "sophie@tu-dresden.de", password, passwordCheck),
 				new RegistrationForm("Lukas", "Lei", "lukas@tu-dresden.de", password, passwordCheck),
-				new RegistrationForm("tester", "muster", "test@tu-dresden.de", password, passwordCheck)
+				new RegistrationForm("Max", "Mustermann", "test@tu-dresden.de", password, passwordCheck)
 		).forEach(customerManagement::createCustomer);
 
 		LOG.info("Creating default groups");
@@ -57,8 +57,11 @@ class CustomerDataInitializer implements DataInitializer {
 				new RegistrationForm("init", "leader", "init@leader.de", "123", "123")
 		);
 
-		var groupA = customerManagement.createGroup("groupA", leader);
-		var groupB = customerManagement.createGroup("groupB", leader);
+		var swt09 = customerManagement.createGroup("swt09", leader);
+		var initGroup = customerManagement.createGroup("initGroup", leader);
+
+		LOG.info("Adding default customers to groupA");
+		customerManagement.findAllCustomers().forEach(customer -> customerManagement.addMemberToGroup(customer, swt09, swt09.getPassword()));
 	}
 }
 

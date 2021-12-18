@@ -1,9 +1,5 @@
 package kickstart.customer;
 
-import com.fasterxml.classmate.util.ClassStack;
-import kickstart.catalog.FootballBet;
-import kickstart.catalog.NumberBet;
-import kickstart.catalog.Status;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 
@@ -23,11 +19,6 @@ public class Customer implements Comparable<Customer>{
 	@ManyToMany
 	private List<Group> groups = new ArrayList<>();
 
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<FootballBet> footballBetList = new ArrayList<>();
-
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<NumberBet> numberBetList = new ArrayList<>();
 
 	public Customer(){}
 	public Customer (UserAccount userAccount){
@@ -58,26 +49,6 @@ public class Customer implements Comparable<Customer>{
 	public List<Group> getGroup() {
 		return groups;
 	}
-
-	public List<FootballBet> getAllFootballBetList() {
-		return footballBetList;
-	}
-
-	public List<NumberBet> getAllNumberBetList() {
-		return numberBetList;
-	}
-
-	public void addFootballBet(FootballBet fb){
-		footballBetList.add(fb);
-	}
-
-	public void addNumberBet(NumberBet nb){
-		numberBetList.add(nb);
-	}
-
-	public void removeFootballBets(FootballBet fb) {footballBetList.remove(fb); }
-
-	public void removeNumberBets(NumberBet nb) {numberBetList.remove(nb); }
 
 	@Override
 	public String toString() {

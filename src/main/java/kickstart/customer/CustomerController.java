@@ -101,19 +101,6 @@ public class CustomerController{
 		return "redirect:/";
 	}
 
-	@GetMapping("/accountDeactivate")
-	String toAccountDeactivatePage(){
-		return "accountDeactivate";
-	}
-
-	@PostMapping("/deactivate")
-	String accountDeactivate(@LoggedIn Optional<UserAccount> userAccount){
-		var customer = customerManagement.findByUserAccount(userAccount.get());
-
-		customerManagement.deleteCustomer(customer.getId());
-		return "redirect:/logout";
-	}
-
 	@PostMapping("/back")
 	String back(){ return "redirect:/profile"; }
 
