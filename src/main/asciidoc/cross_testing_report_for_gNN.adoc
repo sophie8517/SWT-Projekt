@@ -1,7 +1,7 @@
 = Cross-Testing Feedback
 
-__Durchführende Gruppe:__
-__Anwendung von Gruppe:__
+__Durchführende Gruppe:__ 09
+__Anwendung von Gruppe:__ 10
 
 == Getestetes System
 Welche Aufgabe/Problemstellung löst die Anwendung.
@@ -11,13 +11,73 @@ Welche Aufgabe/Problemstellung löst die Anwendung.
 [options="header"]
 |===
 |Pfad |Parameter |Beschreibung |Rückgabe
-| … | … | … | … |
+|Startseite -> Registrieren
+a|
+* Vorname: Max
+* Nachname: Musterfrau
+* Benutzername: nutzer
+* Geburtsdatum: 01.01.2000
+* Passwort: abc
+* Passwort wiederholen: abc
+|Man wird auf eine Fehlerseite weitergeleitet, obwohl die Registrierung erfolgreich war, d.h. man kann sich mit den Registrierdaten anmelden. Aber die Registrierung ist nur für 2 neue Nutzer erfolgreich, danach schlägt sie fehl (man kann sich mit den Registrierdaten *nicht* anmelden).
+|White Label Error Page
+
+|Startseite -> Registrieren
+a|
+* Vorname: Maria
+* Nachname: Musterfrau
+* Benutzername: nutzer2
+* Geburtsdatum: 01.01.2022
+* Passwort: abcde
+* Passwort wiederholen: abcde
+|Bei der Registrierung kann ein, in der Zukunft liegendes, Geburtsdatum eingegeben werden, ohne das eine Fehlermeldung angezeigt wird.
+|White Label Error Page
+
+|Startseite -> Login als Admin -> Admin -> Lotto erstellen
+a|
+2 x Lottoziehung erstellen mit:
+* Datum: 18.12.2021 (heute ist: 13.12.2021)
+|Es können mehrere Lottoziehungen für dasselbe Datum erstellt werden.
+|Lotto erfolgreich erstellt.
+
+|
+|
+|Kunde hat Lottowette auf Ziehung von 18.12.2021 abgegeben, Admin erstellt neue Ziehung für den 18.12.2021 , Anzhal der abgegebenen Wetten des Kunden erhöht sich
+|
+
+|Startseite -> Login als Admin -> Admin -> Finanzen
+|-
+a|
+*Spieldaten in Fußballwetten:
+** 15.12.2021, 15:09, Union Berlin - RB Leipzig
+* Abgabe einer Wette auf das obige Spiel am 13.12.2021
+* Spieldatum in Finanzübersicht: 13.12.2021
+|-
+
+|Startseite -> Login als Admin -> Admin -> Fußballspiel auflösen
+a|
+* Auflösen von: ** 15.12.2021, 15:09, Union Berlin - RB Leipzig
+* heute: 13.12.2021
+|Auswertung einer Lottoziehung bzw. eines Fußballspiels ist schon vor dem Ziehungstag bzw. dem Spieltag möglich
+|Fußballspiel erolgreich aufgelöst.
 |===
 
 == Sonstiges
 * Optik der Anwendung
-* Fehlende Features
+* Fehlende Features:
+** Einsatz ändern
 * Interaktion mit der Anwendung (Usability)
 
 == Verbesserungsvorschläge
 * Was kann noch weiter verbessert werden?
+
+[options="header"]
+|===
+|Pfad  |Beschreibung |Verbesserung
+|Fußballwetten
+|Spielatum
+|zu Spieldatum
+
+|Admin anmelden -> Admin-> Fußballtoto erstellen
+|Es kann nur ein Spieltag, aber keine Spielzeit eingegeben werden
+|Es wird der Spieltag und die Zeit eingegeben.

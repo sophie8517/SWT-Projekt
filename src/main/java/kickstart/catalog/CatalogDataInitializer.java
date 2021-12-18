@@ -124,6 +124,5 @@ class CatalogDataInitializer implements DataInitializer {
 				Money.of(8, EURO),ItemType.FOOTBALL,new Team("1.FC Heidenheim"), new Team("SSV Jahn Regensburg"),
 				"2.Bundesliga","heidenheim", "regensburg"));
 
-
 	}
 }

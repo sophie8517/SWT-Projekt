@@ -5,12 +5,12 @@ Treffen am 06.12.2021
 
 Ort:      Discord
 Beginn:   14:50 Uhr +
-Ende:     15:10 Uhr
+Ende:     15:05 Uhr
 
 __Schriftführer:__ Sophie Schulze
 
 *Nächstes Treffen:* +
-13.12.2021, 14:50 Uhr, Discord
+10.01.2022, 14:50 Uhr, Discord
 
 __Teilnehmer:__
 //Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
@@ -37,40 +37,26 @@ __Teilnehmer:__
 |Klassendiagramme erweitern      
 |in Arbeit     
 a|
-* Klassendiagramme werden fortlaufend dem Code angepasst
-* Package lotteryresult fehlt noch
+* Package lotteryresult wurde hinzugefügt
 
 |12    
 |Gewinngemeinschaft erstellen    
-|in Arbeit      
-|-
-
-|13    
-|Auswertung der Wetten    
-|fertig     
+|fertig      
 |-
 
 |14    
 |Testfälle      
 |in Arbeit      
 a|
-* Testklassen vorhanden für:
-** CatalogController
-** ResultController
-** OrderController
-** CustomerController
-** CustomerManagement
+* fehlende Tests:
+** Abgabe von Gruppenwetten im Catalog Controller
+** Auswertung von Gruppenwetten im ResultController
 |===
 
 
 == Aktueller Stand
 
-* Konzept der Superzahl wurde angepasst:
-** Superzahl liegt zwischen 0 und 9
-** Superzahl muss von den anderen 6 Zahlen nicht verschieden sein
-
-* Registrierung:
-** ist eingegebene E-Mail schon vorhanden -> Fehlermeldung (keine Exception auf Error Page) wird angezeigt auf der Website
+* Anwendung erfüllt die Muss-Kriterien
 
 == Planung des nächsten Sprints
 *Issue referenziert die Issue ID von GitHub*
@@ -87,24 +73,27 @@ a|
 * Kunde: Mirek, Song
 * Statistik: Yutian
 * Katalog: Sophie
-|auf akuellem Stand
-
-|12     
-|Gewinngemeinschaft erstellen     
-|die Funktionalität, eine Gewinngemeinschaft erstellen und in dieser Wetten abzugeben, hinzufügen (Fortsetzung von letzter Woche)            
-a|
-* Mirek
-* Song
-|in Arbeit
+|noch nicht angepasst an die Funktionalitäten Gewinngemeinschat erstellen, Wetten in der Gruppe, Ausweertung von Gruppenwetten
 
 |14     
 |Testfälle     
 |Tests implementieren (Fortsetzung von letzter Woche)            
 a|
-* Kunde: Mirek, Song
-* Statistik: Yutian
 * Katalog: Yuju, Sophie
-* Order: Yuju, Sophie
 * lotteryresult: noch nicht entschieden
+a|es fehlen noch die Tests für:
+* Abgabe von Gruppenwetten im Catalog Controller
+* Auswertung von Gruppenwetten im ResultController
+
+|15     
+|Cross-Testing Feedback     
+|das Dokument Cross-Testing Feedback ausfüllen            
+|alle                
+|in Arbeit
+
+|16
+|Auswahl von Kann-Kriterien
+|es ist zu entscheiden, welche Kann-Kriterien unsere Anwendung noch erfüllen soll
+|alle
 |in Arbeit
 |===
