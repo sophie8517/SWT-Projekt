@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import java.util.List;
+import java.util.stream.Stream;
+
+import kickstart.forum.*;
 
 
 @Component
@@ -52,6 +55,9 @@ class CustomerDataInitializer implements DataInitializer {
 				new RegistrationForm("Max", "Mustermann", "test@tu-dresden.de", password, passwordCheck)
 		).forEach(customerManagement::createCustomer);
 
+
+
+
 		LOG.info("Creating default groups");
 		var leader = customerManagement.createCustomer(
 				new RegistrationForm("init", "leader", "init@leader.de", "123", "123")
@@ -62,6 +68,14 @@ class CustomerDataInitializer implements DataInitializer {
 
 		LOG.info("Adding default customers to groupA");
 		customerManagement.findAllCustomers().forEach(customer -> customerManagement.addMemberToGroup(customer, swt09, swt09.getPassword()));
+
+		Stream.of( //
+				new ForumEntry("H4xx0r", "first!!!", "47903@163.com"), //
+				new ForumEntry("Arni", "Hasta la vista, baby", "arni@gmx.de"), //
+				new ForumEntry("Duke Nukem", "It's time to kick ass and chew bubble gum. And I'm all out of gum.", "duke.nukem@tu-dresden.de"), //
+				new ForumEntry("Gump1337",
+						"Mama always said life was like a box of chocolates. You never know what you're gonna get.", "gump1337@outlook.live")) //
+				.forEach(customerManagement::createComment);
 	}
 }
 
