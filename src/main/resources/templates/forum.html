@@ -1,0 +1,72 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<!--    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/resources/js/guestbook.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}" />-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device - width, initial - scale = 1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>🍀 Mach Dein Glück!! 🍀</title>
+    <link th:href="@{resources/css/style_statistic.css}" rel="stylesheet" href="../static/resources/css/style_statistic.css">
+</head>
+<body class="backgrounds">
+<nav th:include="navigation :: navigation" class="navcontainer"></nav>
+
+<h3 th:text="#{forum.title}">Forum</h3>
+
+<!--<div class="checkbox text-center">
+    <input type="checkbox" id="use_ajax" />
+    <label for="use_ajax" th:text="#{guestbook.useajax}">Ajax nutzen</label>
+</div>-->
+<div>
+    <main class="box-seven">
+        <div id="entries">
+            <div th:each="entry, it : ${entries}" th:with="index = ${it.count}">
+                <div th:fragment="entry" th:id="entry+${entry.id}">
+                    <div>
+                        <form sec:authorize="hasRole('ADMIN')" th:method="delete" th:action="@{/forum/{id}(id=${entry.id})}" th:attr="data-entry-id=${entry.id}">
+                            <button th:title="#{forum.form.delete}"></button>
+                        </form>
+                        <h4 th:text="${index} + '. ' + ${entry.name}">1. Posting</h4>
+                    </div>
+                    <div>
+                        <blockquote th:text="${entry.text}"></blockquote>
+                    </div>
+                    <div>
+                        <a th:text="${entry.email}"></a>
+                    </div>
+                    <div>
+                        <a style="color: white" th:text="${#temporals.format(entry.date, 'dd. MMMM yyyy - HH:mm')}">Datum</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <form method="post" role="form" id="form" th:action="@{/forum}" th:object="${form}">
+            <div>
+                <label for="name" th:text="#{forum.form.name}">Name</label><br />
+                <input type="text" th:field="*{name}" th:errorclass="is-invalid" required="required" />
+                <div th:if="${#fields.hasErrors('name')}" th:text="#{forum.form.name.required}">Please provide a name.</div>
+            </div>
+            <div>
+                <label for="text" th:text="#{forum.form.text}">Text</label><br />
+                <textarea th:field="*{text}" th:errorclass="is-invalid" required="required"></textarea>
+                <div th:if="${#fields.hasErrors('text')}" th:text="#{forum.form.text.required}">Please provide a text.</div>
+            </div>
+            <div>
+                <label for="email" th:text="#{forum.form.email}">Email</label><br />
+                <input type="email" th:field="*{email}" th:errorclass="is-invalid" required="required" />
+                <div th:if="${#fields.hasErrors('email')}" th:text="#{forum.form.email.required}">Please provide a email.</div>
+            </div>
+            <input type="submit" th:value="#{forum.form.submit}" value="Senden" />
+        </form>
+
+    </main>
+</div>
+</body>
+</html>

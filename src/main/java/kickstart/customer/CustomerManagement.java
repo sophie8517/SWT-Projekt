@@ -1,5 +1,7 @@
 package kickstart.customer;
 
+import kickstart.forum.ForumEntry;
+import kickstart.forum.ForumRepository;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.*;
 import org.springframework.data.util.Streamable;
@@ -20,11 +22,13 @@ public class CustomerManagement {
 	private GroupRepository groups;
 	private CustomerRepository customers;
 	private UserAccountManagement userAccounts;
+	private ForumRepository comments;
 
 
-	public CustomerManagement(CustomerRepository customers, GroupRepository groups, UserAccountManagement userAccounts){
+	public CustomerManagement(CustomerRepository customers, GroupRepository groups, ForumRepository comments,UserAccountManagement userAccounts){
 		this.customers = customers;
 		this.groups = groups;
+		this.comments = comments;
 		this.userAccounts = userAccounts;
 	}
 
@@ -93,6 +97,10 @@ public class CustomerManagement {
 
 	public void charge(Money money,  Customer customer){
 		customer.setBalance(customer.getBalance().add(money));
+	}
+
+	public ForumEntry createComment(ForumEntry forumEntry) {
+		return comments.save(forumEntry);
 	}
 
 	public Customer findByCustomerId(long customerId){
