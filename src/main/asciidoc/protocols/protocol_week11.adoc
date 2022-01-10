@@ -1,26 +1,37 @@
-= Protokoll Gruppe XX
+= Protokoll Gruppe 09
 
 
-Treffen am XX.XX.20XX
+Treffen am 10.01.2022
 
-Ort:      Ort des Treffens +
-Beginn:   xx:xx Uhr +
-Ende:     xx:xx Uhr
+Ort:      Discord
+Beginn:   14:50 Uhr 
+Ende:     15:25 Uhr
 
-__Schriftführer:__
+__Schriftführer:__ Sophie Schulze
 
 *Nächstes Treffen:* +
-XX.XX.20XX, xx:xx Uhr, Ort des nächsten Treffens
+17.01.2022, 14:50 Uhr, Discord
 
 __Teilnehmer:__
 //Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
 
-- Teilnehmer 1
-- Teilnehmer 2
-- ...
+- Andre Schmidt (Kunde)
+- Yu-Ju Chen
+- Song Bai
+- Yutian Lei
+- Mirek Král
+- Sophie Schulze
 
 == Bemerkungen
-Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+
+Entscheidung des Kundenwunsches:
+
+* Forum mit den Funktionalitäten:
+** Fragen stellen bzw. beantworten
+** neues Thema eröffnen
+** Privatchat mit Feature "Geld schicken"
+** Beiträge liken
+** Informationen zum Beitrag: Verfasser, Datum
 
 == Retrospektive des letzten Sprints
 *Issue referenziert die Issue ID von GitHub*
@@ -30,13 +41,35 @@ Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entsch
 [option="headers"]
 |===
 |Issue |Aufgabe |Status |Bemerkung
-|…     |…       |…      |…
+|11    
+|Klassendiagramme erweitern      
+|in Arbeit     
+|-
+
+|14    
+|Testfälle      
+|in Arbeit      
+|Test für Auszahlung der Gruppenwette hinzugefügt
+
+|15
+|Cross-Testing Feedback
+|fertig ausgefüllt
+|-
+
+|16
+|Auswahl von Kann-Kriterien
+|fertig
+a|
+* ausgewählte Kann-Kriterien:
+** Passwort ändern
+** Konto löschen
 |===
 
 
 == Aktueller Stand
-Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
-Dokumenten.
+
+* Anwendung erfüllt die Muss-Kriterien
+* erfüllte Kann-Kriterien: Passwort ändern, Konto löschen
 
 == Planung des nächsten Sprints
 *Issue referenziert die Issue ID von GitHub*
@@ -45,5 +78,66 @@ Dokumenten.
 [option="headers"]
 |===
 |Issue |Titel |Beschreibung |Verantwortlicher |Status
-|…     |…     |…            |…                |…
+|11     
+|Klassendiagramme erweitern     
+|Klassendiagramme an Änderungen im Code anpassen            
+a|
+* Order: Yuju
+* Kunde: Mirek, Song
+* Statistik: Yutian
+* Katalog: Sophie
+* Lotterieergebnis: Sophie
+|noch nicht angepasst an aktuellen Stand des Codes
+
+|14     
+|Testfälle     
+|Tests implementieren für hinzukommende Features und evtl. vorhandene Tests erweitern          
+a|
+* Kunde: Mirek, Song
+* Order: Yuju, Sophie
+* Statistik: Yutian
+* Katalog: Yuju, Sophie
+* Lotterieergebnis: Yuju, Sophie
+|in Arbeit
+
+|17
+|Fehlerbehandlung Cross-Testing Feedback
+|Die Fehler, die von unser "Feedback-Gruppe" gefunden wurden, korrigieren
+|alle, jeder für seine Komponente
+|in Arbeit
+
+|18
+|Textüberarbeitung
+|Die Texte, die auf der Webseite angezeigt werden, bzgl. Inkonsistenten der Schreibweise und Sprache sowie die Fehlermeldungen überarbeiten.
+|alle
+|in Arbeit
+
+|19
+|Forum implementieren
+|Das Forum mit den unter Bemerkungen aufgezählten Features implementieren.
+|alle
+|in Arbeit
+
+|20
+|Sequenzdiagramme aktualisieren
+|Die Sequenzdiagramme in developer_documentation auf den neuesten Stand bringen.
+a|
+* Order: Yuju
+* Kunde: Song
+* Lotterie: Mirek
+* Statistik: Yutian
+* Katalog: Sophie
+* Lotterieergebnis: Sophie
+|in Arbeit
+
+|21
+|test_plan aktualisieren
+|Das Dokument test_plan an die geschriebenen Tests anpassen und dementsprechend erweitern.
+a|
+* Kunde: Mirek, Song
+* Statistik: Yutian
+* Order: Yuju
+* Katalog: Sophie
+* Lotterieergebnis: Yuju, Sophie
+|in Arbeit
 |===
