@@ -5,6 +5,10 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import kickstart.customer.CustomerManagement;
+import org.salespointframework.useraccount.Role;
+import org.salespointframework.useraccount.UserAccount;
+import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,12 +30,17 @@ class ForumController {
 	// A special header sent with each AJAX request
 	private static final String IS_AJAX_HEADER = "X-Requested-With=XMLHttpRequest";
 
-	private final ForumRepository forum;
 
-	ForumController(ForumRepository forum) {
+	private final ForumManagement forumManagement;
+	private final CustomerManagement customerManagement;
 
-		Assert.notNull(forum, "Forum must not be null!");
-		this.forum = forum;
+	ForumController(ForumManagement forumManagement, CustomerManagement customerManagement) {
+
+		Assert.notNull(forumManagement, "ForumManagement must not be null!");
+		Assert.notNull(customerManagement, "CustomerManagement must not be null!");
+
+		this.forumManagement = forumManagement;
+		this.customerManagement = customerManagement;
 	}
 
 	/**
@@ -49,10 +58,16 @@ class ForumController {
 
 	//TODO:link
 	@GetMapping("/forum")
-	String guestBook(Model model, @ModelAttribute(binding = false) ForumForm form) {
+	String comment(Model model, @ModelAttribute(binding = false) ForumForm form, @LoggedIn Optional<UserAccount> userAccount) {
 
-		model.addAttribute("entries", forum.findAll());
+		model.addAttribute("entries", forumManagement.findAll());
 		model.addAttribute("form", form);
+
+		if(userAccount.get().hasRole(Role.of("ADMIN"))) return "forum";
+
+		var customer = customerManagement.findByUserAccount(userAccount.get());
+		model.addAttribute("name", customer.toString());
+		model.addAttribute("email", customer.getUserAccount().getEmail());
 
 		return "forum";
 	}
@@ -60,27 +75,35 @@ class ForumController {
 
 	//TODO:LINK
 	@PostMapping("/forum")
-	String addEntry(@Valid @ModelAttribute("form") ForumForm form, Errors errors, Model model) {
+	@PreAuthorize("hasRole('CUSTOMER')")
+	String addEntry(@Valid @ModelAttribute("form") ForumForm form, Errors errors, Model model, @LoggedIn Optional<UserAccount> userAccount) {
+
+		var customer = customerManagement.findByUserAccount(userAccount.get());
+
 
 		if (errors.hasErrors()) {
-			return guestBook(model, form);
+			System.out.println("comment has errors");
+			return comment(model, form, userAccount);
 		}
 
-		forum.save(form.toNewEntry());
+		//forum.save(form.toNewEntry());
+
+
+		model.addAttribute("entry", forumManagement.createComment(form.toNewEntry()));
+		model.addAttribute("index", forumManagement.count());
 
 		return "redirect:/forum";
 	}
 
 
-	//TODO:LINK
+/*	//TODO:LINK
 	@PostMapping(path = "/forum", headers = IS_AJAX_HEADER)
 	String addEntry(@Valid ForumForm form, Model model) {
 
-		model.addAttribute("entry", forum.save(form.toNewEntry()));
-		model.addAttribute("index", forum.count());
+
 
 		return "forum :: entry";
-	}
+	}*/
 
 
 	//TODO:LINK
@@ -90,7 +113,7 @@ class ForumController {
 
 		return entry.map(it -> {
 
-			forum.delete(it);
+			forumManagement.delete(it);
 			return "redirect:/forum";
 
 		}).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -104,7 +127,7 @@ class ForumController {
 
 		return entry.map(it -> {
 
-			forum.delete(it);
+			forumManagement.delete(it);
 			return ResponseEntity.ok().build();
 
 		}).orElseGet(() -> ResponseEntity.notFound().build());

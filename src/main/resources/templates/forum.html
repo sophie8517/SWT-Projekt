@@ -47,22 +47,24 @@
         </div>
 
 
-        <form method="post" role="form" id="form" th:action="@{/forum}" th:object="${form}">
-            <div>
+        <form method="post" role="form" id="form" th:action="@{/forum}" th:object="${form}" sec:authorize="hasRole('CUSTOMER')">
+<!--            <div>
                 <label for="name" th:text="#{forum.form.name}">Name</label><br />
                 <input type="text" th:field="*{name}" th:errorclass="is-invalid" required="required" />
                 <div th:if="${#fields.hasErrors('name')}" th:text="#{forum.form.name.required}">Please provide a name.</div>
-            </div>
+            </div>-->
+            <input id="name" name="name" type="hidden" th:value="${name}" />
             <div>
                 <label for="text" th:text="#{forum.form.text}">Text</label><br />
                 <textarea th:field="*{text}" th:errorclass="is-invalid" required="required"></textarea>
                 <div th:if="${#fields.hasErrors('text')}" th:text="#{forum.form.text.required}">Please provide a text.</div>
             </div>
-            <div>
+            <input id="email" name="email" type="hidden" th:value="${email}" />
+<!--            <div>
                 <label for="email" th:text="#{forum.form.email}">Email</label><br />
                 <input type="email" th:field="*{email}" th:errorclass="is-invalid" required="required" />
                 <div th:if="${#fields.hasErrors('email')}" th:text="#{forum.form.email.required}">Please provide a email.</div>
-            </div>
+            </div>-->
             <input type="submit" th:value="#{forum.form.submit}" value="Senden" />
         </form>
 
