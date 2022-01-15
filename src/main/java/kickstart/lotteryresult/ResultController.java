@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -52,6 +53,7 @@ public class ResultController {
 			}
 			NumberLottery numlot = new NumberLottery();
 			List<Integer> gewinnzahlen = numlot.generate_nums();
+			Collections.sort(gewinnzahlen);
 			int zusatzzahl = numlot.generateAdditionalNumber();
 
 			evaluateNum(t,today, gewinnzahlen,zusatzzahl);

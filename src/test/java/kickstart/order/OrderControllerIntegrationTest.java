@@ -298,17 +298,10 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 	@Test
 	@WithMockUser(username = "test", roles = "CUSTOMER")
 	public void ChangeNumBetTipTestWrongInput(){
-		Set<Integer> checker = new HashSet<>();
-		checker.add(1);
-		checker.add(2);
-		checker.add(3);
-		checker.add(4);
-		checker.add(5);
-		checker.add(6);
-		if(checker.size() != 6){
-			String returnView = orderController.changeNumbetTip(tid2, nb2_id, 2, 3, 4, 5, 6, 7, 0);
+
+			String returnView = orderController.changeNumbetTip(tid2, nb2_id, 2, 2, 4, 5, 6, 7, 0);
 			assertThat(returnView).isEqualTo("wronginput.html");
-		}
+
 	}
 
 	@Test

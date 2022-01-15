@@ -186,6 +186,7 @@ public class CatalogController {
 
 		if (checker.size() == 6 ) {
 			nums.addAll(checker);
+			Collections.sort(nums);
 
 		} else {
 
@@ -215,13 +216,13 @@ public class CatalogController {
 
 			t.addBet(nb);
 			lotteryCatalog.save(t);
-			NumberBet sophie = new NumberBet(t,LocalDateTime.of(2022,1,8,17,15),Money.of(12,EURO),c,LocalDateTime.of(2022,1,15,17,15),nums,9);
-			t.addBet(sophie);
+			//NumberBet sophie = new NumberBet(t,LocalDateTime.of(2022,1,8,17,15),Money.of(12,EURO),c,LocalDateTime.of(2022,1,15,17,15),nums,9);
+			//t.addBet(sophie);
 
-			lotteryCatalog.save(t);
-			System.out.println(t.getNumberBits());
+			//lotteryCatalog.save(t);
+			//System.out.println(t.getNumberBits());
 			//customerRepository.save(c);
-			System.out.println(t.getNumberBits());
+			//System.out.println(t.getNumberBits());
 
 			return "redirect:/";
 		}

@@ -233,6 +233,7 @@ public class OrderController {
 
 				if(checker.size() == 6 ){
 					nums.addAll(checker);
+					Collections.sort(nums);
 
 				} else{
 
