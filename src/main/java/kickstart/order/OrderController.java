@@ -70,9 +70,12 @@ public class OrderController {
 
 	@PostMapping("/raiseFootBet")
 	public String raiseFootBet(@RequestParam("pid") ProductIdentifier id,
-							   @RequestParam("betid")String bet_id, @RequestParam("newinsetfoot")double inset){
+							   @RequestParam("betid")String bet_id, @RequestParam("newinsetfoot")double inset,
+							   @LoggedIn Optional<UserAccount> userAccount){
 
 		LocalDateTime date = LocalDateTime.now();
+
+		Customer customer = customerRepository.findCustomerByUserAccount(userAccount.get());
 
 
 		Money money = Money.of(inset, EURO);
@@ -83,7 +86,7 @@ public class OrderController {
 
 		if(bet != null) {
 			if(date.isBefore(f.getTimeLimit().minusMinutes(5))) {
-				var customer = bet.getCustomer();
+
 				Money diff = money.subtract(bet.getInset());
 				if(customer.getBalance().isGreaterThanOrEqualTo(diff)){
 					customer.setBalance(customer.getBalance().add(bet.getInset()));
@@ -279,13 +282,15 @@ public class OrderController {
 	}
 
 	@PostMapping("/removeFootballBets")
-	public String removeFootballBets(@RequestParam("itemid")ProductIdentifier id, @RequestParam("betid")String bid){
+	public String removeFootballBets(@RequestParam("itemid")ProductIdentifier id, @RequestParam("betid")String bid,@LoggedIn Optional<UserAccount> userAccount){
 
 		LocalDateTime date = LocalDateTime.now();
 		Football football = (Football) lotteryCatalog.findById(id).get();
 		FootballBet footballBetRemove = football.findbyBetId(bid);
 		LocalDateTime time = football.getTimeLimit().minusMinutes(5);
-		Customer customer = footballBetRemove.getCustomer();
+		//the Customer who is deleting the bet, gets the money back if he/she does it before the match
+		Customer customer = customerRepository.findCustomerByUserAccount(userAccount.get());
+
 		if (date.isBefore(time) || !football.getErgebnis().equals(Ergebnis.LEER)){
 
 			if(footballBetRemove.getStatus().equals(Status.OPEN)){
