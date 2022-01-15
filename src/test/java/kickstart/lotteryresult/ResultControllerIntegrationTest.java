@@ -127,7 +127,7 @@ public class ResultControllerIntegrationTest extends AbstractIntegrationTest {
 	@Test
 	@WithMockUser(username = "admin", roles = "ADMIN")
 	public void CheckStatusLOSS(){
-		String returnView = resultController.evalFootballBets(fid,1);
+		String returnView = resultController.evalFootballBets(fid,2);
 		assertThat(fb.getStatus()).isEqualTo(Status.LOSS);
 		assertThat(f.getErgebnis()).isEqualTo(Ergebnis.GASTSIEG);
 	}

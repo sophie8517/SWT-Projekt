@@ -250,9 +250,9 @@ public class CatalogController {
 			Ergebnis  status;
 
 			if(number == 1){
-				status = Ergebnis.GASTSIEG;
-			} else if(number == 2){
 				status = Ergebnis.HEIMSIEG;
+			} else if(number == 2){
+				status = Ergebnis.GASTSIEG;
 			} else{
 				status = Ergebnis.UNENTSCHIEDEN;
 			}
@@ -285,9 +285,9 @@ public class CatalogController {
 		Ergebnis  status;
 
 		if(number == 1){
-			status = Ergebnis.GASTSIEG;
-		} else if(number == 2){
 			status = Ergebnis.HEIMSIEG;
+		} else if(number == 2){
+			status = Ergebnis.GASTSIEG;
 		} else{
 			status = Ergebnis.UNENTSCHIEDEN;
 		}

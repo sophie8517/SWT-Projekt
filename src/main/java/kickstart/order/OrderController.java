@@ -128,9 +128,9 @@ public class OrderController {
 		Ergebnis  status;
 
 		if(number == 1){
-			status = Ergebnis.GASTSIEG;
-		} else if(number == 2){
 			status = Ergebnis.HEIMSIEG;
+		} else if(number == 2){
+			status = Ergebnis.GASTSIEG;
 		} else{
 			status = Ergebnis.UNENTSCHIEDEN;
 		}

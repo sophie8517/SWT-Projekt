@@ -156,9 +156,9 @@ public class ResultController {
 
 			Ergebnis erg;
 			switch (number){
-				case 1:erg = Ergebnis.GASTSIEG;
+				case 1:erg = Ergebnis.HEIMSIEG;
 				break;
-				case 2:erg = Ergebnis.HEIMSIEG;
+				case 2:erg = Ergebnis.GASTSIEG;
 				break;
 				case 3:erg = Ergebnis.UNENTSCHIEDEN;
 				break;

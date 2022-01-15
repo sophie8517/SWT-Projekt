@@ -77,7 +77,7 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 		fb3_id = fb3.getIdstring();
 		lotteryCatalog.save(f3);
 
-		f4 = new Football("ghi",LocalDateTime.now().minusMinutes(90),Money.of(12,EURO), Item.ItemType.FOOTBALL,new Team("winner"),new Team("loser"),"1. liga","imgw","imgl");
+		f4 = new Football("ghi2",LocalDateTime.now().minusMinutes(90),Money.of(12,EURO), Item.ItemType.FOOTBALL,new Team("winner"),new Team("loser"),"1. liga","imgw","imgl");
 		fb4 = new FootballBet(f4,LocalDateTime.now().minusDays(3),Money.of(14,EURO),c,f4.getTimeLimit(),Ergebnis.UNENTSCHIEDEN);
 		f4.addBet(fb4);
 		f4id = f4.getId();
@@ -183,7 +183,7 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 	public void ChangeFootBetTipTestSuccess(){
 		String returnView = orderController.changeFootbetTip(f2id,fb2_id,2);
 		assertThat(returnView).isEqualTo("redirect:/customer_bets");
-		assertThat(fb2.getTip()).isEqualTo(Ergebnis.HEIMSIEG);
+		assertThat(fb2.getTip()).isEqualTo(Ergebnis.GASTSIEG);
 
 	}
 
