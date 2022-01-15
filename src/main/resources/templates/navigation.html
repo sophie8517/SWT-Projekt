@@ -19,14 +19,14 @@
     <!--<a class="item" href="register.html" th:href="@{/register}" th:text="#{nav.register}">Registrierung</a>
     <a href="#">ANMELDEN</a>-->
     <a  href="register.html" th:href="@{/register}" sec:authorize="!hasAnyRole('ADMIN', 'CUSTOMER')" th:text="#{nav.register}">REGISTRIERUNG</a>
-    <a  th:href="@{/login}" sec:authorize="!isAuthenticated()" th:text="#{nav.login}">LOGIN</a>
+    <a  th:href="@{/login}" sec:authorize="!isAuthenticated()" th:text="#{nav.login}">ANMELDEN</a>
     <!--<form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
         <button type="submit" class="ui button" th:text="#{nav.logout}">Logout</button>
     </form>-->
     <a  href="customer_bets.html" th:href="@{/customer_bets}" sec:authorize="hasRole('CUSTOMER')" th:text="#{nav.wetten}">WETTEN</a>
     <a  href="statistic.html" th:href="@{/statistic}" sec:authorize="hasRole('ADMIN')" th:text="#{nav.statistic}">STATISTIK</a>
     <a  href="group.html" th:href="@{/group}" sec:authorize="hasRole('CUSTOMER')" th:text="#{nav.group}">GEWINNGEMEINSCHAFT</a>
-    <a th:href="@{/logout}" sec:authorize="isAuthenticated()" th:text="#{nav.logout}" >Logout</a>
+    <a th:href="@{/logout}" sec:authorize="isAuthenticated()" th:text="#{nav.logout}" >ABMELDEN</a>
 
 </nav>
 

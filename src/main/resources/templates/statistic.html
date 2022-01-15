@@ -18,7 +18,7 @@
 <div class="container_statistic">
   <main class="box-seven">
 
-    <h3>Statistic</h3>
+    <h3>Statistik</h3>
 
     <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center" style="margin: auto; border-color: white">
       <thead>
@@ -38,7 +38,7 @@
         <td>
           <form sec:authorize="hasRole('ADMIN')" class="ui form" method="get" th:action="@{/statistic_bets}">
             <input type="hidden" name="id" th:value="${customer.getId()}">
-            <button type="submit" class="ui button" th:text="#{statistic.bet}">Bet</button>
+            <button type="submit" class="ui button" th:text="#{statistic.bet}">Wette</button>
           </form>
         </td>
       </tr>

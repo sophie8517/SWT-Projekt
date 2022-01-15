@@ -25,9 +25,9 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Password</th>
-                    <th>Leader</th>
-                    <th>Members</th>
+                    <th>Passwort</th>
+                    <th>Leiter</th>
+                    <th>Mitglieder</th>
                 </tr>
             </thead>
             <tr th:each="group : ${groups}">
@@ -37,7 +37,7 @@
                 <td>
                     <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{group_members}">
                         <input type="hidden" name="name" th:value="${group.groupName}">
-                        <button type="submit" class="ui button"> Mitglieder zeigen</button>
+                        <button type="submit" class="ui button"> Mitglieder anzeigen</button>
                     </form>
                 </td>
             </tr>
@@ -56,7 +56,7 @@
                 <a  href="group_create.html" th:href="@{/group_create}" sec:authorize="hasRole('CUSTOMER')" style="text-decoration: none">Gruppe erstellen</a>
                 <br>
                 <br>
-                <a  href="group_join.html" th:href="@{/group_join}" sec:authorize="hasRole('CUSTOMER')" style="text-decoration: none">Gruppe betretten</a>
+                <a  href="group_join.html" th:href="@{/group_join}" sec:authorize="hasRole('CUSTOMER')" style="text-decoration: none">Gruppe betreten</a>
 <!--                <div class="column">-->
 <!--                    <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/group_join}">-->
 <!--                        <button type="submit" class="ui button" th:text="#{group.join}">join</button>-->
