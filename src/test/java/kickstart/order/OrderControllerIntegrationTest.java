@@ -209,7 +209,7 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 	@Test
 	@WithMockUser(username = "test", roles = "CUSTOMER")
 	public void RemoveFootballBetsTestStatusSuccess(){
-		fb2.changeStatus(Status.LOSS);
+		fb2.changeStatus(Status.VERLOREN);
 		String returnView = orderController.removeFootballBets(f2id,fb2_id, Optional.of(ua));
 		assertThat(returnView).isEqualTo("redirect:/customer_bets");
 		assertThat(c.getBalance()).isEqualTo(balance);
@@ -323,7 +323,7 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 	@Test
 	@WithMockUser(username = "test", roles = "CUSTOMER")
 	public void RemoveNumberBetsTestStatusSuccess(){
-		nb2.changeStatus(Status.LOSS);
+		nb2.changeStatus(Status.VERLOREN);
 		String returnView = orderController.removeNumberBets(tid2,nb2_id);
 		assertThat(returnView).isEqualTo("redirect:/customer_bets");
 		assertThat(c.getBalance()).isEqualTo(balance);

@@ -79,12 +79,12 @@ public class CustomerController{
 		if (result.hasErrors()) {
 			System.out.println(form.getEmail());
 			System.out.println("Errors");
-			redirAttrs.addFlashAttribute("message", "Your password is invalid, please check the conditions again");
+			redirAttrs.addFlashAttribute("message", "Ihr Passwort ist invalid, bitte prüfen Sie noch einmal die Kriterien.");
 			return "redirect:/changePassword";
 		}
 		else if(!form.check()){
 			System.out.println("pwd incorrect");
-			redirAttrs.addFlashAttribute("message", "Passwords do not match.");
+			redirAttrs.addFlashAttribute("message", "Die Passwörter sind nicht gleich!");
 			return "redirect:/changePassword";
 		}
 
@@ -128,7 +128,7 @@ public class CustomerController{
 	public String charge(@RequestParam("money") double money, @LoggedIn Optional<UserAccount> userAccount,
 						 RedirectAttributes redir){
 		if (Money.of(money, EURO).isLessThanOrEqualTo(Money.of(0, EURO))) {
-			redir.addFlashAttribute("message", "Invalid number");
+			redir.addFlashAttribute("message", "Invalide Zahl");
 			return "redirect:/balance";
 		}
 
@@ -155,7 +155,7 @@ public class CustomerController{
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 
 		if (!group.contains(customer)) {
-			redir.addFlashAttribute("message", "Customer doesn't exist!");
+			redir.addFlashAttribute("message", "Dieser Nutzer existiert nicht!");
 			return "redirect:/group";
 		}
 
@@ -203,19 +203,19 @@ public class CustomerController{
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 		var group = customerManagement.findByGroupName(name);
 		if(group == null) {
-			redir.addFlashAttribute("message", "Group doesn't exist!");
+			redir.addFlashAttribute("message", "Diese Gruppe existiert nicht!");
 			return "redirect:/group_join";
 		}
 		System.out.println(group);
 
 		System.out.println(group.getPassword() + " and " + password);
 		if(!group.getPassword().equals(password)){
-			redir.addFlashAttribute("message", "Password doesn't match!");
+			redir.addFlashAttribute("message", "Die Passwörter sind nicht gleich!");
 			return "redirect:/group_join";
 		}
 
 		if(group.contains(customer)) {
-			redir.addFlashAttribute("message", "Customer is already in the Group!");
+			redir.addFlashAttribute("message", "Dieser Nutzer ist bereist Mitgleid der Gruppe!");
 			return "redirect:/group_join";
 		}
 
@@ -236,7 +236,7 @@ public class CustomerController{
 		Assert.notNull(groupName, "groupName must not be null!");
 
 		if (customerManagement.findByGroupName(groupName) != null) {
-			redir.addFlashAttribute("message", "Group name already exists, please give an another name");
+			redir.addFlashAttribute("message", "Der Gruppenname ist vergeben, bitte wählen Sie einen anderen!");
 			return "redirect:/group_create";
 		}
 

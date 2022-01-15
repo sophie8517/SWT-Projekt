@@ -18,7 +18,7 @@ public class RegistrationForm {
 	private final String lastname;
 
 	@NotEmpty(message = "{RegistrationForm.email.NotEmpty}")
-	@Email(message = "Email form invalid, please check your e-mail address.")
+	@Email(message = "Dies ist keine valide E-Mail-Adresse, bitte prüfen Sie noch einmal die Form.")
 	private final String email;
 
 	@NotEmpty(message = "{RegistrationForm.password.NotEmpty}") //
