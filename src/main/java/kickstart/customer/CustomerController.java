@@ -38,6 +38,7 @@ public class CustomerController{
 		System.out.println("passwort2:"+ form.getPasswordCheck());
 		System.out.println(result.hasErrors());
 		System.out.println(form.check());
+		System.out.println(form.getFirstname());
 
 		if (result.hasErrors()) {
 			return "register";
@@ -47,7 +48,7 @@ public class CustomerController{
 		}
 
 		if(customerManagement.findByEmail(form.getEmail()).isPresent()){
-			redirAttrs.addFlashAttribute("message", "E-mail address does already exist!");
+			redirAttrs.addFlashAttribute("message", "Diese E-mail Adresse ist bereits vergeben!");
 			return "redirect:/register";
 		}
 
