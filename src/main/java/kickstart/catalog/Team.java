@@ -7,7 +7,7 @@ public class Team {
 	private @Id @GeneratedValue long id;
 
 	@Transient
-	private Status status = Status.OPEN;
+	private Status status = Status.OFFEN;
 	private String name;
 	private int score;
 

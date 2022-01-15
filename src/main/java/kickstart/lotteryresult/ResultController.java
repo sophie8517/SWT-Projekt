@@ -74,7 +74,7 @@ public class ResultController {
 					result.add(nb);
 				}
 			}else{
-				nb.changeStatus(Status.EXPIRED);
+				nb.changeStatus(Status.ABGELAUFEN);
 			}
 		}
 		lotteryCatalog.save(t);
@@ -104,14 +104,14 @@ public class ResultController {
 		for (NumberBet nb : wetten_valid) {
 
 			if (compareNumbers(nb.getNumbers(),gewinnzahlen) && nb.getAdditionalNum() == zusatzzahl) {
-				nb.changeStatus(Status.WIN);
+				nb.changeStatus(Status.GEWONNEN);
 
 				Customer c = nb.getCustomer();
 				Money bal = c.getBalance().add(nb.getInset());
 				c.setBalance(bal);
 				customerRepository.save(c);
 			} else {
-				nb.changeStatus(Status.LOSS);
+				nb.changeStatus(Status.VERLOREN);
 			}
 		}
 
@@ -128,16 +128,16 @@ public class ResultController {
 	public void changeStatusSingleBet(Football f, FootballBet fb, Ergebnis erg){
 		if(!fb.getExpiration().isBefore(f.getTimeLimit())){
 			if(fb.getTip().equals(erg)){
-				fb.changeStatus(Status.WIN);
+				fb.changeStatus(Status.GEWONNEN);
 				Customer c = fb.getCustomer();
 				Money bal = c.getBalance().add(fb.getInset());
 				c.setBalance(bal);
 				customerRepository.save(c);
 			} else{
-				fb.changeStatus(Status.LOSS);
+				fb.changeStatus(Status.VERLOREN);
 			}
 		} else{
-			fb.changeStatus(Status.EXPIRED);
+			fb.changeStatus(Status.ABGELAUFEN);
 
 		}
 		lotteryCatalog.save(f);
@@ -189,7 +189,7 @@ public class ResultController {
 			Group gruppe = customerManagement.findByGroupName(fb.getGroupName());
 			Set<Customer> customers = gruppe.getMembers();
 			if(fb.getTip().equals(erg)){
-				fb.changeStatus(Status.WIN);
+				fb.changeStatus(Status.GEWONNEN);
 
 				double value = fb.getEinsatz2()/customers.size();
 				value = Math.round((value * 100.0)/100.0);
@@ -201,10 +201,10 @@ public class ResultController {
 				}
 
 			} else{
-				fb.changeStatus(Status.LOSS);
+				fb.changeStatus(Status.VERLOREN);
 			}
 		}else{
-			fb.changeStatus(Status.EXPIRED);
+			fb.changeStatus(Status.ABGELAUFEN);
 
 		}
 		lotteryCatalog.save(f);

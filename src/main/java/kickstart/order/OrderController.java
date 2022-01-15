@@ -1,7 +1,6 @@
 package kickstart.order;
 import kickstart.catalog.*;
 
-import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -168,7 +167,7 @@ public class OrderController {
 			//man am Ziehungstag den Lottoschein ausgefüllt hat -> d.h. er ist für diese Ziehung noch nicht gültig
 
 			//Fall: wette ausgewertet aber für nächste ziehung nicht mehr gültig
-			if((bet.getStatus().equals(Status.WIN) || bet.getStatus().equals(Status.LOSS)) && bet.getExpiration().isBefore(t.getTimeLimit())){
+			if((bet.getStatus().equals(Status.GEWONNEN) || bet.getStatus().equals(Status.VERLOREN)) && bet.getExpiration().isBefore(t.getTimeLimit())){
 				//keine Änderung mehr möglich
 			}else if (date.isBefore(t.getTimeLimit().minusMinutes(5))
 					||t.getCheckEvaluation().contains(t.getTimeLimit().toLocalDate())
@@ -217,7 +216,7 @@ public class OrderController {
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 		NumberBet bet = t.findbyBetId(bet_id);
 		if(bet != null) {
-			if((bet.getStatus().equals(Status.WIN) || bet.getStatus().equals(Status.LOSS)) && bet.getExpiration().isBefore(t.getTimeLimit())){
+			if((bet.getStatus().equals(Status.GEWONNEN) || bet.getStatus().equals(Status.VERLOREN)) && bet.getExpiration().isBefore(t.getTimeLimit())){
 				//keine Änderung mehr möglich
 			}else if (date.isBefore(t.getTimeLimit().minusMinutes(5))
 					||t.getCheckEvaluation().contains(t.getTimeLimit().toLocalDate())
@@ -265,7 +264,7 @@ public class OrderController {
 				||t.getCheckEvaluation().contains(time.toLocalDate())
 				|| numberBetRemove.getDate().toLocalDate().isEqual(time.toLocalDate())){
 
-			if(numberBetRemove.getStatus().equals(Status.OPEN)){
+			if(numberBetRemove.getStatus().equals(Status.OFFEN)){
 				Money oldbalance = customer.getBalance();
 				Money newbalance =oldbalance.add(numberBetRemove.getInset());
 				customer.setBalance(newbalance);
@@ -293,7 +292,7 @@ public class OrderController {
 
 		if (date.isBefore(time) || !football.getErgebnis().equals(Ergebnis.LEER)){
 
-			if(footballBetRemove.getStatus().equals(Status.OPEN)){
+			if(footballBetRemove.getStatus().equals(Status.OFFEN)){
 				Money oldbalance = customer.getBalance();
 				Money newbalance =oldbalance.add(footballBetRemove.getInset());
 				customer.setBalance(newbalance);
@@ -342,7 +341,7 @@ public class OrderController {
 				}
 			}
 			for(NumberBet nb: t.getNumberBetsbyCustomer(customer)){
-				if(nb.getStatus()==Status.WIN){
+				if(nb.getStatus()==Status.GEWONNEN){
 					Money income = customer.getBalance().add(Money.of(t.getPrice2(),EURO));
 					customer.setBalance(income);
 				}
@@ -374,7 +373,7 @@ public class OrderController {
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 
 		if(checkBetStatus(customer)) {
-			redir.addFlashAttribute("message", "Es gibt Wetten, die nicht abgeschlossen sind");
+			redir.addFlashAttribute("message", "Es gibt noch Wetten, die nicht ausgewertet sind");
 			return "redirect:/accountDeactivate";
 		}
 
@@ -404,7 +403,7 @@ public class OrderController {
 		}
 
 		for(Bet bet: bets) {
-			if(bet.getStatus().equals(Status.OPEN)) {
+			if(bet.getStatus().equals(Status.OFFEN)) {
 				found = true;
 				break;
 			}
