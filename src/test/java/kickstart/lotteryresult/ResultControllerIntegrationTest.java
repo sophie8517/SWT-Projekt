@@ -169,7 +169,9 @@ public class ResultControllerIntegrationTest extends AbstractIntegrationTest {
 	public void EvalNumBetsTestNotPossible2(){
 		String returnedView = resultController.evalNumberBets(tid);
 		String returnedView2 = resultController.evalNumberBets(tid);
-		assertThat(returnedView2).isEqualTo("schon_ausgewertet");
+		//returnedView2 is not "schon_ausgewertet", because after evaluating the bets, the timeLimit of t is set
+		// to old_timeLimit + 7 days
+		assertThat(returnedView2).isEqualTo("keineZiehung");
 	}
 
 	@Test
