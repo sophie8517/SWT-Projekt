@@ -1,0 +1,128 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <!--    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/resources/js/guestbook.js}"></script>
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}" />-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device - width, initial - scale = 1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>🍀 Mach Dein Glück!! 🍀</title>
+    <link th:href="@{resources/css/style_statistic.css}" rel="stylesheet" href="../static/resources/css/style_statistic.css">
+</head>
+<body class="backgrounds">
+<nav th:include="navigation :: navigation" class="navcontainer"></nav>
+
+<!--<div class="checkbox text-center">
+    <input type="checkbox" id="use_ajax" />
+    <label for="use_ajax" th:text="#{guestbook.useajax}">Ajax nutzen</label>
+</div>-->
+
+
+<div class="container">
+    <main class="box-seven">
+        <h3 th:text="#{forum.title}">Forum</h3>
+        <h4>Übersicht</h4>
+        <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center" style="margin: auto; border-color: white">
+            <thead>
+            <tr>
+                <th>Thema</th>
+                <th>Antworten</th>
+                <th>Link</th>
+            </tr>
+            </thead>
+            <tr th:each="theme:${themes}">
+                <td th:text="${theme.getName()}"></td>
+                <td th:text="${theme.getCount()}"></td>
+                <td>
+                   <!--<form method="get" th:action="@{/forum/{theme}(theme=${theme.getId()})}" th:value="${theme}"
+                          sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/theme}">
+                        <button type="submit" class="ui button">Details</button>
+                   </form>-->
+                    <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/theme/id}">
+                        <input type="hidden" name="themeId" th:value="${theme.getId()}">
+                        <button type="submit" class="ui button">Details</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+    </main>
+</div>
+
+
+<div class="container">
+    <main class="box-seven">
+        <h3 th:text="#{forum.privateChat}"></h3>
+        <h4>Übersicht</h4>
+        <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center" style="margin: auto; border-color: white">
+            <thead>
+            <tr>
+                <th>Person</th>
+                <th>Antworten</th>
+                <th>Link</th>
+                <th>Geld absenden</th>
+            </tr>
+            </thead>
+            <tr th:each="theme:${themes}">
+                <td th:text="${theme.getName()}"></td>
+                <td th:text="${theme.getCount()}"></td>
+                <td>
+                    <!--<form method="get" th:action="@{/forum/{theme}(theme=${theme.getId()})}" th:value="${theme}"
+                           sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/theme}">
+                         <button type="submit" class="ui button">Details</button>
+                    </form>-->
+                    <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/theme/id}">
+                        <input type="hidden" name="themeId" th:value="${theme.getId()}">
+                        <button type="submit" class="ui button">Details</button>
+                    </form>
+                </td>
+                <td>
+                    <button th:href="sendMoney.html" th:action="sendMoney" type="submit" class="ui button">Geld absenden</button>
+                </td>
+            </tr>
+        </table>
+
+    </main>
+</div>
+
+<div class="container">
+    <main class="box-seven">
+        <h3 th:text="#{forum.groupChat}"></h3>
+        <h4>Übersicht</h4>
+        <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center" style="margin: auto; border-color: white">
+            <thead>
+            <tr>
+                <th>Gruppe</th>
+                <th>Antworten</th>
+                <th>Link</th>
+            </tr>
+            </thead>
+            <tr th:each="theme:${themes}">
+                <td th:text="${theme.getName()}"></td>
+                <td th:text="${theme.getCount()}"></td>
+                <td>
+                    <!--<form method="get" th:action="@{/forum/{theme}(theme=${theme.getId()})}" th:value="${theme}"
+                           sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/theme}">
+                         <button type="submit" class="ui button">Details</button>
+                    </form>-->
+                    <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/theme}">
+                        <input type="hidden" name="themeId" th:value="${theme.getId()}">
+                        <button type="submit" class="ui button">Details</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+    </main>
+
+    <footer>
+        <p>Mach Dein Glück!! ©Copyright 2021©</p>
+    </footer>
+</div>
+
+</body>
+</html>

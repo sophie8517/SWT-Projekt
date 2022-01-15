@@ -22,7 +22,7 @@
 <div class="container" >
     <main class="box-one">
         <h3 th:text="#{myProfile.title}">Mein Profil</h3>
-        <h2>Persönliche Daten</h2>
+        <h4>Persönliche Daten</h4>
         <table border = "5" cellpadding = "5" cellspacing = "0" align="left" class="table-meinProfil">
 ">
             <tr>
@@ -42,7 +42,7 @@
         <br>
         <br>
 
-        <h2>Mach Dein Glück!!</h2>
+        <h4>Mach Dein Glück!!</h4>
 
         <a href="customer_bets.html" th:href="@{/customer_bets}" sec:authorize="isAuthenticated()" style="text-decoration: none">Wetten anzeigen</a>
 
@@ -66,7 +66,7 @@
         <br>
         <br>
 
-        <h2>Einstellungen</h2>
+        <h4>Einstellungen</h4>
         <a href="changePassword.html" th:href="@{/changePassword}" sec:authorize="hasRole('CUSTOMER')" style="text-decoration: none">Passwort ändern</a>
 
 

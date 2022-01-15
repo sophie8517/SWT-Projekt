@@ -57,7 +57,7 @@ public class ResultControllerIntegrationTest extends AbstractIntegrationTest {
 	@BeforeEach
 	void setup(){
 		t = (Ticket) lotteryCatalog.findByType(Item.ItemType.TICKET).get(0);
-		gruppe = customerManagement.findByGroupName("groupA");
+		gruppe = customerManagement.findByGroupName("initGroup");
 		c = customerRepository.findAll().get().findFirst().get();
 		ctest = customerManagement.findByUserAccount(customerManagement.findByEmail("test@tu-dresden.de").get());
 		customerManagement.addMemberToGroup(ctest,gruppe,gruppe.getPassword());
@@ -72,7 +72,7 @@ public class ResultControllerIntegrationTest extends AbstractIntegrationTest {
 		fb = new FootballBet(f,LocalDateTime.now().minusDays(5),Money.of(15,EURO),c,f.getTimeLimit(),Ergebnis.UNENTSCHIEDEN);
 		f.addBet(fb);
 		fgroup = new FootballBet(f,LocalDateTime.now().minusDays(5),Money.of(16,EURO),c2,f.getTimeLimit(),Ergebnis.UNENTSCHIEDEN);
-		fgroup.setGroupName("groupA");
+		fgroup.setGroupName("initGroup");
 		f.addGroupBet(fgroup);
 
 		f2 = new Football("n2", now.plusMinutes(10), Money.of(10,EURO), Item.ItemType.FOOTBALL,new Team("t1"), new Team("t2"),"liga","i1","i2");
