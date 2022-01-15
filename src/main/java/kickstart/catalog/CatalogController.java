@@ -171,6 +171,7 @@ public class CatalogController {
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 		Customer c = customerRepository.findCustomerByUserAccount(userAccount.get());
 
+
 		Money money = c.getBalance();
 		Money price = Money.of(t.getPrice2(),EURO);
 
@@ -213,9 +214,14 @@ public class CatalogController {
 					LocalDateTime.of(exp, t.getTimeLimit().toLocalTime()), nums, zusatz);
 
 			t.addBet(nb);
+			lotteryCatalog.save(t);
+			NumberBet sophie = new NumberBet(t,LocalDateTime.of(2022,1,8,17,15),Money.of(12,EURO),c,LocalDateTime.of(2022,1,15,17,15),nums,9);
+			t.addBet(sophie);
 
 			lotteryCatalog.save(t);
+			System.out.println(t.getNumberBits());
 			//customerRepository.save(c);
+			System.out.println(t.getNumberBits());
 
 			return "redirect:/";
 		}

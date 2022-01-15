@@ -47,6 +47,14 @@
                             <td><br></td>
                         </tr>
                         <tr>
+                            <td>letzte Superzahl: </td>
+                            <td><div th:text="${ticket.additionalNumber}">liste</div></td>
+                        </tr>
+                        <tr>
+                            <td><br></td>
+                            <td><br></td>
+                        </tr>
+                        <tr>
                             <td>nächste Ziehung: </td>
                             <td><div th:text="${ticket.FormatDate}">datum</div></td>
                         </tr>
@@ -79,7 +87,7 @@
                  </table>
                 <br>
 
-                <form th:method="post"  th:action="@{/numbit}" style="font-size: 20px">
+                <form th:method="post" sec:authorize="hasRole('CUSTOMER')"  th:action="@{/numbit}" style="font-size: 20px">
                     <input type="hidden" name="pid" value="0" th:value="${ticket.id}"/>
                     <div class="ticket2">
                         <table>
@@ -123,7 +131,7 @@
 
                     <br>
                     </div>
-                <button sec:authorize="hasRole('CUSTOMER')" class="button" type="submit" th:text="#{ticket.addBet}" >Tippschein Abgeben</button>
+                <button  class="button" type="submit" th:text="#{ticket.addBet}" >Tippschein Abgeben</button>
 
                 </form>
                  <form th:method="post"  th:action="@{/evalnum}">

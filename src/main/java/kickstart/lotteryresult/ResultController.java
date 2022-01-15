@@ -81,6 +81,16 @@ public class ResultController {
 		return result;
 	}
 
+	public boolean compareNumbers(List<Integer> userzahlen, List<Integer> lottozahlen){
+
+		for(int i: userzahlen){
+			if(!lottozahlen.contains(i)){
+				return false;
+			}
+		}
+		return true;
+	}
+
 	@PreAuthorize("hasRole('ADMIN')")
 	public void evaluateNum(Ticket t, LocalDate today, List<Integer> gewinnzahlen, int zusatzzahl){
 
@@ -90,9 +100,12 @@ public class ResultController {
 
 		List<NumberBet> wetten_valid = validBets(t,today);
 
+
 		for (NumberBet nb : wetten_valid) {
-			if (nb.getNumbers().containsAll(gewinnzahlen) && nb.getAdditionalNum() == zusatzzahl) {
+
+			if (compareNumbers(nb.getNumbers(),gewinnzahlen) && nb.getAdditionalNum() == zusatzzahl) {
 				nb.changeStatus(Status.WIN);
+
 				Customer c = nb.getCustomer();
 				Money bal = c.getBalance().add(nb.getInset());
 				c.setBalance(bal);
@@ -103,8 +116,13 @@ public class ResultController {
 		}
 
 		t.addCheck(t.getTimeLimit().toLocalDate());
+		LocalDateTime tm = t.getTimeLimit().plusDays(7);
+		t.setTimeLimit(tm);
 
 		lotteryCatalog.save(t);
+		System.out.println("valide wetten:");
+		System.out.println(wetten_valid);
+		System.out.println(t.getNumberBits());
 	}
 
 	public void changeStatusSingleBet(Football f, FootballBet fb, Ergebnis erg){

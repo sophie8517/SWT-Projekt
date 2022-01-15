@@ -43,16 +43,19 @@ public class NumberLottery {
 	public int getAdditionalN() {
 		return additionalN;
 	}
+
 	/*
 	public static void main(String[] args) {
-		LocalDate d = LocalDate.of(2021,12,28);
-		LocalDate e = d.plusDays(7);
+		LocalDate d = LocalDate.of(2022,2,10);
+		LocalDate e = d.plusMonths(1);
 		System.out.println(d.getDayOfWeek());
 		System.out.println(e);
 		System.out.println(e.getDayOfWeek());
 	}
 
 	 */
+
+
 
 
 

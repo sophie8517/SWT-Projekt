@@ -164,7 +164,10 @@ public class OrderController {
 			//die Ziehung dieser Woche abgeschlossen ist
 			//man am Ziehungstag den Lottoschein ausgefüllt hat -> d.h. er ist für diese Ziehung noch nicht gültig
 
-			if (date.isBefore(t.getTimeLimit().minusMinutes(5))
+			//Fall: wette ausgewertet aber für nächste ziehung nicht mehr gültig
+			if((bet.getStatus().equals(Status.WIN) || bet.getStatus().equals(Status.LOSS)) && bet.getExpiration().isBefore(t.getTimeLimit())){
+				//keine Änderung mehr möglich
+			}else if (date.isBefore(t.getTimeLimit().minusMinutes(5))
 					||t.getCheckEvaluation().contains(t.getTimeLimit().toLocalDate())
 					|| bet.getDate().toLocalDate().isEqual(t.getTimeLimit().toLocalDate())) {
 				var customer = bet.getCustomer();
@@ -188,13 +191,14 @@ public class OrderController {
 		return "redirect:/customer_bets";
 	}
 
-	@GetMapping("/changeNums")
+	@GetMapping("/changeNumbers")
 	public String changeNums(Model model, @RequestParam("item")ProductIdentifier id, @RequestParam("betid")String bet_id){
 
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 		NumberBet bet = t.findbyBetId(bet_id);
 
 		model.addAttribute("numbet", bet);
+
 		return "changeNumTip.html";
 	}
 
@@ -210,7 +214,11 @@ public class OrderController {
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 		NumberBet bet = t.findbyBetId(bet_id);
 		if(bet != null) {
-			if (date.isBefore(t.getTimeLimit().minusMinutes(5))) {
+			if((bet.getStatus().equals(Status.WIN) || bet.getStatus().equals(Status.LOSS)) && bet.getExpiration().isBefore(t.getTimeLimit())){
+				//keine Änderung mehr möglich
+			}else if (date.isBefore(t.getTimeLimit().minusMinutes(5))
+					||t.getCheckEvaluation().contains(t.getTimeLimit().toLocalDate())
+					|| bet.getDate().toLocalDate().isEqual(t.getTimeLimit().toLocalDate())) {
 				List<Integer> nums = new ArrayList<>();
 				Set<Integer> checker = new HashSet<>();
 				checker.add(zahl1);
