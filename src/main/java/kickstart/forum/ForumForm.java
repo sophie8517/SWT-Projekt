@@ -22,6 +22,7 @@ public class ForumForm {
 	}
 
     /*public String getTheme() {
+
 		return theme;
 	}*/
 

@@ -16,7 +16,8 @@ public class ForumManagement {
 		this.themes = themes;
 	}
 
-	public Theme createTheme(Theme theme) {
+	public Theme createTheme(String title) {
+		Theme theme = new Theme(title);
 		return themes.save(theme);
 	}
 	public ForumEntry createComment(Theme theme, ForumEntry forum) {

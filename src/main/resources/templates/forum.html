@@ -42,8 +42,8 @@
                           sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/theme}">
                         <button type="submit" class="ui button">Details</button>
                    </form>-->
-                    <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/theme/id}">
-                        <input type="hidden" name="themeId" th:value="${theme.getId()}">
+                    <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/theme}">
+                        <input type="hidden" name="themeName" th:value="${theme.getName()}">
                         <button type="submit" class="ui button">Details</button>
                     </form>
                 </td>
@@ -64,7 +64,6 @@
                 <th>Person</th>
                 <th>Antworten</th>
                 <th>Link</th>
-                <th>Geld absenden</th>
             </tr>
             </thead>
             <tr th:each="theme:${themes}">
@@ -75,13 +74,10 @@
                            sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/theme}">
                          <button type="submit" class="ui button">Details</button>
                     </form>-->
-                    <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/theme/id}">
+                    <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/theme}">
                         <input type="hidden" name="themeId" th:value="${theme.getId()}">
                         <button type="submit" class="ui button">Details</button>
                     </form>
-                </td>
-                <td>
-                    <button th:href="sendMoney.html" th:action="sendMoney" type="submit" class="ui button">Geld absenden</button>
                 </td>
             </tr>
         </table>

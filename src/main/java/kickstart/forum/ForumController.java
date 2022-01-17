@@ -62,18 +62,21 @@ class ForumController {
 		return "forum";
 	}
 
+	@PostMapping("/forum")
+	String addTheme(@RequestParam("title") String title) {
+		forumManagement.createTheme(title);
+		return "redirect:/forum";
+	}
+
 	//TODO:link
 	@GetMapping("/theme")
-	String comment(Model model,@RequestParam("themeId") long themeId, @ModelAttribute(binding = false) ForumForm form,@LoggedIn Optional<UserAccount> userAccount) {
+	String comment(Model model,@RequestParam("themeName") String name, @ModelAttribute(binding = false) ForumForm form, @LoggedIn Optional<UserAccount> userAccount) {
 
-		var theme = forumManagement.findByThemeId(themeId);
+		var theme = forumManagement.findByThemeName(name);
+		var customer = customerManagement.findByUserAccount(userAccount.get());
 		model.addAttribute("themeName", theme.getName());
 		model.addAttribute("forums", theme.getForums());
 		model.addAttribute("form", form);
-		if(userAccount.get().hasRole(Role.of("ADMIN"))) return "theme";
-
-
-		var customer = customerManagement.findByUserAccount(userAccount.get());
 		model.addAttribute("name", customer.toString());
 		model.addAttribute("email", customer.getUserAccount().getEmail());
 
@@ -82,26 +85,27 @@ class ForumController {
 
 
 	//TODO:LINK
-	@PostMapping("/theme")
+	@PostMapping("/theme/{themeName}")
 	@PreAuthorize("hasRole('CUSTOMER')")
-	String addComment(@RequestParam("themeName") String name, @Valid @ModelAttribute("form") ForumForm form, Errors errors, Model model, @LoggedIn Optional<UserAccount> userAccount) {
+	String addComment(@PathVariable String themeName, @Valid @ModelAttribute("form") ForumForm form, Errors errors, Model model, @LoggedIn Optional<UserAccount> userAccount) {
 
-		var customer = customerManagement.findByUserAccount(userAccount.get());
-		var theme = forumManagement.findByThemeName(name);
+		//var customer = customerManagement.findByUserAccount(userAccount.get());
+		var theme = forumManagement.findByThemeName(themeName);
 
 
 		if (errors.hasErrors()) {
 			System.out.println("comment has errors");
-			return "redirect:/theme";
+			return comment(model, themeName, form, userAccount);
 		}
 
 		//forum.save(form.toNewEntry());
 
 
-		model.addAttribute("entry", forumManagement.createComment(theme,form.toNewEntry()));
-		model.addAttribute("index", forumManagement.countComment());
+//		model.addAttribute("entry", forumManagement.createComment(theme,form.toNewEntry()));
+//		model.addAttribute("index", forumManagement.countComment());
+		forumManagement.createComment(theme, form.toNewEntry());
 
-		return "redirect:/theme";
+		return "redirect:/forum";
 	}
 
 
@@ -141,7 +145,6 @@ class ForumController {
 	}
 
  */
-
 
 /*	//TODO:LINK
 	@PreAuthorize("hasRole('ADMIN')")

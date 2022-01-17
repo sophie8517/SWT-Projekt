@@ -41,10 +41,9 @@ class ForumDataInitializer implements DataInitializer {
 								"Mama always said life was like a box of chocolates. You never know what you're gonna get.", "gump1337@outlook.live")) //
 				.forEach(forumManagement::createComment);*/
 
-		Theme temp1 = new Theme("Test");
-		Theme temp2 = new Theme("SWT");
-		Theme temp3 = new Theme("Eine Frage");
-		List.of(temp1, temp2, temp3).forEach(forumManagement::createTheme);
+		Theme temp1 = forumManagement.createTheme("Test");
+		Theme temp2 = forumManagement.createTheme("SWT");
+		Theme temp3 = forumManagement.createTheme("Eine Frage");
 
 		LOG.info("Creating default comments");
 		Stream.of(

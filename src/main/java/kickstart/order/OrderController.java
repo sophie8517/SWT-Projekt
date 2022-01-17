@@ -94,7 +94,7 @@ public class OrderController {
 
 
 				}else{
-					return "error";
+					return "not_enough_money";
 				}
 
 			}else{
@@ -176,7 +176,7 @@ public class OrderController {
 					customerRepository.save(customer);
 					lotteryCatalog.save(t);
 				}else{
-					return "error";
+					return "not_enough_money";
 				}
 
 			}else{
