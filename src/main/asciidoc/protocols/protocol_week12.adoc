@@ -1,0 +1,162 @@
+= Protokoll Gruppe 09
+
+
+Treffen am 17.01.2022
+
+Ort:      Discord
+Beginn:   14:50 Uhr 
+Ende:     15:05 Uhr
+
+__Schriftführer:__ Sophie Schulze
+
+*Nächstes Treffen:* +
+24.01.2022, 14:50 Uhr, Discord
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Andre Schmidt (Kunde)
+- Yu-Ju Chen
+- Song Bai
+- Yutian Lei
+- Mirek Král
+- Sophie Schulze
+
+== Bemerkungen
+Organisatorisches:
+
+* Abschlusspräsentation: 04.02.22, 13:00 - 14:30
+* Einverständniserklärung ausfüllen (Link siehe Discord)
+* Evalutation ausfüllen (swt21w09\src\main\asciidoc\evaluations\evaluation_sheet.adoc)
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Aufgabe |Status |Bemerkung
+|11    
+|Klassendiagramme erweitern      
+|in Arbeit     
+|-
+
+|14    
+|Testfälle      
+|in Arbeit      
+|Test für Auszahlung der Gruppenwette hinzugefügt
+
+|17
+|Fehlerbehandlung Cross-Testing Feedback
+|fertig
+|-
+
+|18
+|Textüberarbeitung
+|fertig
+a|
+* die bisher vorhandenen sprachlichen Inkonsistenzen wurden beseitigt
+* Texte in den Fehlermeldungen korrigiert
+
+|19
+|Forum implementieren
+|in Arbeit
+|Stand siehe aktueller Stand
+
+
+|20
+|Sequenzdiagramme aktualisieren
+|in Arbeit
+|-
+
+|21
+|test_plan aktualisieren
+|in Arbeit
+|-
+|===
+
+
+== Aktueller Stand
+
+* Anwendung erfüllt die Muss-Kriterien
+* erfüllte Kann-Kriterien: Passwort ändern, Konto löschen
+
+*Anpassungen an Fehlerreport aus Cross-Testing Feedback:*
+
+* Nutzer kann Betrag einer Zahlenwette nach der Ziehung nicht mehr ändern, wenn das Ticket für die nächste Ziehung ungültig ist
+* Einsatz einer Gruppenwette ändern: Geld wird vom Konto des ausführenden Mitglieds abgezogen
+* Datum der nächsten Lottoziehung wird nach der Auswertung aktualisiert
+* Administrator muss nur "Tippschein auswerten" zur Auswertung der Zahlenwetten klicken (keine Zahlen eingeben)
+* Registrierung: 
+** Prüfen von Vorname und Nachname: Inhalt darf nur aus Buchstaben bestehen
+
+*Stand Forum:*
+
+* Designgrundlage geschaffen
+* neuen Beitrag schreiben
+* Like-Funktion
+* fehlende Features: 
+** Gruppen-/Einzelchats
+** Geld schicken
+** neues Thema erstellen
+** Antworten auf einen Beitrag
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|11     
+|Klassendiagramme erweitern     
+|Klassendiagramme an Änderungen im Code anpassen            
+a|
+* Order: Yuju
+* Kunde: Mirek, Song
+* Statistik: Yutian
+* Katalog: Sophie
+* Lotterieergebnis: Sophie
+|noch nicht angepasst an aktuellen Stand des Codes
+
+|14     
+|Testfälle     
+|Tests implementieren für hinzukommende Features und evtl. vorhandene Tests erweitern          
+a|
+* Kunde: Mirek, Song
+* Order: Yuju, Sophie
+* Statistik: Yutian
+* Katalog: Yuju, Sophie
+* Lotterieergebnis: Yuju, Sophie
+|in Arbeit
+
+|19
+|Forum implementieren
+|Das Forum mit den unter Bemerkungen (protocol_week11) aufgezählten Features implementieren. (Weiterführung aus Woche 11)
+|alle
+|in Arbeit
+
+|20
+|Sequenzdiagramme aktualisieren
+|Die Sequenzdiagramme in developer_documentation auf den neuesten Stand bringen.
+a|
+* Order: Yuju
+* Kunde: Song
+* Lotterie: Mirek
+* Statistik: Yutian
+* Katalog: Sophie
+* Lotterieergebnis: Sophie
+|in Arbeit
+
+|21
+|test_plan aktualisieren
+|Das Dokument test_plan an die geschriebenen Tests anpassen und dementsprechend erweitern.
+a|
+* Kunde: Mirek, Song
+* Statistik: Yutian
+* Order: Yuju
+* Katalog: Sophie
+* Lotterieergebnis: Yuju, Sophie
+|in Arbeit
+|===
