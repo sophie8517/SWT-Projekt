@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import kickstart.customer.CustomerManagement;
+import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
@@ -17,18 +18,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import static org.salespointframework.core.Currencies.EURO;
 
 @Controller
 class ForumController {
 
 	// A special header sent with each AJAX request
-	private static final String IS_AJAX_HEADER = "X-Requested-With=XMLHttpRequest";
+//	private static final String IS_AJAX_HEADER = "X-Requested-With=XMLHttpRequest";
+
 
 
 	private final ForumManagement forumManagement;
@@ -56,57 +57,98 @@ class ForumController {
 		return "redirect:/forum";
 	}*/
 
-	//TODO:link
+
 	@GetMapping("/forum")
-	String comment(Model model, @ModelAttribute(binding = false) ForumForm form, @LoggedIn Optional<UserAccount> userAccount) {
+	String theme(Model model) {
+		model.addAttribute("themes", forumManagement.findAll());
+		return "forum";
+	}
 
-		model.addAttribute("entries", forumManagement.findAll());
-		model.addAttribute("form", form);
+	@PostMapping("/forum")
+	String addTheme(@RequestParam("title") String title) {
+		forumManagement.createTheme(title);
+		return "redirect:/forum";
+	}
 
-		if(userAccount.get().hasRole(Role.of("ADMIN"))) return "forum";
+	//TODO:link
+	@GetMapping("/theme")
+	String comment(Model model,@RequestParam("themeName") String name, @ModelAttribute(binding = false) ForumForm form, @LoggedIn Optional<UserAccount> userAccount) {
 
+		var theme = forumManagement.findByThemeName(name);
 		var customer = customerManagement.findByUserAccount(userAccount.get());
+		model.addAttribute("themeName", theme.getName());
+		model.addAttribute("forums", theme.getForums());
+		model.addAttribute("form", form);
 		model.addAttribute("name", customer.toString());
 		model.addAttribute("email", customer.getUserAccount().getEmail());
 
-		return "forum";
+		return "theme";
 	}
 
 
 	//TODO:LINK
-	@PostMapping("/forum")
+	@PostMapping("/theme/{themeName}")
 	@PreAuthorize("hasRole('CUSTOMER')")
-	String addEntry(@Valid @ModelAttribute("form") ForumForm form, Errors errors, Model model, @LoggedIn Optional<UserAccount> userAccount) {
+	String addComment(@PathVariable String themeName, @Valid @ModelAttribute("form") ForumForm form, Errors errors, Model model, @LoggedIn Optional<UserAccount> userAccount) {
 
-		var customer = customerManagement.findByUserAccount(userAccount.get());
+		//var customer = customerManagement.findByUserAccount(userAccount.get());
+		var theme = forumManagement.findByThemeName(themeName);
+
 
 
 		if (errors.hasErrors()) {
 			System.out.println("comment has errors");
-			return comment(model, form, userAccount);
+			return comment(model, themeName, form, userAccount);
 		}
 
 		//forum.save(form.toNewEntry());
 
 
-		model.addAttribute("entry", forumManagement.createComment(form.toNewEntry()));
-		model.addAttribute("index", forumManagement.count());
-
+//		model.addAttribute("entry", forumManagement.createComment(theme,form.toNewEntry()));
+//		model.addAttribute("index", forumManagement.countComment());
+		forumManagement.createComment(theme, form.toNewEntry());
 		return "redirect:/forum";
 	}
 
 
-/*	//TODO:LINK
+	@PostMapping("/forum/sendMoney")
+	public String charge(@RequestParam("money") double money, @LoggedIn Optional<UserAccount> userAccount,
+						 RedirectAttributes redir){
+		if (Money.of(money, EURO).isLessThanOrEqualTo(Money.of(0, EURO))) {
+			redir.addFlashAttribute("message", "Invalid number");
+			return "redirect:/forum";
+		}
+
+		var customer = customerManagement.findByUserAccount(userAccount.get());
+		customerManagement.charge(Money.of(money, EURO), customer);
+		return "redirect:/forum";
+	}
+
+
+	@GetMapping("/sendMoney")
+	public String sendMoney(Model model, @LoggedIn Optional<UserAccount> userAccount) {
+		var customer = customerManagement.findByUserAccount(userAccount.get());
+		model.addAttribute("firstname", customer.getUserAccount().getFirstname());
+		model.addAttribute("lastname", customer.getUserAccount().getLastname());
+		model.addAttribute("email", customer.getUserAccount().getEmail());
+		model.addAttribute("balance", customer.getBalance());
+
+		return "sendMoney";
+	}
+
+/*
+	//TODO:LINK
 	@PostMapping(path = "/forum", headers = IS_AJAX_HEADER)
 	String addEntry(@Valid ForumForm form, Model model) {
 
 
 
-		return "forum :: entry";
-	}*/
+		return "forum :: theme";
+	}
 
+ */
 
-	//TODO:LINK
+/*	//TODO:LINK
 	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping(path = "/forum/{entry}")
 	String removeEntry(@PathVariable Optional<ForumEntry> entry) {
@@ -131,5 +173,5 @@ class ForumController {
 			return ResponseEntity.ok().build();
 
 		}).orElseGet(() -> ResponseEntity.notFound().build());
-	}
+	}*/
 }

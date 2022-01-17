@@ -31,14 +31,35 @@ class ForumDataInitializer implements DataInitializer {
 	@Override
 	public void initialize() {
 
-		LOG.info("Creating default comments.");
+		LOG.info("Creating default themes.");
 
-		Stream.of( //
-				new ForumEntry("Administrator", "Welcome to Mach Dein Glück!", "none"), //
-				new ForumEntry("Arni", "Hasta la vista, baby", "arni@gmx.de"), //
-				new ForumEntry("Duke Nukem", "It's time to kick ass and chew bubble gum. And I'm all out of gum.", "duke.nukem@tu-dresden.de"), //
+        /*Stream.of( //
+						new ForumEntry("Administrator","Welcome to Mach Dein Glück!", "none"), //
+						new ForumEntry("Arni", "Hasta la vista, baby", "arni@gmx.de"), //
+						new ForumEntry("Duke Nukem", "It's time to kick ass and chew bubble gum. And I'm all out of gum.", "duke.nukem@tu-dresden.de"), //
+						new ForumEntry("Gump1337",
+								"Mama always said life was like a box of chocolates. You never know what you're gonna get.", "gump1337@outlook.live")) //
+				.forEach(forumManagement::createComment);*/
+
+		Theme temp1 = forumManagement.createTheme("Test");
+		Theme temp2 = forumManagement.createTheme("SWT");
+		Theme temp3 = forumManagement.createTheme("Eine Frage");
+
+		LOG.info("Creating default comments");
+		Stream.of(
+				new ForumEntry("Administrator","Welcome to Mach Dein Glück!", "none"),
+				new ForumEntry("Arni", "Hasta la vista, baby", "arni@gmx.de")
+		).forEach(forumEntry -> forumManagement.createComment(temp1, forumEntry));
+
+		Stream.of(
+				new ForumEntry("Song Bai","SWT Aufgabe", "song@tu-dresden.de"),
+				new ForumEntry("Mirek Kral", "Aufgabe", "mirek@tu-dresden.de")
+		).forEach(forumEntry -> forumManagement.createComment(temp2, forumEntry));
+
+		Stream.of(
+				new ForumEntry("Hey","Where am i?", "qwert@trewq.org"),
 				new ForumEntry("Gump1337",
-						"Mama always said life was like a box of chocolates. You never know what you're gonna get.", "gump1337@outlook.live")) //
-				.forEach(forumManagement::createComment);
+						"Mama always said life was like a box of chocolates. You never know what you're gonna get.", "gump1337@outlook.live")
+		).forEach(forumEntry -> forumManagement.createComment(temp3, forumEntry));
 	}
 }

@@ -173,6 +173,21 @@ body {
     padding-right: 50px;
 }
 
+.box-eight{
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+
+    height: auto;
+    width:  auto;
+
+    padding-left: 50px;
+    padding-bottom: 50px;
+    padding-right: 50px;
+}
+
 header {
     height: 140px;
     text-align: center;
@@ -236,7 +251,7 @@ h1 {
 h2 {
     color: white;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 25px;
+    font-size: 48px;
 }
 
 h3 {
@@ -259,6 +274,22 @@ a {
     /*text-decoration: none;*/
 }
 
+.forumBackground {
+    background-color: rgba(0, 0, 0, 0.75);
+
+    margin-top: 20px;
+    margin-left: 200px;
+    margin-right: 200px;
+
+    padding-top: 1px;
+    padding-bottom: 1px;
+
+    color: white;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    width: 300px;
+}
 
 .maps {
     padding-bottom: 100px;

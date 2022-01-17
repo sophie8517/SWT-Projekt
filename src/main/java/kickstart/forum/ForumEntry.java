@@ -12,17 +12,19 @@ import org.springframework.util.Assert;
 public class ForumEntry {
 
 	private @Id @GeneratedValue Long id;
-	private final String name, text, email;
+	private final String name, /*theme ,*/text, email;
 	private final LocalDateTime date;
 
 	public ForumEntry(String name, String text, String email) {
 
 		Assert.hasText(name, "Name must not be null or empty!");
+		//Assert.hasText(theme, "Theme must not be null or empty!");
 		Assert.hasText(text, "Text must not be null or empty!");
 		Assert.hasText(email, "Email must not be null or empty!");
 
 		this.name = name;
 		this.text = text;
+		//this.theme = theme;
 		this.email = email;
 		this.date = LocalDateTime.now();
 	}
@@ -31,6 +33,7 @@ public class ForumEntry {
 	public ForumEntry() {
 		this.name = null;
 		this.text = null;
+		//this.theme = null;
 		this.email = null;
 		this.date = null;
 	}
@@ -52,4 +55,6 @@ public class ForumEntry {
 	}
 
 	public String getEmail() {return email;}
+
+	//public String getTheme() { return theme; }
 }
