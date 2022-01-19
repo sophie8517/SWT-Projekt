@@ -50,6 +50,13 @@
             </tr>
         </table>
 
+        <div>
+            <form sec:authorize="hasRole('CUSTOMER')" method="post" th:action="@{/forum}">
+                <label>Add New Title:</label>
+                <input name="title" type="text" required="required">
+            </form>
+        </div>
+
     </main>
 </div>
 

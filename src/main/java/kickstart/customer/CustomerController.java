@@ -98,7 +98,7 @@ public class CustomerController{
 //			System.out.println("2:fail");
 //		}
 
-		return "redirect:/";
+		return "redirect:/logout";
 	}
 
 	@PostMapping("/back")
@@ -147,13 +147,14 @@ public class CustomerController{
 		return "balance";
 	}
 
-	@PostMapping("/group/exit")
-	public String exit(@RequestParam("groupName") String groupName, @LoggedIn Optional<UserAccount> userAccount,
+	@PostMapping("/group/exit/{groupName}")
+	public String exit(@PathVariable String groupName, @LoggedIn Optional<UserAccount> userAccount,
 					   RedirectAttributes redir){
 		var group = customerManagement.findByGroupName(groupName);
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 
 		if (!group.contains(customer)) {
+			System.out.println("redirect excute!");
 			redir.addFlashAttribute("message", "Customer doesn't exist!");
 			return "redirect:/group";
 		}

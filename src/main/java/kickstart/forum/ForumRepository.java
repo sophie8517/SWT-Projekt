@@ -8,4 +8,5 @@ public interface ForumRepository extends CrudRepository<ForumEntry, Long> {
 
 
 	Streamable<ForumEntry> findByName(String name, Sort sort);
+	ForumEntry findForumEntryById(long id);
 }

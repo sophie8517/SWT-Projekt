@@ -40,6 +40,11 @@
                         <button type="submit" class="ui button"> Mitglieder zeigen</button>
                     </form>
                 </td>
+                <td>
+                    <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="post" th:action="@{/group/exit/{groupName}(groupName=${group.groupName})}">
+                        <button type="submit" class="ui button"> Gruppe Verlassen</button>
+                    </form>
+                </td>
             </tr>
         </table>
 
