@@ -66,6 +66,7 @@ class ForumController {
 
 	@PostMapping("/forum")
 	String addTheme(@RequestParam("title") String title) {
+		Assert.notNull(title, "Theme must not be null or empty!");
 		forumManagement.createTheme(title);
 		return "redirect:/forum";
 	}
@@ -107,6 +108,32 @@ class ForumController {
 //		model.addAttribute("entry", forumManagement.createComment(theme,form.toNewEntry()));
 //		model.addAttribute("index", forumManagement.countComment());
 		forumManagement.createComment(theme, form.toNewEntry());
+		return "redirect:/forum";
+	}
+
+	@PostMapping("/theme/like/{forumId}")
+	String like(@PathVariable String forumId, @LoggedIn Optional<UserAccount> userAccount) {
+		long id = Long.parseLong(forumId);
+		var forum = forumManagement.findForumById(id);
+		var customer = customerManagement.findByUserAccount(userAccount.get());
+		if(!forum.likedContains(customer)) {
+			if(forum.unlikedContains(customer)) forum.removeUnlike(customer);
+			forumManagement.likeComment(customer, forum);
+		}
+
+		return "redirect:/forum";
+	}
+
+	@PostMapping("/theme/unlike/{forumId}")
+	String unlike(@PathVariable String forumId, @LoggedIn Optional<UserAccount> userAccount) {
+		long id = Long.parseLong(forumId);
+		var forum = forumManagement.findForumById(id);
+		var customer = customerManagement.findByUserAccount(userAccount.get());
+		if(!forum.unlikedContains(customer)) {
+			if(forum.likedContains(customer)) forum.removeLike(customer);
+			forumManagement.unlikeComment(customer, forum);
+		}
+
 		return "redirect:/forum";
 	}
 

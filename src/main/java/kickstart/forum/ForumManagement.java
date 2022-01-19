@@ -1,5 +1,6 @@
 package kickstart.forum;
 
+import kickstart.customer.Customer;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,16 @@ public class ForumManagement {
 	}
 	public ForumEntry createComment(Theme theme, ForumEntry forum) {
 		theme.addForum(forum);
+		return comments.save(forum);
+	}
+
+	public ForumEntry likeComment(Customer customer, ForumEntry forum) {
+		forum.like(customer);
+		return comments.save(forum);
+	}
+
+	public ForumEntry unlikeComment(Customer customer, ForumEntry forum) {
+		forum.unlike(customer);
 		return comments.save(forum);
 	}
 
@@ -57,5 +68,10 @@ public class ForumManagement {
 	public Theme findByThemeId(long id) {
 		var theme =  themes.findById(id).orElse(null);
 		return theme;
+	}
+
+	public ForumEntry findForumById(long id) {
+		var forum = comments.findForumEntryById(id);
+		return forum;
 	}
 }
