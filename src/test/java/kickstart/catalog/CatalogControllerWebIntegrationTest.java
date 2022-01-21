@@ -50,7 +50,7 @@ public class CatalogControllerWebIntegrationTest {
 	}
 
 	@Test
-	void zahlennotterieMvcIntegrationTest() throws Exception {
+	void zahlenlotterieMvcIntegrationTest() throws Exception {
 		mvc.perform(get("/zahlenlotterie")). //
 				andExpect(status().isOk()).//
 				andExpect(model().attribute("ticketcatalog", is(not(emptyIterable()))));
