@@ -34,6 +34,9 @@ public class CatalogControllerIntegrationTest  extends AbstractIntegrationTest {
 
 	@Autowired
 	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private CustomerManagement customerManagement;
 
 	private Ticket t;
 	private Football f_timeup,f_success;
@@ -57,7 +60,7 @@ public class CatalogControllerIntegrationTest  extends AbstractIntegrationTest {
 		id_f_timeup = f_timeup.getId();
 		id_f_success = f_success.getId();
 
-		c = customerRepository.findAll().get().findFirst().get();
+		c = customerManagement.findByUserAccount(customerManagement.findByEmail("test@tu-dresden.de").get());
 		ua = c.getUserAccount();
 	}
 
@@ -73,8 +76,8 @@ public class CatalogControllerIntegrationTest  extends AbstractIntegrationTest {
 
 		assertThat(items).hasSize(2);
 
-		items = (List<Item>) model.getAttribute("ticketcatalog");
-		assertThat(items).hasSize(2);
+		List <Item> items2 = (List<Item>) model.getAttribute("ticketcatalog");
+		assertThat(items2).hasSize(2);
 	}
 
 	@Test
@@ -192,10 +195,10 @@ public class CatalogControllerIntegrationTest  extends AbstractIntegrationTest {
 	public void CheckUpdatedBalance(){
 		lotteryCatalog.save(f_success);
 		c.setBalance(Money.of(40,EURO));
-		Money newBalance = c.getBalance().subtract(Money.of(12,EURO));
+
 		String returnView = catalogController.bet_foot(id_f_success,1,12.0,Optional.of(ua));
 
-		assertThat(c.getBalance()).isEqualTo(newBalance);
+		assertThat(c.getBalance()).isEqualTo(Money.of(28,EURO));
 
 
 
