@@ -129,7 +129,7 @@ public class CustomerControllerIntegrationTest extends AbstractIntegrationTest {
 		try {
 			customerController.charge(0, optional, redir);
 			System.out.println(customer.getBalance());
-			assertThat(redir.getFlashAttributes().containsKey("message"));
+			Assertions.assertTrue(redir.getFlashAttributes().containsKey("message"));
 		}
 		catch (IllegalStateException exception){
 			assertThat(true).isTrue();
@@ -158,16 +158,16 @@ public class CustomerControllerIntegrationTest extends AbstractIntegrationTest {
 
 		String returnedView = customerController.exit("testGroup", optional, redir);
 		assertEquals(group.getMembers().size(), 1);
-		assertThat(returnedView.equals("redirect:/group"));
+		assertThat(returnedView).isEqualTo("redirect:/group");
 
 		returnedView = customerController.exit("testGroup", optional, redir);
 		assertEquals(group.getMembers().size(), 1);
-		assertThat(redir.getFlashAttributes().containsKey("message"));
-		assertThat(returnedView.equals("redirect:/group"));
+		Assertions.assertTrue(redir.getFlashAttributes().containsKey("message"));
+		assertThat(returnedView).isEqualTo("redirect:/group");
 
 		returnedView = customerController.exit("testGroup", Optional.of(leader.getUserAccount()), redir);
-		assertThat(customerManagement.findByGroupName("testGroup") == null);
-		assertThat(returnedView.equals("redirect:/group"));
+		Assertions.assertNull(customerManagement.findByGroupName("testGroup"));
+		assertThat(returnedView).isEqualTo("redirect:/group");
 	}
 
 	@Test
@@ -199,7 +199,7 @@ public class CustomerControllerIntegrationTest extends AbstractIntegrationTest {
 		);
 
 		assertEquals(group.getMembers().size(), 2);
-		assertThat(redir.getFlashAttributes().containsKey("message"));
+		Assertions.assertTrue(redir.getFlashAttributes().containsKey("message"));
 		assertEquals(returnedView, "redirect:/group_join");
 
 		returnedView = customerController.joinGroup(
@@ -214,7 +214,7 @@ public class CustomerControllerIntegrationTest extends AbstractIntegrationTest {
 		);
 
 		assertEquals(group.getMembers().size(), 3);
-		assertThat(redir.getFlashAttributes().containsKey("message"));
+		Assertions.assertTrue(redir.getFlashAttributes().containsKey("message"));
 		assertEquals(returnedView, "redirect:/group_join");
 	}
 
@@ -226,14 +226,14 @@ public class CustomerControllerIntegrationTest extends AbstractIntegrationTest {
 				"testGroup", Optional.of(leader.getUserAccount()), redir
 		);
 
-		assertThat(redir.getFlashAttributes().containsKey("message"));
+		Assertions.assertTrue(redir.getFlashAttributes().containsKey("message"));
 		assertEquals(returnedView, "redirect:/group_create");
 
 		returnedView = customerController.createGroup(
 				"testGroup2", Optional.of(leader.getUserAccount()), redir
 		);
 
-		assertTrue(customerManagement.findByGroupName("testGroup2") != null);
+		assertNotNull(customerManagement.findByGroupName("testGroup2"));
 		assertEquals(returnedView, "redirect:/group");
 	}
 
