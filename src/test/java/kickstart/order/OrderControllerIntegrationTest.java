@@ -120,8 +120,8 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 	@Test
 	@WithMockUser(username = "test", roles = "CUSTOMER")
 	public void ViewBetsTest(){
-		NumberBet nb = new NumberBet(t, LocalDateTime.now(), Money.of(t.getPrice2(),EURO),c,LocalDateTime.now().plusDays(7),l,9);
-		t.addBet(nb);
+		NumberBet temp = new NumberBet(t, LocalDateTime.now(), Money.of(t.getPrice2(),EURO),c,LocalDateTime.now().plusDays(7),l,9);
+		t.addBet(temp);
 		lotteryCatalog.save(t);
 
 		Model model = new ExtendedModelMap();
