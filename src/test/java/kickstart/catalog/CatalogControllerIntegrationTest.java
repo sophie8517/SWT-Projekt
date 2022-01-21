@@ -2,6 +2,7 @@ package kickstart.catalog;
 
 import kickstart.AbstractIntegrationTest;
 import kickstart.customer.Customer;
+import kickstart.customer.CustomerManagement;
 import kickstart.customer.CustomerRepository;
 import org.javamoney.moneta.Money;
 import org.junit.jupiter.api.AfterEach;
