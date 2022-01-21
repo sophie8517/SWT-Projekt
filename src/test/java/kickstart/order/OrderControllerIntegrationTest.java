@@ -71,7 +71,7 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 		lotteryCatalog.save(f2);
 
 		f3 = new Football("ghi",LocalDateTime.now().plusMinutes(5),Money.of(12,EURO), Item.ItemType.FOOTBALL,new Team("host"),new Team("guest"),"1. liga","imgh1","imgg2");
-		fb3 = new FootballBet(f3,LocalDateTime.now().minusDays(3),Money.of(14,EURO),c,f.getTimeLimit(),Ergebnis.UNENTSCHIEDEN);
+		fb3 = new FootballBet(f3,LocalDateTime.now().minusDays(3),Money.of(14,EURO),c,f3.getTimeLimit(),Ergebnis.UNENTSCHIEDEN);
 		f3.addBet(fb3);
 		f3id = f3.getId();
 		fb3_id = fb3.getIdstring();
@@ -307,7 +307,7 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 	@Test
 	@WithMockUser(username = "test", roles = "CUSTOMER")
 	public void ChangeNumBetTipTestTimeUp(){
-		Model model = new ExtendedModelMap();
+		//Model model = new ExtendedModelMap();
 		String returnView = orderController.changeNumbetTip(tid3, nb3_id, 1, 2, 3, 4, 5, 6, 7);
 		assertThat(returnView).isEqualTo("time_up.html");
 
