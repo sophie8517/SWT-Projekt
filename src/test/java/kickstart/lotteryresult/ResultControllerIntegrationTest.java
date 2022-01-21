@@ -143,6 +143,7 @@ public class ResultControllerIntegrationTest extends AbstractIntegrationTest {
 		String returnView = resultController.evalFootballBets(fid,3);
 		assertThat(c.getBalance()).isEqualTo(balance.add(fb.getInset()));
 		assertThat(ctest.getBalance()).isEqualTo(balance_test.add(Money.of(8,EURO)));
+		assertThat(c2.getBalance()).isEqualTo(balance_c2.add(Money.of(8,EURO)));
 
 	}
 
