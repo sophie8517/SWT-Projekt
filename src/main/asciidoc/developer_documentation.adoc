@@ -316,7 +316,7 @@ image:models/design/block_order.svg[Location, 100%, 100%, pdfwidth=100%, title= 
 [options="header"]
 |=== 
 |Class/Enumeration |Description
-|BestellungController |Ein Spring MVC Controller zur Handhabung des Warenkorbs.
+|OrderController |Ein Spring MVC Controller zur Handhabung des Warenkorbs.
 |===
 
 === 5.6 Lotterieergebnis
