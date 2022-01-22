@@ -97,6 +97,14 @@ a|
 a|
 * (1) "2_catalog_foot"
 
+|
+|CatalogControllerIntegrationTestFootballReg
+|
+|
+|
+|
+|
+
 |CatC-3
 |CatalogControllerWrongInput
 |UC02
@@ -1265,7 +1273,7 @@ a|
 * (2) Money.of(2,EURO)
 
 |OC-3
-| RaiseFootBetTestSuccess
+|RaiseFootBetTestSuccess
 |UC13
 |-
 a|
@@ -1303,6 +1311,47 @@ a|
 * (1) "redirect:/customer_bets"
 * (2) Money.of(15,EURO)
 * (3) Money.of(7,EURO)
+
+|OC
+|RaiseFootBetTestNULL
+|-
+|-
+a|
+* Nutzer(MockUser) angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+** UserAccount ua
+** Guthaben: "balance"
+* Fußballspiel "f2" im Katalog:
+** Name: def
+** Datum/Zeit: jetzt + 1 Tag
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: 2. liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f2": "f2id"
+* Fußballwette "temp2":
+** Item: f2
+** Datum/Zeit: jetzt - 3 Tage
+** Einsatz: 14 Euro
+** Kunde: c
+** Auslaufdatum: jetzt + 1 Tag
+** Tipp: UNENTSCHIEDEN
+* Liste der Wetten von "f2" enthält "temp2" *nicht*
+a|
+* (1) orderController.raiseFootBet(f2id,temp2.getIdstring(),15.0, Optional.of(ua))
+* (2) f2.findbyBetId(temp2.getIdstring())
+* (3) temp2.getInset()
+* (4) c.getBalance()
+a|
+* (1) "redirect:/customer_bets"
+* (2) null
+* (3) Money.of(14,EURO)
+* (4) balance
 
 |OC-4
 |ChangeFootTest

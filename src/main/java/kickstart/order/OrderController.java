@@ -315,6 +315,7 @@ public class OrderController {
 
 	}
 
+	/*
 	@PostMapping("/order")
 	String income(Model model, LocalDateTime date, FootballBet footballBet, Customer customer, Match match){
 		LocalDateTime temp = date.plusMinutes(90);
@@ -354,6 +355,9 @@ public class OrderController {
 
 	}
 
+	 */
+
+	/*
 	@PreAuthorize("hasRole('ADMIN')")
 	String result(Model model, Football football, int scoreHost, int scoreGuest){
 		football.getHost().setScore(scoreHost);
@@ -362,6 +366,8 @@ public class OrderController {
 		model.addAttribute("result", match.result());
 		return "redirect:/";
 	}
+
+	 */
 
 	@GetMapping("/accountDeactivate")
 	String toAccountDeactivatePage(){

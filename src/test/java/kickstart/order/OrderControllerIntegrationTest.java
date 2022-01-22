@@ -159,6 +159,16 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 		assertThat(fb2.getInset()).isEqualTo(Money.of(15,EURO));
 		assertThat(c.getBalance()).isEqualTo(Money.of(7,EURO));
 	}
+	@Test
+	@WithMockUser(username = "test", roles = "CUSTOMER")
+	public void RaiseFootBetTestNULL(){
+		FootballBet temp2 = new FootballBet(f2,LocalDateTime.now().minusDays(3),Money.of(14,EURO),c,f2.getTimeLimit(),Ergebnis.UNENTSCHIEDEN);
+		String returnView = orderController.raiseFootBet(f2id,temp2.getIdstring(),15.0, Optional.of(ua));
+		assertThat(returnView).isEqualTo("redirect:/customer_bets");
+		assertThat(f2.findbyBetId(temp2.getIdstring())).isNull();
+		assertThat(temp2.getInset()).isEqualTo(Money.of(14,EURO));
+		assertThat(c.getBalance()).isEqualTo(balance);
+	}
 
 	@Test
 	@WithMockUser(username = "test", roles = "CUSTOMER")
