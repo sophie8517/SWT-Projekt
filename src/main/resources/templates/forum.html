@@ -79,7 +79,7 @@
                 <td th:text="${chat.getCount()}"></td>
                 <td>
                     <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/chat}">
-                        <input type="hidden" name="invitee" th:value="${chat.getPartners().get(1).getUsername()}">
+                        <input type="hidden" name="chatId" th:value="${chat.getId()}">
                         <button type="submit" class="ui button" style="font-size: 11px">Chat öffnen</button>
                     </form>
                 </td>
@@ -129,16 +129,12 @@
                 <th>Link</th>
             </tr>
             </thead>
-            <tr th:each="theme:${themes}">
-                <td th:text="${theme.getName()}"></td>
-                <td th:text="${theme.getCount()}"></td>
+            <tr th:each="groupChat:${groupChats}">
+                <td th:text="${groupChat.getName()}"></td>
+                <td th:text="${groupChat.getCount()}"></td>
                 <td>
-                    <!--<form method="get" th:action="@{/forum/{theme}(theme=${theme.getId()})}" th:value="${theme}"
-                           sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/theme}">
-                         <button type="submit" class="ui button">Details</button>
-                    </form>-->
-                    <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/theme}">
-                        <input type="hidden" name="themeId" th:value="${theme.getId()}">
+                    <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/groupChat}">
+                        <input type="hidden" name="groupChatName" th:value="${groupChat.getName()}">
                         <button type="submit" class="ui button">Details</button>
                     </form>
                 </td>

@@ -32,9 +32,19 @@ public class ForumManagement {
 		forum.like(customer);
 		return comments.save(forum);
 	}
+	
+	public ForumEntry cancelLike(Customer customer, ForumEntry forum) {
+		forum.removeLike(customer);
+		return comments.save(forum);
+	}
 
 	public ForumEntry unlikeComment(Customer customer, ForumEntry forum) {
 		forum.unlike(customer);
+		return comments.save(forum);
+	}
+
+	public ForumEntry cancelDislike(Customer customer, ForumEntry forum) {
+		forum.removeUnlike(customer);
 		return comments.save(forum);
 	}
 

@@ -1,0 +1,68 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device - width, initial - scale = 1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>🍀 Mach Dein Glück!! 🍀</title>
+    <link th:href="@{resources/css/style_statistic.css}" rel="stylesheet" href="../static/resources/css/style_statistic.css">
+</head>
+<body class="backgrounds">
+<nav th:include="navigation :: navigation" class="navcontainer"></nav>
+
+
+
+<div class="container">
+    <div class="forumBackground">
+        <h3 th:text="#{forum.title}">Forum</h3>
+        <h4 th:value="${groupChatName}"></h4>
+    </div>
+
+    <div id="entries">
+        <div th:each="forum, it : ${forums}" th:with="index = ${it.count}" class="box-eight">
+
+            <table border = "4" cellpadding = "4" cellspacing = "0"  class ="center">
+                <tr>
+                    <th>Name/E-mail</th>
+                    <td><div th:text="${email}"></div></td>
+                </tr>
+
+                <tr>
+                    <th>Datum</th>
+                    <td><div th:text="${#temporals.format(forum.getDate(), 'dd. MMMM yyyy - HH:mm')}">Datum</div></td>
+                </tr>
+
+                <tr>
+                    <th>Text</th>
+                    <td><blockquote th:text="${forum.getText()}"></blockquote></td>
+                </tr>
+
+            </table>
+        </div>
+
+        <h3>Antwort</h3>
+        <div> <form method="post" role="form" id="form" th:action="@{/groupChat/{groupChat}(groupChat=${groupChatName})}" th:object="${form}" sec:authorize="hasRole('CUSTOMER')">
+
+            <input id="name" name="name" type="hidden" th:value="${name}" />
+            <div>
+                <label for="text" th:text="#{forum.form.text}">Text</label><br />
+                <textarea th:field="*{text}" th:errorclass="is-invalid" required="required"></textarea>
+                <div th:if="${#fields.hasErrors('text')}" th:text="#{forum.form.text.required}">Please provide a text.</div>
+            </div>
+            <input id="email" name="email" type="hidden" th:value="${email}" />
+
+            <input type="submit" th:value="#{forum.form.submit}" value="Senden" />
+        </form>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <p>Mach Dein Glück!! ©Copyright 2021©</p>
+</footer>
+
+</body>
+
+</html>

@@ -4,6 +4,7 @@ import com.mysema.commons.lang.Assert;
 import static org.salespointframework.core.Currencies.*;
 
 
+import kickstart.forum.GroupChatManagement;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
@@ -15,8 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
-import javax.swing.*;
-import javax.swing.text.html.Option;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -25,10 +24,12 @@ import java.util.Set;
 @Controller
 public class CustomerController{
 	private final CustomerManagement customerManagement;
+	private final GroupChatManagement groupChatManagement;
 
-	public CustomerController(CustomerManagement customerManagement) {
+	public CustomerController(CustomerManagement customerManagement, GroupChatManagement groupChatManagement) {
 		Assert.notNull(customerManagement, "CustomerManagement must not be null!");
 		this.customerManagement = customerManagement;
+		this.groupChatManagement = groupChatManagement;
 	}
 
 	@PostMapping("/register")
@@ -238,6 +239,7 @@ public class CustomerController{
 
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 		customerManagement.createGroup(groupName, customer);
+		groupChatManagement.createGroupChat(groupName);
 		return "redirect:/group";
 	}
 

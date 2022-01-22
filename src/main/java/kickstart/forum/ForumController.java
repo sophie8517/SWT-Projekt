@@ -3,11 +3,13 @@ package kickstart.forum;
 
 import java.util.Iterator;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import javax.validation.Valid;
 
 import kickstart.customer.CustomerManagement;
-import kickstart.customer.RegistrationForm;
+import kickstart.customer.Group;
+import kickstart.customer.GroupRepository;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManagement;
@@ -35,7 +37,12 @@ class ForumController {
 	private final UserAccountManagement userAccountManagement;
 	private final PrivateChatManagement privateChatManagement;
 
-	ForumController(ForumManagement forumManagement, CustomerManagement customerManagement, UserAccountManagement userAccountManagement, PrivateChatManagement privateChatManagement) {
+	private final GroupChatManagement groupChatManagement;
+
+	//private final GroupRepository groupRepository;
+
+	ForumController(ForumManagement forumManagement, CustomerManagement customerManagement, GroupChatManagement groupChatManagement, UserAccountManagement userAccountManagement, PrivateChatManagement privateChatManagement) {
+
 		Assert.notNull(forumManagement, "ForumManagement must not be null!");
 		Assert.notNull(customerManagement, "CustomerManagement must not be null!");
 		Assert.notNull(customerManagement,"UserAccountManagement must not be null!");
@@ -44,6 +51,8 @@ class ForumController {
 		this.customerManagement = customerManagement;
 		this.userAccountManagement = userAccountManagement;
 		this.privateChatManagement = privateChatManagement;
+		this.groupChatManagement = groupChatManagement;
+		//this.groupRepository = groupRepository;
 	}
 
 	/**
@@ -61,9 +70,12 @@ class ForumController {
 
 
 	@GetMapping("/forum")
-	String theme(Model model) {
+	String theme(Model model, @LoggedIn Optional<UserAccount> userAccount) {
+		var customer = customerManagement.findByUserAccount(userAccount.get());
+
 		model.addAttribute("themes", forumManagement.findAll());
 		model.addAttribute("privateChats", privateChatManagement.findAll());
+		model.addAttribute("groupChats", groupChatManagement.findAllGroupChat(customer));
 		return "forum";
 	}
 
@@ -89,12 +101,17 @@ class ForumController {
 		return "theme";
 	}
 	@GetMapping("/chat")
-	String startNewPrivateConversation(Model model, @RequestParam("invitee") String inviteeName, @LoggedIn Optional<UserAccount> userAccount, PrivateChat privateChat){
-		var chat = privateChatManagement.findByPrivateChatId(privateChat.getId());
+	String startNewPrivateConversation(Model model, @RequestParam("chatId") String chatId, @ModelAttribute(binding = false) ForumForm form,@LoggedIn Optional<UserAccount> userAccount){
+		long id = Long.parseLong(chatId);
+		var chat = privateChatManagement.findByPrivateChatId(id);
 		//model.addAttribute("catalog",catalog.findByName(name));
-		model.addAttribute("invitee",inviteeName);
-		model.addAttribute("name", userAccount.get());
-		//model.addAttribute("chat", privateChat.getPartners());
+		model.addAttribute("invitee",chat.getPartners().get(1).getFirstname() + " " + chat.getPartners().get(1).getLastname());
+		model.addAttribute("form", form);
+		model.addAttribute("id", chat.getId());
+		model.addAttribute("name", userAccount.get().getFirstname() + " " + userAccount.get().getLastname());
+		model.addAttribute("email", userAccount.get().getEmail());
+		model.addAttribute("chat", chat.getPartners());
+		model.addAttribute("forums", chat.getForums());
 		/*
 		if (result.hasErrors()){
 			return "forum";
@@ -108,20 +125,22 @@ class ForumController {
 
 		privateChatManagement.createPrivateChat(userAccount.get(), invitee);
  		*/
-		return "theme";
+		return "chat";
 	}
 
-	@PostMapping("/chat/{chatName}")
+	@PostMapping("/chat/{chatId}")
 	@PreAuthorize("hasRole('CUSTOMER')")
-	String addComment(@PathVariable String chatName, @Valid @ModelAttribute("form") ForumForm form, Errors errors, Model model, @LoggedIn Optional<UserAccount> userAccount, PrivateChat privateChat) {
+	String addPrivateComment(@PathVariable String chatId, @Valid @ModelAttribute("form") ForumForm form, Errors errors, Model model, @LoggedIn Optional<UserAccount> userAccount) {
 
 		//var customer = customerManagement.findByUserAccount(userAccount.get());
-		var chat = privateChatManagement.findByPrivateChatId(privateChat.getId());
+		System.out.println(chatId);
+		long id = Long.parseLong(chatId);
+		var chat = privateChatManagement.findByPrivateChatId(id);
 
 
 		if (errors.hasErrors()) {
 			System.out.println("Comment has errors");
-			return comment(model, chatName, form, userAccount);
+			return startNewPrivateConversation(model, String.valueOf(chat.getId()), form, userAccount);
 		}
 
 		//forum.save(form.toNewEntry());
@@ -157,6 +176,38 @@ class ForumController {
 	}
 
 	//TODO:LINK
+	@GetMapping("/groupChat")
+	String groupChatComment(Model model, @RequestParam("groupChatName") String name, @ModelAttribute(binding = false) ForumForm form, @LoggedIn Optional<UserAccount> userAccount) {
+
+		var groupChat = groupChatManagement.findByGroupChatName(name);
+		var customer = customerManagement.findByUserAccount(userAccount.get());
+		model.addAttribute("groupChatName", name);
+		model.addAttribute("forums", groupChat.getForums());
+		model.addAttribute("form", form);
+		model.addAttribute("name", customer.toString());
+		model.addAttribute("email", customer.getUserAccount().getEmail());
+
+		return "groupChat";
+	}
+
+	//TODO:LINK
+	@PostMapping("/groupChat/{groupChatName}")
+	@PreAuthorize("hasRole('CUSTOMER')")
+	String addGrouChatComment(@PathVariable String groupChatName, @Valid @ModelAttribute("form") ForumForm form, Errors errors, Model model, @LoggedIn Optional<UserAccount> userAccount) {
+		var groupChat = groupChatManagement.findByGroupChatName(groupChatName);
+
+		if(errors.hasErrors()) {
+			System.out.println("comment has errors.");
+			return groupChatComment(model, groupChatName, form, userAccount);
+		}
+
+		groupChatManagement.createComment(groupChat, form.toNewEntry());
+
+		return "redirect:/forum";
+	}
+
+
+	//TODO:LINK
 	@PostMapping("/theme/{themeName}")
 	@PreAuthorize("hasRole('CUSTOMER')")
 	String addComment(@PathVariable String themeName, @Valid @ModelAttribute("form") ForumForm form, Errors errors, Model model, @LoggedIn Optional<UserAccount> userAccount) {
@@ -184,8 +235,10 @@ class ForumController {
 		var forum = forumManagement.findForumById(id);
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 		if(!forum.likedContains(customer)) {
-			if(forum.unlikedContains(customer)) forum.removeUnlike(customer);
+			if(forum.unlikedContains(customer)) forumManagement.cancelDislike(customer, forum);
 			forumManagement.likeComment(customer, forum);
+		} else {
+			forumManagement.cancelLike(customer, forum);
 		}
 
 		return "redirect:/forum";
@@ -197,8 +250,10 @@ class ForumController {
 		var forum = forumManagement.findForumById(id);
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 		if(!forum.unlikedContains(customer)) {
-			if(forum.likedContains(customer)) forum.removeLike(customer);
+			if(forum.likedContains(customer)) forumManagement.cancelLike(customer, forum);
 			forumManagement.unlikeComment(customer, forum);
+		} else {
+			forumManagement.cancelDislike(customer, forum);
 		}
 
 		return "redirect:/forum";
@@ -206,7 +261,7 @@ class ForumController {
 
 
 	@PostMapping("/forum/sendMoney")
-	public String charge(@RequestParam("money") double money, @RequestParam("invitee") String email, RedirectAttributes redir, @LoggedIn Optional<UserAccount> userAccount){
+	public String transfer(@RequestParam("money") double money, @RequestParam("invitee") String email, RedirectAttributes redir, @LoggedIn Optional<UserAccount> userAccount){
 
 		var invitee = customerManagement.findByEmail(email).get();
 		if (Money.of(money, EURO).isLessThanOrEqualTo(Money.of(0, EURO))) {

@@ -11,6 +11,7 @@ import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManagement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.provisioning.GroupManager;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
@@ -25,8 +26,9 @@ class ForumDataInitializer implements DataInitializer {
 	private ForumManagement forumManagement;
 	private PrivateChatManagement privateChatManagement;
 	private CustomerRepository customerRepository;
+	private final GroupChatManagement groupChatManagement;
 
-	ForumDataInitializer(ForumManagement forumManagement, PrivateChatManagement privateChatManagement, CustomerRepository customerRepository) {
+	ForumDataInitializer(ForumManagement forumManagement, GroupChatManagement groupChatManagement, PrivateChatManagement privateChatManagement, CustomerRepository customerRepository) {
 
 		Assert.notNull(forumManagement, "ForumManagement must not be null!");
 		Assert.notNull(privateChatManagement, "PrivateChatManagement must not be null!");
@@ -34,6 +36,7 @@ class ForumDataInitializer implements DataInitializer {
 		this.forumManagement = forumManagement;
 		this.privateChatManagement = privateChatManagement;
 		this.customerRepository = customerRepository;
+		this.groupChatManagement = groupChatManagement;
 	}
 
 	@Override
@@ -53,6 +56,9 @@ class ForumDataInitializer implements DataInitializer {
 		Theme temp2 = forumManagement.createTheme("SWT");
 		Theme temp3 = forumManagement.createTheme("Eine Frage");
 
+		GroupChat temp4 = groupChatManagement.createGroupChat("swt09");
+		GroupChat temp5 = groupChatManagement.createGroupChat("initGroup");
+
 		LOG.info("Creating default comments");
 		Stream.of(
 				new ForumEntry("Administrator", "Welcome to Mach Dein Glück!", "none"),
@@ -70,15 +76,9 @@ class ForumDataInitializer implements DataInitializer {
 						"Mama always said life was like a box of chocolates. You never know what you're gonna get.", "gump1337@outlook.live")
 		).forEach(forumEntry -> forumManagement.createComment(temp3, forumEntry));
 
-		LOG.info("Creating default chats.");
-
-		//List<Customer> customers = customerRepository.findAll().toList();
-		//PrivateChat privateChat1 = new PrivateChat(customers.get(0).getUserAccount());
-		//privateChat1.addGroupPartner(customers.get(1).getUserAccount());
-		//PrivateChat privateChat1 = privateChatManagement.createPrivateChat(customers.get(0).getUserAccount(), customers.get(1).getUserAccount());
-
-//		Stream.of(
-//				new ForumEntry(customers.get(0).getUserAccount().getFirstname() + " " + customers.get(0).getUserAccount().getLastname() , "SWT Aufgabe", customers.get(0).getUserAccount().getEmail())
-//		).forEach(forumEntry -> privateChatManagement.createMessage(privateChat1, forumEntry));
+		Stream.of(
+				new ForumEntry("Song", "something", "song@tu-dresden.de"),
+				new ForumEntry("Nina", "hi", "nina@tu-dresden.de")
+		).forEach(forumEntry -> groupChatManagement.createComment(temp4, forumEntry));
 	}
 }
