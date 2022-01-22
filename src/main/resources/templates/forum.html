@@ -75,7 +75,8 @@
             </tr>
             </thead>
             <tr th:each="chat:${privateChats}">
-                <td th:text="${chat.getPartners().get(1)}"></td>
+                <td th:if="${customer.userAccount.equals(chat.getInviter())}" th:text="${chat.getInvitee().getFirstname()} + ' ' + ${chat.getInvitee().getLastname()}"></td>
+                <td th:unless="${customer.userAccount.equals(chat.getInviter())}" th:text="${chat.getInviter().getFirstname()} + ' ' + ${chat.getInviter().getLastname()}"></td>
                 <td th:text="${chat.getCount()}"></td>
                 <td>
                     <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/chat}">
@@ -92,7 +93,8 @@
                             <br><br>
                             <input field="*{money}" id="money" name="money" type="number" step=".01" required="required"/>
                             </br></br>
-                            <input type="hidden" name="invitee" th:value="${chat.getPartners().get(1).getEmail()}">
+                            <input type="hidden" th:if="${customer.userAccount.equals(chat.getInviter())}" name="receiver" th:value="${chat.getInvitee().getEmail()}">
+                            <input type="hidden" th:unless="${customer.userAccount.equals(chat.getInviter())}" name="receiver" th:value="${chat.getInviter().getEmail()}">
                             <button class="button" type="submit" style="font-size: 12px" th:text="#{charge.charge2}" >Überweisen</button>
 
                         </div>

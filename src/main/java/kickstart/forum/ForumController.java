@@ -73,8 +73,9 @@ class ForumController {
 	String theme(Model model, @LoggedIn Optional<UserAccount> userAccount) {
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 
+		model.addAttribute("customer", customer);
 		model.addAttribute("themes", forumManagement.findAll());
-		model.addAttribute("privateChats", privateChatManagement.findAll());
+		model.addAttribute("privateChats", privateChatManagement.findAllByUserAccount(userAccount.get()));
 		model.addAttribute("groupChats", groupChatManagement.findAllGroupChat(customer));
 		return "forum";
 	}
@@ -261,7 +262,7 @@ class ForumController {
 
 
 	@PostMapping("/forum/sendMoney")
-	public String transfer(@RequestParam("money") double money, @RequestParam("invitee") String email, RedirectAttributes redir, @LoggedIn Optional<UserAccount> userAccount){
+	public String transfer(@RequestParam("money") double money, @RequestParam("receiver") String email, RedirectAttributes redir, @LoggedIn Optional<UserAccount> userAccount){
 
 		var invitee = customerManagement.findByEmail(email).get();
 		if (Money.of(money, EURO).isLessThanOrEqualTo(Money.of(0, EURO))) {
