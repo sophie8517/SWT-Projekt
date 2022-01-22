@@ -1,7 +1,6 @@
 package kickstart.order;
 import kickstart.catalog.*;
 
-import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -70,9 +69,12 @@ public class OrderController {
 
 	@PostMapping("/raiseFootBet")
 	public String raiseFootBet(@RequestParam("pid") ProductIdentifier id,
-							   @RequestParam("betid")String bet_id, @RequestParam("newinsetfoot")double inset){
+							   @RequestParam("betid")String bet_id, @RequestParam("newinsetfoot")double inset,
+							   @LoggedIn Optional<UserAccount> userAccount){
 
 		LocalDateTime date = LocalDateTime.now();
+
+		Customer customer = customerRepository.findCustomerByUserAccount(userAccount.get());
 
 
 		Money money = Money.of(inset, EURO);
@@ -83,7 +85,7 @@ public class OrderController {
 
 		if(bet != null) {
 			if(date.isBefore(f.getTimeLimit().minusMinutes(5))) {
-				var customer = bet.getCustomer();
+
 				Money diff = money.subtract(bet.getInset());
 				if(customer.getBalance().isGreaterThanOrEqualTo(diff)){
 					customer.setBalance(customer.getBalance().add(bet.getInset()));
@@ -125,9 +127,9 @@ public class OrderController {
 		Ergebnis  status;
 
 		if(number == 1){
-			status = Ergebnis.GASTSIEG;
-		} else if(number == 2){
 			status = Ergebnis.HEIMSIEG;
+		} else if(number == 2){
+			status = Ergebnis.GASTSIEG;
 		} else{
 			status = Ergebnis.UNENTSCHIEDEN;
 		}
@@ -164,7 +166,10 @@ public class OrderController {
 			//die Ziehung dieser Woche abgeschlossen ist
 			//man am Ziehungstag den Lottoschein ausgefüllt hat -> d.h. er ist für diese Ziehung noch nicht gültig
 
-			if (date.isBefore(t.getTimeLimit().minusMinutes(5))
+			//Fall: wette ausgewertet aber für nächste ziehung nicht mehr gültig
+			if((bet.getStatus().equals(Status.GEWONNEN) || bet.getStatus().equals(Status.VERLOREN)) && bet.getExpiration().isBefore(t.getTimeLimit())){
+				//keine Änderung mehr möglich
+			}else if (date.isBefore(t.getTimeLimit().minusMinutes(5))
 					||t.getCheckEvaluation().contains(t.getTimeLimit().toLocalDate())
 					|| bet.getDate().toLocalDate().isEqual(t.getTimeLimit().toLocalDate())) {
 				var customer = bet.getCustomer();
@@ -188,13 +193,14 @@ public class OrderController {
 		return "redirect:/customer_bets";
 	}
 
-	@GetMapping("/changeNums")
+	@GetMapping("/changeNumbers")
 	public String changeNums(Model model, @RequestParam("item")ProductIdentifier id, @RequestParam("betid")String bet_id){
 
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 		NumberBet bet = t.findbyBetId(bet_id);
 
 		model.addAttribute("numbet", bet);
+
 		return "changeNumTip.html";
 	}
 
@@ -210,7 +216,11 @@ public class OrderController {
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 		NumberBet bet = t.findbyBetId(bet_id);
 		if(bet != null) {
-			if (date.isBefore(t.getTimeLimit().minusMinutes(5))) {
+			if((bet.getStatus().equals(Status.GEWONNEN) || bet.getStatus().equals(Status.VERLOREN)) && bet.getExpiration().isBefore(t.getTimeLimit())){
+				//keine Änderung mehr möglich
+			}else if (date.isBefore(t.getTimeLimit().minusMinutes(5))
+					||t.getCheckEvaluation().contains(t.getTimeLimit().toLocalDate())
+					|| bet.getDate().toLocalDate().isEqual(t.getTimeLimit().toLocalDate())) {
 				List<Integer> nums = new ArrayList<>();
 				Set<Integer> checker = new HashSet<>();
 				checker.add(zahl1);
@@ -223,6 +233,7 @@ public class OrderController {
 
 				if(checker.size() == 6 ){
 					nums.addAll(checker);
+					Collections.sort(nums);
 
 				} else{
 
@@ -254,7 +265,7 @@ public class OrderController {
 				||t.getCheckEvaluation().contains(time.toLocalDate())
 				|| numberBetRemove.getDate().toLocalDate().isEqual(time.toLocalDate())){
 
-			if(numberBetRemove.getStatus().equals(Status.OPEN)){
+			if(numberBetRemove.getStatus().equals(Status.OFFEN)){
 				Money oldbalance = customer.getBalance();
 				Money newbalance =oldbalance.add(numberBetRemove.getInset());
 				customer.setBalance(newbalance);
@@ -271,16 +282,18 @@ public class OrderController {
 	}
 
 	@PostMapping("/removeFootballBets")
-	public String removeFootballBets(@RequestParam("itemid")ProductIdentifier id, @RequestParam("betid")String bid){
+	public String removeFootballBets(@RequestParam("itemid")ProductIdentifier id, @RequestParam("betid")String bid,@LoggedIn Optional<UserAccount> userAccount){
 
 		LocalDateTime date = LocalDateTime.now();
 		Football football = (Football) lotteryCatalog.findById(id).get();
 		FootballBet footballBetRemove = football.findbyBetId(bid);
 		LocalDateTime time = football.getTimeLimit().minusMinutes(5);
-		Customer customer = footballBetRemove.getCustomer();
+		//the Customer who is deleting the bet, gets the money back if he/she does it before the match
+		Customer customer = customerRepository.findCustomerByUserAccount(userAccount.get());
+
 		if (date.isBefore(time) || !football.getErgebnis().equals(Ergebnis.LEER)){
 
-			if(footballBetRemove.getStatus().equals(Status.OPEN)){
+			if(footballBetRemove.getStatus().equals(Status.OFFEN)){
 				Money oldbalance = customer.getBalance();
 				Money newbalance =oldbalance.add(footballBetRemove.getInset());
 				customer.setBalance(newbalance);
@@ -302,6 +315,7 @@ public class OrderController {
 
 	}
 
+	/*
 	@PostMapping("/order")
 	String income(Model model, LocalDateTime date, FootballBet footballBet, Customer customer, Match match){
 		LocalDateTime temp = date.plusMinutes(90);
@@ -329,7 +343,7 @@ public class OrderController {
 				}
 			}
 			for(NumberBet nb: t.getNumberBetsbyCustomer(customer)){
-				if(nb.getStatus()==Status.WIN){
+				if(nb.getStatus()==Status.GEWONNEN){
 					Money income = customer.getBalance().add(Money.of(t.getPrice2(),EURO));
 					customer.setBalance(income);
 				}
@@ -341,6 +355,9 @@ public class OrderController {
 
 	}
 
+	 */
+
+	/*
 	@PreAuthorize("hasRole('ADMIN')")
 	String result(Model model, Football football, int scoreHost, int scoreGuest){
 		football.getHost().setScore(scoreHost);
@@ -349,6 +366,8 @@ public class OrderController {
 		model.addAttribute("result", match.result());
 		return "redirect:/";
 	}
+
+	 */
 
 	@GetMapping("/accountDeactivate")
 	String toAccountDeactivatePage(){
@@ -361,7 +380,7 @@ public class OrderController {
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 
 		if(checkBetStatus(customer)) {
-			redir.addFlashAttribute("message", "Es gibt Wetten, die nicht abgeschlossen sind");
+			redir.addFlashAttribute("message", "Es gibt noch Wetten, die nicht ausgewertet sind");
 			return "redirect:/accountDeactivate";
 		}
 
@@ -391,7 +410,7 @@ public class OrderController {
 		}
 
 		for(Bet bet: bets) {
-			if(bet.getStatus().equals(Status.OPEN)) {
+			if(bet.getStatus().equals(Status.OFFEN)) {
 				found = true;
 				break;
 			}

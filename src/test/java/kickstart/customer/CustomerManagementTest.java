@@ -89,10 +89,11 @@ class CustomerManagementTest extends AbstractIntegrationTest {
 
 	@Test
 	void addMemberToGroup() {
+		Customer customer = customerManagement.findAllCustomers().stream().findFirst().get();
 		Customer leader = customerManagement.createCustomer(
 				new RegistrationForm("test", "leader", "test@leader.de", "123", "123"));
 		Group testGroup = customerManagement.createGroup("testGroup", leader);
-		Customer customer = customerManagement.findAllCustomers().stream().findFirst().get();
+		
 		Customer temp = new Customer();
 		assertTrue(testGroup.getMembers().size() == 1);
 

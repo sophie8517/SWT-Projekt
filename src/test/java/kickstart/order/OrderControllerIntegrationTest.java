@@ -71,13 +71,13 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 		lotteryCatalog.save(f2);
 
 		f3 = new Football("ghi",LocalDateTime.now().plusMinutes(5),Money.of(12,EURO), Item.ItemType.FOOTBALL,new Team("host"),new Team("guest"),"1. liga","imgh1","imgg2");
-		fb3 = new FootballBet(f3,LocalDateTime.now().minusDays(3),Money.of(14,EURO),c,f.getTimeLimit(),Ergebnis.UNENTSCHIEDEN);
+		fb3 = new FootballBet(f3,LocalDateTime.now().minusDays(3),Money.of(14,EURO),c,f3.getTimeLimit(),Ergebnis.UNENTSCHIEDEN);
 		f3.addBet(fb3);
 		f3id = f3.getId();
 		fb3_id = fb3.getIdstring();
 		lotteryCatalog.save(f3);
 
-		f4 = new Football("ghi",LocalDateTime.now().minusMinutes(90),Money.of(12,EURO), Item.ItemType.FOOTBALL,new Team("winner"),new Team("loser"),"1. liga","imgw","imgl");
+		f4 = new Football("ghi2",LocalDateTime.now().minusMinutes(90),Money.of(12,EURO), Item.ItemType.FOOTBALL,new Team("winner"),new Team("loser"),"1. liga","imgw","imgl");
 		fb4 = new FootballBet(f4,LocalDateTime.now().minusDays(3),Money.of(14,EURO),c,f4.getTimeLimit(),Ergebnis.UNENTSCHIEDEN);
 		f4.addBet(fb4);
 		f4id = f4.getId();
@@ -120,8 +120,8 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 	@Test
 	@WithMockUser(username = "test", roles = "CUSTOMER")
 	public void ViewBetsTest(){
-		NumberBet nb = new NumberBet(t, LocalDateTime.now(), Money.of(t.getPrice2(),EURO),c,LocalDateTime.now().plusDays(7),l,9);
-		t.addBet(nb);
+		NumberBet temp = new NumberBet(t, LocalDateTime.now(), Money.of(t.getPrice2(),EURO),c,LocalDateTime.now().plusDays(7),l,9);
+		t.addBet(temp);
 		lotteryCatalog.save(t);
 
 		Model model = new ExtendedModelMap();
@@ -135,7 +135,7 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 	@WithMockUser(username = "test", roles = "CUSTOMER")
 	public void RaiseFootBetTestTimeUp(){
 
-		String returnView = orderController.raiseFootBet(fid,fb_id,12.0);
+		String returnView = orderController.raiseFootBet(fid,fb_id,12.0,Optional.of(ua));
 		assertThat(returnView).isEqualTo("time_up.html");
 	}
 
@@ -143,7 +143,7 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 	@WithMockUser(username = "test", roles = "CUSTOMER")
 	public void RaiseFootBetTestError(){
 		c.setBalance(Money.of(2,EURO));
-		String returnView = orderController.raiseFootBet(f2id,fb2_id,15.0);
+		String returnView = orderController.raiseFootBet(f2id,fb2_id,15.0, Optional.of(ua));
 		assertThat(returnView).isEqualTo("error");
 
 		//balance doesn't change if customer has not enough money
@@ -154,10 +154,20 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 	@WithMockUser(username = "test", roles = "CUSTOMER")
 	public void RaiseFootBetTestSuccess(){
 		c.setBalance(Money.of(10,EURO));
-		String returnView = orderController.raiseFootBet(f2id,fb2_id,15.0);
+		String returnView = orderController.raiseFootBet(f2id,fb2_id,15.0, Optional.of(ua));
 		assertThat(returnView).isEqualTo("redirect:/customer_bets");
 		assertThat(fb2.getInset()).isEqualTo(Money.of(15,EURO));
 		assertThat(c.getBalance()).isEqualTo(Money.of(7,EURO));
+	}
+	@Test
+	@WithMockUser(username = "test", roles = "CUSTOMER")
+	public void RaiseFootBetTestNULL(){
+		FootballBet temp2 = new FootballBet(f2,LocalDateTime.now().minusDays(3),Money.of(14,EURO),c,f2.getTimeLimit(),Ergebnis.UNENTSCHIEDEN);
+		String returnView = orderController.raiseFootBet(f2id,temp2.getIdstring(),15.0, Optional.of(ua));
+		assertThat(returnView).isEqualTo("redirect:/customer_bets");
+		assertThat(f2.findbyBetId(temp2.getIdstring())).isNull();
+		assertThat(temp2.getInset()).isEqualTo(Money.of(14,EURO));
+		assertThat(c.getBalance()).isEqualTo(balance);
 	}
 
 	@Test
@@ -183,14 +193,14 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 	public void ChangeFootBetTipTestSuccess(){
 		String returnView = orderController.changeFootbetTip(f2id,fb2_id,2);
 		assertThat(returnView).isEqualTo("redirect:/customer_bets");
-		assertThat(fb2.getTip()).isEqualTo(Ergebnis.HEIMSIEG);
+		assertThat(fb2.getTip()).isEqualTo(Ergebnis.GASTSIEG);
 
 	}
 
 	@Test
 	@WithMockUser(username = "test", roles = "CUSTOMER")
 	public void RemoveFootballBetsTestTimeUp(){
-		String returnView = orderController.removeFootballBets(fid,fb_id);
+		String returnView = orderController.removeFootballBets(fid,fb_id,Optional.of(ua));
 		assertThat(returnView).isEqualTo("time_up.html");
 		assertThat(f.getFootballBets().contains(fb)).isTrue();
 		assertThat(c.getBalance()).isEqualTo(balance);
@@ -199,7 +209,7 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 	@Test
 	@WithMockUser(username = "test", roles = "CUSTOMER")
 	public void RemoveFootballBetsTestStatusOPEN(){
-		String returnView = orderController.removeFootballBets(f2id,fb2_id);
+		String returnView = orderController.removeFootballBets(f2id,fb2_id, Optional.of(ua));
 		assertThat(returnView).isEqualTo("redirect:/customer_bets");
 		assertThat(c.getBalance()).isEqualTo(balance.add(fb2.getInset()));
 		assertThat(f2.getFootballBets().contains(fb2)).isFalse();
@@ -209,8 +219,8 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 	@Test
 	@WithMockUser(username = "test", roles = "CUSTOMER")
 	public void RemoveFootballBetsTestStatusSuccess(){
-		fb2.changeStatus(Status.LOSS);
-		String returnView = orderController.removeFootballBets(f2id,fb2_id);
+		fb2.changeStatus(Status.VERLOREN);
+		String returnView = orderController.removeFootballBets(f2id,fb2_id, Optional.of(ua));
 		assertThat(returnView).isEqualTo("redirect:/customer_bets");
 		assertThat(c.getBalance()).isEqualTo(balance);
 		assertThat(f2.getFootballBets().contains(fb2)).isFalse();
@@ -220,7 +230,7 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 	@Test
 	@WithMockUser(username = "test", roles = "CUSTOMER")
 	public void RemoveFootballBetsTestTimeUp5Minutes(){
-		String returnView = orderController.removeFootballBets(f3id,fb3_id);
+		String returnView = orderController.removeFootballBets(f3id,fb3_id, Optional.of(ua));
 		assertThat(returnView).isEqualTo("time_up.html");
 		assertThat(f3.getFootballBets().contains(fb3)).isTrue();
 		assertThat(c.getBalance()).isEqualTo(balance);
@@ -231,7 +241,7 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 	@WithMockUser(roles={"ADMIN","CUSTOMER"})
 	public void RemoveFootballBetsTestAfterEvaluation(){
 
-		String returnView = orderController.removeFootballBets(f4id,fb4_id);
+		String returnView = orderController.removeFootballBets(f4id,fb4_id, Optional.of(ua));
 		assertThat(returnView).isEqualTo("time_up.html");
 		assertThat(f4.getFootballBets().contains(fb4)).isTrue();
 		assertThat(c.getBalance()).isEqualTo(balance);
@@ -239,7 +249,7 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 		String myview = resultController.evalFootballBets(f4id,2);
 		//Ergebnis von f4 wurde auf 3 = UNENTSCHIEDEN gesetzt
 		//Status von fb4 ist nicht mehr OPEN
-		String resultView = orderController.removeFootballBets(f4id,fb4_id);
+		String resultView = orderController.removeFootballBets(f4id,fb4_id,Optional.of(ua));
 		assertThat(resultView).isEqualTo("redirect:/customer_bets");
 		assertThat(f4.getFootballBets().contains(fb4)).isFalse();
 		assertThat(c.getBalance()).isEqualTo(balance);
@@ -298,23 +308,16 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 	@Test
 	@WithMockUser(username = "test", roles = "CUSTOMER")
 	public void ChangeNumBetTipTestWrongInput(){
-		Set<Integer> checker = new HashSet<>();
-		checker.add(1);
-		checker.add(2);
-		checker.add(3);
-		checker.add(4);
-		checker.add(5);
-		checker.add(6);
-		if(checker.size() != 6){
-			String returnView = orderController.changeNumbetTip(tid2, nb2_id, 2, 3, 4, 5, 6, 7, 0);
+
+			String returnView = orderController.changeNumbetTip(tid2, nb2_id, 2, 2, 4, 5, 6, 7, 0);
 			assertThat(returnView).isEqualTo("wronginput.html");
-		}
+
 	}
 
 	@Test
 	@WithMockUser(username = "test", roles = "CUSTOMER")
 	public void ChangeNumBetTipTestTimeUp(){
-		Model model = new ExtendedModelMap();
+		//Model model = new ExtendedModelMap();
 		String returnView = orderController.changeNumbetTip(tid3, nb3_id, 1, 2, 3, 4, 5, 6, 7);
 		assertThat(returnView).isEqualTo("time_up.html");
 
@@ -323,7 +326,7 @@ public class OrderControllerIntegrationTest extends AbstractIntegrationTest {
 	@Test
 	@WithMockUser(username = "test", roles = "CUSTOMER")
 	public void RemoveNumberBetsTestStatusSuccess(){
-		nb2.changeStatus(Status.LOSS);
+		nb2.changeStatus(Status.VERLOREN);
 		String returnView = orderController.removeNumberBets(tid2,nb2_id);
 		assertThat(returnView).isEqualTo("redirect:/customer_bets");
 		assertThat(c.getBalance()).isEqualTo(balance);

@@ -4,7 +4,6 @@ import org.javamoney.moneta.Money;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
@@ -19,7 +18,6 @@ public class Bet implements Serializable {
 
 	private LocalDateTime date; //date when the user placed the bet
 	private Money inset;
-	private double inset2;
 
 	@ManyToOne
 	private Item item;
@@ -48,7 +46,7 @@ public class Bet implements Serializable {
 		this.item = item;
 		this.date = date;
 		this.inset = einsatz;
-		this.status = Status.OPEN;
+		this.status = Status.OFFEN;
 		this.customer = customer;
 		this.expiration = expiration;
 		this.idstring = UUID.randomUUID().toString();
@@ -99,14 +97,6 @@ public class Bet implements Serializable {
 	public double getEinsatz2(){
 		return inset.getNumber().doubleValue();
 	}
-
-	/*
-	public long getId() {
-
-		return id;
-	}
-
-	 */
 
 	public String getIdstring() {
 		return idstring;
