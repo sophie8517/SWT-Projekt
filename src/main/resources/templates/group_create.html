@@ -33,7 +33,7 @@
 
                 <br>
 
-                <button type="submit" class="ui button" th:text="#{group.create}" style="font-size: 15px">Gruppe einrichten</button>
+                <button  type="submit" class="ui button" th:text="#{group.create}" style="font-size: 14px" th:class="text">Gruppe einrichten</button>
             </form>
         </section>
 
@@ -41,7 +41,7 @@
 
         <div>
             <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="post" th:action="@{/closeToMyProfile}">
-                <button type="submit" sec:authorize="hasRole('CUSTOMER')" class="ui button" th:text="#{group.close}">Erstellung abrechen</button>
+                <button type="submit" sec:authorize="hasRole('CUSTOMER')" class="ui button" th:text="#{group.close}" style="font-size: 14px" th:class="text">Erstellung abrechen</button>
             </form>
         </div>
 
@@ -49,7 +49,7 @@
 
         <div>
             <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="post" th:action="@{/close}">
-                <button type="submit" class="ui button" th:text="#{group.groupList}">Zur Liste aller Gruppen</button>
+                <button type="submit" class="ui button" th:text="#{group.groupList}" style="font-size: 14px" th:class="text">Zur Liste aller Gruppen</button>
             </form>
         </div>
 

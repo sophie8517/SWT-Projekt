@@ -12,17 +12,17 @@
 <nav th:include="navigation :: navigation" class="navcontainer"></nav>
 
 
-
 <div class="container">
     <div class="forumBackground">
         <h3 th:text="#{forum.title}">Forum</h3>
         <h4 th:value="${groupChatName}"></h4>
-    </div>
+    </div>>
 
     <div id="entries">
         <div th:each="forum, it : ${forums}" th:with="index = ${it.count}" class="box-eight">
+            <br><br>
 
-            <table border = "4" cellpadding = "4" cellspacing = "0"  class ="center">
+            <table border = "4" cellpadding = "4" cellspacing = "0"  class ="center" style="border-color: white">
                 <tr>
                     <th>Name/E-mail</th>
                     <td><div th:text="${email}"></div></td>
@@ -40,9 +40,14 @@
 
             </table>
         </div>
+    </div>
 
-        <h3>Antwort</h3>
-        <div> <form method="post" role="form" id="form" th:action="@{/groupChat/{groupChat}(groupChat=${groupChatName})}" th:object="${form}" sec:authorize="hasRole('CUSTOMER')">
+    <br>
+
+
+    <div class="text-box2" style="padding-top: 1px">
+        <h5>Antwort</h5>
+        <form method="post" role="form" id="form" th:action="@{/groupChat/{groupChat}(groupChat=${groupChatName})}" th:object="${form}" sec:authorize="hasRole('CUSTOMER')">
 
             <input id="name" name="name" type="hidden" th:value="${name}" />
             <div>
@@ -54,14 +59,14 @@
 
             <input type="submit" th:value="#{forum.form.submit}" value="Senden" />
         </form>
-        </div>
-
     </div>
+
+    <footer>
+        <p>Mach Dein Glück!! ©Copyright 2021©</p>
+    </footer>
 </div>
 
-<footer>
-    <p>Mach Dein Glück!! ©Copyright 2021©</p>
-</footer>
+
 
 </body>
 

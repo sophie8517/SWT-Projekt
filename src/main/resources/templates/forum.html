@@ -25,7 +25,7 @@
 <div class="container">
     <main class="box-seven">
         <h3 th:text="#{forum.title}">Forum</h3>
-        <h4>Übersicht</h4>
+        <h5>Übersicht</h5>
         <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center" style="margin: auto; border-color: white">
             <thead>
             <tr>
@@ -51,9 +51,12 @@
         </table>
 
         <div>
+            <h5>Neues Thema erstellen</h5>
             <form sec:authorize="hasRole('CUSTOMER')" method="post" th:action="@{/forum}">
-                <label>Add New Title:</label>
+
                 <input name="title" type="text" required="required">
+                <button type="submit" style="font-size: 14px">Bestätigen</button>
+                <!--<input type="submit" style="font-size: 14px"/>-->
             </form>
         </div>
 
@@ -63,8 +66,11 @@
 
 <div class="container">
     <main class="box-seven">
-        <h3 th:text="#{forum.privateChat}"></h3>
-        <h4>Übersicht</h4>
+        <div>
+            <h3 th:text="#{forum.privateChat}"></h3>
+            <h5>Übersicht</h5>
+        </div>
+
         <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center" style="margin: auto; border-color: white">
             <thead>
             <tr>
@@ -80,7 +86,7 @@
                 <td>
                     <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/chat}">
                         <input type="hidden" name="chatId" th:value="${chat.getId()}">
-                        <button type="submit" class="ui button" style="font-size: 11px">Chat öffnen</button>
+                        <button type="submit" class="ui button" style="font-size: 14px">Chat öffnen</button>
                     </form>
                 </td>
                 <td>
@@ -93,8 +99,7 @@
                             <input field="*{money}" id="money" name="money" type="number" step=".01" required="required"/>
                             </br></br>
                             <input type="hidden" name="invitee" th:value="${chat.getPartners().get(1).getEmail()}">
-                            <button class="button" type="submit" style="font-size: 12px" th:text="#{charge.charge2}" >Überweisen</button>
-
+                            <button class="button" type="submit" style="font-size: 14px" th:text="#{charge.charge2}" >Überweisen</button>
                         </div>
                     </form>
                 </td>
@@ -108,19 +113,22 @@
         <section>
             <form method="get" role="form" class="ui form" id="form" th:action="@{/search}">
 
-                <h4>Neues Chat starten</h4>
+                <h5>Neues Chat starten</h5>
 
                 <input type="text" name = "invitee" required="required">
-                <input type="submit" style="font-size: 12px"/>
+                <button type="submit" style="font-size: 14px">Bestätigen</button>
+                <!--<input type="submit" style="font-size: 12px"/>-->
             </form>
         </section>
     </main>
 </div>
 
+<br>
+
 <div class="container">
     <main class="box-seven">
         <h3 th:text="#{forum.groupChat}"></h3>
-        <h4>Übersicht</h4>
+        <h5>Übersicht</h5>
         <table border = "5" cellpadding = "5" cellspacing = "0"  class ="center" style="margin: auto; border-color: white">
             <thead>
             <tr>
@@ -140,13 +148,13 @@
                 </td>
             </tr>
         </table>
-
     </main>
-
     <footer>
         <p>Mach Dein Glück!! ©Copyright 2021©</p>
     </footer>
 </div>
+
+
 
 </body>
 </html>

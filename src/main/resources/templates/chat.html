@@ -29,16 +29,18 @@
 <div class="container">
     <div class="forumBackground">
         <h3 th:text="#{forum.title}">Forum</h3>
-        <h4 th:value="${invitee}"></h4>
+        <h5 th:value="${invitee}"></h5>
     </div>
 
+    <br>
+
     <div id="entries">
-        <div th:each="forum, it : ${forums}" th:with="index = ${it.count}" class="box-eight">
+        <div th:each="forum, it : ${forums}" th:with="index = ${it.count}" class="box-eight" style="padding-top: 1px">
             <div>
                 <form sec:authorize="hasRole('ADMIN')" th:method="delete" th:action="@{/forum/{id}(id=${forum.getId()})}" th:attr="data-entry-id=${forum.getId()}">
-                    <button th:title="#{forum.form.delete}"></button>
+                    <button th:title="#{forum.form.delete}" style="font-size: 14px"></button>
                 </form>
-                <h4 th:text="${index} + '. ' + ${forum.getName()}">1. Posting</h4>
+                <h5 th:text="${index} + '. ' + ${forum.getName()}">1. Posting</h5>
             </div>
 
             <table border = "3" cellpadding = "4" cellspacing = "0"  class ="center">
@@ -68,45 +70,51 @@
                 </tr>
                 -->
             </table>
+            <br>
             <div>
                 <span th:text="${forum.likedCount}">liked</span>
                 <form method="post" th:action="@{/theme/like/{id}(id=${forum.getId()})}" sec:authorize="hasRole('CUSTOMER')">
-                    <button type="submit">like</button>
+                    <button type="submit" style="font-size: 14px">Like</button>
                 </form>
             </div>
             <div>
                 <span th:text="${forum.unlikedCount}">unliked</span>
                 <form method="post" th:action="@{/theme/unlike/{id}(id=${forum.getId()})}" sec:authorize="hasRole('CUSTOMER')">
-                    <button type="submit">unlike</button>
+                    <button type="submit" style="font-size: 14px">Dislike</button>
                 </form>
             </div>
         </div>
 
-        <div class="box-seven">
-            <div> <form method="post" role="form" id="form" th:action="@{/chat/{chatId}(chatId=${id})}" th:object="${form}" sec:authorize="hasRole('CUSTOMER')">
-                <!--            <div>
-                                <label for="name" th:text="#{forum.form.name}">Name</label><br />
-                                <input type="text" th:field="*{name}" th:errorclass="is-invalid" required="required" />
-                                <div th:if="${#fields.hasErrors('name')}" th:text="#{forum.form.name.required}">Please provide a name.</div>
-                            </div>-->
-                <input id="name" name="name" type="hidden" th:value="${name}" />
-                <div>
-                    <label for="text" th:text="#{forum.form.text}">Text</label><br />
-                    <textarea th:field="*{text}" th:errorclass="is-invalid" required="required"></textarea>
-                    <div th:if="${#fields.hasErrors('text')}" th:text="#{forum.form.text.required}">Please provide a text.</div>
-                </div>
-                <input id="email" name="email" type="hidden" th:value="${email}" />
-                <!--            <div>
-                                <label for="email" th:text="#{forum.form.email}">Email</label><br />
-                                <input type="email" th:field="*{email}" th:errorclass="is-invalid" required="required" />
-                                <div th:if="${#fields.hasErrors('email')}" th:text="#{forum.form.email.required}">Please provide a email.</div>
-                            </div>-->
-                <input type="submit" th:value="#{forum.form.submit}" value="Senden" />
-            </form>
-            </div>
-        </div>
-
     </div>
+
+    <br>
+
+    <div class="text-box2">
+        <div> <form method="post" role="form" id="form" th:action="@{/chat/{chatId}(chatId=${id})}" th:object="${form}" sec:authorize="hasRole('CUSTOMER')">
+            <!--            <div>
+                            <label for="name" th:text="#{forum.form.name}">Name</label><br />
+                            <input type="text" th:field="*{name}" th:errorclass="is-invalid" required="required" />
+                            <div th:if="${#fields.hasErrors('name')}" th:text="#{forum.form.name.required}">Please provide a name.</div>
+                        </div>-->
+            <input id="name" name="name" type="hidden" th:value="${name}" />
+            <div>
+                <label for="text" th:text="#{forum.form.text}">Text</label><br />
+                <textarea th:field="*{text}" th:errorclass="is-invalid" required="required"></textarea>
+                <div th:if="${#fields.hasErrors('text')}" th:text="#{forum.form.text.required}">Please provide a text.</div>
+            </div>
+            <input id="email" name="email" type="hidden" th:value="${email}" />
+            <!--            <div>
+                            <label for="email" th:text="#{forum.form.email}">Email</label><br />
+                            <input type="email" th:field="*{email}" th:errorclass="is-invalid" required="required" />
+                            <div th:if="${#fields.hasErrors('email')}" th:text="#{forum.form.email.required}">Please provide a email.</div>
+                        </div>-->
+            <input type="submit" th:value="#{forum.form.submit}" value="Senden" />
+        </form>
+        </div>
+    </div>
+    <footer>
+        <p>Mach Dein Glück!! ©Copyright 2021©</p>
+    </footer>
 </div>
 <!--
 
@@ -115,7 +123,7 @@
                     <form sec:authorize="hasRole('ADMIN')" th:method="delete" th:action="@{/forum/{id}(id=${entry.id})}" th:attr="data-entry-id=${entry.id}">
                         <button th:title="#{forum.form.delete}"></button>
                     </form>
-                    <h4 th:text="${index} + '. ' + ${entry.name}">1. Posting</h4>
+                    <h5 th:text="${index} + '. ' + ${entry.name}">1. Posting</h5>
                 </div>
                 <div>
                     <blockquote th:text="${entry.text}"></blockquote>
@@ -132,9 +140,6 @@
     </div>
 
     -->
-<footer>
-    <p>Mach Dein Glück!! ©Copyright 2021©</p>
-</footer>
 
 </body>
 
