@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -52,6 +53,7 @@ public class ResultController {
 			}
 			NumberLottery numlot = new NumberLottery();
 			List<Integer> gewinnzahlen = numlot.generate_nums();
+			Collections.sort(gewinnzahlen);
 			int zusatzzahl = numlot.generateAdditionalNumber();
 
 			evaluateNum(t,today, gewinnzahlen,zusatzzahl);
@@ -74,11 +76,21 @@ public class ResultController {
 					result.add(nb);
 				}
 			}else{
-				nb.changeStatus(Status.EXPIRED);
+				nb.changeStatus(Status.ABGELAUFEN);
 			}
 		}
 		lotteryCatalog.save(t);
 		return result;
+	}
+
+	public boolean compareNumbers(List<Integer> userzahlen, List<Integer> lottozahlen){
+
+		for(int i: userzahlen){
+			if(!lottozahlen.contains(i)){
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
@@ -90,36 +102,44 @@ public class ResultController {
 
 		List<NumberBet> wetten_valid = validBets(t,today);
 
+
 		for (NumberBet nb : wetten_valid) {
-			if (nb.getNumbers().containsAll(gewinnzahlen) && nb.getAdditionalNum() == zusatzzahl) {
-				nb.changeStatus(Status.WIN);
+
+			if (compareNumbers(nb.getNumbers(),gewinnzahlen) && nb.getAdditionalNum() == zusatzzahl) {
+				nb.changeStatus(Status.GEWONNEN);
+
 				Customer c = nb.getCustomer();
 				Money bal = c.getBalance().add(nb.getInset());
 				c.setBalance(bal);
 				customerRepository.save(c);
 			} else {
-				nb.changeStatus(Status.LOSS);
+				nb.changeStatus(Status.VERLOREN);
 			}
 		}
 
 		t.addCheck(t.getTimeLimit().toLocalDate());
+		LocalDateTime tm = t.getTimeLimit().plusDays(7);
+		t.setTimeLimit(tm);
 
 		lotteryCatalog.save(t);
+		System.out.println("valide wetten:");
+		System.out.println(wetten_valid);
+		System.out.println(t.getNumberBits());
 	}
 
 	public void changeStatusSingleBet(Football f, FootballBet fb, Ergebnis erg){
 		if(!fb.getExpiration().isBefore(f.getTimeLimit())){
 			if(fb.getTip().equals(erg)){
-				fb.changeStatus(Status.WIN);
+				fb.changeStatus(Status.GEWONNEN);
 				Customer c = fb.getCustomer();
 				Money bal = c.getBalance().add(fb.getInset());
 				c.setBalance(bal);
 				customerRepository.save(c);
 			} else{
-				fb.changeStatus(Status.LOSS);
+				fb.changeStatus(Status.VERLOREN);
 			}
 		} else{
-			fb.changeStatus(Status.EXPIRED);
+			fb.changeStatus(Status.ABGELAUFEN);
 
 		}
 		lotteryCatalog.save(f);
@@ -138,9 +158,9 @@ public class ResultController {
 
 			Ergebnis erg;
 			switch (number){
-				case 1:erg = Ergebnis.GASTSIEG;
+				case 1:erg = Ergebnis.HEIMSIEG;
 				break;
-				case 2:erg = Ergebnis.HEIMSIEG;
+				case 2:erg = Ergebnis.GASTSIEG;
 				break;
 				case 3:erg = Ergebnis.UNENTSCHIEDEN;
 				break;
@@ -171,7 +191,7 @@ public class ResultController {
 			Group gruppe = customerManagement.findByGroupName(fb.getGroupName());
 			Set<Customer> customers = gruppe.getMembers();
 			if(fb.getTip().equals(erg)){
-				fb.changeStatus(Status.WIN);
+				fb.changeStatus(Status.GEWONNEN);
 
 				double value = fb.getEinsatz2()/customers.size();
 				value = Math.round((value * 100.0)/100.0);
@@ -183,10 +203,10 @@ public class ResultController {
 				}
 
 			} else{
-				fb.changeStatus(Status.LOSS);
+				fb.changeStatus(Status.VERLOREN);
 			}
 		}else{
-			fb.changeStatus(Status.EXPIRED);
+			fb.changeStatus(Status.ABGELAUFEN);
 
 		}
 		lotteryCatalog.save(f);

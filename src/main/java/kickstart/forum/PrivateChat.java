@@ -57,6 +57,8 @@ public class PrivateChat {
 		return partners;
 	}
 
+	public UserAccount getInvitee() { return getPartners().get(1); }
+
 	public List<ForumEntry> getForums() {
 		return chats;
 	}

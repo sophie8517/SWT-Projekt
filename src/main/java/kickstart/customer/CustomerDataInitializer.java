@@ -11,9 +11,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import java.util.List;
-import java.util.stream.Stream;
-
-import kickstart.forum.*;
 
 
 @Component
@@ -54,9 +51,6 @@ class CustomerDataInitializer implements DataInitializer {
 				new RegistrationForm("Lukas", "Lei", "lukas@tu-dresden.de", password, passwordCheck),
 				new RegistrationForm("Max", "Mustermann", "test@tu-dresden.de", password, passwordCheck)
 		).forEach(customerManagement::createCustomer);
-
-
-
 
 		LOG.info("Creating default groups");
 		var leader = customerManagement.createCustomer(
