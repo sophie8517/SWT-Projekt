@@ -316,7 +316,7 @@ image:models/design/block_order.svg[Location, 100%, 100%, pdfwidth=100%, title= 
 [options="header"]
 |=== 
 |Class/Enumeration |Description
-|BestellungController |Ein Spring MVC Controller zur Handhabung des Warenkorbs.
+|OrderController |Ein Spring MVC Controller zur Handhabung des Warenkorbs.
 |===
 
 === 5.6 Lotterieergebnis
@@ -384,9 +384,11 @@ image:models/design/runtime_order.svg[Location, 100%, 100%, pdfwidth=100%, title
 === 7.1 Quality Gates
 [options="header"]
 |===
-|Quality Gate                  |Tatsächlicher Wert        |Ziel
-|Zuverlässigkeit               |...                       |A
-|Abdeckung                     |..                        |50%
+|Quality Gate                  	|Tatsächlicher Wert      |Ziel
+|Zuverlässigkeit               	|A                       |A
+|Abdeckung                     	|68%                     |50%
+|Sicherheit			|A			 |A
+|Wartbarkeit			|A			 |A
 |===
 
 === 7.2 Probleme
