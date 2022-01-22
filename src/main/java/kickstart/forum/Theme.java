@@ -1,9 +1,6 @@
 package kickstart.forum;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,6 +9,9 @@ public class Theme {
 
 	private @Id @GeneratedValue long id;
 	private String name;
+
+	@ManyToOne
+	private PrivateChat privateChat;
 
 	@OneToMany
 	private List<ForumEntry> forums = new LinkedList<>();

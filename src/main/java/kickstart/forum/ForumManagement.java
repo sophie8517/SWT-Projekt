@@ -1,8 +1,12 @@
 package kickstart.forum;
 
+import kickstart.customer.Customer;
+import org.salespointframework.useraccount.UserAccount;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -10,6 +14,7 @@ public class ForumManagement {
 
 	private ForumRepository comments;
 	private ThemeRepository themes;
+	private PrivateChatRepository privateChatRepository;
 
 	public ForumManagement(ForumRepository comments, ThemeRepository themes) {
 		this.comments = comments;
@@ -20,6 +25,7 @@ public class ForumManagement {
 		Theme theme = new Theme(title);
 		return themes.save(theme);
 	}
+
 	public ForumEntry createComment(Theme theme, ForumEntry forum) {
 		theme.addForum(forum);
 		return comments.save(forum);
@@ -28,7 +34,6 @@ public class ForumManagement {
 	public Iterable<Theme> findAll() {
 		return themes.findAll();
 	}
-
 	public long countTheme() {
 		return themes.count();
 	}

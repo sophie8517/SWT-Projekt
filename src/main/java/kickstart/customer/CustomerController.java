@@ -219,7 +219,6 @@ public class CustomerController{
 		}
 
 		customerManagement.addMemberToGroup(customer, group, password);
-
 		return "redirect:/group";
 	}
 

@@ -95,6 +95,10 @@ public class CustomerManagement {
 		customer.setBalance(customer.getBalance().add(money));
 	}
 
+	public void transfer(Money money, Customer customer){
+		customer.setBalance(customer.getBalance().subtract(money));
+	}
+
 	public Customer findByCustomerId(long customerId){
 		var customer = customers.findById(customerId).orElse(null);
 		return customer;
@@ -114,7 +118,9 @@ public class CustomerManagement {
 		return customer;
 	}
 
-	public Optional<UserAccount> findByEmail(String name){ return userAccounts.findByUsername(name); }
+	public Optional<UserAccount> findByEmail(String name){
+		return userAccounts.findByUsername(name);
+	}
 
 
 	//public boolean changePwd(Optional<UserAccount> userAccount, String oldPassword, String newPassword, String newPassword1){

@@ -6,6 +6,5 @@ import org.springframework.data.util.Streamable;
 
 public interface ForumRepository extends CrudRepository<ForumEntry, Long> {
 
-
 	Streamable<ForumEntry> findByName(String name, Sort sort);
 }

@@ -32,7 +32,6 @@ public class ForumForm {
 
 	public String getEmail() {return email;}
 
-
 	ForumEntry toNewEntry() {
 		return new ForumEntry(getName(), /*getTheme(),*/ getText(), getEmail());
 	}

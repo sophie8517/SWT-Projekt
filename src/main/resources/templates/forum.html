@@ -49,7 +49,6 @@
                 </td>
             </tr>
         </table>
-
     </main>
 </div>
 
@@ -64,24 +63,48 @@
                 <th>Person</th>
                 <th>Antworten</th>
                 <th>Link</th>
+                <th>Geld absenden</th>
             </tr>
             </thead>
-            <tr th:each="theme:${themes}">
-                <td th:text="${theme.getName()}"></td>
-                <td th:text="${theme.getCount()}"></td>
+            <tr th:each="chat:${privateChats}">
+                <td th:text="${chat.getPartners().get(1)}"></td>
+                <td th:text="${chat.getCount()}"></td>
                 <td>
-                    <!--<form method="get" th:action="@{/forum/{theme}(theme=${theme.getId()})}" th:value="${theme}"
-                           sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/theme}">
-                         <button type="submit" class="ui button">Details</button>
-                    </form>-->
-                    <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/theme}">
-                        <input type="hidden" name="themeId" th:value="${theme.getId()}">
-                        <button type="submit" class="ui button">Details</button>
+                    <form sec:authorize="hasRole('CUSTOMER')" class="ui form" method="get" th:action="@{/chat}">
+                        <input type="hidden" name="invitee" th:value="${chat.getPartners().get(1).getUsername()}">
+                        <button type="submit" class="ui button" style="font-size: 11px">Chat öffnen</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" sec:authorize="hasRole('CUSTOMER')" th:action="@{/forum/sendMoney}">
+                        <br>
+                        <div>
+                            <label th:text="#{charge.input2}">Wie viel Geld möchten Sie überweisen?</label>
+
+                            <br><br>
+                            <input field="*{money}" id="money" name="money" type="number" step=".01" required="required"/>
+                            </br></br>
+                            <input type="hidden" name="invitee" th:value="${chat.getPartners().get(1).getEmail()}">
+                            <button class="button" type="submit" style="font-size: 12px" th:text="#{charge.charge2}" >Überweisen</button>
+
+                        </div>
+                        <div>
+                            <h2 style="color: white" th:text="${message}"></h2>
+                        </div>
                     </form>
                 </td>
             </tr>
         </table>
 
+        <section>
+            <form method="get" role="form" class="ui form" id="form" th:action="@{/search}">
+
+                <h4>Neues Chat starten</h4>
+
+                <input type="text" name = "invitee" required="required">
+                <input type="submit" style="font-size: 12px"/>
+            </form>
+        </section>
     </main>
 </div>
 
