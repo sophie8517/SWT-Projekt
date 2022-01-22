@@ -162,7 +162,7 @@ public class CustomerControllerIntegrationTest extends AbstractIntegrationTest {
 
 		returnedView = customerController.exit("testGroup", optional, redir);
 		assertEquals(group.getMembers().size(), 1);
-		Assertions.assertTrue(redir.getFlashAttributes().containsKey("message"));
+
 		assertThat(returnedView).isEqualTo("redirect:/group");
 
 		returnedView = customerController.exit("testGroup", Optional.of(leader.getUserAccount()), redir);
