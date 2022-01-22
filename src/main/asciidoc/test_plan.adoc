@@ -59,7 +59,7 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 
 // See http://asciidoctor.org/docs/user-manual/#tables
 
-[options="headers"]
+[cols= "5%,10%,5%,1%,35%,~,~ "]
 |===
 |ID | Name |Anwendungsfall |Akzeptanztestfall|Vorbedingungen |Eingabe |Ausgabe
 |CatC-1
