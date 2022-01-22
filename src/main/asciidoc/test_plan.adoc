@@ -97,13 +97,112 @@ a|
 a|
 * (1) "2_catalog_foot"
 
-|
+|CatC
 |CatalogControllerIntegrationTestFootballReg
-|
-|
-|
-|
-|
+|UC01
+|AT02
+a|
+* Kunde "c" existiert
+** UserAccount: "ua"
+* Fußballspiel "f_timeup" im Katalog:
+** Name: n
+** Datum/Zeit: heute + 1 Tag, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f_timeup": "id_f_timeup"
+* Fußballspiel "f_success" im Katalog:
+** Name: n
+** Datum/Zeit: heute + 4 Tage, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f_success": "id_f_success"
+* Wette "fb":
+** Item: "f_success"
+** Datum/Zeit: jetzt - 1 Tag
+** Einsatz: 12 Euro
+** Kunde: c
+** Auslaufdatum: heute + 4 Tage, 15:00
+** Tipp: HEIMSIEG
+* "fb" wurde zu den Wetten von "f_success" hinzugefügt
+* Model model = new ExtendedModelMap();
+a|
+* (1) catalogController.footballCatalog(model, Optional.of(ua))
+* List<Item> items = (List<Item>) model.getAttribute("footballcatalog");
+* (2) items.contains(f_timeup)
+* (3) items.contains(f_success)
+a|
+* (1) "2_catalog_foot"
+* (2) false
+* (3) false
+
+|CatC
+|CatalogControllerIntegrationTestFootballGroupReg
+|UC01
+|AT02
+a|
+* Kunde "c" existiert
+** UserAccount: "ua"
+* Fußballspiel "f_timeup" im Katalog:
+** Name: n
+** Datum/Zeit: heute + 1 Tag, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f_timeup": "id_f_timeup"
+* Fußballspiel "f_success" im Katalog:
+** Name: n
+** Datum/Zeit: heute + 4 Tage, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f_success": "id_f_success"
+* Wette "fb":
+** Item: "f_success"
+** Datum/Zeit: jetzt - 1 Tag
+** Einsatz: 12 Euro
+** Kunde: c
+** Auslaufdatum: heute + 4 Tage, 15:00
+** Tipp: HEIMSIEG
+* "fb" wurde zu den Wetten von "f_success" hinzugefügt
+* Model model = new ExtendedModelMap();
+a|
+* (1) catalogController.footballCatalogGroup(model, Optional.of(ua))
+* List<Item> items = (List<Item>) model.getAttribute("footballcatalog");
+* (2) items.contains(f_timeup)
+* (3) items.contains(f_success)
+a|
+* (1) "catalog_group"
+* (2) false
+* (3) true
+
+|CatC
+|CatalogControllerIntegrationTestFootballGroup
+|UC01
+|AT01
+a|
+* Nutzer ist nicht angemeldet
+a|
+* (1) catalogController.footballCatalogGroup(model,Optional.empty())
+a|
+* (1) "catalog_group"
 
 |CatC-3
 |CatalogControllerWrongInput
@@ -236,6 +335,161 @@ a|
 * (1) catalogController.bet_foot(id_f_success,1,12.0,Optional.of(ua))
 a|
 * (1) "error"
+
+|CatC
+|CatalogControllerFootGroupBet
+|UC03
+|-
+a|
+* Kunde "c" existiert
+** UserAccount: "ua"
+* "c" ist nicht Mitglied der Gruppe "initGroup"
+* Fußballspiel "f_success" im Katalog:
+** Name: n
+** Datum/Zeit: heute + 4 Tage, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f_success": "id_f_success"
+* RedirectAttributes redir = new RedirectAttributesModelMap();
+a|
+* (1) catalogController.bet_foot_group(id_f_success,1,12.0,"initGroup",Optional.of(ua),redir)
+* (2) redir.getFlashAttributes().containsKey("message1")
+* (3) redir.getFlashAttributes().get("message1")
+a|
+* (1) "redirect:/footballgroup"
+* (2) true
+* (3) "Sie sind nicht teil dieser Gruppe!"
+
+|CatC
+|CatalogControllerFootGroupBet2
+|UC03
+|-
+a|
+* Kunde "c" existiert:
+** UserAccount: "ua"
+* Gruppe "group" existiert
+** Name: initGroup
+** "c" ist Mitglied
+* Fußballspiel "f_success" im Katalog:
+** Name: n
+** Datum/Zeit: heute + 4 Tage, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f_success": "id_f_success"
+* Gruppenwette "fb":
+** Item: "f_success"
+** Datum/Zeit: jetzt - 1 Tag
+** Einsatz: 12 Euro
+** Kunde: c
+** Auslaufdatum: heute + 4 Tage, 15:00
+** Tipp: HEIMSIEG
+* Gruppenname von "fb": initGroup
+* "fb" wurde zu den Gruppenwetten von "f_success" hinzugefügt
+a|
+* (1) catalogController.bet_foot_group(id_f_success,1,12.0,"initGroup",Optional.of(ua),redir)
+* (2) redir.getFlashAttributes().containsKey("message")
+* (3) redir.getFlashAttributes().get("message")
+a|
+* (1) "redirect:/footballgroup"
+* (2) true
+* (3) "Für dieses Spiel hat die Gruppe schon eine Wette abgegeben."
+
+|CatC
+|CatalogControllerFootGroupBetTimeUp
+|UC03
+|-
+a|
+* Kunde "c" existiert:
+** UserAccount: "ua"
+* Gruppe "group" existiert:
+** Name: initGroup
+** "c" ist Mitglied
+* Fußballspiel "f_timeup" im Katalog:
+** Name: n
+** Datum/Zeit: heute + 1 Tag, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f_timeup": "id_f_timeup"
+* RedirectAttributes redir = new RedirectAttributesModelMap();
+a|
+* (1) catalogController.bet_foot_group(id_f_timeup,1,14.0,"initGroup",Optional.of(ua),redir)
+a|
+* (1) "time_up.html"
+
+|CatC
+|CatalogControllerFootGroupBetSuccess
+|UC03
+|-
+a|
+* Kunde "c" existiert:
+** UserAccount: "ua"
+** Guthaben: 20 Euro
+* Gruppe "group" existiert
+** Name: initGroup
+** "c" ist Mitglied
+* Fußballspiel "f_success" im Katalog:
+** Name: n
+** Datum/Zeit: heute + 4 Tage, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f_success": "id_f_success"
+* RedirectAttributes redir = new RedirectAttributesModelMap();
+a|
+* (1) catalogController.bet_foot_group(id_f_success,1,14.0,"initGroup",Optional.of(ua),redir)
+* (2) c.getBalance()
+a|
+* (1) "redirect:/"
+* (2) Money.of(6,EURO)
+
+|CatC
+|CatalogControllerFootGroupBetError
+|UC03
+|-
+a|
+* Kunde "c" existiert:
+** UserAccount: "ua"
+** Guthaben: 0 Euro
+* Gruppe "group" existiert
+** Name: initGroup
+** "c" ist Mitglied
+* Fußballspiel "f_success" im Katalog:
+** Name: n
+** Datum/Zeit: heute + 4 Tage, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f_success": "id_f_success"
+* RedirectAttributes redir = new RedirectAttributesModelMap();
+a|
+* (1) catalogController.bet_foot_group(id_f_success,1,14.0,"initGroup",Optional.of(ua),redir)
+* (2) c.getBalance()
+a|
+* (1) "error"
+* (2) Money.of(0,EURO)
 
 |CatC-8
 |CheckInsetFoot

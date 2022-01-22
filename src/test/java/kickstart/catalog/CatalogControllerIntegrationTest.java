@@ -120,6 +120,7 @@ public class CatalogControllerIntegrationTest  extends AbstractIntegrationTest {
 	@Test
 	public void CatalogControllerIntegrationTestFootballGroupReg(){
 		Model model = new ExtendedModelMap();
+		f_success.addBet(fb);
 		lotteryCatalog.save(f_success);
 		lotteryCatalog.save(f_timeup);
 
