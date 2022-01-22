@@ -18,7 +18,6 @@ public class Bet implements Serializable {
 
 	private LocalDateTime date; //date when the user placed the bet
 	private Money inset;
-	private double inset2;
 
 	@ManyToOne
 	private Item item;
@@ -98,14 +97,6 @@ public class Bet implements Serializable {
 	public double getEinsatz2(){
 		return inset.getNumber().doubleValue();
 	}
-
-	/*
-	public long getId() {
-
-		return id;
-	}
-
-	 */
 
 	public String getIdstring() {
 		return idstring;
