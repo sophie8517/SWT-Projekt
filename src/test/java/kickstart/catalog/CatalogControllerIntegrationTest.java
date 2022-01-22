@@ -176,7 +176,7 @@ public class CatalogControllerIntegrationTest  extends AbstractIntegrationTest {
 		z7 = 0;
 		dauer = 1;
 		String returnView = catalogController.bet_num(id,z1,z2,z3,z4,z5,z6,z7,dauer,Optional.of(ua));
-		assertThat(returnView).isEqualTo("error");
+		assertThat(returnView).isEqualTo("not_enough_money");
 	}
 
 	@Test
@@ -225,7 +225,7 @@ public class CatalogControllerIntegrationTest  extends AbstractIntegrationTest {
 	public void CatalogControllerFootError(){
 		lotteryCatalog.save(f_success);
 		String returnView = catalogController.bet_foot(id_f_success,1,12.0,Optional.of(ua));
-		assertThat(returnView).isEqualTo("error");
+		assertThat(returnView).isEqualTo("not_enough_money");
 		lotteryCatalog.delete(f_success);
 
 	}
@@ -298,7 +298,7 @@ public class CatalogControllerIntegrationTest  extends AbstractIntegrationTest {
 
 		String returnedView = catalogController.bet_foot_group(id_f_success,1,14.0,"initGroup",Optional.of(ua),redir);
 
-		assertThat(returnedView).isEqualTo("error");
+		assertThat(returnedView).isEqualTo("not_enough_money");
 		assertThat(c.getBalance()).isEqualTo(Money.of(0,EURO));
 
 		customerManagement.removeMemberOfGroup(c,group);
