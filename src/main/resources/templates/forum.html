@@ -49,6 +49,14 @@
                 </td>
             </tr>
         </table>
+
+        <div>
+            <form sec:authorize="hasRole('CUSTOMER')" method="post" th:action="@{/forum}">
+                <label>Add New Title:</label>
+                <input name="title" type="text" required="required">
+            </form>
+        </div>
+
     </main>
 </div>
 
@@ -88,12 +96,13 @@
                             <button class="button" type="submit" style="font-size: 12px" th:text="#{charge.charge2}" >Überweisen</button>
 
                         </div>
-                        <div>
-                            <h2 style="color: white" th:text="${message}"></h2>
-                        </div>
                     </form>
                 </td>
             </tr>
+
+            <div>
+                <h2 style="color: white" th:text="${message}"></h2>
+            </div>
         </table>
 
         <section>

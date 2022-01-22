@@ -4,8 +4,7 @@ import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static org.salespointframework.core.Currencies.EURO;
 
@@ -17,7 +16,7 @@ public class Customer implements Comparable<Customer>{
 	private UserAccount userAccount;
 
 	@ManyToMany
-	private List<Group> groups = new ArrayList<>();
+	private List<Group> groups = new LinkedList<>();
 
 
 	public Customer(){}
@@ -45,6 +44,8 @@ public class Customer implements Comparable<Customer>{
 	public void addGroup(Group group){
 		groups.add(group);
 	}
+
+	public void removeGroup(Group group) { groups.remove(group); }
 
 	public List<Group> getGroup() {
 		return groups;

@@ -72,13 +72,13 @@ class ForumDataInitializer implements DataInitializer {
 
 		LOG.info("Creating default chats.");
 
-		List<Customer> customers = customerRepository.findAll().toList();
+		//List<Customer> customers = customerRepository.findAll().toList();
 		//PrivateChat privateChat1 = new PrivateChat(customers.get(0).getUserAccount());
 		//privateChat1.addGroupPartner(customers.get(1).getUserAccount());
-		PrivateChat privateChat1 = privateChatManagement.createPrivateChat(customers.get(0).getUserAccount(), customers.get(1).getUserAccount());
+		//PrivateChat privateChat1 = privateChatManagement.createPrivateChat(customers.get(0).getUserAccount(), customers.get(1).getUserAccount());
 
-		Stream.of(
-				new ForumEntry(customers.get(0).getUserAccount().getFirstname() + " " + customers.get(0).getUserAccount().getLastname() , "SWT Aufgabe", customers.get(0).getUserAccount().getEmail())
-		).forEach(forumEntry -> privateChatManagement.createMessage(privateChat1, forumEntry));
+//		Stream.of(
+//				new ForumEntry(customers.get(0).getUserAccount().getFirstname() + " " + customers.get(0).getUserAccount().getLastname() , "SWT Aufgabe", customers.get(0).getUserAccount().getEmail())
+//		).forEach(forumEntry -> privateChatManagement.createMessage(privateChat1, forumEntry));
 	}
 }

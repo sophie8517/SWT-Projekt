@@ -1,6 +1,7 @@
 package kickstart.forum;
 
 
+import java.util.Iterator;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -26,6 +27,7 @@ class ForumController {
 
 	// A special header sent with each AJAX request
 //	private static final String IS_AJAX_HEADER = "X-Requested-With=XMLHttpRequest";
+
 
 
 	private final ForumManagement forumManagement;
@@ -57,6 +59,7 @@ class ForumController {
 		return "redirect:/forum";
 	}*/
 
+
 	@GetMapping("/forum")
 	String theme(Model model) {
 		model.addAttribute("themes", forumManagement.findAll());
@@ -66,6 +69,7 @@ class ForumController {
 
 	@PostMapping("/forum")
 	String addTheme(@RequestParam("title") String title) {
+		Assert.notNull(title, "Theme must not be null or empty!");
 		forumManagement.createTheme(title);
 		return "redirect:/forum";
 	}
@@ -90,7 +94,7 @@ class ForumController {
 		//model.addAttribute("catalog",catalog.findByName(name));
 		model.addAttribute("invitee",inviteeName);
 		model.addAttribute("name", userAccount.get());
-		model.addAttribute("chat", privateChat.getPartners());
+		//model.addAttribute("chat", privateChat.getPartners());
 		/*
 		if (result.hasErrors()){
 			return "forum";
@@ -129,11 +133,24 @@ class ForumController {
 	}
 
 	@GetMapping ("/search")
-	String searchPartner(@RequestParam("invitee") String email, @LoggedIn Optional<UserAccount> inviter){
-		var invitee = customerManagement.findByEmail(email).get();
+	String searchPartner(@RequestParam("invitee") String email, @LoggedIn Optional<UserAccount> inviter, RedirectAttributes redir){
+		if(customerManagement.findByEmail(email).isEmpty()) {
+			redir.addFlashAttribute("message", "Customer not found or email was wrong!");
+			return "redirect:/forum";
+		}
 
-		if (!customerManagement.findByEmail(email).isPresent()){
-			System.out.println("Entered email has errors");
+		if (email.equals(inviter.get().getEmail())) {
+			redir.addFlashAttribute("message", "You cannot enter your email");
+			return "redirect:/forum";
+		}
+
+		var invitee = customerManagement.findByEmail(email).get();
+		Iterator<PrivateChat> it = privateChatManagement.findAll().iterator();
+		while(it.hasNext()) {
+			PrivateChat privateChat = it.next();
+			if (privateChat.contains(inviter.get()) && privateChat.contains(invitee)) {
+				return "redirect:/forum";
+			}
 		}
 		privateChatManagement.createPrivateChat(invitee, inviter.get());
 		return "redirect:/forum";
@@ -148,6 +165,7 @@ class ForumController {
 		var theme = forumManagement.findByThemeName(themeName);
 
 
+
 		if (errors.hasErrors()) {
 			System.out.println("Comment has errors");
 			return comment(model, themeName, form, userAccount);
@@ -157,6 +175,31 @@ class ForumController {
 //		model.addAttribute("entry", forumManagement.createComment(theme,form.toNewEntry()));
 //		model.addAttribute("index", forumManagement.countComment());
 		forumManagement.createComment(theme, form.toNewEntry());
+		return "redirect:/forum";
+	}
+
+	@PostMapping("/theme/like/{forumId}")
+	String like(@PathVariable String forumId, @LoggedIn Optional<UserAccount> userAccount) {
+		long id = Long.parseLong(forumId);
+		var forum = forumManagement.findForumById(id);
+		var customer = customerManagement.findByUserAccount(userAccount.get());
+		if(!forum.likedContains(customer)) {
+			if(forum.unlikedContains(customer)) forum.removeUnlike(customer);
+			forumManagement.likeComment(customer, forum);
+		}
+
+		return "redirect:/forum";
+	}
+
+	@PostMapping("/theme/unlike/{forumId}")
+	String unlike(@PathVariable String forumId, @LoggedIn Optional<UserAccount> userAccount) {
+		long id = Long.parseLong(forumId);
+		var forum = forumManagement.findForumById(id);
+		var customer = customerManagement.findByUserAccount(userAccount.get());
+		if(!forum.unlikedContains(customer)) {
+			if(forum.likedContains(customer)) forum.removeLike(customer);
+			forumManagement.unlikeComment(customer, forum);
+		}
 
 		return "redirect:/forum";
 	}

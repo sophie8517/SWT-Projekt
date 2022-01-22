@@ -60,6 +60,13 @@ public class CustomerController{
 		return "register";
 	}
 
+	@GetMapping("/customers")
+	@PreAuthorize("hasRole('ADMIN')")
+	String customers(Model model) {
+		model.addAttribute("customerList", customerManagement.findAllCustomers());
+		return "customers";
+	}
+
 	@GetMapping("/changePassword")
 	String toChPwdPage(Model model, RegistrationForm form) {
 		model.addAttribute("tempFirstname", "song");
@@ -98,7 +105,7 @@ public class CustomerController{
 //			System.out.println("2:fail");
 //		}
 
-		return "redirect:/";
+		return "redirect:/logout";
 	}
 
 	@PostMapping("/back")
@@ -115,13 +122,6 @@ public class CustomerController{
 		return "meinProfil";
 	}
 
-
-	@GetMapping("/customers")
-	@PreAuthorize("hasRole('ADMIN')")
-	String customers(Model model) {
-		model.addAttribute("customerList", customerManagement.findAllCustomers());
-		return "customers";
-	}
 
 	@PostMapping("/balance/charge")
 	public String charge(@RequestParam("money") double money, @LoggedIn Optional<UserAccount> userAccount,
@@ -147,20 +147,17 @@ public class CustomerController{
 		return "balance";
 	}
 
-	@PostMapping("/group/exit")
-	public String exit(@RequestParam("groupName") String groupName, @LoggedIn Optional<UserAccount> userAccount,
+	@PostMapping("/group/exit/{groupName}")
+	public String exit(@PathVariable String groupName, @LoggedIn Optional<UserAccount> userAccount,
 					   RedirectAttributes redir){
 		var group = customerManagement.findByGroupName(groupName);
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 
-		if (!group.contains(customer)) {
-			redir.addFlashAttribute("message", "Customer doesn't exist!");
-			return "redirect:/group";
-		}
-
+		System.out.println("remove execute!");
 		customerManagement.removeMemberOfGroup(customer, group);
 
 		if (group.getMembers().isEmpty()) {
+			System.out.println("delete execute!");
 			customerManagement.deleteGroup(group);
 		}
 

@@ -15,7 +15,7 @@ import java.util.Optional;
 public class CustomerManagement {
 
 	public static final Role CUSTOMER_ROLE = Role.of("CUSTOMER");
-	public static final Role GROUP_ROLE = Role.of("GROUP");
+	//public static final Role GROUP_ROLE = Role.of("GROUP");
 
 	private GroupRepository groups;
 	private CustomerRepository customers;
@@ -86,7 +86,16 @@ public class CustomerManagement {
 	}
 
 	public Group removeMemberOfGroup(Customer customer, Group group){
+		if(group.getLeader().equals(customer) && group.getMembers().size() > 1) {
+			for (Customer member: group.getMembers()) {
+				if (group.getLeader().equals(member)) continue;
+
+				group.setLeader(member);
+				break;
+			}
+		}
 		group.remove(customer);
+		customer.removeGroup(group);
 		return groups.save(group);
 	}
 
@@ -107,10 +116,6 @@ public class CustomerManagement {
 	public Group findByGroupName(String name){
 		var group = groups.findById(name).orElse(null);
 		return group;
-	}
-
-	public void changePwd(Customer customer, String oldPassword, String newPassword, String newPassword1){
-		userAccounts.changePassword(customer.getUserAccount(), Password.UnencryptedPassword.of(newPassword));
 	}
 
 	public Customer findByUserAccount(UserAccount userAccount){

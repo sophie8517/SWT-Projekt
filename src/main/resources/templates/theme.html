@@ -12,6 +12,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>🍀 Mach Dein Glück!! 🍀</title>
     <link th:href="@{resources/css/style_statistic.css}" rel="stylesheet" href="../static/resources/css/style_statistic.css">
+
+    <script type="text/javascript" src="js/jquery-3.3.1.js" ></script>
+    <script type="text/javascript" src="js/bootstrap.min.js" ></script>
 </head>
 <body class="backgrounds">
 <nav th:include="navigation :: navigation" class="navcontainer"></nav>
@@ -38,7 +41,7 @@
                 <h4 th:text="${index} + '. ' + ${forum.getName()}">1. Posting</h4>
             </div>
 
-            <table border = "4" cellpadding = "4" cellspacing = "0"  class ="center">
+            <table border = "3" cellpadding = "4" cellspacing = "0"  class ="center">
 
                 <tr>
                     <th>Name/E-mail</th>
@@ -55,30 +58,7 @@
                     <td><blockquote th:text="${forum.getText()}"></blockquote></td>
                 </tr>
 
-                <tr>
-                    <th>Antwort</th>
-                    <td> <form method="post" role="form" id="form" th:action="@{/theme/{name}(name=${themeName})}" th:object="${form}" sec:authorize="hasRole('CUSTOMER')">
-                        <!--            <div>
-                                        <label for="name" th:text="#{forum.form.name}">Name</label><br />
-                                        <input type="text" th:field="*{name}" th:errorclass="is-invalid" required="required" />
-                                        <div th:if="${#fields.hasErrors('name')}" th:text="#{forum.form.name.required}">Please provide a name.</div>
-                                    </div>-->
-                        <input id="name" name="name" type="hidden" th:value="${name}" />
-                        <div>
-                            <label for="text" th:text="#{forum.form.text}">Text</label><br />
-                            <textarea th:field="*{text}" th:errorclass="is-invalid" required="required"></textarea>
-                            <div th:if="${#fields.hasErrors('text')}" th:text="#{forum.form.text.required}">Please provide a text.</div>
-                        </div>
-                        <input id="email" name="email" type="hidden" th:value="${email}" />
-                        <!--            <div>
-                                        <label for="email" th:text="#{forum.form.email}">Email</label><br />
-                                        <input type="email" th:field="*{email}" th:errorclass="is-invalid" required="required" />
-                                        <div th:if="${#fields.hasErrors('email')}" th:text="#{forum.form.email.required}">Please provide a email.</div>
-                                    </div>-->
-                        <input type="submit" th:value="#{forum.form.submit}" value="Senden" />
-                    </form>
-                    </td>
-                </tr>
+
 
                 <!--<tr style="color: white">
                     <th><div th:text="${entry.email}"></div></th>
@@ -88,6 +68,42 @@
                 </tr>
                 -->
             </table>
+            <div>
+                <span th:text="${forum.likedCount}">liked</span>
+                <form method="post" th:action="@{/theme/like/{id}(id=${forum.getId()})}" sec:authorize="hasRole('CUSTOMER')">
+                    <button type="submit">like</button>
+                </form>
+            </div>
+            <div>
+                <span th:text="${forum.unlikedCount}">unliked</span>
+                <form method="post" th:action="@{/theme/unlike/{id}(id=${forum.getId()})}" sec:authorize="hasRole('CUSTOMER')">
+                    <button type="submit">unlike</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="box-seven">
+            <div> <form method="post" role="form" id="form" th:action="@{/theme/{name}(name=${themeName})}" th:object="${form}" sec:authorize="hasRole('CUSTOMER')">
+                <!--            <div>
+                                <label for="name" th:text="#{forum.form.name}">Name</label><br />
+                                <input type="text" th:field="*{name}" th:errorclass="is-invalid" required="required" />
+                                <div th:if="${#fields.hasErrors('name')}" th:text="#{forum.form.name.required}">Please provide a name.</div>
+                            </div>-->
+                <input id="name" name="name" type="hidden" th:value="${name}" />
+                <div>
+                    <label for="text" th:text="#{forum.form.text}">Text</label><br />
+                    <textarea th:field="*{text}" th:errorclass="is-invalid" required="required"></textarea>
+                    <div th:if="${#fields.hasErrors('text')}" th:text="#{forum.form.text.required}">Please provide a text.</div>
+                </div>
+                <input id="email" name="email" type="hidden" th:value="${email}" />
+                <!--            <div>
+                                <label for="email" th:text="#{forum.form.email}">Email</label><br />
+                                <input type="email" th:field="*{email}" th:errorclass="is-invalid" required="required" />
+                                <div th:if="${#fields.hasErrors('email')}" th:text="#{forum.form.email.required}">Please provide a email.</div>
+                            </div>-->
+                <input type="submit" th:value="#{forum.form.submit}" value="Senden" />
+            </form>
+            </div>
         </div>
 
         </div>

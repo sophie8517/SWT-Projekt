@@ -65,8 +65,8 @@ public class PrivateChat {
 		return inviter;
 	}
 
-	public boolean contains(Customer person) {
-		return partners.contains(person);
+	public boolean contains(UserAccount userAccount) {
+		return partners.contains(userAccount);
 	}
 
 	public long getId() {

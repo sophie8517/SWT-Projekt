@@ -67,7 +67,8 @@ class CustomerDataInitializer implements DataInitializer {
 		var initGroup = customerManagement.createGroup("initGroup", leader);
 
 		LOG.info("Adding default customers to groupA");
-		customerManagement.findAllCustomers().forEach(customer -> customerManagement.addMemberToGroup(customer, swt09, swt09.getPassword()));
+		customerManagement.findAllCustomers().filter(customer -> !customer.getUserAccount().getEmail().equals("init@leader.de"))
+				.forEach(customer -> customerManagement.addMemberToGroup(customer, swt09, swt09.getPassword()));
 
 	}
 }
