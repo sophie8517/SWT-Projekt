@@ -279,7 +279,7 @@ public class CatalogController {
 
 	}
 
-	public String checkAddGroupBet(int number, Money money, Money insetMoney,Customer customer, Football foot,
+	private String checkAddGroupBet(int number, Money money, Money insetMoney,Customer customer, Football foot,
 								   String groupName){
 		String result;
 
