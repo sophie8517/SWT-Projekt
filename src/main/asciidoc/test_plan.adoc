@@ -10,9 +10,22 @@ Die Zielgruppe stellt hauptsächlich das Entwicklerteam dar.
 == Aufbau der Testbezeichner
 Nach welchem Schema sind die Tests benannt?
 
-*U - Unit Test, I - Integrationstest*
+* CatC - test for CatalogController
+* CusC - test for CustomerController
+* CMC - test for CustomerManagement
+* OC - test for OrderController
+* RC - test for ResultController
+* SC - test for StatisticController
 
-*U-1, U-2, I-1*
+* z.B. CatC-1, CusC-2
+
+== Hinweise
+
+* Eingabe (x) muss mit Ausgabe (x) übereinstimmen
+** in Pseudocode: (Eingabe(x)).equals((Ausgabe(x)))
+* Eingabe (x#):
+** die Eingabe führt zu einer Exception
+** Ausgabe (x#): Art der Exception, Fehlernachricht (message)
 
 == Test Gegenstände
 
@@ -45,133 +58,2260 @@ Nach welchem Schema sind die Tests benannt?
 Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 
 // See http://asciidoctor.org/docs/user-manual/#tables
-[options="headers"]
+
+[cols= "5%,10%,5%,1%,35%,~,~ "]
 |===
-|ID |Anwendungsfall |Akzeptanztestfall|Vorbedingungen |Eingabe |Ausgabe
-|U-1
-|UC05
-|AT07            
-|Nutzer ist nicht registriert, Benutzername "maxmuster12" ist schon vorhanden          
+|ID | Name |Anwendungsfall |Akzeptanztestfall|Vorbedingungen |Eingabe |Ausgabe
+|CatC-1
+|CatalogControllerIntegrationTestTicket
+|UC02
+|AT03
 a|
-- Benutzername: maxmuster12
-- Passwort: Woerter44
-| Benutzername bereits vergeben
+* Ticket "t" im Katalog:
+** Name: name1
+** Ziehungszeit: jetzt + 4 Tage
+** Preis: 7 Euro
+** Typ: TICKET
+* 2 Tickets im Katalog
+* Model model = new ExtendedModelMap();
+a|
+* (1) catalogController.ticketCatalog(model)
+* (2) lotteryCatalog.findByType(Item.ItemType.TICKET).size()
+* (3) ((List<Item>) model.getAttribute("ticketcatalog")).size()
+a|
+* (1) "3_catalog_num"
+* (2) 2
+* (3) 2
 
-|U-2
-|UC05
+
+|CatC-2
+|CatalogControllerIntegrationTestFootball
+|UC01
+|AT01
+a|
+* Nutzer ist nicht angemeldet
+** Optional<UserAccount> opt = Optional.empty();
+* Model model = new ExtendedModelMap();
+a|
+* (1) catalogController.footballCatalog(model,opt);
+a|
+* (1) "2_catalog_foot"
+
+|CatC
+|CatalogControllerIntegrationTestFootballReg
+|UC01
+|AT02
+a|
+* Kunde "c" existiert
+** UserAccount: "ua"
+* Fußballspiel "f_timeup" im Katalog:
+** Name: n
+** Datum/Zeit: heute + 1 Tag, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f_timeup": "id_f_timeup"
+* Fußballspiel "f_success" im Katalog:
+** Name: n
+** Datum/Zeit: heute + 4 Tage, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f_success": "id_f_success"
+* Wette "fb":
+** Item: "f_success"
+** Datum/Zeit: jetzt - 1 Tag
+** Einsatz: 12 Euro
+** Kunde: c
+** Auslaufdatum: heute + 4 Tage, 15:00
+** Tipp: HEIMSIEG
+* "fb" wurde zu den Wetten von "f_success" hinzugefügt
+* Model model = new ExtendedModelMap();
+a|
+* (1) catalogController.footballCatalog(model, Optional.of(ua))
+* List<Item> items = (List<Item>) model.getAttribute("footballcatalog");
+* (2) items.contains(f_timeup)
+* (3) items.contains(f_success)
+a|
+* (1) "2_catalog_foot"
+* (2) false
+* (3) false
+
+|CatC
+|CatalogControllerIntegrationTestFootballGroupReg
+|UC01
+|AT02
+a|
+* Kunde "c" existiert
+** UserAccount: "ua"
+* Fußballspiel "f_timeup" im Katalog:
+** Name: n
+** Datum/Zeit: heute + 1 Tag, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f_timeup": "id_f_timeup"
+* Fußballspiel "f_success" im Katalog:
+** Name: n
+** Datum/Zeit: heute + 4 Tage, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f_success": "id_f_success"
+* Wette "fb":
+** Item: "f_success"
+** Datum/Zeit: jetzt - 1 Tag
+** Einsatz: 12 Euro
+** Kunde: c
+** Auslaufdatum: heute + 4 Tage, 15:00
+** Tipp: HEIMSIEG
+* "fb" wurde zu den Wetten von "f_success" hinzugefügt
+* Model model = new ExtendedModelMap();
+a|
+* (1) catalogController.footballCatalogGroup(model, Optional.of(ua))
+* List<Item> items = (List<Item>) model.getAttribute("footballcatalog");
+* (2) items.contains(f_timeup)
+* (3) items.contains(f_success)
+a|
+* (1) "catalog_group"
+* (2) false
+* (3) true
+
+|CatC
+|CatalogControllerIntegrationTestFootballGroup
+|UC01
+|AT01
+a|
+* Nutzer ist nicht angemeldet
+a|
+* (1) catalogController.footballCatalogGroup(model,Optional.empty())
+a|
+* (1) "catalog_group"
+
+|CatC-3
+|CatalogControllerWrongInput
+|UC02
+|- (AT22)
+a|
+* Ticket "t" im Katalog:
+** Name: name1
+** Ziehungszeit: jetzt + 4 Tage
+** Preis: 7 Euro
+** Typ: TICKET
+* ID von "t": "id"
+* Kunde "c" existiert
+** UserAccount : "ua"
+a|
+* (1) catalogController.bet_num(id,13,21,6,26,11,6,0,1,Optional.of(ua))
+a|
+* (1) "wronginput.html"
+
+|CatC-3
+|CatalogControllerError
+|UC02
 |-
-|Nutzer ist nicht registriert, Benutzername "maxmuster12" ist schon vorhanden
 a|
-- Benutzername: maxmuster12
-- Passwort: 1Wort
-|Benutzername bereits vergeben, Passwort zu kurz
+* Ticket "t" im Katalog:
+** Name: name1
+** Ziehungszeit: jetzt + 4 Tage
+** Preis: 7 Euro
+** Typ: TICKET
+* ID von "t": "id"
+* Kunde "c" existiert
+** Guthaben: 0 Euro
+** UserAccount : "ua"
+a|
+* (1) catalogController.bet_num(id,13,21,6,26,11,6,0,1,Optional.of(ua))
+a|
+* (1) "error"
 
-|U-3
+|CatC-4
+|CatalogControllerSuccess
+|UC02, UC14
+|AT23
+a|
+* Ticket "t" im Katalog:
+** Name: name1
+** Ziehungszeit: jetzt + 4 Tage
+** Preis: 7 Euro
+** Typ: TICKET
+* ID von "t": "id"
+* Kunde "c" existiert
+** Guthaben: 50 Euro
+** UserAccount : "ua"
+a|
+* (1) catalogController.bet_num(id,13,21,6,26,11,6,0,1,Optional.of(ua))
+* (2) c.getBalance()
+a|
+* (1) "redirect:/"
+* (2) Money.of(43,EURO)
+
+|CatC-5
+|CatalogControllerFootTimeUp
+|UC03, UC14
+|-
+a|
+* Fußballspiel "f_timeup" im Katalog:
+** Name: n
+** Datum/Zeit: heute + 1 Tag, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f_timeup": "id_f_timeup"
+* Kunde "c" existiert
+** UserAccount : "ua"
+a|
+* (1) catalogController.bet_foot(id_f_timeup,1,12.0,Optional.of(ua))
+a|
+* (1) "time_up.html"
+
+|CatC-6
+|CatalogControllerFootSuccess
+|UC03, UC15
+|AT23
+a|
+* Fußballspiel "f_success" im Katalog:
+** Name: n
+** Datum/Zeit: heute + 4 Tage, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f_success": "id_f_success"
+* Kunde "c" existiert
+** Guthaben: 40 Euro
+** UserAccount : "ua"
+a|
+* (1) catalogController.bet_foot(id_f_success,1,12.0,Optional.of(ua))
+* (2) c.getBalance()
+a|
+* (1) "redirect:/"
+* (2) Money.of(28,EURO)
+
+
+|CatC-7
+|CatalogControllerFootError
+|UC03, UC14
+|-
+a|
+* Fußballspiel "f_success" im Katalog:
+** Name: n
+** Datum/Zeit: heute + 4 Tage, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f_success": "id_f_success"
+* Kunde "c" existiert
+** Guthaben: 0 Euro
+** UserAccount : "ua"
+a|
+* (1) catalogController.bet_foot(id_f_success,1,12.0,Optional.of(ua))
+a|
+* (1) "error"
+
+|CatC
+|CatalogControllerFootGroupBet
+|UC03
+|-
+a|
+* Kunde "c" existiert
+** UserAccount: "ua"
+* "c" ist nicht Mitglied der Gruppe "initGroup"
+* Fußballspiel "f_success" im Katalog:
+** Name: n
+** Datum/Zeit: heute + 4 Tage, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f_success": "id_f_success"
+* RedirectAttributes redir = new RedirectAttributesModelMap();
+a|
+* (1) catalogController.bet_foot_group(id_f_success,1,12.0,"initGroup",Optional.of(ua),redir)
+* (2) redir.getFlashAttributes().containsKey("message1")
+* (3) redir.getFlashAttributes().get("message1")
+a|
+* (1) "redirect:/footballgroup"
+* (2) true
+* (3) "Sie sind nicht teil dieser Gruppe!"
+
+|CatC
+|CatalogControllerFootGroupBet2
+|UC03
+|-
+a|
+* Kunde "c" existiert:
+** UserAccount: "ua"
+* Gruppe "group" existiert
+** Name: initGroup
+** "c" ist Mitglied
+* Fußballspiel "f_success" im Katalog:
+** Name: n
+** Datum/Zeit: heute + 4 Tage, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f_success": "id_f_success"
+* Gruppenwette "fb":
+** Item: "f_success"
+** Datum/Zeit: jetzt - 1 Tag
+** Einsatz: 12 Euro
+** Kunde: c
+** Auslaufdatum: heute + 4 Tage, 15:00
+** Tipp: HEIMSIEG
+* Gruppenname von "fb": initGroup
+* "fb" wurde zu den Gruppenwetten von "f_success" hinzugefügt
+a|
+* (1) catalogController.bet_foot_group(id_f_success,1,12.0,"initGroup",Optional.of(ua),redir)
+* (2) redir.getFlashAttributes().containsKey("message")
+* (3) redir.getFlashAttributes().get("message")
+a|
+* (1) "redirect:/footballgroup"
+* (2) true
+* (3) "Für dieses Spiel hat die Gruppe schon eine Wette abgegeben."
+
+|CatC
+|CatalogControllerFootGroupBetTimeUp
+|UC03
+|-
+a|
+* Kunde "c" existiert:
+** UserAccount: "ua"
+* Gruppe "group" existiert:
+** Name: initGroup
+** "c" ist Mitglied
+* Fußballspiel "f_timeup" im Katalog:
+** Name: n
+** Datum/Zeit: heute + 1 Tag, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f_timeup": "id_f_timeup"
+* RedirectAttributes redir = new RedirectAttributesModelMap();
+a|
+* (1) catalogController.bet_foot_group(id_f_timeup,1,14.0,"initGroup",Optional.of(ua),redir)
+a|
+* (1) "time_up.html"
+
+|CatC
+|CatalogControllerFootGroupBetSuccess
+|UC03
+|-
+a|
+* Kunde "c" existiert:
+** UserAccount: "ua"
+** Guthaben: 20 Euro
+* Gruppe "group" existiert
+** Name: initGroup
+** "c" ist Mitglied
+* Fußballspiel "f_success" im Katalog:
+** Name: n
+** Datum/Zeit: heute + 4 Tage, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f_success": "id_f_success"
+* RedirectAttributes redir = new RedirectAttributesModelMap();
+a|
+* (1) catalogController.bet_foot_group(id_f_success,1,14.0,"initGroup",Optional.of(ua),redir)
+* (2) c.getBalance()
+a|
+* (1) "redirect:/"
+* (2) Money.of(6,EURO)
+
+|CatC
+|CatalogControllerFootGroupBetError
+|UC03
+|-
+a|
+* Kunde "c" existiert:
+** UserAccount: "ua"
+** Guthaben: 0 Euro
+* Gruppe "group" existiert
+** Name: initGroup
+** "c" ist Mitglied
+* Fußballspiel "f_success" im Katalog:
+** Name: n
+** Datum/Zeit: heute + 4 Tage, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f_success": "id_f_success"
+* RedirectAttributes redir = new RedirectAttributesModelMap();
+a|
+* (1) catalogController.bet_foot_group(id_f_success,1,14.0,"initGroup",Optional.of(ua),redir)
+* (2) c.getBalance()
+a|
+* (1) "error"
+* (2) Money.of(0,EURO)
+
+|CatC-8
+|CheckInsetFoot
+|UC14, UC03
+|AT22
+a|
+* Fußballspiel "f_success" im Katalog:
+** Name: n
+** Datum/Zeit: heute + 4 Tage, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f_success": "id_f_success"
+* Kunde "c" existiert
+** Guthaben: 40 Euro
+** UserAccount : "ua"
+a|
+* (1#) f_success.addBet(new FootballBet(f_success,LocalDateTime.now(),Money.of(8,EURO),c,LocalDateTime.now().plusDays(7),Ergebnis.GASTSIEG));
+a|
+* (1#) IllegalArgumentException: "der Wetteinsatz darf nicht kleiner als der Mindesteinsatz sein"
+
+|CatC-9
+|CheckUpdatedBalance
+|UC03, UC15
+|AT23
+a|
+* Fußballspiel "f_success" im Katalog:
+** Name: n
+** Datum/Zeit: heute + 4 Tage, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f_success": "id_f_success"
+* Kunde "c" existiert
+** Guthaben: 40 Euro
+** UserAccount : "ua"
+a|
+* catalogController.bet_foot(id_f_success,1,12.0,Optional.of(ua));
+* (1) c.getBalance()
+a|
+* (1) Money.of(28,EURO)
+
+|CatC-10
+|zahlenlotterieMvcIntegrationTest
+|UC02
+|-
+a|
+* Ticketkatalog nicht leer
+a|
+* mvc.perform(get("/zahlenlotterie")). //
+				andExpect(status().isOk()).//
+				andExpect(model().attribute("ticketcatalog", is(not(emptyIterable()))))
+a|
+* keine Exception
+
+|CatC-11
+|footballMvcIntegrationTest
+|UC01, UC03
+|AT04
+a|
+* Fußballkatalog enthält mindestens 1 Spiel, das noch nicht stattgefunden hat
+a|
+* mvc.perform(get("/football")). //
+				andExpect(status().isOk()).//
+				andExpect(model().attribute("footballcatalog", is(not(emptyIterable()))));
+a|
+* keine Exception
+
+|CatC-12
+|footballadminMvcIntegrationTest
+|UC01
+|-
+a|
+* Fußballkatalog enthält ein Spiel, das schon stattgefunden hat
+* Nutzer angemeldet als:
+** Nutzername: admin
+** Rolle: ADMIN
+a|
+* (1) mvc.perform(get("/footballadmin")). //
+				andExpect(status().isOk()).//
+				andExpect(model().attribute("footballcatalog", is(not(emptyIterable()))));
+a|
+* keine Exception
+
+|CusC-1
+|CustomerControllerIntegrationTestRegisterNew
+|UC05
+|AT08, AT09, AT10
+a|
+* Registrierung "form":
+** Vorname: Anna
+** Nachname: Nana
+** E-Mail: anna@tu-dresden.de
+** Passwort: An123456
+** Wiederholung: An123456
+* Model model = new ExtendedModelMap();
+a|
+* (1) customerController.register(model, form);
+a|
+* wenn Fehler bei der Registrierungseingabe:
+** (1)  "redirect:/"
+* sonst:
+** (1) "register"
+
+|CusC-2
+|CustomerControllerIntegrationTestRegister
 |UC05
 |AT08
-|Nutzer ist nicht registriert, Benutzername "janed67" ist noch nicht vergeben
+* Regsitrierung "form":
+** Vorname: Anna
+** Nachname: Nana
+** E-Mail: anna@tu-dresden.de
+** Passwort: An123456
+** Wiederholung: An123456
+* Model model = new ExtendedModelMap();
 a|
-- Benutzername: janed67
-- Passwort: Woerter44
-|Registrierung erfolgreich, (intern: neuer Nutzer ist angelegt mit den Benutzerdaten)
+* (1) customerController.register(model, form);
+a|
+* (1) "register"
 
-|U-4
+|CusC-3
+|CustomerControllerIntegrationTestProfile
+|-
+|-
+a|
+* Kunde "customer" vorhanden:
+** UserAccount: "ua"
+* Model model = new ExtendedModelMap();
+a|
+* (1) customerController.getProfile(model, Optional.of(userAccount));
+* (2) model.getAttribute("firstname")
+* (3) model.getAttribute("lastname")
+* (4) model.getAttribute("email")
+
+a|
+* (1) "meinProil"
+* (2) customer.getUserAccount().getFirstname()
+* (3) customer.getUserAccount().getLastname()
+* (4) customer.getUserAccount().getEmail()
+
+|CusC-4
+|CustomerControllerIntegrationCustomers
+|-
+|-
+* angemeldet als Nutzer mit:
+** Nutzername: "admin"
+** Rolle: "ADMIN"
+* Model model = new ExtendedModelMap();
+a|
+* (1) customerController.customers(model);
+a|
+* (1) "customers"
+
+|CusC-5
+|CustomerControllerIntegrationCreate
+|UC09
+|(AT16)
+a|
+* Model model = new ExtendedModelMap();
+a|
+* (1) customerController.createGroupPage(model);
+a|
+* (1) "group_create"
+
+|CusC-6
+|CustomerControllerIntegrationTestCharge
+|UC07
+|-
+a|
+* Kunde "customer" vorhanden:
+** UserAccount: "ua"
+* RedirectAttributes redir = new RedirectAttributesModelMap()
+a|
+* customerController.charge(0, optional, redir);
+* (1) redir.getFlashAttributes().containsKey("message"))
+a|
+* (1) true
+
+|CusC-7
+|customerControllerIntegrationTestExit
+|-
+|-
+a|
+* beliebiger Kunde "customer" existiert
+* Kunde "leader" angelegt:
+** Vorname: test
+** Nachname: leader
+** E-Mail: test@leader.de
+** Passwort: 123
+* Gruppe group erstellt:
+** Name: testGroup
+** Leiter: leader
+** Mitglieder: leader, customer
+* RedirectAttributes redir = new RedirectAttributesModelMap()
+
+a|
+* (1.1) customerController.exit("testGroup", optional, redir);
+* (1.2) group.getMembers().size()
+* (2.1) customerController.exit("testGroup", optional, redir);
+* (2.2) group.getMembers().size()
+* (2.3) redir.getFlashAttributes().containsKey("message")
+* (3.1) customerController.exit("testGroup", Optional.of(leader.getUserAccount()), redir);
+* (3.2) customerManagement.findByGroupName("testGroup")
+
+a|
+* (1.1) "redirect:/group"
+* (1.2) 1
+* (2.1) "redirect:/group"
+* (2.2) 1
+* (2.3) true
+* (3.1) "redirect:/group"
+* (3.2) null
+
+|CusC-8
+|customerControllerIntegrationTestGroup
+|-
+|-
+a|
+* Model model = new ExtendedModelMap();
+* Kunde "leader" angelegt:
+** Vorname: test
+** Nachname: leader
+** E-Mail: test@leader.de
+** Passwort: 123
+* Gruppe "group" erstellt:
+** Name: testGroup
+** Leiter: leader
+|
+* (1) customerController.groups(model, Optional.of(leader.getUserAccount()));
+* (2) model.getAttribute("groups")
+|
+* (1) "group"
+* (2) group (Objekt, leader.getGroup())
+
+|CusC-9
+|customerControllerIntegrationTestJoinGroup
+|-
+|-
+a|
+* beliebiger Kunde customer existiert
+* Kunde "temp" angelegt:
+** Name: temp
+** Vorname: customer
+** E-Mail: temp@customer.de
+** Passwort: 123
+* Kunde "leader" angelegt:
+** Vorname: test
+** Nachname: leader
+** E-Mail: test@leader.de
+** Passwort: 123
+* Gruppe "group" erstellt:
+** Name: testGroup
+** Leiter: leader
+** Mitglieder: leader, customer
+* RedirectAttributes redir = new RedirectAttributesModelMap();
+a|
+* (1) group.getMembers().size();
+* (2) customerController.joinGroup("testGroup", "0", Optional.of(temp.getUserAccount()), redir);
+* (3) group.getMembers().size();
+* (4) redir.getFlashAttributes().containsKey("message");
+* (5) customerController.joinGroup("testGroup", group.getPassword(), Optional.of(temp.getUserAccount()), redir);
+* (6) group.getMembers().size();
+* (7) customerController.joinGroup("testGroup", group.getPassword(), Optional.of(temp.getUserAccount()), redir);
+* (8) group.getMembers().size();
+* (9) redir.getFlashAttributes().containsKey("message");
+
+a|
+* (1) 2
+* (2) "redirect:/group_join"
+* (3) 2
+* (4) true
+* (5) "redirect:/group"
+* (6) 3
+* (7) "redirect:/group_join"
+* (8) 3
+* (9) true
+
+|CusC-10
+|customerControllerIntegrationTestCreateGroup
+|UC09
+|(AT16)
+a|
+* beliebiger Kunde "customer" existiert
+* Kunde "leader" angelegt:
+** Vorname: test
+** Nachname: leader
+** E-Mail: test@leader.de
+** Passwort: 123
+* Gruppe group erstellt:
+** Name: testGroup
+** Leiter: leader
+** Mitglieder: leader, customer
+* RedirectAttributes redir = new RedirectAttributesModelMap()
+a|
+* (1) customerController.createGroup("testGroup", Optional.of(leader.getUserAccount()), redir);
+* (2) redir.getFlashAttributes().containsKey("message")
+* (3) customerController.createGroup("testGroup2", Optional.of(leader.getUserAccount()), redir);
+* (4) customerManagement.findByGroupName("testGroup2") != null
+a|
+* (1) "redirect:/group_create"
+* (2) true
+* (3) "redirect:/group"
+* (4) true
+
+|CM-1
+|createCustomer
 |UC05
-|AT09
-|Nutzer ist nicht registriert, Benutzername "muster0815" nicht vergeben
+|AT08
 a|
-- Benutzername: muster0815
-- Passwort: Hel789
-|Passwort ungültig, (kein neuer Nutzer angelegt)
+* RegistrationForm "form":
+** Vorname: Test
+** Nachname: Customer
+** E-Mail: test@customer.de
+** Passwort: 123
+** Wiederhlung: 123
+a|
+* customer = customerManagement.createCustomer(form);
+* (1) customer.equals(customerManagement.findByCustomerId(customer.getId()))
+a|
+* (1) true
 
-|U-5
+|CM-2
+|createGroup()
+|UC09
+|(AT16)
+a|
+* Kunde "customer" angelegt:
+** Vorname: Test
+** Nachname: Customer
+** E-Mail: test@customer.de
+** Passwort: 123
+a|
+* Group group = customerManagement.createGroup("create group", customer);
+* (1) group.equals(customerManagement.findByGroupName("create group"));
+a|
+* (1) true
+
+|CM-3
+|deleteGroup()
+|-
+|-
+a|
+* Kunde "customer" angelegt:
+** Vorname: Test
+** Nachname: Customer
+** E-Mail: test@customer.de
+** Passwort: 123
+* Gruppe "group" angelegt:
+** Name: test group
+** Leiter: customer
+a|
+* customerManagement.deleteGroup(group);
+* (1) customerManagement.findByGroupName(group.getGroupName())
+a|
+* (1) null
+
+|CM-4
+|findAllCustomers()
+|-
+|-
+a|
+* Kunde "a" angelegt:
+** Vorname: test
+** Nachname: alpha
+** E-Mail: test@alpha.de
+** Passwort: 123
+* Kunde "b" angelegt:
+** Vorname: test
+** Nachname: bravo
+** E-Mail: test@bravo.de
+** Passwort: 123
+* Kunde "c" angelegt:
+** Vorname: test
+** Nachname: charlie
+** E-Mail: test@charlie.de
+** Passwort: 123
+* Kundenliste "customers":
+** Elemente: "a", "b", "c"
+a|
+* List<Customer> customers1 = customerManagement.findAllCustomers().filter(customer -> customer.getUserAccount().getFirstname().equals("test")).toList();
+* (1) customers1.size()
+* (2) customers1.equals(customers)
+a|
+* (1) customers.size()
+* (2) true
+
+|CM-5
+|findAllGroups()
+|-
+|-
+a|
+* Kunde "leader" angelegt:
+** Vorname: test
+** Nachname: leader
+** E-Mail: test@leader.de
+** Passwort: 123
+* Gruppe "a" erstellt:
+** Name: testA
+** Leiter: leader
+* Gruppe "b" erstellt:
+** Name: testB
+** Leiter: leader
+* Gruppenliste "groups":
+** Elemente: "a", "b"
+a|
+* List<Group> groups1 = customerManagement.findAllGroups().filter(group -> group.contains(leader)).toList();
+* (1) groups1.size()
+* (2) groups1.equals(groups)
+a|
+* (1) groups.size()
+* (2) true
+
+|CM-6
+|addMemberToGroup()
+|-
+|-
+a|
+* beliebiger Kunde customer existiert
+* Kunde "leader" angelegt:
+** Vorname: test
+** Nachname: leader
+** E-Mail: test@leader.de
+** Passwort: 123
+* Gruppe "testGroup" erstellt:
+** Name: testGroup
+** Leiter: leader
+a|
+* (1) testGroup.getMembers().size() == 1
+* customerManagement.addMemberToGroup(customer, testGroup, testGroup.getPassword());
+* (2) testGroup.getMembers().size() == 2
+a|
+* (1) true
+* (2) true
+
+|CM-7
+|removeMemberOfGroup()
+|-
+|-
+a|
+* Kunde "customerA" angelegt
+** Vorname: test
+** Nachname: alpha
+** E-Mail: test@alpha.de
+** Passwort: 123
+* Kunde "leader" angelegt:
+** Vorname: test
+** Nachname: leader
+** E-Mail: test@leader.de
+** Passwort: 123
+* Gruppe "testGroup" erstellt:
+** Name: testGroup
+** Leiter: leader
+* Mitglieder von "testGroup": leader, customerA
+a|
+* (1) testGroup.getMembers().size() == 2
+* customerManagement.removeMemberOfGroup(customerA, testGroup);
+* (2) testGroup.getMembers().size() == 1
+a|
+* (1) true
+* (2) true
+
+|CM-8
+|charge()
 |UC07
 |AT13
-|Nutzer ist angemeldet
-|20
-|Aufladen erfolgreich, prüfen: guthaben = altes guthaben + 20
-
-|U-6
-|UC07
-|AT14
-|Nutzer ist angemeldet
-|-15
-|Zahl darf nicht negativ sein, (Guthaben des Nutzers bleibt gleich)
-
-|I-1
-|UC08
-|AT15
-|Nutzer hat Fußballwette abgegeben:
-- Teams: FCB gegen BVB
-- Tipp: Sieg für FCB
-- Einsatz: 10
-|Ergebnis des Fußballspiels wird eingetragen: Sieg für FCB
-|Status der Fußballwette (bzgl. oben) ist GEWONNEN
-
-|I-2   
-|UC08
-|AT15
-|Nutzer hat Fußballwette abgegeben:
-- Teams: FCB gegen BVB
-- Tipp: Sieg für FCB
-- Einsatz: 10
-|Ergebnis des Fußballspiels wird eingetragen: Sieg für FCB
-|Guthaben des Nutzers erhöht sich um 10
-
-|I-3
-|UC14
-|AT21
-|Nutzer füllt einen Lottoschein korrekt aus
-|Tipp: 1, 15, 19, 22, 33, 48
-|Wette wird zum Warenkorb hinzugefügt -> Anzahl der Warenkorbelemente um 1 erhöht
-
-|I-4
-|UC14
-|AT22
-|(Lottoschein nicht korrekt ausgefüllt)
-|Tipp: 1,2,3,4,4,4
-|es wurden nicht 6 verschiedene Zahlen ausgewählt (, Anzahl der Warenkorbelemente ändert sich nicht)
-
-|I-5
-|UC15
-|AT23
-|Nutzer füllt einen Lottoschein korrekt aus
-|Tipp: 1, 15, 19, 22, 33, 48
-|Guthaben um Kaufpreis vom Lottoschein reduziert
-
-|I-6
-|Warenkorb nicht für unregsitrierte Nutzer sichtbar/zugreifbar
-|-
-|Nutzer ist nicht registriert
-|Zugriff auf "Warenkorb"
-|"kein Zugriff, Anmelden/Login nötig"
-
-|I-7
-|Warenkorb nur für regsitrierte Nutzer sichtbar/zugreifbar
-|-
-|Nutzer ist registriert und angemeldet
-|Zugriff auf "Warenkorb"
-|Elemente des Warenkorbs
-
-|I-8
-|Statistik nur für Admin sichtbar
-|-
-|Nutzer ist als Admin angemeldet
-|Zugriff auf "Statistik"
-|Statsitik wird angezeigt
-
-|I-9
-|UC01
-|AT01, AT02
-|-
-|Zugriff auf "Fußballtoto"
-|Fußballspiele, auf die man wetten kann
-
-|I-10
-|UC03
-|AT05
 a|
-* Wette1: Fußballspiel1, Datum, Einsatz, Tipp
-* Wette1 zur Liste von Fußballwetten von Fußballspiel1 hinzufügen
-|Liste von Fußballwetten (von Fußballspiel1) enthält Wette1
+* Kunde "customer" angelegt:
+** Vorname: test
+** Nachname: charge
+** E-Mail: test@charge.de
+** Passwort: 123
+* Guthaben von "customer": 0 Euro
+a|
+* customerManagement.charge(Money.of(20, EURO), customer);
+* (1) customer.getBalance().isEqualTo(Money.of(20, EURO))
+a|
+* (1) true
+
+|RC-1
+|EvalFootballBetsTestNotPossible()
+|-
+|-
+a|
+* angemeldet als:
+** Nutzername: admin
+** Rolle: ADMIN
+* Fußballspiel "f2" im Katalog:
+** Name: n2
+** Datum/Zeit: jetzt + 10 min
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: t1
+** Gast: t2
+** Liga: liga
+** logoHost: i1
+** logoHost: i2
+* ID von "f2": "f2id"
+a|
+* (1) resultController.evalFootballBets(f2id,1)
+a|
+* (1) "noFootEval"
+
+|RC-2
+|EvalFootBetsTestSuccess
+|-
+|-
+a|
+* angemeldet als:
+** Nutzername: admin
+** Rolle: ADMIN
+* belibiger Kunde "c" existiert
+* Fußballspiel "f" im Katalog:
+** Name: n
+** Datum/Zeit: heute - 1 Tag, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: tt1
+** Gast: tt2
+** Liga: liga
+** logoHost: ii1
+** logoHost: ii2
+* Fußballwette "fb":
+** Item: "f"
+** Datum/Zeit: jetzt - 5 Tage
+** Einsatz: 15 Euro
+** Kunde: "c"
+** Ablaufdatum: f.getTimeLimit()
+** Tipp: UNENTSCHIEDEN
+* Wette "fb" zu "f" hinzugefügt
+* ID von "f": "fid"
+a|
+* (1) resultController.evalFootballBets(fid,1)
+a|
+* (1) "redirect:/"
+
+|RC-3
+|CheckStatusWIN
+|-
+|AT15
+a|
+* angemeldet als:
+** Nutzername: admin
+** Rolle: ADMIN
+* belibiger Kunde "c" existiert
+* Fußballspiel "f" im Katalog:
+** Name: n
+** Datum/Zeit: heute - 1 Tag, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: tt1
+** Gast: tt2
+** Liga: liga
+** logoHost: ii1
+** logoHost: ii2
+* Fußballwette "fb":
+** Item: "f"
+** Datum/Zeit: jetzt - 5 Tage
+** Einsatz: 15 Euro
+** Kunde: "c"
+** Ablaufdatum: f.getTimeLimit()
+** Tipp: UNENTSCHIEDEN
+* Status von "fb": OFFEN
+* Wette "fb" zu "f" hinzugefügt
+* ID von "f": "fid"
+a|
+* resultController.evalFootballBets(fid,3);
+* (1) fb.getStatus()
+* (2) f.getErgebnis()
+a|
+* (1) Status.GEWONNEN
+* (2) Ergebnis.UNENTSCHIEDEN
+
+|RC-4
+|CheckStatusLOSS
+|-
+|-
+a|
+* angemeldet als:
+** Nutzername: admin
+** Rolle: ADMIN
+* belibiger Kunde "c" existiert
+* Fußballspiel "f" im Katalog:
+** Name: n
+** Datum/Zeit: heute - 1 Tag, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: tt1
+** Gast: tt2
+** Liga: liga
+** logoHost: ii1
+** logoHost: ii2
+* Fußballwette "fb":
+** Item: "f"
+** Datum/Zeit: jetzt - 5 Tage
+** Einsatz: 15 Euro
+** Kunde: "c"
+** Ablaufdatum: f.getTimeLimit()
+** Tipp: UNENTSCHIEDEN
+* Status von "fb": OFFEN
+* Wette "fb" zu "f" hinzugefügt
+* ID von "f": "fid"
+a|
+* resultController.evalFootballBets(fid,1);
+* (1) fb.getStatus()
+* (2) f.getErgebnis()
+a|
+* (1) Status.LOSS
+* (2) Ergebnis.HEIMSIEG
+
+|RC-5
+|CheckBalanceSame()
+|UC08
+|-
+a|
+* angemeldet als:
+** Nutzername: admin
+** Rolle: ADMIN
+* belibiger Kunde "c" existiert
+** Guthaben: "balance"
+* Fußballspiel "f" im Katalog:
+** Name: n
+** Datum/Zeit: heute - 1 Tag, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: tt1
+** Gast: tt2
+** Liga: liga
+** logoHost: ii1
+** logoHost: ii2
+* Fußballwette "fb":
+** Item: "f"
+** Datum/Zeit: jetzt - 5 Tage
+** Einsatz: 15 Euro
+** Kunde: "c"
+** Ablaufdatum: f.getTimeLimit()
+** Tipp: UNENTSCHIEDEN
+* Wette "fb" zu "f" hinzugefügt
+* ID von "f": "fid"
+a|
+* resultController.evalFootballBets(fid,1);
+* (1) c.getBalance()
+a|
+* (1) balance
+
+|RC-6
+|CheckBalanceHigher
+|UC08
+|AT15
+a|
+* angemeldet als:
+** Nutzername: admin
+** Rolle: ADMIN
+* belibiger Kunde "c" existiert
+** Guthaben: "balance"
+* Kunde "ctest"
+* Kunde "c2"
+** Guthaben: "balance_test"
+* Gruppe "gruppe"
+** Name: initGroup
+** "ctest" ist Mitglied
+** Anzahl Mitglider: 2
+* Fußballspiel "f" im Katalog:
+** Name: n
+** Datum/Zeit: heute - 1 Tag, 15:00
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: tt1
+** Gast: tt2
+** Liga: liga
+** logoHost: ii1
+** logoHost: ii2
+* Fußballwette "fb":
+** Item: "f"
+** Datum/Zeit: jetzt - 5 Tage
+** Einsatz: 15 Euro
+** Kunde: "c"
+** Ablaufdatum: f.getTimeLimit()
+** Tipp: UNENTSCHIEDEN
+* Wette "fb" zu "f" hinzugefügt
+* Fußballwette "fgroup" (Gruppenwette):
+** Item: "f"
+** Datum/Zeit: jetzt - 5 Tage
+** Einsatz: 16 Euro
+** Kunde: "c2"
+** Ablaufdatum: f.getTimeLimit()
+** Tipp: UNENTSCHIEDEN
+* setze Gruppenname von "fgroup" auf: "initGroup"
+* Wette "fgroup" zu "f" hinzugefügt
+* ID von "f": "fid"
+a|
+* resultController.evalFootballBets(fid,3);
+* (1) c.getBalance()
+* (2) ctest.getBalance()
+* (3) c2.getBalance()
+a|
+* (1) balance.add(fb.getInset())
+* (2) balance_test.add(Money.of(8,EURO))
+* (3) balance_c2.add(Money.of(8,EURO))
+
+|RC-7
+|EvalNumBetsTestNotPossible
+|-
+|-
+a|
+* angemeldet als:
+** Nutzername: admin
+** Rolle: ADMIN
+* Ticket "t2" im Katalog:
+** Name: B
+** Datum: jetzt + 3 Tage
+** Preis: 10 Euro
+** Typ: TICKET
+* ID von "t2": "tid2"
+a|
+* (1) resultController.evalNumberBets(tid2)
+a|
+* (1) "keineZiehung"
+
+|RC-8
+|EvalNumBetsTestSuccess
+|-
+|-
+a|
+* angemeldet als:
+** Nutzername: admin
+** Rolle: ADMIN
+* belibiger Kunde "c" existiert
+* Ticket "t" im Katalog:
+** Name: A
+** Datum: jetzt - 5 min
+** Preis: 10 Euro
+** Typ: TICKET
+* ID von "t": "tid"
+* Zahlenwette "nb":
+** Item: t
+** Datum: jetzt - 3 Tage
+** Einsatz: 10 Euro
+** Kunde: "c"
+** Ablaufdatum/zeit: jetzt + 4 Tage
+** Tippzahlen: [1,2,3,4,5,6]
+** Superzahl: 0
+* Zahlenwette "nb2":
+** Item: t
+** Datum: jetzt - 8 Tage
+** Einsatz: 10 Euro
+** Kunde: "c"
+** Ablaufdatum/zeit: jetzt - 1 Tag
+** Tippzahlen: [1,2,3,4,5,6]
+** Superzahl: 0
+* Wetten "nb", "nb2" zu "t" hinzugefügt
+a|
+* (1) resultController.evalNumberBets(tid)
+a|
+* (1) "redirect:/"
+
+|RC-10
+|EvalNumBetsTestNotPossible2
+|-
+|-
+a|
+* angemeldet als:
+** Nutzername: admin
+** Rolle: ADMIN
+* belibiger Kunde "c" existiert
+* Ticket "t" im Katalog:
+** Name: A
+** Datum: jetzt - 5 min
+** Preis: 10 Euro
+** Typ: TICKET
+* ID von "t": "tid"
+* Zahlenwette "nb":
+** Item: t
+** Datum: jetzt - 3 Tage
+** Einsatz: 10 Euro
+** Kunde: "c"
+** Ablaufdatum/zeit: jetzt + 4 Tage
+** Tippzahlen: [1,2,3,4,5,6]
+** Superzahl: 0
+* Zahlenwette "nb2":
+** Item: t
+** Datum: jetzt - 8 Tage
+** Einsatz: 10 Euro
+** Kunde: "c"
+** Ablaufdatum/zeit: jetzt - 1 Tag
+** Tippzahlen: [1,2,3,4,5,6]
+** Superzahl: 0
+* Wetten "nb", "nb2" zu "t" hinzugefügt
+a|
+* resultController.evalNumberBets(tid);
+* (1) resultController.evalNumberBets(tid)
+a|
+* (1) "keineZiehung"
+
+|RC-11
+|checkNumBetsStatusWIN
+|UC08
+|-
+a|
+* angemeldet als:
+** Nutzername: admin
+** Rolle: ADMIN
+* belibiger Kunde "c" existiert
+* Ticket "t" im Katalog:
+** Name: A
+** Datum: jetzt - 5 min
+** Preis: 10 Euro
+** Typ: TICKET
+* ID von "t": "tid"
+* Zahlenwette "nb":
+** Item: t
+** Datum: jetzt - 3 Tage
+** Einsatz: 10 Euro
+** Kunde: "c"
+** Ablaufdatum/zeit: jetzt + 4 Tage
+** Tippzahlen: [1,2,3,4,5,6]
+** Superzahl: 0
+* Zahlenwette "nb2":
+** Item: t
+** Datum: jetzt - 8 Tage
+** Einsatz: 10 Euro
+** Kunde: "c"
+** Ablaufdatum/zeit: jetzt - 1 Tag
+** Tippzahlen: [1,2,3,4,5,6]
+** Superzahl: 0
+* Wetten "nb", "nb2" zu "t" hinzugefügt
+* Liste "l": [1,2,3,4,5,6]
+a|
+* resultController.evaluateNum(t, LocalDate.now(), l, 0);
+* (1) nb.getStatus()
+* (2) c.getBalance()
+a|
+* (1) Status.WIN
+* (2) balance.add(nb.getInset())
+
+|RC-12
+|checkNumBetsStatusLOSS
+|UC08
+|-
+a|
+* angemeldet als:
+** Nutzername: admin
+** Rolle: ADMIN
+* belibiger Kunde "c" existiert
+* Ticket "t" im Katalog:
+** Name: A
+** Datum: jetzt - 5 min
+** Preis: 10 Euro
+** Typ: TICKET
+* ID von "t": "tid"
+* Zahlenwette "nb":
+** Item: t
+** Datum: jetzt - 3 Tage
+** Einsatz: 10 Euro
+** Kunde: "c"
+** Ablaufdatum/zeit: jetzt + 4 Tage
+** Tippzahlen: [1,2,3,4,5,6]
+** Superzahl: 0
+* Zahlenwette "nb2":
+** Item: t
+** Datum: jetzt - 8 Tage
+** Einsatz: 10 Euro
+** Kunde: "c"
+** Ablaufdatum/zeit: jetzt - 1 Tag
+** Tippzahlen: [1,2,3,4,5,6]
+** Superzahl: 0
+* Wetten "nb", "nb2" zu "t" hinzugefügt
+* Liste "l": [1,2,3,4,5,6]
+a|
+* resultController.evaluateNum(t, LocalDate.now(), l, 1);
+* (1) nb.getStatus()
+* (2) c.getBalance()
+a|
+* (1) Status.LOSS
+* (2) balance
+
+|RC-13
+|checkNumBetsStatusEXPIRED
+|-
+|-
+a|
+* angemeldet als:
+** Nutzername: admin
+** Rolle: ADMIN
+* belibiger Kunde "c" existiert
+* Ticket "t" im Katalog:
+** Name: A
+** Datum: jetzt - 5 min
+** Preis: 10 Euro
+** Typ: TICKET
+* ID von "t": "tid"
+* Zahlenwette "nb":
+** Item: t
+** Datum: jetzt - 3 Tage
+** Einsatz: 10 Euro
+** Kunde: "c"
+** Ablaufdatum/zeit: jetzt + 4 Tage
+** Tippzahlen: [1,2,3,4,5,6]
+** Superzahl: 0
+* Zahlenwette "nb2":
+** Item: t
+** Datum: jetzt - 8 Tage
+** Einsatz: 10 Euro
+** Kunde: "c"
+** Ablaufdatum/zeit: jetzt - 1 Tag
+** Tippzahlen: [1,2,3,4,5,6]
+** Superzahl: 0
+* Wetten "nb", "nb2" zu "t" hinzugefügt
+* Liste "l": [1,2,3,4,5,6]
+a|
+* resultController.evaluateNum(t, LocalDate.now(), l, 2);
+* (1) nb2.getStatus()
+a|
+* (1) Status.EXPIRED
+
+|OC-1
+|ViewBetsTest
+|UC13
+|AT20
+a|
+* angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+* UserAccount "ua"
+* Ticket "t" im Katalog:
+** Name: A
+** Datum/Zeit: jetzt + 2 min
+** Preis: 10 Euro
+** Typ: TICKET
+* Zahlenwette "temp":
+** Item: "t"
+** Datum/Zeit: jetzt
+** Einsatz: 10 Euro
+** Ablaufdatum/zeit: jetzt + 7 Tage
+** Tippzahlen: [1,2,3,4,5,6]
+** Superzahl: 9
+* Wette "temp" zu "t" hinzufügen
+* 4 Tickets im Katalog:
+** default-Ticket: erstellt im CatalogDataInitializer
+*** Anzahl Wetten: 0
+** "t"
+*** Anzahl Wetten: 2
+** "t2"
+*** Anzahl Wetten: 1
+** "t3"
+*** Anzahl Wetten: 1
+* Model model = new ExtendedModelMap();
+a|
+* (1) orderController.viewBets(model, Optional.of(ua))
+* List<NumberBet> bets = (List<NumberBet>) model.getAttribute("numberBets");
+* (2) bets.size()
+a|
+* (1) "customer_bets"
+* (2) 4
+
+|OC-2
+|RaiseFootBetTestTimeUp
+|UC13
+|-
+a|
+* Nutzer(MockUser) angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+** UserAccount ua
+* Fußballspiel "f" im Katalog:
+** Name: abc
+** Datum/Zeit: jetzt + 2 Minuten
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: t1
+** Gast: t2
+** Liga: liga
+** LogoHost: i1
+** LogoGast: i2
+* ID von "f": "fid"
+* Fußballwette "fb":
+** Item: f
+** Datum/Zeit: jetzt - 3 Tage
+** Einsatz: 10 Euro
+** Kunde: c
+** Auslaufdatum: jetzt + 2 min (f.getTimeLimit())
+** Tipp: UNENTSCHIEDEN
+* ID von "fb": "fb_id"
+* "fb" wurde zu "f" hinzugefügt
+a|
+* (1) orderController.raiseFootBet(fid,fb_id,12.0,Optional.of(ua))
+a|
+* (1) "time_up.html"
+
+|OC-3
+|RaiseFootBetTestError
+|UC13
+|-
+a|
+* Nutzer(MockUser) angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+** UserAccount ua
+** Guthaben: 2 Euro
+* Fußballspiel "f2" im Katalog:
+** Name: def
+** Datum/Zeit: jetzt + 1 Tag
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: 2. liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f2": "f2id"
+* Fußballwette "fb2":
+** Item: f2
+** Datum/Zeit: jetzt - 2 Tage
+** Einsatz: 12 Euro
+** Kunde: c
+** Auslaufdatum: jetzt + 1 Tag
+** Tipp: UNENTSCHIEDEN
+* ID von "fb2": "fb2_id"
+* "fb2" wurde zu "f2" hinzugefügt
+a|
+* (1) orderController.raiseFootBet(f2id,fb2_id,15.0, Optional.of(ua))
+* (2) c.getBalance()
+a|
+* (1) "error"
+* (2) Money.of(2,EURO)
+
+|OC-3
+|RaiseFootBetTestSuccess
+|UC13
+|-
+a|
+* Nutzer(MockUser) angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+** UserAccount ua
+** Guthaben: 10 Euro
+* Fußballspiel "f2" im Katalog:
+** Name: def
+** Datum/Zeit: jetzt + 1 Tag
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: 2. liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f2": "f2id"
+* Fußballwette "fb2":
+** Item: f2
+** Datum/Zeit: jetzt - 2 Tage
+** Einsatz: 12 Euro
+** Kunde: c
+** Auslaufdatum: jetzt + 1 Tag
+** Tipp: UNENTSCHIEDEN
+* ID von "fb2": "fb2_id"
+* "fb2" wurde zu "f2" hinzugefügt
+a|
+* (1) orderController.raiseFootBet(f2id,fb2_id,15.0, Optional.of(ua))
+* (2) fb2.getInset()
+* (3) c.getBalance()
+a|
+* (1) "redirect:/customer_bets"
+* (2) Money.of(15,EURO)
+* (3) Money.of(7,EURO)
+
+|OC
+|RaiseFootBetTestNULL
+|-
+|-
+a|
+* Nutzer(MockUser) angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+** UserAccount ua
+** Guthaben: "balance"
+* Fußballspiel "f2" im Katalog:
+** Name: def
+** Datum/Zeit: jetzt + 1 Tag
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: 2. liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f2": "f2id"
+* Fußballwette "temp2":
+** Item: f2
+** Datum/Zeit: jetzt - 3 Tage
+** Einsatz: 14 Euro
+** Kunde: c
+** Auslaufdatum: jetzt + 1 Tag
+** Tipp: UNENTSCHIEDEN
+* Liste der Wetten von "f2" enthält "temp2" *nicht*
+a|
+* (1) orderController.raiseFootBet(f2id,temp2.getIdstring(),15.0, Optional.of(ua))
+* (2) f2.findbyBetId(temp2.getIdstring())
+* (3) temp2.getInset()
+* (4) c.getBalance()
+a|
+* (1) "redirect:/customer_bets"
+* (2) null
+* (3) Money.of(14,EURO)
+* (4) balance
+
+|OC-4
+|ChangeFootTest
+|UC13
+|-
+a|
+* Nutzer(MockUser) angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+** UserAccount ua
+* Fußballspiel "f2" im Katalog:
+** Name: def
+** Datum/Zeit: jetzt + 1 Tag
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: 2. liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f2": "f2id"
+* Fußballwette "fb2":
+** Item: f2
+** Datum/Zeit: jetzt - 2 Tage
+** Einsatz: 12 Euro
+** Kunde: c
+** Auslaufdatum: jetzt + 1 Tag
+** Tipp: UNENTSCHIEDEN
+* ID von "fb2": "fb2_id"
+* "fb2" wurde zu "f2" hinzugefügt
+* Model model = new ExtendedModelMap();
+a|
+* (1) orderController.changeFoot(model,f2id,fb2_id)
+* (2) (FootballBet) model.getAttribute("footbet")
+a|
+* (1) "changeFootTip.html"
+* (2) fb2
+
+|OC-5
+|ChangeFootBetTipTestTimeUp
+|UC13
+|-
+a|
+* Nutzer(MockUser) angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+** UserAccount ua
+* Fußballspiel "f" im Katalog:
+** Name: abc
+** Datum/Zeit: jetzt + 2 Minuten
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: t1
+** Gast: t2
+** Liga: liga
+** LogoHost: i1
+** LogoGast: i2
+* ID von "f": "fid"
+* Fußballwette "fb":
+** Item: f
+** Datum/Zeit: jetzt - 3 Tage
+** Einsatz: 10 Euro
+** Kunde: c
+** Auslaufdatum: jetzt + 2 min (f.getTimeLimit())
+** Tipp: UNENTSCHIEDEN
+* ID von "fb": "fb_id"
+* "fb" wurde zu "f" hinzugefügt
+a|
+* (1) orderController.changeFootbetTip(fid,fb_id,2)
+* (2) fb.getTip()
+a|
+* (1) "time_up.html"
+* (2) Ergebnis.UNENTSCHIEDEN
+
+|OC-6
+|ChangeFootBetTipTestSuccess
+|UC13
+|-
+a|
+* Nutzer(MockUser) angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+** UserAccount ua
+* Fußballspiel "f2" im Katalog:
+** Name: def
+** Datum/Zeit: jetzt + 1 Tag
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: 2. liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f2": "f2id"
+* Fußballwette "fb2":
+** Item: f2
+** Datum/Zeit: jetzt - 2 Tage
+** Einsatz: 12 Euro
+** Kunde: c
+** Auslaufdatum: jetzt + 1 Tag
+** Tipp: UNENTSCHIEDEN
+* ID von "fb2": "fb2_id"
+* "fb2" wurde zu "f2" hinzugefügt
+a|
+* (1) orderController.changeFootbetTip(f2id,fb2_id,2)
+* (2) fb2.getTip()
+a|
+* (1) "redirect:/customer_bets"
+* (2) Ergebnis.GASTSIEG
+
+|OC-7
+|RemoveFootballBetsTestTimeUp
+|UC13
+|-
+a|
+* Nutzer(MockUser) angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+** Guthaben: "balance"
+** UserAccount ua
+* Fußballspiel "f" im Katalog:
+** Name: abc
+** Datum/Zeit: jetzt + 2 Minuten
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: t1
+** Gast: t2
+** Liga: liga
+** LogoHost: i1
+** LogoGast: i2
+* ID von "f": "fid"
+* Fußballwette "fb":
+** Item: f
+** Datum/Zeit: jetzt - 3 Tage
+** Einsatz: 10 Euro
+** Kunde: c
+** Auslaufdatum: jetzt + 2 min (f.getTimeLimit())
+** Tipp: UNENTSCHIEDEN
+* ID von "fb": "fb_id"
+* "fb" wurde zu "f" hinzugefügt
+a|
+* (1) orderController.removeFootballBets(fid,fb_id,Optional.of(ua))
+* (2) f.getFootballBets().contains(fb)
+* (3) c.getBalance()
+a|
+* (1) "time_up.html"
+* (2) true
+* (3) balance
+
+|OC-8
+|RemoveFootballBetsTestStatusOPEN
+|UC13
+|-
+a|
+* Nutzer(MockUser) angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+** Guthaben: "balance"
+** UserAccount ua
+* Fußballspiel "f2" im Katalog:
+** Name: def
+** Datum/Zeit: jetzt + 1 Tag
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: 2. liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f2": "f2id"
+* Fußballwette "fb2":
+** Item: f2
+** Datum/Zeit: jetzt - 2 Tage
+** Einsatz: 12 Euro
+** Kunde: c
+** Auslaufdatum: jetzt + 1 Tag
+** Tipp: UNENTSCHIEDEN
+* ID von "fb2": "fb2_id"
+* "fb2" wurde zu "f2" hinzugefügt
+* Status von "fb2": OPEN
+a|
+* (1) orderController.removeFootballBets(f2id,fb2_id, Optional.of(ua))
+* (2) c.getBalance()
+* (3) f2.getFootballBets().contains(fb2)
+a|
+* (1) "redirect:/customer_bets"
+* (2) balance.add(fb2.getInset())
+* (3) false
+
+|OC-9
+|RemoveFootballBetsTestStatusSuccess
+|UC13
+|-
+a|
+* Nutzer(MockUser) angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+** Guthaben: "balance"
+** UserAccount ua
+* Fußballspiel "f2" im Katalog:
+** Name: def
+** Datum/Zeit: jetzt + 1 Tag
+** Mindesteinsatz: 10 Euro
+** Typ: FOOTBALL
+** Heim: team1
+** Gast: team2
+** Liga: 2. liga
+** LogoHost: img1
+** LogoGast: img2
+* ID von "f2": "f2id"
+* Fußballwette "fb2":
+** Item: f2
+** Datum/Zeit: jetzt - 2 Tage
+** Einsatz: 12 Euro
+** Kunde: c
+** Auslaufdatum: jetzt + 1 Tag
+** Tipp: UNENTSCHIEDEN
+* ID von "fb2": "fb2_id"
+* "fb2" wurde zu "f2" hinzugefügt
+* Status von "fb2": VERLOREN
+a|
+* (1) orderController.removeFootballBets(f2id,fb2_id, Optional.of(ua))
+* (2) c.getBalance()
+* (3) f2.getFootballBets().contains(fb2)
+a|
+* (1) "redirect:/customer_bets"
+* (2) balance
+* (3) false
+
+|OC-10
+|RemoveFootballBetsTestTimeUp5Minutes
+|UC13
+|-
+a|
+* Nutzer(MockUser) angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+** Guthaben: "balance"
+** UserAccount ua
+* Fußballspiel "f3" im Katalog:
+** Name: ghi
+** Datum/Zeit: jetzt + 5 Minuten
+** Mindesteinsatz: 12 Euro
+** Typ: FOOTBALL
+** Heim: host
+** Gast: guest
+** Liga: 1. liga
+** LogoHost: imgh1
+** LogoGast: imgg2
+* ID von "f3": "f3id"
+* Fußballwette "fb3":
+** Item: f3
+** Datum/Zeit: jetzt - 3 Tage
+** Einsatz: 14 Euro
+** Kunde: c
+** Auslaufdatum: jetzt + 5 min
+** Tipp: UNENTSCHIEDEN
+* ID von "fb3": "fb3_id"
+* "fb3" wurde zu "f3" hinzugefügt
+a|
+* (1) orderController.removeFootballBets(f3id,fb3_id, Optional.of(ua))
+* (2) f3.getFootballBets().contains(fb3)
+* (3) c.getBalance()
+a|
+* (1) "time_up.html"
+* (2) true
+* (3) balance
+
+|OC-11
+|RemoveFootballBetsTestAfterEvaluation
+|UC13
+|-
+a|
+* Nutzer(MockUser) angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+** Guthaben: "balance"
+** UserAccount ua
+* Fußballspiel "f4" im Katalog:
+** Name: ghi2
+** Datum/Zeit: jetzt - 90 Minuten
+** Mindesteinsatz: 12 Euro
+** Typ: FOOTBALL
+** Heim: winner
+** Gast: loser
+** Liga: 1. liga
+** LogoHost: imgw
+** LogoGast: imgl
+* ID von "f4": "f4id"
+* Fußballwette "fb4":
+** Item: f4
+** Datum/Zeit: jetzt - 3 Tage
+** Einsatz: 14 Euro
+** Kunde: c
+** Auslaufdatum: jetzt - 90 min
+** Tipp: UNENTSCHIEDEN
+* ID von "fb4": "fb4_id"
+* "fb4" wurde zu "f4" hinzugefügt
+a|
+* (1) orderController.removeFootballBets(f4id,fb4_id, Optional.of(ua))
+* (2) f4.getFootballBets().contains(fb4)
+* (3) c.getBalance()
+* resultController.evalFootballBets(f4id,2);
+* (4) orderController.removeFootballBets(f4id,fb4_id,Optional.of(ua))
+* (5) f4.getFootballBets().contains(fb4)
+* (6) c.getBalance()
+a|
+* (1) "time_up.html"
+* (2) true
+* (3) balance
+* (4) "redirect:/customer_bets"
+* (5) false
+* (6) balance
+
+|OC-12
+|RaiseNumBetTestSuccess
+|UC13
+|-
+a|
+* Nutzer(MockUser) angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+** Guthaben: 10 Euro
+** UserAccount ua
+* Ticket "t2" im Katalog:
+** Name: B
+** Datum: jetzt + 1 Tag
+** Preis: 10 Euro
+** Typ: TICKET
+* ID von "t2": "tid2"
+* Zahlenwette "nb2":
+** Item: t2
+** Datum: jetzt - 2 Tage
+** Einsatz: 10 Euro
+** Kunde: "c"
+** Ablaufdatum/zeit: jetzt + 1 Tag
+** Tippzahlen: [1,2,3,4,5,6]
+** Superzahl: 0
+* ID von "nb2": "nb2_id"
+* Wette "nb2" wurde zu "t2" hinzugefügt
+* Model model = new ExtendedModelMap();
+a|
+* (1) orderController.raiseNumBet(model, tid2,nb2_id,15.0)
+* (2) nb2.getInset()
+* (3) c.getBalance()
+a|
+* (1) "redirect:/customer_bets"
+* (2) Money.of(15,EURO)
+* (3) Money.of(5,EURO)
+
+|OC-13
+|RaiseNumBetTestError
+|UC13
+|-
+a|
+* Nutzer(MockUser) angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+** Guthaben: 2 Euro
+** UserAccount ua
+* Ticket "t2" im Katalog:
+** Name: B
+** Datum: jetzt + 1 Tag
+** Preis: 10 Euro
+** Typ: TICKET
+* ID von "t2": "tid2"
+* Zahlenwette "nb2":
+** Item: t2
+** Datum: jetzt - 2 Tage
+** Einsatz: 10 Euro
+** Kunde: "c"
+** Ablaufdatum/zeit: jetzt + 1 Tag
+** Tippzahlen: [1,2,3,4,5,6]
+** Superzahl: 0
+* ID von "nb2": "nb2_id"
+* Wette "nb2" wurde zu "t2" hinzugefügt
+* Model model = new ExtendedModelMap();
+a|
+* (1) orderController.raiseNumBet(model, tid2, nb2_id,15.0)
+* (2) c.getBalance()
+a|
+* (1) "error"
+* (2) Money.of(2,EURO)
+
+|OC-14
+|RaiseNumBetTestTimeUp
+|UC13
+|-
+a|
+* Nutzer(MockUser) angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+** UserAccount ua
+* Ticket "t3" im Katalog:
+** Name: C
+** Datum: jetzt + 5 Minuten
+** Preis: 10 Euro
+** Typ: TICKET
+* ID von "t3": "tid3"
+* Zahlenwette "nb3":
+** Item: t3
+** Datum: jetzt - 3 Tage
+** Einsatz: 12 Euro
+** Kunde: "c"
+** Ablaufdatum/zeit: jetzt + 5 Minuten
+** Tippzahlen: [1,2,3,4,5,6]
+** Superzahl: 0
+* ID von "nb3": "nb3_id"
+* Wette "nb3" wurde zu "t3" hinzugefügt
+* Model model = new ExtendedModelMap();
+a|
+* (1) orderController.raiseNumBet(model, tid3, nb3_id, 12.0)
+a|
+* (1) "time_up.html"
+
+|OC-15
+|ChangeNumsTest
+|UC13
+|-
+a|
+* Nutzer(MockUser) angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+** UserAccount ua
+* Ticket "t2" im Katalog:
+** Name: B
+** Datum: jetzt + 1 Tag
+** Preis: 10 Euro
+** Typ: TICKET
+* ID von "t2": "tid2"
+* Zahlenwette "nb2":
+** Item: t2
+** Datum: jetzt - 2 Tage
+** Einsatz: 10 Euro
+** Kunde: "c"
+** Ablaufdatum/zeit: jetzt + 1 Tag
+** Tippzahlen: [1,2,3,4,5,6]
+** Superzahl: 0
+* ID von "nb2": "nb2_id"
+* Wette "nb2" wurde zu "t2" hinzugefügt
+* Model model = new ExtendedModelMap();
+a|
+* (1) orderController.changeNums(model,tid2,nb2_id)
+* (2) (NumberBet) model.getAttribute("numbet")
+a|
+* (1) "changeNumTip.html"
+* (2) nb2
+
+|OC-16
+|ChangeNumBetTipTestSuccess
+|UC13
+|-
+a|
+* Nutzer(MockUser) angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+** UserAccount ua
+* Ticket "t2" im Katalog:
+** Name: B
+** Datum: jetzt + 1 Tag
+** Preis: 10 Euro
+** Typ: TICKET
+* ID von "t2": "tid2"
+* Zahlenwette "nb2":
+** Item: t2
+** Datum: jetzt - 2 Tage
+** Einsatz: 10 Euro
+** Kunde: "c"
+** Ablaufdatum/zeit: jetzt + 1 Tag
+** Tippzahlen: [1,2,3,4,5,6]
+** Superzahl: 0
+* ID von "nb2": "nb2_id"
+* Wette "nb2" wurde zu "t2" hinzugefügt
+a|
+* (1) orderController.changeNumbetTip(tid2, nb2_id, 2, 3, 4, 5, 6, 7, 0)
+a|
+* (1) "redirect:/customer_bets"
+
+|OC-17
+|ChangeNumBetTipTestWrongInput
+|UC13
+|-
+a|
+* Nutzer(MockUser) angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+** UserAccount ua
+* Ticket "t2" im Katalog:
+** Name: B
+** Datum: jetzt + 1 Tag
+** Preis: 10 Euro
+** Typ: TICKET
+* ID von "t2": "tid2"
+* Zahlenwette "nb2":
+** Item: t2
+** Datum: jetzt - 2 Tage
+** Einsatz: 10 Euro
+** Kunde: "c"
+** Ablaufdatum/zeit: jetzt + 1 Tag
+** Tippzahlen: [1,2,3,4,5,6]
+** Superzahl: 0
+* ID von "nb2": "nb2_id"
+* Wette "nb2" wurde zu "t2" hinzugefügt
+a|
+* (1) orderController.changeNumbetTip(tid2, nb2_id, 2, 2, 4, 5, 6, 7, 0)
+a|
+* (1) "wronginput.html"
+
+|OC-18
+|ChangeNumBetTipTestTimeUp
+|UC13
+|-
+a|
+* Nutzer(MockUser) angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+** UserAccount ua
+* Ticket "t3" im Katalog:
+** Name: C
+** Datum: jetzt + 5 Minuten
+** Preis: 10 Euro
+** Typ: TICKET
+* ID von "t3": "tid3"
+* Zahlenwette "nb3":
+** Item: t3
+** Datum: jetzt - 3 Tage
+** Einsatz: 12 Euro
+** Kunde: "c"
+** Ablaufdatum/zeit: jetzt + 5 Minuten
+** Tippzahlen: [1,2,3,4,5,6]
+** Superzahl: 0
+* ID von "nb3": "nb3_id"
+* Wette "nb3" wurde zu "t3" hinzugefügt
+a|
+* (1) orderController.changeNumbetTip(tid3, nb3_id, 1, 2, 3, 4, 5, 6, 7)
+a|
+* (1) "time_up.html"
+
+|OC-19
+|RemoveNumberBetsTestStatusSuccess
+|UC13
+|-
+a|
+* Nutzer(MockUser) angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+** Guthaben: "balance"
+** UserAccount ua
+* Ticket "t2" im Katalog:
+** Name: B
+** Datum: jetzt + 1 Tag
+** Preis: 10 Euro
+** Typ: TICKET
+* ID von "t2": "tid2"
+* Zahlenwette "nb2":
+** Item: t2
+** Datum: jetzt - 2 Tage
+** Einsatz: 10 Euro
+** Kunde: "c"
+** Ablaufdatum/zeit: jetzt + 1 Tag
+** Tippzahlen: [1,2,3,4,5,6]
+** Superzahl: 0
+* ID von "nb2": "nb2_id"
+* Wette "nb2" wurde zu "t2" hinzugefügt
+* Status von "nb2": VERLOREN
+a|
+* (1) orderController.removeNumberBets(tid2,nb2_id)
+* (2) c.getBalance()
+* (3) t2.getNumberBits().contains(nb2)
+a|
+* (1) "redirect:/customer_bets"
+* (2) balance
+* (3) false
+
+|OC-20
+|RemoveNumberBetsTestStatusOPEN
+|UC13
+|-
+a|
+* Nutzer(MockUser) angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+** Guthaben: "balance"
+** UserAccount ua
+* Ticket "t2" im Katalog:
+** Name: B
+** Datum: jetzt + 1 Tag
+** Preis: 10 Euro
+** Typ: TICKET
+* ID von "t2": "tid2"
+* Zahlenwette "nb2":
+** Item: t2
+** Datum: jetzt - 2 Tage
+** Einsatz: 10 Euro
+** Kunde: "c"
+** Ablaufdatum/zeit: jetzt + 1 Tag
+** Tippzahlen: [1,2,3,4,5,6]
+** Superzahl: 0
+* ID von "nb2": "nb2_id"
+* Wette "nb2" wurde zu "t2" hinzugefügt
+* Status von "nb2": OFFEN
+a|
+* (1) orderController.removeNumberBets(tid2,nb2_id)
+* (2) c.getBalance()
+* (3) t2.getNumberBits().contains(nb2)
+a|
+* (1) "redirect:/customer_bets"
+* (2) balance.add(nb2.getInset())
+* (3) false
+
+|OC-21
+|RemoveNumberBetsTestTimeUp
+|UC13
+|-
+a|
+* Nutzer(MockUser) angemeldet als:
+** Nutzername: test
+** Rolle: CUSTOMER
+* Kunde "c" existiert
+** Guthaben: "balance"
+** UserAccount ua
+* Ticket "t" im Katalog:
+** Name: A
+** Datum: jetzt + 2 Minuten
+** Preis: 10 Euro
+** Typ: TICKET
+* ID von "t": "tid"
+* Zahlenwette "nb":
+** Item: t
+** Datum: jetzt - 3 Tage
+** Einsatz: 10 Euro
+** Kunde: "c"
+** Ablaufdatum/zeit: jetzt + 2 Minuten
+** Tippzahlen: [1,2,3,4,5,6]
+** Superzahl: 0
+* ID von "nb": "nb_id"
+* Wette "nb" wurde zu "t" hinzugefügt
+a|
+* (1) orderController.removeNumberBets(tid,nb_id)
+* (2) t.getNumberBits().contains(nb)
+* (3) c.getBalance()
+a|
+* (1) "time_up.html"
+* (2) true
+* (3) balance
+
+|SC-1
+|StatisticControllerIntegrationTestStatistic
+|UC12
+|AT19
+a|
+* Model model = new ExtendedModelMap();
+a|
+* (1) statisticController.statistic(model)
+a|
+* (1) "statistic"
+
+|SC-2
+|StatisticControllerIntegrationToBetPage
+|UC10, UC11
+|AT17, AT18
+a|
+* beiliebiger Kunde "customer" existiert
+* Model model = new ExtendedModelMap();
+a|
+* (1) statisticController.toBetPage(model, customer.getId())
+a|
+* (1) "statistic_bets"
+
+|
+|
+|
+|
+|
+|
+
+|
+|
+|
+|
+|
+|
+
+|
+|
+|
+|
+|
+|
 |===
+
+

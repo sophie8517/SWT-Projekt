@@ -132,7 +132,7 @@ public class Football extends Item {
 		for(FootballBet fb: footballBets){
 			if(fb.getIdstring().equals(id)){
 				result = fb;
-				break;
+				return result;
 			}
 		}
 		for(FootballBet fb2: groupFootballBets){
