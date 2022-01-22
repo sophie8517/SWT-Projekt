@@ -4,6 +4,7 @@ package kickstart.customer;
 import kickstart.AbstractIntegrationTest;
 import org.javamoney.moneta.Money;
 import org.junit.jupiter.api.Test;
+import org.salespointframework.useraccount.Password;
 import org.salespointframework.useraccount.UserAccountManagement;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -124,12 +125,6 @@ class CustomerManagementTest extends AbstractIntegrationTest {
 
 	}
 
-	@Test
-	void changePassword(){
-		Customer customerA = customerManagement.createCustomer(
-				new RegistrationForm("test", "alpha", "test@alpha.de", "123", "123"));
-		customerManagement.changePwd(customerA,"123", "1234", "1234");
-	}
 }
 
 

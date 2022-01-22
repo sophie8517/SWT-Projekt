@@ -53,6 +53,8 @@ public class Group {
 		return password;
 	}
 
+	public void setLeader(Customer leader) { this.leader = leader; }
+
 	public Customer getLeader() {
 		return leader;
 	}
