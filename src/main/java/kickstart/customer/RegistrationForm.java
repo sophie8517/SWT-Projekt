@@ -10,11 +10,11 @@ import javax.validation.constraints.Pattern;
 
 public class RegistrationForm {
 	@NotEmpty(message = "{RegistrationForm.firstname.NotEmpty}") //
-	@Pattern(regexp = "^[a-zA-Z]+$", message = "Dieser Vorname ist invalid. Entfernen Sie bitte auch alle Leerzeichen am Beginn.")
+	@Pattern(regexp = "^[a-zA-Z]+$", message = "Dieser Vorname ist invalid.")
 	private final String firstname;
 
 	@NotEmpty(message = "{RegistrationForm.lastname.NotEmpty}") //
-	@Pattern(regexp = "^[a-zA-Z]+$", message = "Dieser Nachname ist invalid. Entfernen Sie bitte auch alle Leerzeichen am Beginn.")
+	@Pattern(regexp = "^[a-zA-Z]+$", message = "Dieser Nachname ist invalid.")
 	private final String lastname;
 
 	@NotEmpty(message = "{RegistrationForm.email.NotEmpty}")

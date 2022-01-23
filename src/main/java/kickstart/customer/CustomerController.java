@@ -79,7 +79,8 @@ public class CustomerController{
 
 
 	@PostMapping("/changePassword")
-	String password(@Valid RegistrationForm form, Errors result, @LoggedIn Optional<UserAccount> userAccount, Model model,  RedirectAttributes redirAttrs){
+	String password(@Valid RegistrationForm form, Errors result, @LoggedIn Optional<UserAccount> userAccount,
+					Model model,  RedirectAttributes redirAttrs){
 		var customer = customerManagement.findByUserAccount(userAccount.get());
 
 		System.out.println("123");
@@ -89,8 +90,7 @@ public class CustomerController{
 			System.out.println("Errors");
 			redirAttrs.addFlashAttribute("message", "Ihr Passwort ist invalid, bitte prüfen Sie noch einmal die Kriterien.");
 			return "redirect:/changePassword";
-		}
-		else if(!form.check()){
+		} else if(!form.check()){
 			System.out.println("pwd incorrect");
 			redirAttrs.addFlashAttribute("message", "Die Passwörter sind nicht gleich!");
 			return "redirect:/changePassword";

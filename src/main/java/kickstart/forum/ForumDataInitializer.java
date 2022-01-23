@@ -28,7 +28,8 @@ class ForumDataInitializer implements DataInitializer {
 	private CustomerRepository customerRepository;
 	private final GroupChatManagement groupChatManagement;
 
-	ForumDataInitializer(ForumManagement forumManagement, GroupChatManagement groupChatManagement, PrivateChatManagement privateChatManagement, CustomerRepository customerRepository) {
+	ForumDataInitializer(ForumManagement forumManagement, GroupChatManagement groupChatManagement,
+						 PrivateChatManagement privateChatManagement, CustomerRepository customerRepository) {
 
 		Assert.notNull(forumManagement, "ForumManagement must not be null!");
 		Assert.notNull(privateChatManagement, "PrivateChatManagement must not be null!");
@@ -47,9 +48,11 @@ class ForumDataInitializer implements DataInitializer {
         /*Stream.of( //
 						new ForumEntry("Administrator","Welcome to Mach Dein Glück!", "none"), //
 						new ForumEntry("Arni", "Hasta la vista, baby", "arni@gmx.de"), //
-						new ForumEntry("Duke Nukem", "It's time to kick ass and chew bubble gum. And I'm all out of gum.", "duke.nukem@tu-dresden.de"), //
+						new ForumEntry("Duke Nukem", "It's time to kick ass and chew bubble gum.
+						And I'm all out of gum.", "duke.nukem@tu-dresden.de"), //
 						new ForumEntry("Gump1337",
-								"Mama always said life was like a box of chocolates. You never know what you're gonna get.", "gump1337@outlook.live")) //
+								"Mama always said life was like a box of chocolates.
+								You never know what you're gonna get.", "gump1337@outlook.live")) //
 				.forEach(forumManagement::createComment);*/
 
 		Theme temp1 = forumManagement.createTheme("Test");
@@ -73,7 +76,8 @@ class ForumDataInitializer implements DataInitializer {
 		Stream.of(
 				new ForumEntry("Hey", "Where am i?", "qwert@trewq.org"),
 				new ForumEntry("Gump1337",
-						"Mama always said life was like a box of chocolates. You never know what you're gonna get.", "gump1337@outlook.live")
+						"Mama always said life was like a box of chocolates. You never know what you're gonna get.",
+						"gump1337@outlook.live")
 		).forEach(forumEntry -> forumManagement.createComment(temp3, forumEntry));
 
 		Stream.of(

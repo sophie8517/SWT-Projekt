@@ -167,8 +167,11 @@ public class OrderController {
 			//man am Ziehungstag den Lottoschein ausgefüllt hat -> d.h. er ist für diese Ziehung noch nicht gültig
 
 			//Fall: wette ausgewertet aber für nächste ziehung nicht mehr gültig
-			if((bet.getStatus().equals(Status.GEWONNEN) || bet.getStatus().equals(Status.VERLOREN)) && bet.getExpiration().isBefore(t.getTimeLimit())){
+			if((bet.getStatus().equals(Status.GEWONNEN) || bet.getStatus().equals(Status.VERLOREN))
+					&& bet.getExpiration().isBefore(t.getTimeLimit())){
 				//keine Änderung mehr möglich
+				return "time_up.html";
+
 			}else if (date.isBefore(t.getTimeLimit().minusMinutes(5))
 					||t.getCheckEvaluation().contains(t.getTimeLimit().toLocalDate())
 					|| bet.getDate().toLocalDate().isEqual(t.getTimeLimit().toLocalDate())) {
@@ -216,8 +219,11 @@ public class OrderController {
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 		NumberBet bet = t.findbyBetId(bet_id);
 		if(bet != null) {
-			if((bet.getStatus().equals(Status.GEWONNEN) || bet.getStatus().equals(Status.VERLOREN)) && bet.getExpiration().isBefore(t.getTimeLimit())){
+			if((bet.getStatus().equals(Status.GEWONNEN) || bet.getStatus().equals(Status.VERLOREN))
+					&& bet.getExpiration().isBefore(t.getTimeLimit())){
 				//keine Änderung mehr möglich
+				return "time_up.html";
+
 			}else if (date.isBefore(t.getTimeLimit().minusMinutes(5))
 					||t.getCheckEvaluation().contains(t.getTimeLimit().toLocalDate())
 					|| bet.getDate().toLocalDate().isEqual(t.getTimeLimit().toLocalDate())) {
@@ -282,7 +288,8 @@ public class OrderController {
 	}
 
 	@PostMapping("/removeFootballBets")
-	public String removeFootballBets(@RequestParam("itemid")ProductIdentifier id, @RequestParam("betid")String bid,@LoggedIn Optional<UserAccount> userAccount){
+	public String removeFootballBets(@RequestParam("itemid")ProductIdentifier id, @RequestParam("betid")String bid,
+									 @LoggedIn Optional<UserAccount> userAccount){
 
 		LocalDateTime date = LocalDateTime.now();
 		Football football = (Football) lotteryCatalog.findById(id).get();
