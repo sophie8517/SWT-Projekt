@@ -35,6 +35,7 @@
 • 4.3.2 Kontext
 |1.0	| In Arbeit	| Sophie Schulze	|13.11.2021	|Rechtschreibkorrektur
 |1.1	| In Arbeit	| Sophie Schulze	|08.12.2021	|Diagramm und Beschreibung für lotteryresult-package
+|1.2	| In Arbeit	| Sophie Schulze	|23.01.2022	|aktualisierte Entwurfsdiagramme und Laufzeitsicht von Katalog & LotterieErgebnis
 |===
 
 = Entwicklerdokumentation
@@ -226,7 +227,7 @@ image:diagramm/lottery.png[Location, 100%, 100%, pdfwidth=100%, title= "lottery"
 === 5.2 Katalog
 
 [[catalog]]
-image::./models/design/block_catalog.svg[Location, 100%, 100%, pdfwidth=100%, title= "catalog", align=center]
+image::./models/design/block_catalog2.svg[Location, 100%, 100%, pdfwidth=100%, title= "catalog", align=center]
 
 [options="header"]
 |=== 
@@ -260,7 +261,7 @@ a|
 |FootballBet
 |wird auf einen Fußballspiel abgegeben; der Unterschied zur Zahlenwette liegt darin, dass der Tipp der Fußballwette ein String ist, z.B. "Heim gewinnt", "Gast gewinnt", "Unentschieden"
 
-|State
+|Status
 a|beschreibt den Status einer Wette:
 
 * OFFEN: Wette noch nicht ausgewertet
@@ -275,6 +276,17 @@ a|beschreibt den Status einer Wette:
 
 |LotteryCatalog
 |ist eine Erweiterung von Salespoint.Catalog, die spezifische Anforderungen für die Lotterie enthält
+
+|Team
+|beschreibt eine Fußballmannschaft
+
+|Result
+|beschreibt das Ergebnis eines Fußballspiels:
+
+* HOSTWIN: Heimmannschaft gewinnt
+* GUESTWIN: Gastmannschaft gewinnt
+* DRAW: Unentschieden
+* NONE: Spiel noch nicht ausgetragen
 |===
 
 === 5.3. Kunde
@@ -319,10 +331,10 @@ image:models/design/block_order.svg[Location, 100%, 100%, pdfwidth=100%, title= 
 |OrderController |Ein Spring MVC Controller zur Handhabung des Warenkorbs.
 |===
 
-=== 5.6 Lotterieergebnis
+=== 5.6 LotterieErgebnis
 
 [[Lotteryresult]]
-image:models/design/block_result.svg[Location, 100%, 100%, pdfwidth=100%, title= "Lotteryresult", align=center] 
+image:models/design/block_result2.svg[Location, 100%, 100%, pdfwidth=100%, title= "Lotteryresult", align=center] 
 
 [options="header"]
 |=== 
@@ -365,11 +377,11 @@ wird die Art der Verwendung dieser externen Klasse in der Spalte *Art der Verwen
 == 6. Laufzeitsicht
 * Darstellung der Komponenteninteraktion anhand eines Sequenzdiagramms, welches die relevantesten Interaktionen darstellt.
 
-=== Catalog
+=== Katalog
 [[runtime_catalog]]
-image::./models/design/runtime_catalog.svg[Location, 100%, 100%, pdfwidth=100%, title = "runtime catalog", align=center]
+image::./models/design/Seq_Catalog.svg[Location, 100%, 100%, pdfwidth=100%, title = "runtime catalog", align=center]
 
-=== Customer
+=== Kunde
 [[customer_runtime]]
 image::./models/design/runtime_customer.svg[Location, 100%, 100%, pdfwidth=100%, title= "runtime customer", align=center]
 
@@ -377,6 +389,9 @@ image::./models/design/runtime_customer.svg[Location, 100%, 100%, pdfwidth=100%,
 [[runtime_Order]]
 image:models/design/runtime_order.svg[Location, 100%, 100%, pdfwidth=100%, title= "runtime_Order", align=center]
 
+== LotteryErgebnis
+[[runtime_result]]
+image::./models/design/Seq_Result2.svg[Location, 100%, 100%, pdfwidth=100%, title = "runtime catalog", align=center]
 
 == 7. Technische Schulden
 * Auflistung der nicht erreichten Quality Gates und der zugehörigen SonarQube Issues zum Zeitpunkt der Abgabe
@@ -386,7 +401,7 @@ image:models/design/runtime_order.svg[Location, 100%, 100%, pdfwidth=100%, title
 |===
 |Quality Gate                  	|Tatsächlicher Wert      |Ziel
 |Zuverlässigkeit               	|A                       |A
-|Abdeckung                     	|68%                     |50%
+|Abdeckung                     	|70%                     |50%
 |Sicherheit			|A			 |A
 |Wartbarkeit			|A			 |A
 |===
