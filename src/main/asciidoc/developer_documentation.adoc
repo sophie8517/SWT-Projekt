@@ -401,7 +401,7 @@ image::./models/design/Seq_Result2.svg[Location, 100%, 100%, pdfwidth=100%, titl
 |===
 |Quality Gate                  	|Tatsächlicher Wert      |Ziel
 |Zuverlässigkeit               	|A                       |A
-|Abdeckung                     	|70%                     |50%
+|Abdeckung                     	|69.5%                     |50%
 |Sicherheit			|A			 |A
 |Wartbarkeit			|A			 |A
 |===
