@@ -239,7 +239,7 @@ a|
 a|
 * (1) catalogController.bet_num(id,13,21,6,26,11,6,0,1,Optional.of(ua))
 a|
-* (1) "error"
+* (1) "not_enough_money"
 
 |CatC-4
 |CatalogControllerSuccess
@@ -334,7 +334,7 @@ a|
 a|
 * (1) catalogController.bet_foot(id_f_success,1,12.0,Optional.of(ua))
 a|
-* (1) "error"
+* (1) "not_enough_money"
 
 |CatC
 |CatalogControllerFootGroupBet
@@ -488,7 +488,7 @@ a|
 * (1) catalogController.bet_foot_group(id_f_success,1,14.0,"initGroup",Optional.of(ua),redir)
 * (2) c.getBalance()
 a|
-* (1) "error"
+* (1) "not_enough_money"
 * (2) Money.of(0,EURO)
 
 |CatC-8
@@ -1523,7 +1523,7 @@ a|
 * (1) orderController.raiseFootBet(f2id,fb2_id,15.0, Optional.of(ua))
 * (2) c.getBalance()
 a|
-* (1) "error"
+* (1) "not_enough_money"
 * (2) Money.of(2,EURO)
 
 |OC-3
@@ -1997,7 +1997,7 @@ a|
 * (1) orderController.raiseNumBet(model, tid2, nb2_id,15.0)
 * (2) c.getBalance()
 a|
-* (1) "error"
+* (1) "not_enough_money"
 * (2) Money.of(2,EURO)
 
 |OC-14
