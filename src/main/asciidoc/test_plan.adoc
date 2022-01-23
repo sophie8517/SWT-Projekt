@@ -2291,27 +2291,6 @@ a|
 * (1) statisticController.toBetPage(model, customer.getId())
 a|
 * (1) "statistic_bets"
-
-|
-|
-|
-|
-|
-|
-
-|
-|
-|
-|
-|
-|
-
-|
-|
-|
-|
-|
-|
 |===
 
 
