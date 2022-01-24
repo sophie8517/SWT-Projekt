@@ -20,6 +20,14 @@ negative Erfahrungen:
 
 * viel Aufwand bei nur 5 Mitgliedern, v.a. am Anfang
 
+was hat gefehlt:
+
+* Einführungsveranstaltung, in der die Frameworks(Salespoint, Spring) vorgestellt werden und was man mit ihnen gemacht werden kann
+* Gruppenerstellung anhand der Fähigkeiten/Vorkenntnisse:
+** Vgl. Gruppenerstellung im Robolab
+** z.B. vorher müssen Studenten einen Selbsttest bearbeiten, der hilft die Fähigkeiten einzuschätzen
+** damit es keine Gruppen nur mit Mitgliedern, die wenig Erfahrung haben, gibt
+
 == Welche Erfahrungen habe ich mit der Zusammenarbeit im Team gemacht?
 // Kurze Beschreibung der Zusammenarbeit im Team. Was lief gut? Was war verbesserungswürdig? Was würden Sie das nächste Mal anders machen?
 
@@ -29,6 +37,10 @@ gut:
 * bei Fragen gab es immer jemanden, der helfen konnte
 * Organisation der Treffen
 * gerechte Aufgabenverteilung
+
+verbesserungswürdig:
+
+* sprachliche Beteiligung an wöchentlichen Meetings (jeder sagt was)
 
 
 == Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
