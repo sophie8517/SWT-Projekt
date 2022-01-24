@@ -23,12 +23,18 @@ Jeder hat mehr oder weniger beigetragen und jeder spiele eine wichtige Rolle.
 
 == Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
 // Einschätzung der Arbeit mit den bereitgestellten und zusätzlich genutzten Frameworks. Was War gut? Was war verbesserungswürdig?
+Bezüglich Spring und Thymeleaf hatte ich keine größeren Probleme und fand die Frameworks auch sehr gut einsetzbar.
+Das Gleiche kann ich über Salespoint leider nicht behaupten.
+z.B Als ich die Funktion "Change Password" implementiert habe, gab es immer Probleme Encrypt. Passwort mit Zeichenkette(altes Passwort) zu vergleichen. Ich musste erst String zu Encrypt. Passwort wechseln, was ich keinen Weg fand. Ich konnte nur die vorhandene Funktion, die in UserAccount liegt, Change password aufrufen.
+
 
 == Welche Vorschläge zur weiteren Verbesserung des Softwarepraktikums gibt es?
 // Möglichst mit Beschreibung, warum die Umsetzung des von Ihnen angebrachten Vorschlages nötig ist.
+Ich hoffe, dass die Beschreibung und die Verwendung der Methode sowie die Annotation mehr deutlicher wären.
 
 == Feedback für den Tutor
 // Fühlten Sie sich durch den vom Lehrstuhl bereitgestellten Tutor gut betreut? Was war positiv? Was war verbesserungswürdig?
+Ich fand die Betreuung durch unser Tutor immer angenehm. Ich fand der Tutor auch sehr nett.
 
 == Sonstiges und Anmerkungen
 // Welche Aspekte fanden in den oben genannten Punkten keine Erwähnung?
