@@ -1,0 +1,27 @@
+= Persönliches Feedback eines Teammitgliedes des Softwarepraktikums 2021/22
+// Auch wenn der Bogen nicht anonymisiert ist, dürfen Sie gern Ihre Meinung offen kundtun.
+// Sowohl positive als auch negative Anmerkungen werden gern gesehen und zur stetigen Verbesserung genutzt.
+// Versuchen Sie in dieser Auswertung also stets sowohl Positives wie auch Negatives zu erwähnen.
+
+**Von: Yutian Lei**
+
+**Gruppe: swt21w09**
+
+== Was habe ich gelernt / was habe ich nicht gelernt?
+Durch dieses Projekt habe ich viel über Java, HTML, css, thymeleaf gelernt. Darüber hinaus habe ich ein erstes Verständnis für das Spring-Framework gewonnen. Vor diesem Projekt habe ich nur selten programmiert, aber jetzt habe ich weniger Angst und mehr Selbstvertrauen beim Programmieren und lerne, wie ich Probleme lösen kann, wenn ich beim Programmieren auf Schwierigkeiten stoße. Ich habe auch gelernt, wie man im Team arbeitet und wie man mit seinen Kollegen kommuniziert.
+
+== Welche Erfahrungen habe ich mit der Zusammenarbeit im Team gemacht?
+Bevor das Projekt begann, tranken wir zusammen einen Kaffee und stellten uns vor, was meiner Meinung nach eine sehr wichtige Rolle für unsere spätere Zusammenarbeit spielte, da wir uns gegenseitig kennenlernten. Anstatt uns online zu treffen, entschieden wir uns, uns offline zu treffen, was sich meiner Meinung nach positiv auf unsere gemeinsame Arbeit auswirkte, da wir so besser kommunizieren konnten. Durch dieses Projekt habe ich gelernt, Ideen mit meinen Teamkollegen auszutauschen und dann einen Kompromiss zu finden, wenn unsere Vorstellungen auseinandergehen. Ich habe auch gelernt, wie man sich die Arbeit aufteilt und wie man zusammenarbeitet, um Probleme zu lösen, wenn sie auftreten.
+
+Wenn ich das nächste Mal zusammenarbeite, werde ich mich vor der Diskussion besser vorbereiten, damit ich wertvollere Fragen stellen kann und die Fragen meiner Teamkollegen besser verstehe.
+
+== Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
+Es ist gut, dass die Methode, Klasse und Schnittstellen sich gut erklärt hat. Das ist sehr hilfreich bei der Implementierung.
+
+== Welche Vorschläge zur weiteren Verbesserung des Softwarepraktikums gibt es?
+Ich bin der Meinung, dass wir die Methoden des Rahmens besser verstehen und anwenden könnten, wenn sie mehr erklärt und demonstriert würden.
+
+== Feedback für den Tutor
+Der Tutor ist sehr nett, und hat uns gut geantwortet und betreuert.
+
+== Sonstiges und Anmerkungen
