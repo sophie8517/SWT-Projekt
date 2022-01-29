@@ -28,20 +28,24 @@
         <th>Datum</th>
         <th>Tipp</th>
         <th>Status</th>
+        <th>Typ</th>
         <th>Einkommen/Verluste</th>
       </tr>
       </thead>
       <tr th:each="footbet : ${footballBets}">
         <td th:text="${footbet.host}">FCB</td>
         <td th:text="${footbet.guest}">FCB</td>
-        <td th:text="${footbet.DateFormat}">date</td>
+        <td th:text="${footbet.dateFormat}">date</td>
         <td th:text="${footbet.tip}">tip</td>
         <td th:text="${footbet.status}" style="color: cornflowerblue">status</td>
+        <td th:if="${footbet.groupName.equals('')}" th:text="Einzelwette"></td>
+        <td th:unless="${footbet.groupName.equals('')}" th:text="Gruppenwette"></td>
         <td th:switch="${footbet.status}">
           <p th:case="${footbet.status.OFFEN}" th:text="WARTEN"></p>
           <p th:case="${footbet.status.GEWONNEN}" th:text="15"></p>
           <p th:case="${footbet.status.VERLOREN}" th:text="'-' + ${footbet.getEinsatz2()}"></p>
         </td>
+
 
       </tr>
     </table>
@@ -60,7 +64,7 @@
       </tr>
       </thead>
       <tr th:each="numbet : ${numberBets}">
-        <td th:text="${numbet.DateFormat}">heute</td>
+        <td th:text="${numbet.dateFormat}">heute</td>
         <td th:text="${numbet.numbers}">zahlen</td>
         <td th:text="${numbet.inset}">10 Euro</td>
         <td th:text="${numbet.status}" style="color: cornflowerblue">offen</td>

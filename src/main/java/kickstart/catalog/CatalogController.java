@@ -326,7 +326,7 @@ public class CatalogController {
 			}
 		}
 		if(found == 0){
-			redirAttrs.addFlashAttribute("message1","Sie sind nicht teil dieser Gruppe!");
+			redirAttrs.addFlashAttribute("message1","Sie sind nicht Teil dieser Gruppe!");
 			return "redirect:/footballgroup";
 		}
 

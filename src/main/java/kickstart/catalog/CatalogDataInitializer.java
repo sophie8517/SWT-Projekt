@@ -55,7 +55,7 @@ class CatalogDataInitializer implements DataInitializer {
 
 
 		lotteryCatalog.save(new Football("name4",LocalDateTime.of(LocalDate.of(2022,6,3), LocalTime.of(20,30)),
-				Money.of(12, EURO),ItemType.FOOTBALL,new Team("1.FC Union Berlin"), new Team("RB Leipzig"),
+				Money.of(12, EURO),ItemType.FOOTBALL,new Team("FC Union Berlin"), new Team("RB Leipzig"),
 				"1.Bundesliga","union", "rb"));
 
 		lotteryCatalog.save(new Football("name5",LocalDateTime.of(LocalDate.of(2022,4,4), LocalTime.of(15,30)),
@@ -71,11 +71,11 @@ class CatalogDataInitializer implements DataInitializer {
 				"1.Bundesliga","leverkusen", "fuerth"));
 
 		lotteryCatalog.save(new Football("name8",LocalDateTime.of(LocalDate.of(2022,7,24), LocalTime.of(15,30)),
-				Money.of(9, EURO),ItemType.FOOTBALL,new Team("Arminia Bielefeld"), new Team("1.FC Köln"),
+				Money.of(9, EURO),ItemType.FOOTBALL,new Team("Arminia Bielefeld"), new Team("FC Köln"),
 				"1.Bundesliga","bielefeld", "koeln"));
 
 		lotteryCatalog.save(new Football("name9",LocalDateTime.of(LocalDate.of(2022,4,4), LocalTime.of(15,30)),
-				Money.of(10, EURO),ItemType.FOOTBALL,new Team("1.FSV Mainz 05"), new Team("VfL Wolfsburg"),
+				Money.of(10, EURO),ItemType.FOOTBALL,new Team("FSV Mainz 05"), new Team("VfL Wolfsburg"),
 				"1.Bundesliga","mainz", "wolfsburg"));
 
 		lotteryCatalog.save(new Football("name10",LocalDateTime.of(LocalDate.of(2022,10,4), LocalTime.of(18,30)),
@@ -107,7 +107,7 @@ class CatalogDataInitializer implements DataInitializer {
 				"2.Bundesliga","hansa", "ingolstadt"));
 
 		lotteryCatalog.save(new Football("name17",LocalDateTime.of(LocalDate.of(2022,11,4), LocalTime.of(13,30)),
-				Money.of(8, EURO),ItemType.FOOTBALL,new Team("1.FC Nürnberg"), new Team("Holstein Kiel"),
+				Money.of(8, EURO),ItemType.FOOTBALL,new Team("FC Nürnberg"), new Team("Holstein Kiel"),
 				"2.Bundesliga","nuernberg", "holstein"));
 
 		lotteryCatalog.save(new Football("name18",LocalDateTime.of(LocalDate.of(2022,1,6), LocalTime.of(20,30)),
@@ -123,7 +123,7 @@ class CatalogDataInitializer implements DataInitializer {
 				"2.Bundesliga","dynamo", "ksc"));
 
 		lotteryCatalog.save(new Football("name21",LocalDateTime.of(LocalDate.of(2022,1,8), LocalTime.of(13,30)),
-				Money.of(8, EURO),ItemType.FOOTBALL,new Team("1.FC Heidenheim"), new Team("SSV Jahn Regensburg"),
+				Money.of(8, EURO),ItemType.FOOTBALL,new Team("FC Heidenheim"), new Team("SSV Jahn Regensburg"),
 				"2.Bundesliga","heidenheim", "regensburg"));
 
 	}

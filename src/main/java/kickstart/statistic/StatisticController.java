@@ -2,6 +2,7 @@ package kickstart.statistic;
 
 import kickstart.catalog.*;
 import kickstart.customer.CustomerManagement;
+import kickstart.customer.Group;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,13 +33,19 @@ public class StatisticController {
 	public String toBetPage(Model model, @RequestParam("id") long id) {
 		var customer = customerManagement.findByCustomerId(id);
 
+		List<Group> groups = customer.getGroup();
+
 		Ticket t = (Ticket) lotteryCatalog.findByType(Item.ItemType.TICKET).get(0);
 		List<Item> foots = lotteryCatalog.findByType(Item.ItemType.FOOTBALL);
 		List<FootballBet> result = new ArrayList<>();
 		for(Item i: foots){
 			Football f = (Football) i;
 			result.addAll(f.getFootballBetsbyCustomer(customer));
+			for(Group g : groups){
+				result.addAll(f.getGroupFootballBetsbyGroup(g.getGroupName()));
+			}
 		}
+
 
 		model.addAttribute("footballBets", result);
 		//status

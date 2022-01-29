@@ -239,7 +239,7 @@ public class CatalogControllerIntegrationTest  extends AbstractIntegrationTest {
 		String returnedView = catalogController.bet_foot_group(id_f_success,1,12.0,"initGroup",Optional.of(ua),redir);
 		assertThat(returnedView).isEqualTo("redirect:/footballgroup");
 		assertThat(redir.getFlashAttributes().containsKey("message1")).isTrue();
-		assertThat(redir.getFlashAttributes().get("message1")).isEqualTo("Sie sind nicht teil dieser Gruppe!");
+		assertThat(redir.getFlashAttributes().get("message1")).isEqualTo("Sie sind nicht Teil dieser Gruppe!");
 		lotteryCatalog.delete(f_success);
 	}
 
