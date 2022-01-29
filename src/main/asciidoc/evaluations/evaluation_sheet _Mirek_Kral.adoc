@@ -44,7 +44,7 @@ Aus diesem Grund haben wir das so bis zum Ende gelassen.
 wurde. Meine Sorgen haben sich schließlich als unnötig entwickelt.
 * Kommunikation und Hilfsbereitschaft unter den Mitgliedern
 * bei Fragen gab es immer jemanden, der helfen konnte
-* gerechte Aufgabenverteilung
+* Motivation und eigene Interesse aller Mitglieder am ganzen Projekt
 
 verbesserungswürdig:
 
@@ -58,11 +58,12 @@ verbesserungswürdig:
 gut: 
 
 * man hatte fertig implementierte Klassen/Schnittstellen/Methoden -> Einsparung an Aufwand
-* sehr hilfreich bei der Implementierung des Katalogs
 
 == Welche Vorschläge zur weiteren Verbesserung des Softwarepraktikums gibt es?
 // Möglichst mit Beschreibung, warum die Umsetzung des von Ihnen angebrachten Vorschlages nötig ist.
 
+* Die Abschlusspräsentation nicht online vorstellen, sondern irgendwo in der Präsenz
+* Kurze Einführung in das Framework
 * Anpassung des Aufgabenumfangs bei fehlenden Mitgliedern
 
 == Feedback für den Tutor
@@ -70,9 +71,9 @@ gut:
 
 gut:
 
+* zuverlässig
+* hat sehr oft unsere Fragen beantwortet
 * gute Betreuung
-* es wurde zeitnah auf Fragen geantwortet
-* konnte sehr gut auf Fragen antworten
 * hilfreiche Anmerkungen und Verbesserungsvorschläge gegeben
 * hat uns kontinuierlich auf Fehlendes (Dinge die noch fehlen oder nicht gemacht wurden) hingewiesen
 
