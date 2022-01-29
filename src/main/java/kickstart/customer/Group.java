@@ -1,5 +1,6 @@
 package kickstart.customer;
 
+import org.salespointframework.useraccount.UserAccount;
 import org.springframework.data.util.Streamable;
 
 import javax.persistence.*;
