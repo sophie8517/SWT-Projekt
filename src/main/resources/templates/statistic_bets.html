@@ -16,7 +16,7 @@
 <body class="backgrounds">
 <nav th:include="navigation :: navigation" class="navcontainer"></nav>
 <div class="container_statistic_bets">
-  <main style="height: 1000px">
+  <main style="height: auto; padding-bottom: 40px">
     <h3>Verluste und Einkommen</h3>
 
     <h4>Footballtoto</h4>
@@ -38,9 +38,9 @@
         <td th:text="${footbet.tip}">tip</td>
         <td th:text="${footbet.status}" style="color: cornflowerblue">status</td>
         <td th:switch="${footbet.status}">
-          <p th:case="${footbet.status.OPEN}" th:text="WARTEN"></p>
-          <p th:case="${footbet.status.WIN}" th:text="15"></p>
-          <p th:case="${footbet.status.LOSS}" th:text="'-' + ${footbet.getEinsatz2()}"></p>
+          <p th:case="${footbet.status.OFFEN}" th:text="WARTEN"></p>
+          <p th:case="${footbet.status.GEWONNEN}" th:text="15"></p>
+          <p th:case="${footbet.status.VERLOREN}" th:text="'-' + ${footbet.getEinsatz2()}"></p>
         </td>
 
       </tr>
@@ -65,9 +65,9 @@
         <td th:text="${numbet.inset}">10 Euro</td>
         <td th:text="${numbet.status}" style="color: cornflowerblue">offen</td>
         <td th:switch="${numbet.status}">
-          <p th:case="${numbet.status.OPEN}" th:text="WARTEN"></p>
-          <p th:case="${numbet.status.WIN}" th:text="2*${numbet.getEinsatz2()}"></p>
-          <p th:case="${numbet.status.LOSS}" th:text="'-' + ${numbet.getEinsatz2()}"></p>
+          <p th:case="${numbet.status.OFFEN}" th:text="WARTEN"></p>
+          <p th:case="${numbet.status.GEWONNEN}" th:text="2*${numbet.getEinsatz2()}"></p>
+          <p th:case="${numbet.status.VERLOREN}" th:text="'-' + ${numbet.getEinsatz2()}"></p>
         </td>
       </tr>
     </table>
@@ -75,9 +75,13 @@
 
   </main>
 
-  <footer>
-    <p>Mach Dein Glück!! ©Copyright 2021©</p>
-  </footer>
+  <div class="backgrounds">
+    <div class="container">
+      <footer>
+        <p>Mach Dein Glück!! ©Copyright 2021©</p>
+      </footer>
+    </div>
+  </div>
 
 </div>
 
