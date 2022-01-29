@@ -66,7 +66,7 @@
             <br>
             <form th:method="post" sec:authorize="hasRole('CUSTOMER')"  th:action="@{/changeNumbetTip}" style="font-size: 20px">
                 <input type="hidden" name="pid" value="0" th:value="${numbet.item.id}"/>
-                <input type="hidden" name="betid" value="0" th:value="${numbet.id}"/>
+                <input type="hidden" name="betid" value="0" th:value="${numbet.idstring}"/>
                 <div class="ticket2">
                     <table>
                         <tr>

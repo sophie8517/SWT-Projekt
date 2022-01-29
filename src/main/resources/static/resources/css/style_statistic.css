@@ -48,6 +48,10 @@ body {
     /*text-decoration: none;*/
 }
 
+.text{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .box-one {
     margin-top: 40px;
     margin-bottom: -50px;
@@ -189,6 +193,35 @@ body {
     padding-right: 50px;
 }
 
+.text-box{
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+
+    height: 100px;
+
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.text-box2{
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+
+    height: auto;
+
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-bottom: 10px;
+}
+
 header {
     height: 140px;
     text-align: center;
@@ -262,10 +295,17 @@ h3 {
 }
 
 h4 {
+    font-size: 25px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h5 {
     font-size: 20px;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
 }
+
 
 
 a {
@@ -279,7 +319,7 @@ a {
     background-color: rgba(0, 0, 0, 0.75);
 
     margin-top: 20px;
-    margin-left: 200px;
+    margin-left: 220px;
     margin-right: 200px;
 
     padding-top: 1px;

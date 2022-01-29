@@ -119,7 +119,7 @@ public class ResultControllerIntegrationTest extends AbstractIntegrationTest {
 	@WithMockUser(username = "admin", roles = "ADMIN")
 	public void CheckStatusWIN(){
 		String returnView = resultController.evalFootballBets(fid,3);
-		assertThat(fb.getStatus()).isEqualTo(Status.WIN);
+		assertThat(fb.getStatus()).isEqualTo(Status.GEWONNEN);
 		assertThat(f.getErgebnis()).isEqualTo(Ergebnis.UNENTSCHIEDEN);
 
 
@@ -127,8 +127,8 @@ public class ResultControllerIntegrationTest extends AbstractIntegrationTest {
 	@Test
 	@WithMockUser(username = "admin", roles = "ADMIN")
 	public void CheckStatusLOSS(){
-		String returnView = resultController.evalFootballBets(fid,1);
-		assertThat(fb.getStatus()).isEqualTo(Status.LOSS);
+		String returnView = resultController.evalFootballBets(fid,2);
+		assertThat(fb.getStatus()).isEqualTo(Status.VERLOREN);
 		assertThat(f.getErgebnis()).isEqualTo(Ergebnis.GASTSIEG);
 	}
 	@Test
@@ -143,6 +143,7 @@ public class ResultControllerIntegrationTest extends AbstractIntegrationTest {
 		String returnView = resultController.evalFootballBets(fid,3);
 		assertThat(c.getBalance()).isEqualTo(balance.add(fb.getInset()));
 		assertThat(ctest.getBalance()).isEqualTo(balance_test.add(Money.of(8,EURO)));
+		assertThat(c2.getBalance()).isEqualTo(balance_c2.add(Money.of(8,EURO)));
 
 	}
 
@@ -169,14 +170,16 @@ public class ResultControllerIntegrationTest extends AbstractIntegrationTest {
 	public void EvalNumBetsTestNotPossible2(){
 		String returnedView = resultController.evalNumberBets(tid);
 		String returnedView2 = resultController.evalNumberBets(tid);
-		assertThat(returnedView2).isEqualTo("schon_ausgewertet");
+		//returnedView2 is not "schon_ausgewertet", because after evaluating the bets, the timeLimit of t is set
+		// to old_timeLimit + 7 days
+		assertThat(returnedView2).isEqualTo("keineZiehung");
 	}
 
 	@Test
 	@WithMockUser(username = "admin", roles = "ADMIN")
 	public void checkNumBetsStatusWIN(){
 		resultController.evaluateNum(t, LocalDate.now(), l, 0);
-		assertThat(nb.getStatus()).isEqualTo(Status.WIN);
+		assertThat(nb.getStatus()).isEqualTo(Status.GEWONNEN);
 		assertThat(c.getBalance()).isEqualTo(balance.add(nb.getInset()));
 	}
 
@@ -184,7 +187,7 @@ public class ResultControllerIntegrationTest extends AbstractIntegrationTest {
 	@WithMockUser(username = "admin", roles = "ADMIN")
 	public void checkNumBetsStatusLOSS(){
 		resultController.evaluateNum(t, LocalDate.now(), l, 1);
-		assertThat(nb.getStatus()).isEqualTo(Status.LOSS);
+		assertThat(nb.getStatus()).isEqualTo(Status.VERLOREN);
 		assertThat(c.getBalance()).isEqualTo(balance);
 	}
 
@@ -192,7 +195,7 @@ public class ResultControllerIntegrationTest extends AbstractIntegrationTest {
 	@WithMockUser(username = "admin", roles = "ADMIN")
 	public void checkNumBetsStatusEXPIRED(){
 		resultController.evaluateNum(t, LocalDate.now(), l, 2);
-		assertThat(nb2.getStatus()).isEqualTo(Status.EXPIRED);
+		assertThat(nb2.getStatus()).isEqualTo(Status.ABGELAUFEN);
 	}
 
 	//TODO

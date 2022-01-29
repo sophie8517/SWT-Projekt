@@ -7,7 +7,7 @@ Die individuell erfasste Zeit beinhaltet auch das Lesen von Dokumentationen, Bes
 [option="headers"]
 |===
 |Woche |Mirek Kral |Yuju Chen |Song Bai |Yutian Lei |Sophie Schulze |Meeting
-|1     |400        |120       |180      |360        |360           |60    
+|1     |400        |300       |180      |360        |360           |60    
 |2     |1050       |430       |420      |510        |420           |52    
 |3     |1100       |1020      |960      |900        |1170          |40
 |4     |720        |600       |720      |600        |1100          |55       
@@ -15,21 +15,32 @@ Die individuell erfasste Zeit beinhaltet auch das Lesen von Dokumentationen, Bes
 |6     |1260       |1260      |1080     |960        |900           |40        
 |7     |900        |720       |840      |840        |1000          |40      
 |8     |1260       |1020      |1260     |1020       |1200          |70     
-|9     |720        |720       |840      |720          |870           |20            
-|10    |540        |300         |540      |540        |540           |15
-|11    |600          |600         |900        |660          |600             |35           
-|12    |…          |…         |…        |…          |…             |…            
+|9     |720        |720       |840      |720        |870           |20            
+|10    |540        |540       |540      |540        |540           |15
+|11    |600        |600       |900      |660        |600           |35           
+|12    |1140       |800       |1200     |900        |1100          |15            
 |===
 
 Bitte tragen Sie am Ende des Praktikums noch folgende weitere Werte ein:
 Summe der Arbeitsstunden pro Student:
 
-SUMME(SPALTE(DevX))
+* Mirek: 180,5 h
+* Yuju: 149,5 h
+* Song: 168 h
+* Yutian: 148,5 h
+* Sophie: 174,3 h
 
 Arbeitsstunden pro Woche pro Student:
 
-SUMME(SPALTE(DevX)) / 12
+* Mirek: 15,0 h
+* Yuju: 12,5 h
+* Song: 14 h
+* Yutian: 12,4 h
+* Sophie: 14,5 h
 
 Durchschnittliche Arbeitzeit aller Studenten pro Woche:
 
-(SUMME(SPALTE(Dev1)) + SUMME(SPALTE(Dev2)) + SUMME(SPALTE(Dev3)) + SUMME(SPALTE(Dev4)) + SUMME(SPALTE(Dev5)) +SUMME(SPALTE(Dev6))) / 6
+(SUMME(SPALTE(Dev1)) + SUMME(SPALTE(Dev2)) + SUMME(SPALTE(Dev3)) + SUMME(SPALTE(Dev4)) + SUMME(SPALTE(Dev5)))/5/12 + (SUMME(Spalte(Meeting))/60/12) 
+
+*Ergebnis:* 14,3 h
+

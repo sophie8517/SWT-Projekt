@@ -1,5 +1,8 @@
 package kickstart.customer;
 
+import jdk.jfr.Name;
+
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -7,13 +10,15 @@ import javax.validation.constraints.Pattern;
 
 public class RegistrationForm {
 	@NotEmpty(message = "{RegistrationForm.firstname.NotEmpty}") //
+	@Pattern(regexp = "^[a-zA-Z]+$", message = "Dieser Vorname ist invalid.")
 	private final String firstname;
 
 	@NotEmpty(message = "{RegistrationForm.lastname.NotEmpty}") //
+	@Pattern(regexp = "^[a-zA-Z]+$", message = "Dieser Nachname ist invalid.")
 	private final String lastname;
 
 	@NotEmpty(message = "{RegistrationForm.email.NotEmpty}")
-	@Email(message = "Email form invalid, please check your e-mail address.")
+	@Email(message = "Dies ist keine valide E-Mail-Adresse, bitte prüfen Sie noch einmal die Form.")
 	private final String email;
 
 	@NotEmpty(message = "{RegistrationForm.password.NotEmpty}") //

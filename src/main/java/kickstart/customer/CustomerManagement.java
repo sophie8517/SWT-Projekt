@@ -88,7 +88,9 @@ public class CustomerManagement {
 	public Group removeMemberOfGroup(Customer customer, Group group){
 		if(group.getLeader().equals(customer) && group.getMembers().size() > 1) {
 			for (Customer member: group.getMembers()) {
-				if (group.getLeader().equals(member)) continue;
+				if (group.getLeader().equals(member)){
+					continue;
+				}
 
 				group.setLeader(member);
 				break;
@@ -128,7 +130,8 @@ public class CustomerManagement {
 	}
 
 
-	//public boolean changePwd(Optional<UserAccount> userAccount, String oldPassword, String newPassword, String newPassword1){
+	//public boolean changePwd(Optional<UserAccount> userAccount, String oldPassword, String newPassword,
+	// String newPassword1){
 	public Customer changePwd(Customer customer, RegistrationForm form){
 
 		var password = Password.UnencryptedPassword.of(form.getPassword());

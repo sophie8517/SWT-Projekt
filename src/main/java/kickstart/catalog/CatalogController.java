@@ -171,6 +171,7 @@ public class CatalogController {
 		Ticket t = (Ticket) lotteryCatalog.findById(id).get();
 		Customer c = customerRepository.findCustomerByUserAccount(userAccount.get());
 
+
 		Money money = c.getBalance();
 		Money price = Money.of(t.getPrice2(),EURO);
 
@@ -185,6 +186,7 @@ public class CatalogController {
 
 		if (checker.size() == 6 ) {
 			nums.addAll(checker);
+			Collections.sort(nums);
 
 		} else {
 
@@ -213,14 +215,10 @@ public class CatalogController {
 					LocalDateTime.of(exp, t.getTimeLimit().toLocalTime()), nums, zusatz);
 
 			t.addBet(nb);
-
 			lotteryCatalog.save(t);
-			//customerRepository.save(c);
 
 			return "redirect:/";
 		}
-
-
 
 	}
 
@@ -244,9 +242,9 @@ public class CatalogController {
 			Ergebnis  status;
 
 			if(number == 1){
-				status = Ergebnis.GASTSIEG;
-			} else if(number == 2){
 				status = Ergebnis.HEIMSIEG;
+			} else if(number == 2){
+				status = Ergebnis.GASTSIEG;
 			} else{
 				status = Ergebnis.UNENTSCHIEDEN;
 			}
@@ -272,16 +270,16 @@ public class CatalogController {
 
 	}
 
-	public String checkAddGroupBet(int number, Money money, Money insetMoney,Customer customer, Football foot,
+	private String checkAddGroupBet(int number, Money money, Money insetMoney,Customer customer, Football foot,
 								   String groupName){
 		String result;
 
 		Ergebnis  status;
 
 		if(number == 1){
-			status = Ergebnis.GASTSIEG;
-		} else if(number == 2){
 			status = Ergebnis.HEIMSIEG;
+		} else if(number == 2){
+			status = Ergebnis.GASTSIEG;
 		} else{
 			status = Ergebnis.UNENTSCHIEDEN;
 		}
@@ -328,7 +326,7 @@ public class CatalogController {
 			}
 		}
 		if(found == 0){
-			redirAttrs.addFlashAttribute("message1","Du bist nicht teil dieser Gruppe!");
+			redirAttrs.addFlashAttribute("message1","Sie sind nicht teil dieser Gruppe!");
 			return "redirect:/footballgroup";
 		}
 

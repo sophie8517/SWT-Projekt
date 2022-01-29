@@ -75,7 +75,7 @@
                     <button class="button" type="submit" th:text="#{numbet.raisebet}" >Einsatz ändern</button>
                 <br><br>
                 </form>
-                <form th:method="get" sec:authorize="hasRole('CUSTOMER')" th:action="@{/changeNums}">
+                <form th:method="get" sec:authorize="hasRole('CUSTOMER')" th:action="@{/changeNumbers}">
                     <input type="hidden" name="item" value="0" th:value="${numbet.item.id}"/>
                     <input type="hidden" name="betid" value="0" th:value="${numbet.idstring}"/>
                     <button class="button" type="submit" th:text="#{numbet.changeTip}" >Tipp ändern</button>
@@ -255,24 +255,10 @@
             </div>
 
         </div>
-
-
-
-    </div>
-
-
-    <br>
-
-
-        <br>
-
-
-
-        <br>
-
         <footer>
             <p>Mach Dein Glück!! ©Copyright 2021©</p>
         </footer>
-    </div>
+        </div>
+
     </body>
 </html>
