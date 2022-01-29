@@ -391,6 +391,11 @@ public class OrderController {
 			return "redirect:/accountDeactivate";
 		}
 
+		if (!customer.getGroup().isEmpty()) {
+			redir.addFlashAttribute("message", "Sie müssen sich erst Gruppe austragen!");
+			return "redirect:/accountDeactivate";
+		}
+
 
 		customerManagement.deleteCustomer(customer);
 		return "redirect:/logout";
