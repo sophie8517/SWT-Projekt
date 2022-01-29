@@ -1,0 +1,87 @@
+= Persönliches Feedback eines Teammitgliedes des Softwarepraktikums 2021/22
+// Auch wenn der Bogen nicht anonymisiert ist, dürfen Sie gern Ihre Meinung offen kundtun.
+// Sowohl positive als auch negative Anmerkungen werden gern gesehen und zur stetigen Verbesserung genutzt.
+// Versuchen Sie in dieser Auswertung also stets sowohl Positives wie auch Negatives zu erwähnen.
+
+**Von:** Miroslav Král
+
+**Gruppe:** 09
+
+== Was habe ich gelernt / was habe ich nicht gelernt?
+// Ausführung der positiven und negativen Erfahrungen, die im Softwarepraktikum gesammelt wurden
+positive Erfahrungen:
+
+* Vertiefung meiner Programmierfähigkeiten 
+** Java Integration Tests
+** Umgehung mit HTML
+** MVC Design Pattern
+** Arbeit mit einer vorgegebenen Framework - Dokumentation nachschlagen
+* Kommunikation im Team 
+** Fähigkeit sich an Kompromissen zu übereinstimmen, denn oftmals haben zwei Mitglieder eine richtige/funktionierende Idee um ein Problem zu lösen, jedenfalls darf nur eine 
+verwendet werden.
+** Argumentation bei Erklärung der von mir gewählten Codiervorgehensweise
+* Ich habe ausreichend genung verstanden wie Java bzw. Java-Tests, HTML und CSS zusammen verbunden sind, damit daraus ein funktionierendes Software entsteht 
+(Für mich eins der wichtigsten Punkten)
+* Timemanagement, festes Rhythmus
+
+negative Erfahrungen: 
+
+* bisschen mehr Aufwand bei nur 5 Mitgliedern
+
+was hat gefehlt:
+
+* Einführungsveranstaltung, in der die Frameworks(Salespoint, Spring) vorgestellt werden und was man mit ihnen gemacht werden kann
+
+== Welche Erfahrungen habe ich mit der Zusammenarbeit im Team gemacht?
+// Kurze Beschreibung der Zusammenarbeit im Team. Was lief gut? Was war verbesserungswürdig? Was würden Sie das nächste Mal anders machen?
+
+gut:
+
+* Cca. in der 5 Woche habe ich den anderen Mitgliedern angeboten, dass wir uns (zu erst einmalig) am Wochenende bei mir im Wohnheim treffen könnten. Der Grund lag daran, sich 
+von Corona besser zu schützen und mehr Ruhe und Komfort für die Bearbeitung der vorgegebenen Aufgabe zu haben. Diese Idee wurde von allen Mitgliedern sehr positiv angenomen. 
+Aus diesem Grund haben wir das so bis zum Ende gelassen.
+* Weil ich nicht reine Informatik studiere, hatte ich am Anfang bisschen Angst, dass ich mich falsch in eine Gruppe eingetragen habe, die nicht speziell für IST studenten reserviert 
+wurde. Meine Sorgen haben sich schließlich als unnötig entwickelt.
+* Kommunikation und Hilfsbereitschaft unter den Mitgliedern
+* bei Fragen gab es immer jemanden, der helfen konnte
+* gerechte Aufgabenverteilung
+
+verbesserungswürdig:
+
+* sprachliche Beteiligung an wöchentlichen Meetings (jeder sagt was)
+
+
+== Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
+// Einschätzung der Arbeit mit den bereitgestellten und zusätzlich genutzten Frameworks. Was War gut? Was war verbesserungswürdig?
+
+
+gut: 
+
+* man hatte fertig implementierte Klassen/Schnittstellen/Methoden -> Einsparung an Aufwand
+* sehr hilfreich bei der Implementierung des Katalogs
+
+== Welche Vorschläge zur weiteren Verbesserung des Softwarepraktikums gibt es?
+// Möglichst mit Beschreibung, warum die Umsetzung des von Ihnen angebrachten Vorschlages nötig ist.
+
+* Anpassung des Aufgabenumfangs bei fehlenden Mitgliedern
+
+== Feedback für den Tutor
+// Fühlten Sie sich durch den vom Lehrstuhl bereitgestellten Tutor gut betreut? Was war positiv? Was war verbesserungswürdig?
+
+gut:
+
+* gute Betreuung
+* es wurde zeitnah auf Fragen geantwortet
+* konnte sehr gut auf Fragen antworten
+* hilfreiche Anmerkungen und Verbesserungsvorschläge gegeben
+* hat uns kontinuierlich auf Fehlendes (Dinge die noch fehlen oder nicht gemacht wurden) hingewiesen
+
+verbesserungswürdig:
+
+* Ich weiß nicht inwiefern folgende Idee realisierbar ist, aber eine offizielle PDF Datei im Stichpunktartigen Format mit inhaltlichen Attributen der Probe- bzw. Abschlusspräsentation 
+wäre meinerseits sehr nutzlich. Unserer Tutor hat uns zwar in paar Punkten zusammengefasst, wie die Präsentation aufgebaut werden sollte. Jedenfalls hat niemand aus fünf 
+Mitglieder die richtige Struktur verstanden. Im weiteren wusste auch niemand von uns, dass ein offizieller TUD Background für die Präsentation verlangt wird. Aus diesen Gründen 
+haben wir die Probepräsentation so gemacht, wie wir für richtig gehalten haben. 
+
+== Sonstiges und Anmerkungen
+// Welche Aspekte fanden in den oben genannten Punkten keine Erwähnung?
