@@ -138,18 +138,21 @@
                      <input type="hidden" name="pid" value="0" th:value="${ticket.id}"/>
                      <button sec:authorize="hasRole('ADMIN')" class="button" type="submit" th:text="#{ticket.eval}">Tippschein Auswerten</button>
                  </form>
-
-
+                </div>
+            </div>
         </div>
 
-       
-   
-        <footer>
-            <p>Mach Dein Glück!! ©Copyright 2021©</p>
-        </footer>
+        <div class="backgrounds">
+            <div class="container">
+                <footer>
+                    <p>Mach Dein Glück!! ©Copyright 2021©</p>
+                </footer>
+            </div>
+        </div>
 
-    </div>
 
 </body>
+
+
 
 </html>
