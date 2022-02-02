@@ -164,12 +164,12 @@ class ForumController {
 	String searchPartner(@RequestParam("invitee") String email, @LoggedIn Optional<UserAccount> inviter,
 						 RedirectAttributes redir){
 		if(customerManagement.findByEmail(email).isEmpty()) {
-			redir.addFlashAttribute("message", "Customer not found or email was wrong!");
+			redir.addFlashAttribute("message", "Nutzer wurde nicht gefunden oder falsche E-Mail!");
 			return "redirect:/forum";
 		}
 
 		if (email.equals(inviter.get().getEmail())) {
-			redir.addFlashAttribute("message", "You cannot enter your email");
+			redir.addFlashAttribute("message", "Sie können nicht Ihre eigene E-Mail eingeben!");
 			return "redirect:/forum";
 		}
 
@@ -284,12 +284,12 @@ class ForumController {
 
 		var invitee = customerManagement.findByEmail(email).get();
 		if (Money.of(money, EURO).isLessThanOrEqualTo(Money.of(0, EURO))) {
-			redir.addFlashAttribute("message", "Invalid number");
+			redir.addFlashAttribute("message", "Ungültige Zahl");
 			return "redirect:/forum";
 		}
 		var inviter = customerManagement.findByUserAccount(userAccount.get());
 		if (inviter.getBalance().isLessThan(Money.of(money, EURO))){
-			redir.addFlashAttribute("message", "Not enough money");
+			redir.addFlashAttribute("message", "Sie haben nicht genug Geld");
 			return "not_enough_money";
 		}
 		customerManagement.transfer(Money.of(money, EURO), inviter);
