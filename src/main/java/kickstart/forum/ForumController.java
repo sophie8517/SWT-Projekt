@@ -290,7 +290,7 @@ class ForumController {
 		var inviter = customerManagement.findByUserAccount(userAccount.get());
 		if (inviter.getBalance().isLessThan(Money.of(money, EURO))){
 			redir.addFlashAttribute("message", "Sie haben nicht genug Geld");
-			return "not_enough_money";
+			return "redirect:/forum";
 		}
 		customerManagement.transfer(Money.of(money, EURO), inviter);
 		var customer = customerManagement.findByUserAccount(invitee);
