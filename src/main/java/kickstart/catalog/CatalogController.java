@@ -262,6 +262,24 @@ public class CatalogController {
 						foot.getTimeLimit(), status);
 				foot.addBet(f);
 				lotteryCatalog.save(foot);
+
+				/*
+				List<Item> temps = lotteryCatalog.findByType(ItemType.FOOTBALL);
+				Football temp = null;
+				for(Item i:temps){
+					Football tf = (Football) i;
+					if(tf.getTimeLimit().equals(LocalDateTime.of(LocalDate.of(2021,11,26),LocalTime.of(17,30)))){
+						temp = tf;
+						break;
+					}
+				}
+
+				temp.addBet(new FootballBet(temp,temp.getTimeLimit().minusDays(5), Money.of(15, EURO), customer,
+						temp.getTimeLimit(), Ergebnis.HEIMSIEG));
+				lotteryCatalog.save(temp);
+
+				 */
+
 				return "redirect:/";
 			}
 
